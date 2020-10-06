@@ -36,7 +36,7 @@ void CPlayer::IDOL::Update()
 	return;
 }
 
-void CPlayer::WALK::Update()
+void CPlayer::RUN::Update()
 {
 	
 	return;

@@ -4,6 +4,7 @@
 #include "../../C_PLAYER/C_PLAYER.h"
 #include "../../C_CAMERA/C_CAMERA.h"
 
+#include "../../C_INPUT/C_INPUT.h"
 
 void C_MAIN::Initialize(){
 
@@ -20,11 +21,11 @@ C_MAIN::~C_MAIN()
 
 };
 
-void C_MAIN::Update(){
+void C_MAIN::Update() {
 	_objectroot.Update();
 
-
 }
+
 void C_MAIN::Draw3D()
 {
 	_objectroot.Draw3D();

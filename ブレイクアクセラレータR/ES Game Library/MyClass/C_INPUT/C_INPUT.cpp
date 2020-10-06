@@ -73,7 +73,7 @@ Vector3 C_INPUT::GetArrowpadVectorNomalize()
  */
 bool C_INPUT::GetPadInputDown(int KeyID)
 {
-	return (BOOL)GetGamePadBuffer().IsPressed(buttom_manager[KeyID]);
+	return (BOOL)GetGamePadBuffer().IsPressed(buttom_manager[KeyID - 1]);
 }
 
 /**
@@ -83,7 +83,7 @@ bool C_INPUT::GetPadInputDown(int KeyID)
  */
 bool C_INPUT::GetPadInput(int KeyID)
 {
-	return (BOOL)GetGamePadState().Buttons[KeyID] != 0;
+	return (BOOL)GetGamePadState().Buttons[KeyID - 1] != 0;
 }
 
 /**

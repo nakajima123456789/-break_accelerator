@@ -47,13 +47,13 @@ private:
 		virtual void Update() override;
 	};
 
-	class WALK : public State
+	class RUN : public State
 	{
 	private:
 		CPlayerStateProcessor* _owner;
 	public:
-		WALK(CPlayerStateProcessor* owner) : _owner(owner) {}
-		virtual ~WALK() {}
+		RUN(CPlayerStateProcessor* owner) : _owner(owner) {}
+		virtual ~RUN() {}
 
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return INT_MAX; };
