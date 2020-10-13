@@ -12,8 +12,7 @@ void CPlayer::Init()
 	player_state_processor.player_mng = this;
 	player_state_processor.ChangeState(new CPlayer::RUN(&player_state_processor));
 
-	this->player_model = GraphicsDevice.CreateModelFromFile(_T("CubeModel//cube.X"));
-	this->player_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
+	
 }
 
 Material CPlayer::SetMaterial(Color _color)
@@ -42,10 +41,7 @@ void CPlayer::Update()
 
 void CPlayer::Draw3D()
 {
-	this->player_model->SetPosition(this->transform.position);
-	this->player_model->SetRotation(this->transform.rotation);
-	this->player_model->SetScale(this->transform.scale);
-	this->player_model->Draw();
+	
 }
 
 
@@ -58,7 +54,6 @@ void CPlayer::IDOL::Update()
 void CPlayer::RUN::Update()
 {
 
-	_owner->player_mng->transform.position += (Input.GetArrowkeyVector() * 0.05);
 
 	return;
 }

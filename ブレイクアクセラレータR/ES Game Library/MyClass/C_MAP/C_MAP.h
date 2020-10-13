@@ -16,8 +16,10 @@ public:
 
 private:
 	MODEL model;
-
 	std::vector<Vector3> model_pos;
+
+	MODEL model_road;
+	std::vector<Vector3> model_road_pos;
 
 protected:
 
