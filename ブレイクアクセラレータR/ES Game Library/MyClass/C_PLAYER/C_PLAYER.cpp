@@ -58,8 +58,7 @@ void CPlayer::IDOL::Update()
 void CPlayer::RUN::Update()
 {
 
-	_owner->player_mng->transform.position.x += (Input.GetArrowkeyVector().x * 0.05);
-	_owner->player_mng->transform.position.z += (Input.GetArrowkeyVector().z * 0.05);
+	_owner->player_mng->transform.position += (Input.GetArrowkeyVector() * 0.05);
 
 	return;
 }
