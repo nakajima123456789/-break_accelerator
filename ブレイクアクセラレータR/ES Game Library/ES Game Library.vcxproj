@@ -175,6 +175,7 @@
     <ClCompile Include="MyClass\C_EFFEKSEER\CEffekseer_.cpp" />
     <ClCompile Include="MyClass\C_HITBOX\HitBox.cpp" />
     <ClCompile Include="MyClass\C_INPUT\C_INPUT.cpp" />
+    <ClCompile Include="MyClass\C_MAP\C_MAP.cpp" />
     <ClCompile Include="MyClass\C_OBJECT\Object.cpp" />
     <ClCompile Include="MyClass\C_OBSTACLE\C_Obstacle.cpp" />
     <ClCompile Include="MyClass\C_PLAYER\C_PLAYER.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="MyClass\C_EFFEKSEER\CEffekseer_.h" />
     <ClInclude Include="MyClass\C_HITBOX\HitBox.h" />
     <ClInclude Include="MyClass\C_INPUT\C_INPUT.h" />
+    <ClInclude Include="MyClass\C_MAP\C_MAP.h" />
     <ClInclude Include="MyClass\C_OBJECT\Object.h" />
     <ClInclude Include="MyClass\C_OBSTACLE\C_Obstacle.h" />
     <ClInclude Include="MyClass\C_PLAYER\C_PLAYER.h" />

@@ -9,6 +9,8 @@
 
 #include "../../OBSTACLEFACTORY/ObstacleFactory.h"
 
+#include "../../C_MAP/C_MAP.h"
+
 void C_MAIN::Initialize(){
 
 	auto c_camera = (new CCamera_);
@@ -19,6 +21,11 @@ void C_MAIN::Initialize(){
 	
 	auto&& c_objectplacement = (new PlacementManager);
 	_objectroot.AddList((ChildObjRef)c_objectplacement);
+
+	auto&& c_map = new C_MAP;
+	_objectroot.AddList((ChildObjRef)c_map);
+
+
 
 	ObstacleFactory* Obstacle_factory = new ObstacleStationeryFactory();
 

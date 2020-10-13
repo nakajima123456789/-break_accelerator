@@ -181,6 +181,9 @@
     <Filter Include="MAPTXT">
       <UniqueIdentifier>{652efd60-c20a-489e-987d-1ffa3e9d4361}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\C_MAP">
+      <UniqueIdentifier>{973b790e-050f-42bb-a017-409216a623d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -378,6 +381,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp">
       <Filter>MyClass\ObjectPlacement</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_MAP\C_MAP.cpp">
+      <Filter>MyClass\C_MAP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -594,6 +600,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h">
       <Filter>MyClass\ObjectPlacement</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_MAP\C_MAP.h">
+      <Filter>MyClass\C_MAP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
