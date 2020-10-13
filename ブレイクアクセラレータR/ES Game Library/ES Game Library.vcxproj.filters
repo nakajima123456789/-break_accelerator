@@ -163,6 +163,24 @@
     <Filter Include="MyClass\C_Effekseer">
       <UniqueIdentifier>{d212e516-208d-427b-b061-809a98bce6b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\Mng_Obstacle">
+      <UniqueIdentifier>{3eb22aaa-b2f2-4d8f-ba42-e4200e1d8d8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_Obstacle">
+      <UniqueIdentifier>{aae6da7a-7122-4a62-92f6-79509d2e4231}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\ObstacleFactory">
+      <UniqueIdentifier>{6c7c0f48-7dc6-462d-93e7-84e7f8cd63cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\ObstacleBase">
+      <UniqueIdentifier>{bc1d58e2-d170-482b-8512-a8237b4adc24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\ObjectPlacement">
+      <UniqueIdentifier>{5c32e3f3-804e-48f4-b388-173cffd26c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MAPTXT">
+      <UniqueIdentifier>{652efd60-c20a-489e-987d-1ffa3e9d4361}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -348,6 +366,18 @@
     </ClCompile>
     <ClCompile Include="MyClass\C_EFFEKSEER\CEffekseer_.cpp">
       <Filter>MyClass\C_Effekseer</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_OBSTACLE\C_Obstacle.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\OBSTACLEBASE\ObstacleBase.cpp">
+      <Filter>MyClass\Mng_Obstacle\ObstacleBase</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\ObstacleFactory\ObstacleFactory.cpp">
+      <Filter>MyClass\Mng_Obstacle\ObstacleFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp">
+      <Filter>MyClass\ObjectPlacement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -553,6 +583,18 @@
     <ClInclude Include="MyClass\C_EFFEKSEER\CEffekseer_.h">
       <Filter>MyClass\C_Effekseer</Filter>
     </ClInclude>
+    <ClInclude Include="MyClass\C_OBSTACLE\C_Obstacle.h">
+      <Filter>MyClass\Mng_Obstacle\C_Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\OBSTACLEBASE\ObstacleBase.h">
+      <Filter>MyClass\Mng_Obstacle\ObstacleBase</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\ObstacleFactory\ObstacleFactory.h">
+      <Filter>MyClass\Mng_Obstacle\ObstacleFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h">
+      <Filter>MyClass\ObjectPlacement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resource\DirectX.ico">
@@ -563,5 +605,10 @@
     <ResourceCompile Include="..\Resource\Resource.rc">
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Content\オブジェクト配置.txt">
+      <Filter>MAPTXT</Filter>
+    </Text>
   </ItemGroup>
 </Project>

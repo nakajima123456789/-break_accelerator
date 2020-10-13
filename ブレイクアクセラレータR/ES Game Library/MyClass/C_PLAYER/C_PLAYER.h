@@ -13,7 +13,7 @@ class CPlayer;
 
 class CPlayerStateProcessor : public  StateProcessor {
 public:
-	CPlayer* player_manager;
+	CPlayer* player_mng;
 };
 
 class CPlayer : public Object
@@ -76,7 +76,11 @@ private:
 	};
 
 private:
+	//ŠÖ”éŒ¾
+	Material CPlayer::SetMaterial(Color _color);
 
+    //•Ï”éŒ¾
+	MODEL player_model;
 
 };
 

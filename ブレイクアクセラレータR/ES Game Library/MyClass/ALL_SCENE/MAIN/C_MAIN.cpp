@@ -5,6 +5,9 @@
 #include "../../C_CAMERA/C_CAMERA.h"
 
 #include "../../C_INPUT/C_INPUT.h"
+#include "../../ObjectPlacement/ObjectPlacement.h"
+
+#include "../../OBSTACLEFACTORY/ObstacleFactory.h"
 
 void C_MAIN::Initialize(){
 
@@ -14,6 +17,19 @@ void C_MAIN::Initialize(){
 	auto&& c_player = (new CPlayer(Vector3_Zero));
 	_objectroot.AddList((ChildObjRef)c_player);
 	
+	auto&& c_objectplacement = (new PlacementManager);
+	_objectroot.AddList((ChildObjRef)c_objectplacement);
+
+	ObstacleFactory* Obstacle_factory = new ObstacleStationeryFactory();
+
+	for (int i = 0; i < c_objectplacement->GetCharacterPos()[OBJECT_WALL].size(); i++)
+	{
+		Vector3 pos = c_objectplacement->GetCharacterPos()[OBJECT_WALL][i];
+		Object* Obstacle_book = Obstacle_factory->Create("•ÇáŠQ•¨", c_objectplacement->GetCharacterPos()[OBJECT_WALL][i]);
+		_objectroot.AddList((ChildObjRef)Obstacle_book);
+	}
+
+	delete Obstacle_factory;
 }
 
 C_MAIN::~C_MAIN()

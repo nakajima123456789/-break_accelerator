@@ -20,9 +20,9 @@ Vector3 C_INPUT::GetArrowkeyVector()
 		if (GetKeyState().IsKeyDown(Keys_Right)) { result += Vector3_Right;}
 	}
 
-	if (GetKeyState().IsKeyDown(Keys_Up))        { result += Vector3_Up;   }
+	if (GetKeyState().IsKeyDown(Keys_Up))        { result += Vector3_Forward;   }
 	else { 
-		if (GetKeyState().IsKeyDown(Keys_Down))  { result += Vector3_Down; }
+		if (GetKeyState().IsKeyDown(Keys_Down))  { result += Vector3_Backward; }
 	}
 	return result;
 }
