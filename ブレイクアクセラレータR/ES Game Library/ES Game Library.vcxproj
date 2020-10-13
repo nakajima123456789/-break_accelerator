@@ -176,8 +176,12 @@
     <ClCompile Include="MyClass\C_HITBOX\HitBox.cpp" />
     <ClCompile Include="MyClass\C_INPUT\C_INPUT.cpp" />
     <ClCompile Include="MyClass\C_OBJECT\Object.cpp" />
+    <ClCompile Include="MyClass\C_OBSTACLE\C_Obstacle.cpp" />
     <ClCompile Include="MyClass\C_PLAYER\C_PLAYER.cpp" />
     <ClCompile Include="MyClass\C_SE\C_SE.cpp" />
+    <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp" />
+    <ClCompile Include="MyClass\OBSTACLEBASE\ObstacleBase.cpp" />
+    <ClCompile Include="MyClass\ObstacleFactory\ObstacleFactory.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -244,9 +248,13 @@
     <ClInclude Include="MyClass\C_HITBOX\HitBox.h" />
     <ClInclude Include="MyClass\C_INPUT\C_INPUT.h" />
     <ClInclude Include="MyClass\C_OBJECT\Object.h" />
+    <ClInclude Include="MyClass\C_OBSTACLE\C_Obstacle.h" />
     <ClInclude Include="MyClass\C_PLAYER\C_PLAYER.h" />
     <ClInclude Include="MyClass\C_SE\C_SE.h" />
     <ClInclude Include="MyClass\C_STATE\C_STATE.h" />
+    <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h" />
+    <ClInclude Include="MyClass\OBSTACLEBASE\ObstacleBase.h" />
+    <ClInclude Include="MyClass\ObstacleFactory\ObstacleFactory.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ESGLib.h" />
     <ClInclude Include="DirectX\Audio\DXAudio8.hpp" />
@@ -291,6 +299,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Resource\Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Content\オブジェクト配置.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

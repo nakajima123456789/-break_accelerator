@@ -172,8 +172,10 @@ bool HitBox::IsHitObjects(std::string tags) {
 	ASSERT(Tag_Sarch(tags) && "tag‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢!");
 	bool result = false;
 	std::list<HitBox*> HitList = HitHitBoxlist();
-	for (auto&& other : HitList) {
-		if (other->tag == tags) {
+	for (auto&& other : HitList)
+	{
+		if (other->tag == tags) 
+		{
 			result = true;
 		}
 	}
