@@ -2,6 +2,8 @@
 #include "../C_Effekseer/CEffekseer_.h"
 #include "../C_INPUT/C_INPUT.h"
 
+#include "../C_PLAYER/C_PLAYER.h"
+
 void CCamera_::Init()
 {
 	Color color = (0.5f, 0.5f, 0.5f);
@@ -13,7 +15,6 @@ void CCamera_::Init()
 	light.Specular  = color;
 	light.Position  = Vector3(0, 10, 0);
 
-	camera->SetLookAt(Vector3(0,1, 5),Vector3(0,0,1), Vector3_Up);
 	camera->SetPerspectiveFieldOfView(45.0, 16.0f / 9.0f, 1.0f, 10000.0f);
 
 	GraphicsDevice.SetLight(light);
@@ -22,11 +23,13 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
-
+	camera->SetLookAt(CPlayer::test_pos + Vector3(0,1, -5), CPlayer::test_pos, Vector3_Up);
+	GraphicsDevice.SetCamera(camera);
 }
 
 void CCamera_::DrawEnd()
 {
+	EffekseerMgr.Draw(camera);
 	GraphicsDevice.SetCamera(camera);
 };
 

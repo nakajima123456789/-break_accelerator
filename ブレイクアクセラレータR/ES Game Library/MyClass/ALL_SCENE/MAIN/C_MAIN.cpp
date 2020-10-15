@@ -9,23 +9,23 @@
 
 #include "../../OBSTACLEFACTORY/ObstacleFactory.h"
 
+#include "../../C_EFFEKSEER/CEffekseer_.h"
+
 #include "../../C_MAP/C_MAP.h"
 
 void C_MAIN::Initialize(){
 
-	auto c_camera = (new CCamera_);
+	auto&& c_camera = (new CCamera_);
 	_objectroot.AddList((ChildObjRef)c_camera);
 
 	auto&& c_player = (new CPlayer(Vector3_Zero));
 	_objectroot.AddList((ChildObjRef)c_player);
-	
+
 	auto&& c_objectplacement = (new PlacementManager);
 	_objectroot.AddList((ChildObjRef)c_objectplacement);
 
 	auto&& c_map = new C_MAP;
 	_objectroot.AddList((ChildObjRef)c_map);
-
-
 
 	ObstacleFactory* Obstacle_factory = new ObstacleStationeryFactory();
 
@@ -47,6 +47,7 @@ C_MAIN::~C_MAIN()
 void C_MAIN::Update() {
 	_objectroot.Update();
 
+	EffekseerMgr.Update();
 }
 
 void C_MAIN::Draw3D()
