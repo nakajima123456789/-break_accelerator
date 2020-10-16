@@ -10,19 +10,28 @@ void CObstacle::Init()
 	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("CubeModel//cube.X"));
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f,1.f,1.f)));
+
+	IsHitObjectsInit("item");
 }
 
 void CObstacle::Update()
 {
+	if (c_hitbox->IsHitObjects("player"))
+	{
 
-
-
+	};
 }
 
 void CObstacle::Draw3D()
 {
-	this->obstacle_model->SetPosition(this->transform.position);
-	this->obstacle_model->SetRotation(this->transform.rotation);
-	this->obstacle_model->SetScale(this->transform.scale);
-	this->obstacle_model->Draw();
+	if(PlayerDistance() <= 5)
+	{
+		this->obstacle_model->SetPosition(this->transform.position);
+		this->obstacle_model->SetRotation(this->transform.rotation);
+		this->obstacle_model->SetScale(this->transform.scale);
+
+		IsHitObjectsDraw(this->transform.position);
+
+		obstacle_model->Draw();
+	}
 }

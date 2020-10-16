@@ -15,9 +15,20 @@ public:
 
 
 private:
-	MODEL model;
 
-	std::vector<Vector3> model_pos;
+	enum MAP_MODEL
+	{
+		GROUND,
+		PILLAR,
+		MAP_MODEL_SIZE,
+	};
+
+	std::vector<MODEL> model;
+	std::vector<std::vector<Vector3>> model_position;
+
+	Vector3 player_pos = Vector3(0.0f,0.0f,0.0f); 
+
+	inline void CreateMapPrefarence();
 
 protected:
 

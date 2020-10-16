@@ -31,6 +31,8 @@ public:
 	virtual void CPlayer::DrawAlpha3D() override { return; };
 	virtual void CPlayer::Draw2D()      override { return; };
 
+	static Vector3 test_pos;
+
 private:
 
 	class IDOL : public State
@@ -75,12 +77,19 @@ private:
 		virtual void Update() override;
 	};
 
+
+
 private:
 	//ŠÖ”éŒ¾
 	Material CPlayer::SetMaterial(Color _color);
+	int   CPlayer::IsHitObjectsInit();
+	void  CPlayer::IsHitObjectsDraw();
+
 
     //•Ï”éŒ¾
-	MODEL player_model;
+	MODEL test_model;
+
+	std::unique_ptr <HitBox> c_hitbox;
 
 };
 

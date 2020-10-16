@@ -1,6 +1,7 @@
 #include "C_CAMERA.h"
 #include "../C_Effekseer/CEffekseer_.h"
 #include "../C_INPUT/C_INPUT.h"
+#include "../INFORMATION/INFORMATION.h"
 
 void CCamera_::Init()
 {
@@ -13,7 +14,6 @@ void CCamera_::Init()
 	light.Specular  = color;
 	light.Position  = Vector3(0, 10, 0);
 
-	camera->SetLookAt(Vector3(4.5,5, -30),Vector3(4.5,0,1), Vector3_Up);
 	camera->SetPerspectiveFieldOfView(45.0, 16.0f / 9.0f, 1.0f, 10000.0f);
 
 	GraphicsDevice.SetLight(light);
@@ -23,10 +23,15 @@ void CCamera_::Init()
 void CCamera_::Update()
 {
 
+	Vector3 player_pos = INFORMATION::PLAYER_INFORMATION::player_pos;
+
+	camera->SetLookAt(player_pos + Vector3(0,1, -5), player_pos, Vector3_Up);
+	GraphicsDevice.SetCamera(camera);
 }
 
 void CCamera_::DrawEnd()
 {
+	EffekseerMgr.Draw(camera);
 	GraphicsDevice.SetCamera(camera);
 };
 

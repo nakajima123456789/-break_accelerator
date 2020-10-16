@@ -1,6 +1,6 @@
 #include "CEffekseer_.h"
 
-#ifdef active_Effekseer
+
 CEffekseer_::CEffekseer_()
 {
 	Effekseer.Attach(GraphicsDevice);
@@ -42,8 +42,9 @@ EFFEKSEER CEffekseer_::GetEffekseer(int _number)
  */
 int CEffekseer_::PlayEffekseer(int _number, double _scale, Vector3 _pos)
 {
-	ASSERT(_scale != 0 && "scale >= 0");
 	int id = effekseer[_number]->Play(_pos);
+
+	effekseer[_number]->SetPosition(id, _pos);
 	effekseer[_number]->SetScale(id, 0.1);
 
 	return effekseer.size() - 1;
@@ -59,5 +60,5 @@ void CEffekseer_::Draw(CAMERA& _camera)
 	Effekseer.SetCamera(_camera);
 	Effekseer.Draw();
 }
-#endif // active_Effekseer
+
 

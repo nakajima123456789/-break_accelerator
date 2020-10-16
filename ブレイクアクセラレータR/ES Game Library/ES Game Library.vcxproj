@@ -123,12 +123,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Extension\Effekseer\Effekseer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Extension\Effekseer\EffekseerEffect.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Extension\Kinect\Kinect.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -180,6 +180,7 @@
     <ClCompile Include="MyClass\C_OBSTACLE\C_Obstacle.cpp" />
     <ClCompile Include="MyClass\C_PLAYER\C_PLAYER.cpp" />
     <ClCompile Include="MyClass\C_SE\C_SE.cpp" />
+    <ClCompile Include="MyClass\INFORMATION\INFORMATION.cpp" />
     <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp" />
     <ClCompile Include="MyClass\OBSTACLEBASE\ObstacleBase.cpp" />
     <ClCompile Include="MyClass\ObstacleFactory\ObstacleFactory.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="MyClass\C_PLAYER\C_PLAYER.h" />
     <ClInclude Include="MyClass\C_SE\C_SE.h" />
     <ClInclude Include="MyClass\C_STATE\C_STATE.h" />
+    <ClInclude Include="MyClass\INFORMATION\INFORMATION.h" />
     <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h" />
     <ClInclude Include="MyClass\OBSTACLEBASE\ObstacleBase.h" />
     <ClInclude Include="MyClass\ObstacleFactory\ObstacleFactory.h" />
