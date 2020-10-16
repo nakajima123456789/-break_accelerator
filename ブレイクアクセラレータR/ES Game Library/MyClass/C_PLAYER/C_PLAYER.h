@@ -82,11 +82,14 @@ private:
 private:
 	//ŠÖ”éŒ¾
 	Material CPlayer::SetMaterial(Color _color);
+	int   CPlayer::IsHitObjectsInit();
+	void  CPlayer::IsHitObjectsDraw();
+
 
     //•Ï”éŒ¾
 	MODEL test_model;
 
-	int test_effkseer;
+	std::unique_ptr <HitBox> c_hitbox;
 
 };
 

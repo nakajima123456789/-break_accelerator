@@ -1,8 +1,7 @@
 #include "C_CAMERA.h"
 #include "../C_Effekseer/CEffekseer_.h"
 #include "../C_INPUT/C_INPUT.h"
-
-#include "../C_PLAYER/C_PLAYER.h"
+#include "../INFORMATION/INFORMATION.h"
 
 void CCamera_::Init()
 {
@@ -23,7 +22,10 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
-	camera->SetLookAt(CPlayer::test_pos + Vector3(0,1, -5), CPlayer::test_pos, Vector3_Up);
+
+	Vector3 player_pos = INFORMATION::PLAYER_INFORMATION::player_pos;
+
+	camera->SetLookAt(player_pos + Vector3(0,1, -5), player_pos, Vector3_Up);
 	GraphicsDevice.SetCamera(camera);
 }
 

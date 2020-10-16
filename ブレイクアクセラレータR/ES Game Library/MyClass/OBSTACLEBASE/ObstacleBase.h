@@ -2,6 +2,8 @@
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
 
+#include "../C_HITBOX/HitBox.h"
+
 class ObstacleBase : public Object
 {
 public:
@@ -17,10 +19,16 @@ public:
 
 private:
 
-	Vector3 player_pos;
-
 protected:
 
+	std::unique_ptr <HitBox> c_hitbox;
+
 	Material SetMaterial(Color _color);
+	float    PlayerDistance();
+
+	void   IsHitObjectsInit(std::string _tags);
+	void   IsHitObjectsDraw(Vector3 _pos);
+
+
 };
 

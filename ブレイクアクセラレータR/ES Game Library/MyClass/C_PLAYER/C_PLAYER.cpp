@@ -1,5 +1,6 @@
 #include "C_PLAYER.h"
 #include "../C_INPUT/C_INPUT.h"
+#include "../INFORMATION/INFORMATION.h"
 
 Vector3 CPlayer::test_pos = Vector3_Zero;
 
@@ -16,17 +17,9 @@ void CPlayer::Init()
 
 	test_model = GraphicsDevice.CreateModelFromFile(_T("CubeModel//cube.X"));
 
-	Material mtrl;
+	IsHitObjectsInit();
 
-	Color _color = Color(1.0f, 1.0f, 1.0f);
-
-	mtrl.Diffuse = _color;
-	mtrl.Ambient = _color;
-	mtrl.Specular = _color;
-	mtrl.Emissive = _color;
-	mtrl.Power = 1.0f;
-
-	test_model->SetMaterial(mtrl);
+	test_model->SetMaterial(SetMaterial(Color(1.0f, 1.0f, 1.0f)));
 }
 
 Material CPlayer::SetMaterial(Color _color)
@@ -42,6 +35,23 @@ Material CPlayer::SetMaterial(Color _color)
 	return mtrl;
 }
 
+int  CPlayer::IsHitObjectsInit()
+{
+	c_hitbox.reset(new HitBox);
+	c_hitbox->Init();
+	c_hitbox->Settags("player");
+
+	c_hitbox->SetHitBoxScale(0.25f);
+
+	return 0;
+}
+
+void CPlayer::IsHitObjectsDraw()
+{
+	c_hitbox->SetHitBoxPosition(this->transform.position);
+	c_hitbox->Draw3D();
+}
+
 CPlayer::~CPlayer()
 {
 	
@@ -50,13 +60,17 @@ CPlayer::~CPlayer()
 void CPlayer::Update()
 {
 
-	test_pos = this->transform.position += Input.GetArrowkeyVector() * 0.1;
+	this->transform.position += Input.GetArrowkeyVector() * 0.05;
+
+	INFORMATION::PLAYER_INFORMATION::player_pos = this->transform.position;
 
 	this->player_state_processor.Update();
 }
 
 void CPlayer::Draw3D()
 {
+	IsHitObjectsDraw();
+
 	test_model->SetPosition(this->transform.position);
 	test_model->SetRotation(this->transform.rotation);
 	test_model->SetScale(this->transform.scale);

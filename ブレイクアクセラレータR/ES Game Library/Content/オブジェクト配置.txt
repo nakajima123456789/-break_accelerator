@@ -1,106 +1,68 @@
 o       o
-o       
-o       
-o       
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-        
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-        
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
-        
-o       o
-o       o
-o       o
-o       o
-o       o
-o       o
+ooooooooo       
+ooooooooo 
+ooooooooo 
+ooooooooo
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+ooooooooo 
+
+ooooooooo 
+ooooooooo 
+
+
+
+
+
+
+
+
+
+ooooo
+oooo
+
+
+
+ooooo
+
+
+
+
+
+oooo
+
+
+
+o
+
+o
+o
+oo
+o
+ooooo
+
+ooo

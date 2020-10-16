@@ -1,6 +1,6 @@
 #include "C_MAP.h"
 
-#include "../C_PLAYER/C_PLAYER.h"
+#include "../INFORMATION/INFORMATION.h"
 
 void C_MAP::Init()
 {
@@ -23,7 +23,7 @@ void C_MAP::Init()
 
 void C_MAP:: Update()
 {
-	player_pos = CPlayer::test_pos;
+	player_pos = INFORMATION::PLAYER_INFORMATION::player_pos;
 
 	if ((int)player_pos.z % 48 == 0)
 		CreateMapPrefarence();
@@ -66,7 +66,6 @@ void C_MAP::CreateMapPrefarence()
 				if (x % 2 == 0)
 					 model_position[y][x] =  Vector3( 1.3f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
 				else model_position[y][x] =  Vector3(-1.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
-
 				continue;
 			}
 			model_position[y][x] = Vector3(0.0f,0.0f,(player_pos.z - 5) + (x * 12));
