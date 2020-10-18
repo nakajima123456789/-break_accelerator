@@ -23,12 +23,15 @@ private:
 		MAP_MODEL_SIZE,
 	};
 
-	std::vector<MODEL> model;
-	std::vector<std::vector<Vector3>> model_position;
+	MODEL model;
+	std::vector<Vector3> model_pos;
 
 	Vector3 player_pos = Vector3(0.0f,0.0f,0.0f); 
 
 	inline void CreateMapPrefarence();
+
+	MODEL model_road;
+	std::vector<Vector3> model_road_pos;
 
 	MODEL model_bill;
 	std::vector<Vector3> model_bill_pos;
@@ -38,4 +41,3 @@ private:
 protected:
 
 };
-

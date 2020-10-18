@@ -1,6 +1,7 @@
 #include "C_CAMERA.h"
 #include "../C_Effekseer/CEffekseer_.h"
 #include "../C_INPUT/C_INPUT.h"
+#include "../INFORMATION/INFORMATION.h"
 
 void CCamera_::Init()
 {
@@ -22,6 +23,10 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
+	camera->SetLookAt(INFORMATION::PLAYER_INFORMATION::player_pos + Vector3(0,2,-5), INFORMATION::PLAYER_INFORMATION::player_pos, Vector3_Up);
+	camera->SetPerspectiveFieldOfView(45.0, 16.0f / 9.0f, 1.0f, 10000.0f);
+
+	GraphicsDevice.SetCamera(camera);
 
 }
 

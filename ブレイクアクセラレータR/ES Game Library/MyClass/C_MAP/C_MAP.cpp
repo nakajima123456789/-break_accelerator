@@ -6,8 +6,8 @@ void C_MAP::Init()
 	bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
 
 
-	auto&& ModelPrefarence = [this](MODEL& _model, LPCTSTR _filename)->bool{_model = GraphicsDevice.CreateModelFromFile(_filename); 
-	_model->SetScale(transform.scale); return model == nullptr ? false : true; };
+	auto&& ModelPrefarence = [this](MODEL& _model, LPCTSTR _filename){_model = GraphicsDevice.CreateModelFromFile(_filename); 
+	_model->SetScale(transform.scale); };
 
 	ModelPrefarence(model,      _T("model3D//‰¼‘fÞ//hashira_01.X"));
 	ModelPrefarence(model_road, _T("model3D//“¹˜H//road_v01.X"));
@@ -31,6 +31,7 @@ void C_MAP::Init()
 	model_road->SetScale(0.05f);
 	model_road->SetPosition(0, -7, 0);
 };
+
 void C_MAP:: Update()
 {
 	bg->Play();
@@ -38,6 +39,7 @@ void C_MAP:: Update()
 		bg->Replay();
 	}
 };
+
 void C_MAP::Draw3D()
 {
 	auto&& ModelDrawPrefarence = [](MODEL& _model, Vector3& _pos) { _model->SetPosition(Vector3(_pos.x, _pos.y, _pos.z - 5.0f)); _model->Draw(); };
