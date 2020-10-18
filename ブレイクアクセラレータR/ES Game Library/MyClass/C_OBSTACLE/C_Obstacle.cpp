@@ -16,10 +16,8 @@ void CObstacle::Init()
 
 void CObstacle::Update()
 {
-	if (c_hitbox->IsHitObjects("player"))
-	{
 
-	};
+	
 }
 
 void CObstacle::Draw3D()
