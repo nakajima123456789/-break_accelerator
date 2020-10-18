@@ -30,6 +30,11 @@ private:
 
 	inline void CreateMapPrefarence();
 
+	MODEL model_bill;
+	std::vector<Vector3> model_bill_pos;
+
+	MEDIA bg;
+
 protected:
 
 };
