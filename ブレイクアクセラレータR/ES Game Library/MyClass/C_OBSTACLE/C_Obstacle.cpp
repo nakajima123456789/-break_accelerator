@@ -22,13 +22,13 @@ void CObstacle::Init()
 
 void CObstacle::Update()
 {
-	if (PlayerDistance() <= 0.28)
+	if (PlayerDistance() <= 0.25)
 	{
 		if (c_hitbox->IsHitObjects("player")) 
 			IsRemove_flag(true);
 	}
 
-	if (this->transform.position.z <= (PlayerPosition().z - 8))
+	if (this->transform.position.z <= (PlayerPosition().z - 10))
 		this->IsRemove_flag(true);
 }
 
