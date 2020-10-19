@@ -1,6 +1,5 @@
 #include "ObstacleBase.h"
 
-#include "../INFORMATION/INFORMATION.h"
 
 Material ObstacleBase::SetMaterial(Color _color)
 {
@@ -18,12 +17,19 @@ Material ObstacleBase::SetMaterial(Color _color)
 float ObstacleBase::PlayerDistance()
 {
 	float dis;
-	Vector3 player_pos = INFORMATION::PLAYER_INFORMATION::player_pos;
+	Vector3 player_pos = monostate.player_pos;
 
 	dis = Vector3_Distance(this->transform.position, player_pos);
 
 	return dis;
 }
+
+Vector3  ObstacleBase::PlayerPosition() 
+{ 
+	Vector3 player_pos = monostate.player_pos;
+
+	return  player_pos;
+};
 
 //ヒットボックス生成
 void  ObstacleBase::IsHitObjectsInit(std::string _tags)
@@ -32,8 +38,7 @@ void  ObstacleBase::IsHitObjectsInit(std::string _tags)
 	c_hitbox->Init();
 	c_hitbox->Settags(_tags);
 
-	c_hitbox->SetHitBoxScale(0.25f);
-	c_hitbox->SetHitBoxPosition(Vector3(2, 0, -2));
+	c_hitbox->SetHitBoxScale(0.18f);
 }
 
 //ヒットボックス描画

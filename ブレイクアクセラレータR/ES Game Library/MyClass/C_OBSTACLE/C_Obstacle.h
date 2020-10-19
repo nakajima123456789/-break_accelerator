@@ -17,6 +17,7 @@ public:
 private:
 	MODEL obstacle_model;
 
+
 protected:
 
 };

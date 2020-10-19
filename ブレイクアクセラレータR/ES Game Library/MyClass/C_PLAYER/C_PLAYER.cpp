@@ -41,7 +41,7 @@ int  CPlayer::IsHitObjectsInit()
 	c_hitbox->Init();
 	c_hitbox->Settags("player");
 
-	c_hitbox->SetHitBoxScale(0.25f);
+	c_hitbox->SetHitBoxScale(0.18f);
 
 	return 0;
 }
@@ -60,9 +60,13 @@ CPlayer::~CPlayer()
 void CPlayer::Update()
 {
 
-	this->transform.position += Input.GetArrowkeyVector() * 0.05;
+	this->transform.position.x += Input.GetArrowkeyVector().x * 0.05;
+	this->transform.position.z += Input.GetArrowkeyVector().z * 0.2;
 
-	INFORMATION::PLAYER_INFORMATION::player_pos = this->transform.position;
+	monostate.player_pos = this->transform.position;
+
+
+
 
 	this->player_state_processor.Update();
 }

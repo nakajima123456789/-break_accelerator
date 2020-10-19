@@ -3,6 +3,10 @@
 CObstacle::CObstacle(Vector3 pos)
 {
 	this->transform.position = pos;
+
+	IsHitObjectsInit("item");
+
+	IsHitObjectsDraw(this->transform.position);
 }
 
 void CObstacle::Init()
@@ -11,25 +15,25 @@ void CObstacle::Init()
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f,1.f,1.f)));
 
-	IsHitObjectsInit("item");
+	this->obstacle_model->SetPosition(this->transform.position);
+	this->obstacle_model->SetRotation(this->transform.rotation);
+	this->obstacle_model->SetScale   (this->transform.scale);
 }
 
 void CObstacle::Update()
 {
+	if (PlayerDistance() <= 0.28)
+	{
+		if (c_hitbox->IsHitObjects("player")) 
+			IsRemove_flag(true);
+	}
 
-	
+	if (this->transform.position.z <= (PlayerPosition().z - 8))
+		this->IsRemove_flag(true);
 }
 
 void CObstacle::Draw3D()
 {
-	if(PlayerDistance() <= 5)
-	{
-		this->obstacle_model->SetPosition(this->transform.position);
-		this->obstacle_model->SetRotation(this->transform.rotation);
-		this->obstacle_model->SetScale(this->transform.scale);
-
-		IsHitObjectsDraw(this->transform.position);
-
-		obstacle_model->Draw();
-	}
+	if(PlayerDistance() <= 30)
+	   obstacle_model->Draw();
 }

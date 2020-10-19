@@ -1,6 +1,7 @@
 #pragma once
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
+#include "../INFORMATION/INFORMATION.h"
 
 class C_MAP : public Object
 {
@@ -20,6 +21,7 @@ private:
 	{
 		GROUND,
 		PILLAR,
+		BILL,
 		MAP_MODEL_SIZE,
 	};
 
@@ -29,6 +31,10 @@ private:
 	Vector3 player_pos = Vector3(0.0f,0.0f,0.0f); 
 
 	inline void CreateMapPrefarence();
+
+	MEDIA bg;
+
+	MONOSTATE monostate;
 
 protected:
 

@@ -3,6 +3,7 @@
 #include "../../ESGLib.h"
 
 #include "../C_HITBOX/HitBox.h"
+#include "../INFORMATION/INFORMATION.h"
 
 class ObstacleBase : public Object
 {
@@ -26,9 +27,13 @@ protected:
 	Material SetMaterial(Color _color);
 	float    PlayerDistance();
 
+	Vector3  PlayerPosition();
+
 	void   IsHitObjectsInit(std::string _tags);
 	void   IsHitObjectsDraw(Vector3 _pos);
 
+
+	MONOSTATE monostate;
 
 };
 

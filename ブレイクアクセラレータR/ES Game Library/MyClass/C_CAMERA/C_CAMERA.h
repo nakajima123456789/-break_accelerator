@@ -1,6 +1,7 @@
 #pragma once
 #include "../../ESGLib.h"
 #include "../C_OBJECT/Object.h"
+#include "../INFORMATION/INFORMATION.h"
 
 class CCamera_ : public Object
 {
@@ -21,6 +22,6 @@ private:
 	CAMERA  camera;
 	Light   light;
 
-
+	MONOSTATE monostate;
 };
 

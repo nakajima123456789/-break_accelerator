@@ -5,6 +5,7 @@
 #include "../c_Hitbox/HitBox.h"
 #include "../C_INPUT/C_INPUT.h"
 #include "../C_SE/C_SE.h"
+#include "../INFORMATION/INFORMATION.h"
 
 #include <functional>
 
@@ -81,16 +82,18 @@ private:
 
 private:
 	//ŠÖ”éŒ¾
-	Material CPlayer::SetMaterial(Color _color);
-	int   CPlayer::IsHitObjectsInit();
-	void  CPlayer::IsHitObjectsDraw();
-
+	Material SetMaterial(Color _color);
+	int      IsHitObjectsInit();
+	void	 IsHitObjectsDraw();
 
     //•Ï”éŒ¾
 	MODEL test_model;
 
 	std::unique_ptr <HitBox> c_hitbox;
 
+
+
+	MONOSTATE monostate;
 };
 
 

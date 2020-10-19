@@ -5,11 +5,15 @@
 void C_MAP::Init()
 {
 
+	MediaManager.Attach(GraphicsDevice);
+    bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
+
 	auto&& AddModel = [this](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename)); 
 	model[model.size() - 1]->SetScale(transform.scale); };
 
 	AddModel(_T("model3D//“¹˜H//road_v01.X"));
 	AddModel(_T("model3D//‰¼‘fÞ//hashira_01.X"));
+	AddModel(_T("model3D//bill_side//billdimg_side02.X"));
 
 	model_position.resize(model.size());
 
@@ -19,15 +23,19 @@ void C_MAP::Init()
 		model_position[i].resize(model_size);
 
 	CreateMapPrefarence();
+
 };
 
 void C_MAP:: Update()
 {
-	player_pos = INFORMATION::PLAYER_INFORMATION::player_pos;
+	player_pos = monostate.player_pos;
 
 	if ((int)player_pos.z % 48 == 0)
 		CreateMapPrefarence();
 
+	if (bg->IsComplete()) {
+		bg->Replay();
+	}else { bg->Play(); }
 };
 
 void C_MAP::Draw3D()
@@ -43,16 +51,16 @@ void C_MAP::Draw3D()
 				else 
 				model[y]->SetRotation(Vector3(0.0f, 180.0f, 0.f));
 			}
-
 			model[y]->SetPosition(model_position[y][x]);
 			model[y]->Draw();
 		}
 	}
+
 };
 
 void C_MAP::Draw2D() 
 {
-	
+	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
 }
 
 void C_MAP::CreateMapPrefarence()

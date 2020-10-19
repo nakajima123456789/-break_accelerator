@@ -1,14 +1,10 @@
 #pragma once
 #include "../../ESGLib.h"
 
-class INFORMATION
+class MONOSTATE
 {
 public:
-	class PLAYER_INFORMATION
-	{
-	public:
-		//プレイヤーの状態を取得
-		static Vector3 player_pos;
-	};
+	//プレイヤーの座標を取得
+	static Vector3 player_pos;
 };
 
