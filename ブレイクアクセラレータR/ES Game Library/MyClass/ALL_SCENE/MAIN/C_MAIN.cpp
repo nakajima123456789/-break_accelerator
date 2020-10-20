@@ -13,6 +13,8 @@
 
 #include "../../C_MAP/C_MAP.h"
 
+#include "../../C_UI/CUI.h"
+
 void C_MAIN::Initialize(){
 
 	auto&& c_camera = (new CCamera_);
@@ -26,6 +28,9 @@ void C_MAIN::Initialize(){
 
 	auto&& c_map = new C_MAP;
 	_objectroot.AddList((ChildObjRef)c_map);
+
+	auto&& c_ui = new CUI;
+	_objectroot.AddList((ChildObjRef)c_ui);
 
 	ObstacleFactory* Obstacle_factory = new ObstacleStationeryFactory();
 

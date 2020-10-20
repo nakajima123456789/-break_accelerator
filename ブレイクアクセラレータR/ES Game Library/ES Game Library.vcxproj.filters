@@ -190,6 +190,9 @@
     <Filter Include="MyClass\OBSEVER">
       <UniqueIdentifier>{fd9d57ac-5130-4c58-9bc7-3e1aa88e66d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\C_UI">
+      <UniqueIdentifier>{21447677-a6fa-4666-b04f-3c7c8964e81b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -396,6 +399,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp">
       <Filter>MyClass\OBSEVER</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_UI\CUI.cpp">
+      <Filter>MyClass\C_UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -621,6 +627,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\OBSEVER\OBSEVER.h">
       <Filter>MyClass\OBSEVER</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_UI\CUI.h">
+      <Filter>MyClass\C_UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

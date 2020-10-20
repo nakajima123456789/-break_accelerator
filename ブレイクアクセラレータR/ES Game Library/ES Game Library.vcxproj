@@ -180,6 +180,7 @@
     <ClCompile Include="MyClass\C_OBSTACLE\C_Obstacle.cpp" />
     <ClCompile Include="MyClass\C_PLAYER\C_PLAYER.cpp" />
     <ClCompile Include="MyClass\C_SE\C_SE.cpp" />
+    <ClCompile Include="MyClass\C_UI\CUI.cpp" />
     <ClCompile Include="MyClass\INFORMATION\INFORMATION.cpp" />
     <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp" />
     <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp" />
@@ -256,6 +257,7 @@
     <ClInclude Include="MyClass\C_PLAYER\C_PLAYER.h" />
     <ClInclude Include="MyClass\C_SE\C_SE.h" />
     <ClInclude Include="MyClass\C_STATE\C_STATE.h" />
+    <ClInclude Include="MyClass\C_UI\CUI.h" />
     <ClInclude Include="MyClass\INFORMATION\INFORMATION.h" />
     <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h" />
     <ClInclude Include="MyClass\OBSEVER\OBSEVER.h" />
