@@ -178,6 +178,9 @@
     <Filter Include="MyClass\ObjectPlacement">
       <UniqueIdentifier>{5c32e3f3-804e-48f4-b388-173cffd26c79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MAPTXT">
+      <UniqueIdentifier>{652efd60-c20a-489e-987d-1ffa3e9d4361}</UniqueIdentifier>
+    </Filter>
     <Filter Include="MyClass\C_MAP">
       <UniqueIdentifier>{973b790e-050f-42bb-a017-409216a623d4}</UniqueIdentifier>
     </Filter>
@@ -186,9 +189,6 @@
     </Filter>
     <Filter Include="MyClass\OBSEVER">
       <UniqueIdentifier>{fd9d57ac-5130-4c58-9bc7-3e1aa88e66d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MAPTXT">
-      <UniqueIdentifier>{652efd60-c20a-489e-987d-1ffa3e9d4361}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
