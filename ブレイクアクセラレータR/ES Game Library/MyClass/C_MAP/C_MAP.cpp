@@ -23,7 +23,6 @@ void C_MAP::Init()
 		model_position[i].resize(model_size);
 
 	CreateMapPrefarence();
-
 };
 
 void C_MAP:: Update()
@@ -40,19 +39,17 @@ void C_MAP:: Update()
 
 void C_MAP::Draw3D()
 {
-	for (int y = 0; y < model_position.size(); ++y)
-	{
-		for (int x = 0; x < model_position[y].size(); ++x)
-		{
-			if (y == PILLAR)
-			{
+	for (int y = 0; y < model_position.size(); ++y){
+		for (int x = 0; x < model_position[y].size(); ++x){
+			if (y == PILLAR){
 				if(x % 2 == 0)
 				model[y]->SetRotation(Vector3(0.0f, 0.0f, 0.f));
 				else 
-				model[y]->SetRotation(Vector3(0.0f, 180.0f, 0.f));
+				model[y]->SetRotation(Vector3(0.0f, 180.0f, 0.f)); }
+			else {
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
 			}
-			model[y]->SetPosition(model_position[y][x]);
-			model[y]->Draw();
 		}
 	}
 
@@ -65,17 +62,13 @@ void C_MAP::Draw2D()
 
 void C_MAP::CreateMapPrefarence()
 {
-	for (int y = 0; y < model_position.size(); y++)
-	{
-		for (int x = 0; x < model_position[y].size(); x++)
-		{
-			if (y == PILLAR)
-			{
+	for (int y = 0; y < model_position.size(); y++){
+		for (int x = 0; x < model_position[y].size(); x++){
+			if (y == PILLAR){
 				if (x % 2 == 0)
 					 model_position[y][x] =  Vector3( 1.3f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
 				else model_position[y][x] =  Vector3(-1.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
-				continue;
-			}
+				continue;    } else 
 			model_position[y][x] = Vector3(0.0f,0.0f,(player_pos.z - 5) + (x * 12));
 		}
 	}

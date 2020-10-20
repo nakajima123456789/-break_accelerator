@@ -6,6 +6,7 @@
 #include "../C_INPUT/C_INPUT.h"
 #include "../C_SE/C_SE.h"
 #include "../INFORMATION/INFORMATION.h"
+#include "../C_EFFEKSEER/CEffekseer_.h"
 
 #include <functional>
 
@@ -91,7 +92,7 @@ private:
 
 	std::unique_ptr <HitBox> c_hitbox;
 
-
+	int test;
 
 	MONOSTATE monostate;
 };

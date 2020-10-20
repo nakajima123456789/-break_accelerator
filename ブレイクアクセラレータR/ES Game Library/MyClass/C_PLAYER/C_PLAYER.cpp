@@ -2,6 +2,7 @@
 #include "../C_INPUT/C_INPUT.h"
 #include "../INFORMATION/INFORMATION.h"
 
+
 Vector3 CPlayer::test_pos = Vector3_Zero;
 
 CPlayer::CPlayer(Vector3  _pos)
@@ -20,6 +21,8 @@ void CPlayer::Init()
 	IsHitObjectsInit();
 
 	test_model->SetMaterial(SetMaterial(Color(1.0f, 1.0f, 1.0f)));
+
+	test = EffekseerMgr.LoadEffekseer(_T("‹O//‹O“¹.efk"));
 }
 
 Material CPlayer::SetMaterial(Color _color)
@@ -65,8 +68,7 @@ void CPlayer::Update()
 
 	monostate.player_pos = this->transform.position;
 
-
-
+	//EffekseerMgr.PlayEffekseer(test, 1, this->transform.position);
 
 	this->player_state_processor.Update();
 }
