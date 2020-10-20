@@ -81,6 +81,9 @@ private:
 
     //•Ï”éŒ¾
 	MODEL player_model;
+	float jiki_x, jiki_z;
+	float speed;
+
 
 };
 
