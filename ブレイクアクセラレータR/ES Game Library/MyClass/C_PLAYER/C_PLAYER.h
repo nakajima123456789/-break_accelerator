@@ -91,7 +91,7 @@ private:
 
 	std::unique_ptr <HitBox> c_hitbox;
 
-
+	int effekt;
 
 	MONOSTATE monostate;
 };
