@@ -5,7 +5,6 @@
 #include "../c_Hitbox/HitBox.h"
 #include "../C_INPUT/C_INPUT.h"
 #include "../C_SE/C_SE.h"
-#include "../INFORMATION/INFORMATION.h"
 
 #include <functional>
 
@@ -31,8 +30,6 @@ public:
 
 	virtual void CPlayer::DrawAlpha3D() override { return; };
 	virtual void CPlayer::Draw2D()      override { return; };
-
-	static Vector3 test_pos;
 
 private:
 
@@ -78,22 +75,16 @@ private:
 		virtual void Update() override;
 	};
 
-
-
 private:
 	//ŠÖ”éŒ¾
-	Material SetMaterial(Color _color);
-	int      IsHitObjectsInit();
-	void	 IsHitObjectsDraw();
+	Material CPlayer::SetMaterial(Color _color);
 
     //•Ï”éŒ¾
-	MODEL test_model;
+	MODEL player_model;
+	float jiki_x, jiki_z;
+	float speed;
 
-	std::unique_ptr <HitBox> c_hitbox;
 
-
-
-	MONOSTATE monostate;
 };
 
 
