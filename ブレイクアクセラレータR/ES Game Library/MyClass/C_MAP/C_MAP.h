@@ -21,6 +21,11 @@ private:
 	MODEL model_road;
 	std::vector<Vector3> model_road_pos;
 
+	MODEL model_bill;
+	std::vector<Vector3> model_bill_pos;
+
+	MEDIA bg;
+
 protected:
 
 };
