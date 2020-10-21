@@ -1,78 +1,82 @@
 #include "C_MAP.h"
 
+#include "../INFORMATION/INFORMATION.h"
+
 void C_MAP::Init()
 {
+
 	MediaManager.Attach(GraphicsDevice);
-	bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
+    bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
 
+	auto&& AddModel = [this](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename)); 
+	model[model.size() - 1]->SetScale(transform.scale); };
 
-	auto&& ModelPrefarence = [this](MODEL& _model, LPCTSTR _filename)->bool{_model = GraphicsDevice.CreateModelFromFile(_filename); 
-	_model->SetScale(transform.scale); return model == nullptr ? false : true; };
+	AddModel(_T("model3D//ìπòH//road_v01.X"));
+	AddModel(_T("model3D//âºëfçﬁ//hashira_01.X"));
+	AddModel(_T("model3D//bill_side//billdimg_side02.X"));
 
-	ModelPrefarence(model,      _T("model3D//âºëfçﬁ//hashira_01.X"));
-	ModelPrefarence(model_road, _T("model3D//ìπòH//road_v01.X"));
-	ModelPrefarence(model_bill, _T("model3D//bill_side//billdimg_side02.X"));
+	model_position.resize(model.size());
 
+	const unsigned int model_size = 11;
 
+	for (int i = 0; i < model_position.size(); ++i)
+		model_position[i].resize(model_size);
 
-	const unsigned int model_size = 10;
+	CreateMapPrefarence();
 
-	for (int i = 0; i < model_size; ++i)
-	{
-		if (i <= 3) {
-			model_pos.push_back(Vector3(-3, -0.25, ((i + 1) * 20)));
-			model_pos.push_back(Vector3( 3, -0.25, ((i + 1) * 20)));
-		}
-		model_road_pos.push_back(Vector3(0, 0, (i * 12)));
-		model_road->SetPosition(0, 0, -5);
-		model_bill_pos.push_back(Vector3(0, 0, (i * 50)));
-	}
-	model->SetScale(0.05f);
-	model_road->SetScale(0.05f);
-	model_road->SetPosition(0, -7, 0);
 };
+
 void C_MAP:: Update()
 {
-	bg->Play();
+	player_pos = monostate.player_pos;
+
+	if ((int)player_pos.z % 48 == 0)
+		CreateMapPrefarence();
+
 	if (bg->IsComplete()) {
 		bg->Replay();
-	}
+	}else { bg->Play(); }
 };
+
 void C_MAP::Draw3D()
 {
-	auto&& ModelDrawPrefarence = [](MODEL& _model, Vector3& _pos) { _model->SetPosition(Vector3(_pos.x, _pos.y, _pos.z - 5.0f)); _model->Draw(); };
-
-
-	for (int i = 0; i < model_road_pos.size(); ++i)
+	for (int y = 0; y < model_position.size(); ++y)
 	{
-		
-		if (model_road_pos[i].z <= -20.0f)model_road_pos[i].z = +100.f;
-
-		ModelDrawPrefarence(model_road, model_road_pos[i]);
+		for (int x = 0; x < model_position[y].size(); ++x)
+		{
+			if (y == PILLAR)
+			{
+				if(x % 2 == 0)
+				model[y]->SetRotation(Vector3(0.0f, 0.0f, 0.f));
+				else 
+				model[y]->SetRotation(Vector3(0.0f, 180.0f, 0.f));
+			}
+			model[y]->SetPosition(model_position[y][x]);
+			model[y]->Draw();
+		}
 	}
 
-
-	for (int i = 0; i < model_pos.size(); i++)
-	{
-		if (i % 2 == 0)
-			 this->transform.rotation  = Vector3(0.f,180.f,0.f);
-		else this->transform.rotation  = Vector3(0.f, 0.f, 0.f);
-
-		this->model->SetRotation(this->transform.rotation);
-
-		if (model_pos[i].z <= -10.0f)model_pos[i].z = +70.f;
-
-		ModelDrawPrefarence(model, model_pos[i]);
-	}
-
-	for (int i = 0; i < model_bill_pos.size(); i++) {
-		if (model_bill_pos[i].z <= -300.0f)model_bill_pos[i].z = +  300.0f;
-		ModelDrawPrefarence(model_bill, model_bill_pos[i]);
-	}
 };
 
 void C_MAP::Draw2D() 
 {
-	SpriteBatch.Draw(*bg, Vector3(0, 0, 10000.0f));
-	
+	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+}
+
+void C_MAP::CreateMapPrefarence()
+{
+	for (int y = 0; y < model_position.size(); y++)
+	{
+		for (int x = 0; x < model_position[y].size(); x++)
+		{
+			if (y == PILLAR)
+			{
+				if (x % 2 == 0)
+					 model_position[y][x] =  Vector3( 1.3f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
+				else model_position[y][x] =  Vector3(-1.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
+				continue;
+			}
+			model_position[y][x] = Vector3(0.0f,0.0f,(player_pos.z - 5) + (x * 12));
+		}
+	}
 };

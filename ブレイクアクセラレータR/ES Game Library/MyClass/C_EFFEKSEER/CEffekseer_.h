@@ -1,8 +1,6 @@
 #pragma once
 #include "../../ESGLib.h"
 
-#ifdef active_Effekseer
-
 class CEffekseer_
 {
 public:
@@ -33,4 +31,3 @@ private:
 
 };
 #define EffekseerMgr CEffekseer_::GetInstance()
-#endif // active_Effekseer

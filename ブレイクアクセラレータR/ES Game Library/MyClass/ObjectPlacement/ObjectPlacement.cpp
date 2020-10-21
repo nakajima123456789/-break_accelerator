@@ -65,7 +65,7 @@ void PlacementManager::MapdataTagsPos()
 		{
 			Vector3 position = Vector3((1 * sense) * x, (0 * sense), ((1 * sense) * z));
 
-			character_mng->PosObjectPreference(mapdata[z][x], position);
+			character_mng->PosObjectPreference(mapdata[z][x], position + Vector3(-1.0f,0.0f,20.0f));
 		}
 	}
 }

@@ -2,6 +2,7 @@
 #include "../C_Effekseer/CEffekseer_.h"
 #include "../C_INPUT/C_INPUT.h"
 
+
 void CCamera_::Init()
 {
 	Color color = (0.5f, 0.5f, 0.5f);
@@ -23,10 +24,15 @@ void CCamera_::Init()
 void CCamera_::Update()
 {
 
+	Vector3 player_pos = monostate.player_pos;
+
+	camera->SetLookAt(player_pos + Vector3(0,1, -5), player_pos, Vector3_Up);
+	GraphicsDevice.SetCamera(camera);
 }
 
 void CCamera_::DrawEnd()
 {
+	EffekseerMgr.Draw(camera);
 	GraphicsDevice.SetCamera(camera);
 };
 

@@ -184,6 +184,12 @@
     <Filter Include="MyClass\C_MAP">
       <UniqueIdentifier>{973b790e-050f-42bb-a017-409216a623d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\INFORMATION">
+      <UniqueIdentifier>{33c89afb-fd34-4217-8c9c-e79a0f1f2cee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\OBSEVER">
+      <UniqueIdentifier>{fd9d57ac-5130-4c58-9bc7-3e1aa88e66d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -384,6 +390,12 @@
     </ClCompile>
     <ClCompile Include="MyClass\C_MAP\C_MAP.cpp">
       <Filter>MyClass\C_MAP</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\INFORMATION\INFORMATION.cpp">
+      <Filter>MyClass\INFORMATION</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp">
+      <Filter>MyClass\OBSEVER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -603,6 +615,12 @@
     </ClInclude>
     <ClInclude Include="MyClass\C_MAP\C_MAP.h">
       <Filter>MyClass\C_MAP</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\INFORMATION\INFORMATION.h">
+      <Filter>MyClass\INFORMATION</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\OBSEVER\OBSEVER.h">
+      <Filter>MyClass\OBSEVER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
