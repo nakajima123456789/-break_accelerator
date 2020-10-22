@@ -48,4 +48,33 @@ void  ObstacleBase::IsHitObjectsDraw(Vector3 _pos)
 	c_hitbox->Draw3D();
 }
 
+void ObstacleBase::Draw()
+{
+	auto&& obstacle_it = this->obstacle_pos.begin();
+	while (obstacle_it != this->obstacle_pos.end()) {
+		
+		if (obstacle_pos.size() == 1)
+			break;
+
+		this->transform.position = *obstacle_it;
+		if (PlayerDistance() <= 90.0f)
+		{
+			this->transform.position = *obstacle_it += this->move_brock;
+
+			IsHitObjectsDraw(this->transform.position);
+			if (this->c_hitbox->IsHitBox(c_hitbox->Get_Tag_Model()) || (this->transform.position.z <= (PlayerPosition().z - 20.0f))) {
+				obstacle_it = this->obstacle_pos.erase(obstacle_it);
+				continue;
+			}
+
+			this->obstacle_model->SetScale(this->transform.scale * 2.0);
+			this->obstacle_model->SetPosition(this->transform.position);
+			this->obstacle_model->SetRotation(this->transform.rotation);
+			this->obstacle_model->Draw();
+		}
+
+		obstacle_it++;
+	}
+}
+
 

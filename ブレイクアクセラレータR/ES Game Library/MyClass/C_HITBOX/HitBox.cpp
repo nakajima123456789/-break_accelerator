@@ -2,6 +2,9 @@
 
 //static
 std::list<HitBox*> HitBox::_HitBox_list;
+
+MODEL HitBox::main_hitbox = nullptr;
+
 //デストラクタ
 HitBox::~HitBox() {
 	OnReMove();
@@ -19,7 +22,7 @@ void HitBox::Init() {
 void HitBox::Draw3D() {
 	_model->SetScale(scale);
 #if _DEBUG
-	_model->Draw();
+	//_model->Draw();
 #endif
 }
 void HitBox::DrawAlpha3D() {
@@ -180,4 +183,12 @@ bool HitBox::IsHitObjects(std::string tags) {
 		}
 	}
 	return result;
+}
+
+bool HitBox::IsHitBox(MODEL model)
+{
+	OrientedBoundingBox model_obb1 = model->GetOBB();
+	OrientedBoundingBox model_obb2 = main_hitbox->GetOBB();
+
+	return model_obb1.Intersects(model_obb2);
 }

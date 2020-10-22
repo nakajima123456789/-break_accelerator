@@ -26,7 +26,7 @@ void CCamera_::Update()
 
 	Vector3 player_pos = monostate.player_pos;
 
-	camera->SetLookAt(player_pos + Vector3(0,1, -5), player_pos, Vector3_Up);
+	camera->SetLookAt(player_pos + Vector3(0,2, -8), player_pos, Vector3_Up);
 	GraphicsDevice.SetCamera(camera);
 }
 

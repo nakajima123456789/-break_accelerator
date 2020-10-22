@@ -8,12 +8,23 @@ void C_MAP::Init()
 	MediaManager.Attach(GraphicsDevice);
     bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
 
-	auto&& AddModel = [this](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename)); 
-	model[model.size() - 1]->SetScale(transform.scale); };
+	Material mtrl;
 
-	AddModel(_T("model3D//ìπòH//road_v01.X"));
+	Color _color = Color(1.0f, 1.0f, 1.0f);
+
+	mtrl.Diffuse  = _color;
+	mtrl.Ambient  = _color;
+	mtrl.Specular = _color;
+	mtrl.Emissive = _color;
+	mtrl.Power = 1.0f;
+
+	auto&& AddModel = [=](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
+	model[model.size() - 1]->SetScale(transform.scale);
+	model[model.size() - 1]->SetMaterial(mtrl);	};
+
+
+	AddModel(_T("model3D//âºëfçﬁ//road_2.X"));
 	AddModel(_T("model3D//âºëfçﬁ//hashira_01.X"));
-	AddModel(_T("model3D//bill_side//billdimg_side02.X"));
 
 	model_position.resize(model.size());
 
@@ -41,12 +52,14 @@ void C_MAP::Draw3D()
 {
 	for (int y = 0; y < model_position.size(); ++y){
 		for (int x = 0; x < model_position[y].size(); ++x){
-			if (y == PILLAR){
-				if(x % 2 == 0)
-				model[y]->SetRotation(Vector3(0.0f, 0.0f, 0.f));
-				else 
-				model[y]->SetRotation(Vector3(0.0f, 180.0f, 0.f)); }
-			else {
+			if (y == PILLAR) {
+				if (x % 2 == 0)
+					model[y]->SetRotation(Vector3(0.0f, 0.0f, 0.f));
+				else
+					model[y]->SetRotation(Vector3(0.0f, 180.0f, 0.f));
+			}
+			else
+			{
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->Draw();
 			}
@@ -62,14 +75,21 @@ void C_MAP::Draw2D()
 
 void C_MAP::CreateMapPrefarence()
 {
-	for (int y = 0; y < model_position.size(); y++){
-		for (int x = 0; x < model_position[y].size(); x++){
-			if (y == PILLAR){
+	for (int y = 0; y < model_position.size(); y++)
+	{
+		for (int x = 0; x < model_position[y].size(); x++)
+		{
+			if (y == PILLAR)
+			{
 				if (x % 2 == 0)
-					 model_position[y][x] =  Vector3( 1.3f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
-				else model_position[y][x] =  Vector3(-1.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
-				continue;    } else 
-			model_position[y][x] = Vector3(0.0f,0.0f,(player_pos.z - 5) + (x * 12));
+					 model_position[y][x] =   Vector3( 1.3f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
+				else 
+					 model_position[y][x] =   Vector3(-1.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
+				continue;   
+			} 
+			else {
+				model_position[y][x] = Vector3(0.0f, -0.5f, (player_pos.z - 5) + (x * 12));
+			}
 		}
 	}
 };

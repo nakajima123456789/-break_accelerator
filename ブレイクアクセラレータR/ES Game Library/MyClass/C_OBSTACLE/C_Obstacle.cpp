@@ -1,39 +1,26 @@
 #include "C_Obstacle.h"
 
-CObstacle::CObstacle(Vector3 pos)
+CObstacle::CObstacle(std::vector<Vector3> _obstacle_pos)
 {
-	this->transform.position = pos;
-
-	IsHitObjectsInit("item");
-
-	IsHitObjectsDraw(this->transform.position);
+	obstacle_pos = _obstacle_pos;
 }
 
 void CObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("CubeModel//cube.X"));
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Not_Move_Wall//obstacle_box_c.X"));
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f,1.f,1.f)));
 
-	this->obstacle_model->SetPosition(this->transform.position);
-	this->obstacle_model->SetRotation(this->transform.rotation);
-	this->obstacle_model->SetScale   (this->transform.scale);
+	IsHitObjectsInit("item");
+
 }
 
 void CObstacle::Update()
 {
-	if (PlayerDistance() <= 0.25)
-	{
-		if (c_hitbox->IsHitObjects("player")) 
-			IsRemove_flag(true);
-	}
 
-	if (this->transform.position.z <= (PlayerPosition().z - 10))
-		this->IsRemove_flag(true);
 }
 
 void CObstacle::Draw3D()
 {
-	if(PlayerDistance() <= 30)
-	   obstacle_model->Draw();
+	Draw();
 }

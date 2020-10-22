@@ -23,6 +23,8 @@ void CPlayer::Init()
 	test_model->SetMaterial(SetMaterial(Color(1.0f, 1.0f, 1.0f)));
 
 	test = EffekseerMgr.LoadEffekseer(_T("‹O//‹O“¹.efk"));
+
+	c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
 }
 
 Material CPlayer::SetMaterial(Color _color)
@@ -44,7 +46,7 @@ int  CPlayer::IsHitObjectsInit()
 	c_hitbox->Init();
 	c_hitbox->Settags("player");
 
-	c_hitbox->SetHitBoxScale(0.18f);
+	c_hitbox->SetHitBoxScale(0.5f);
 
 	return 0;
 }
@@ -64,11 +66,11 @@ void CPlayer::Update()
 {
 
 	this->transform.position.x += Input.GetArrowkeyVector().x * 0.05;
-	this->transform.position.z += Input.GetArrowkeyVector().z * 0.2;
+	this->transform.position.z += Input.GetArrowkeyVector().z * 0.25;
 
 	monostate.player_pos = this->transform.position;
 
-	//EffekseerMgr.PlayEffekseer(test, 1, this->transform.position);
+	c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
 
 	this->player_state_processor.Update();
 }
