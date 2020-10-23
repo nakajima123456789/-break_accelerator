@@ -9,6 +9,7 @@
 
 
 
+
 #include <functional>
 
 class CPlayerStateProcessor;
@@ -23,7 +24,7 @@ class CPlayer : public Object
 {
 public:
 	CPlayerStateProcessor player_state_processor;
-	
+
 	CPlayer(Vector3  _pos);
 	virtual ~CPlayer();
 
@@ -82,15 +83,15 @@ private:
 	//ŠÖ”éŒ¾
 	Material CPlayer::SetMaterial(Color _color);
 
-    //•Ï”éŒ¾
+	//•Ï”éŒ¾
 	MODEL player_model;
 	float jiki_x, jiki_z;
 	float speed;
-	float rot;
+	float rot, rot_speed;
 
-	MONOSTATE monostate;
-	
-	std::unique_ptr<HitBox> c_hitbox;
+	MONOSTATE nomostate;
+
+	std::unique_ptr<HitBox>c_hitbox;
 };
 
 

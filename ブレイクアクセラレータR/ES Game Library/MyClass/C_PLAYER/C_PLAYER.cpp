@@ -14,12 +14,11 @@ void CPlayer::Init()
 
 	Material mtrl; Color _color = Vector3(1.0f, 1.0f, 1.0f);
 
-	mtrl.Diffuse  = _color;
-	mtrl.Ambient  = _color;
+	mtrl.Diffuse = _color;
+	mtrl.Ambient = _color;
 	mtrl.Specular = _color;
-//	mtrl.Emissive = _color;
-//	mtrl.Power = 1.0f;
-
+	mtrl.Emissive = _color;
+	mtrl.Power = 1.0f;
 
 	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D/Ž©‹@/jiki2.X"));
 	player_model->SetPosition(jiki_x, 0.0f, jiki_z);
@@ -27,21 +26,25 @@ void CPlayer::Init()
 	jiki_x = 0.0f;
 	jiki_z = 0.0f;
 	speed = 0.0f;
+	rot = 0.0f;
 	player_model->SetScale(0.02f);
 	player_model->SetMaterial(mtrl);
+
+
+
 	c_hitbox.reset(new HitBox);
 	this->c_hitbox->Init();
 	this->c_hitbox->Settags("player");
 
-
+	this->c_hitbox->SetHitBoxScale(0.5f);
 }
 
 Material CPlayer::SetMaterial(Color _color)
 {
 	Material mtrl;
 
-	mtrl.Diffuse  = _color;
-	mtrl.Ambient  = _color;
+	mtrl.Diffuse = _color;
+	mtrl.Ambient = _color;
 	mtrl.Specular = _color;
 	mtrl.Emissive = _color;
 	mtrl.Power = 1.0f;
@@ -51,20 +54,20 @@ Material CPlayer::SetMaterial(Color _color)
 
 CPlayer::~CPlayer()
 {
-	
+
 };
 
 void CPlayer::Update()
 {
-	Vector3 pad=Input.GetArrowpadVector();
+	Vector3 pad = Input.GetArrowpadVector();
 	Vector3 key = Input.GetArrowkeyVector();
-	
+
 
 	player_model->SetPosition(jiki_x, 0.1f, jiki_z);
 	player_model->SetRotation(0, 180, rot);
-	
+
 	speed = 0.0f;
-	if (key.x < 0||pad.x<0) {
+	if (key.x < 0 || pad.x < 0) {
 		speed += 0.05f;
 		jiki_x -= speed;
 		rot -= 1.0f;
@@ -72,45 +75,48 @@ void CPlayer::Update()
 			rot = -10;
 		}
 	}
-	else {
-		speed = 0.05f;
-	}
-	 if (key.x>0||pad.x>0) {
-		speed += 0.005f;
+	else if (key.x > 0 || pad.x > 0) {
+		speed += 0.05f;
 		jiki_x += speed;
-		
+
 		rot += 1.0f;
 		if (rot >= 10) {
 			rot = 10;
 		}
 	}
 	else {
-		speed = 0.05f;
+
+		rot = 0;
 	}
 
 
-	if (jiki_x >= 0.8) {
-		jiki_x = 0.8;
+	if (speed >= 0.5) {
+		speed = 0.5;
 	}
-	if (jiki_x < -0.6) {
-		jiki_x = -0.6;
+
+
+	if (jiki_x >= 1) {
+		jiki_x = 1;
 	}
-	
-	float speed_z = 0.08f;
+	if (jiki_x < -1) {
+		jiki_x = -1;
+	}
+
+	float speed_z = 0.3f;
 	jiki_z += speed_z;
-	if (Input.GetPadInput(5)||key.z>0) {
-		speed_z += 0.08f;
+	if (Input.GetPadInput(5) || key.z > 0) {
+		speed_z += 0.05f;
 		jiki_z += speed_z;
 	}
-	else
-	{
-		jiki_z += 0.5f;
-	
+	if (speed_z <= 2) {
+		speed_z = 2;
 	}
-	
+
+
+
 
 	this->player_state_processor.Update();
-	monostate.player_pos = player_model->GetPosition();
+	nomostate.player_pos = player_model->GetPosition();
 }
 
 void CPlayer::Draw3D()
