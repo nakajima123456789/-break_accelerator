@@ -56,7 +56,7 @@ void CPlayer::Update()
 		player_model->SetPosition(jiki_x, 0.0f, jiki_z);
 	this->c_hitbox->SetHitBoxPosition(this->player_model->GetPosition());
 
-	motostate.player_pos = this->player_model->GetPosition();
+	monostate.player_pos = this->player_model->GetPosition();
 
 	Vector3 pad=Input.GetArrowpadVector();
 	Vector3 key = Input.GetArrowkeyVector();
