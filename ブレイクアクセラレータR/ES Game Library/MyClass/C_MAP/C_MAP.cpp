@@ -4,14 +4,13 @@
 
 void C_MAP::Init()
 {
-
 	MediaManager.Attach(GraphicsDevice);
     bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
-
 	auto&& AddModel = [this](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename)); 
 	model[model.size() - 1]->SetScale(transform.scale); };
 	AddModel(_T("model3D//“¹˜H//road_2.X"));
 	AddModel(_T("model3D//‰¼‘fÞ//hashira_01.X"));
+	//AddModel(_T("model3D//bill_side//building_V01.X"));
 	AddModel(_T("model3D//bill_side//billdimg_side02.X"));
 
 	model_position.resize(model.size());
@@ -43,6 +42,11 @@ void C_MAP::Init()
 	model[0]->SetScale(scale);
 	model[0]->SetMaterial(material);
 
+	//auto bill_scale = model[2]->GetScale();
+	//bill_scale *= (0.2f);
+	//model[2]->SetScale(bill_scale);
+	//model[2]->SetMaterial(material);
+
 
 };
 
@@ -60,6 +64,7 @@ void C_MAP:: Update()
 
 void C_MAP::Draw3D()
 {
+	//town->Draw();
 	for (int y = 0; y < model_position.size(); ++y)
 	{
 		for (int x = 0; x < model_position[y].size(); ++x)

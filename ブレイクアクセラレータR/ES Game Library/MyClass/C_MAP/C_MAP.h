@@ -35,7 +35,7 @@ private:
 	Material C_MAP::SetMaterial(Color _color);
 
 	MEDIA bg;
-	MODEL road;
+	MODEL town;
 	MONOSTATE monostate;
 protected:
 
