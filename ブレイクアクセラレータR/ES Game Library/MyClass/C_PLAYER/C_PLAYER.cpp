@@ -63,12 +63,12 @@ CPlayer::~CPlayer()
 void CPlayer::Update()
 {
 
-	this->transform.position.x += Input.GetArrowkeyVector().x * 0.05;
-	this->transform.position.z += Input.GetArrowkeyVector().z * 0.2;
+	this->transform.position.x += Input.GetArrowkeyVector().x * 0.1;
+	this->transform.position.z += Input.GetArrowkeyVector().z * 0.1;
 
 	monostate.player_pos = this->transform.position;
 	
-	//EffekseerMgr.PlayEffekseer(test, 1, this->transform.position);
+    EffekseerMgr.PlayEffekseer(test, 1, this->transform.position);
 
 	this->player_state_processor.Update();
 }

@@ -22,13 +22,17 @@ private:
 	{
 		FW,
 		FW2,
-		FW_L,
-		FW_R,
 		SPRITE_MAX,
 	};
-
+	
 	std::vector<SPRITE> sprite;
 	std::vector<std::vector<Vector3>> sprite_position;
 
+	SPRITE FW_L;
+	int fw_L;
+	SPRITE FW_R;
+	float fw_R;
+	float Right;
+	
 };
 

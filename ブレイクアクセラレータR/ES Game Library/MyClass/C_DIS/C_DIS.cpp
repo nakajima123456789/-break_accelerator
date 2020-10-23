@@ -1,4 +1,6 @@
 #include "C_DIS.h"
+#include <algorithm>
+
 
 std::list<CDis*> CDis::c_dis_list = {};
 

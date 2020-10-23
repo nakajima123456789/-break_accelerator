@@ -1,5 +1,6 @@
 #include "C_GAME_OVER.h"
 #include "../SCENEMANAGER/SceneManager.h"
+#include <algorithm>
 
 void C_GAME_OVER::Initialize()
 {
