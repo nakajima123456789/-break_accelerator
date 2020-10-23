@@ -7,6 +7,8 @@
 #include "../C_SE/C_SE.h"
 #include "../INFORMATION/INFORMATION.h"
 
+
+
 #include <functional>
 
 class CPlayerStateProcessor;
@@ -84,10 +86,12 @@ private:
 	MODEL player_model;
 	float jiki_x, jiki_z;
 	float speed;
+	float rot;
 
 	MONOSTATE monostate;
 
 	std::unique_ptr<HitBox> c_hitbox;
+
 };
 
 

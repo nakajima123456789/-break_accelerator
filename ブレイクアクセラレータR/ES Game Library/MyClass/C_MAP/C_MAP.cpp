@@ -12,6 +12,7 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale); };
 	AddModel(_T("model3D//ìπòH//road_2.X"));
 	AddModel(_T("model3D//âºëfçﬁ//hashira_01.X"));
+	//AddModel(_T("model3D//bill_side//building_V01.X"));
 	AddModel(_T("model3D//bill_side//billdimg_side02.X"));
 
 	model_position.resize(model.size());
