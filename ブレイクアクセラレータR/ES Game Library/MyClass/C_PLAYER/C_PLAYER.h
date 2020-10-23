@@ -5,6 +5,7 @@
 #include "../c_Hitbox/HitBox.h"
 #include "../C_INPUT/C_INPUT.h"
 #include "../C_SE/C_SE.h"
+#include "../INFORMATION/INFORMATION.h"
 
 #include <functional>
 
@@ -84,6 +85,9 @@ private:
 	float jiki_x, jiki_z;
 	float speed;
 
+	MONOSTATE monostate;
+
+	unique_ptr<HitBox> c_hitbox;
 
 };
 
