@@ -28,6 +28,7 @@ void HitBox::DrawAlpha3D() {
 
 void HitBox::Settags(string tags) {
 	tag = tags;
+
 }
 
 //ヒットボックス生成

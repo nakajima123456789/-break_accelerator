@@ -14,6 +14,7 @@ void CCamera_::Init()
 	light.Specular  = color;
 	light.Position  = Vector3(0, 10, 0);
 
+
 	camera->SetLookAt(Vector3(0,1, -5),Vector3(0,0,0), Vector3_Up);
 	camera->SetPerspectiveFieldOfView(45.0, 16.0f / 9.0f, 1.0f, 10000.0f);
 

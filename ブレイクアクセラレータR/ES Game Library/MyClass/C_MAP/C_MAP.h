@@ -32,10 +32,11 @@ private:
 
 	inline void CreateMapPrefarence();
 
+	Material C_MAP::SetMaterial(Color _color);
+
 	MEDIA bg;
-
+	MODEL road;
 	MONOSTATE monostate;
-
 protected:
 
 };
