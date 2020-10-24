@@ -24,11 +24,10 @@ void C_MAP::Init()
 
 
 	AddModel(_T("model3D//âºëfçﬁ//road_2.X"));
-	AddModel(_T("model3D//âºëfçﬁ//hashira_01.X"));
 
 	model_position.resize(model.size());
 
-	const unsigned int model_size = 11;
+	const unsigned int model_size = 4;
 
 	for (int i = 0; i < model_position.size(); ++i)
 		model_position[i].resize(model_size);
@@ -70,7 +69,7 @@ void C_MAP::Draw3D()
 
 void C_MAP::Draw2D() 
 {
-	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	//SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
 }
 
 void C_MAP::CreateMapPrefarence()
@@ -88,7 +87,7 @@ void C_MAP::CreateMapPrefarence()
 				continue;   
 			} 
 			else {
-				model_position[y][x] = Vector3(0.0f, -0.5f, (player_pos.z - 5) + (x * 12));
+				model_position[y][x] = Vector3(0.0f, -0.5f, (player_pos.z - 5) + (x * 44));
 			}
 		}
 	}

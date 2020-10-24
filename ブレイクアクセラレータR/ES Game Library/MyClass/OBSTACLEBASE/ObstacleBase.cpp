@@ -38,7 +38,7 @@ void  ObstacleBase::IsHitObjectsInit(std::string _tags)
 	c_hitbox->Init();
 	c_hitbox->Settags(_tags);
 
-	c_hitbox->SetHitBoxScale(0.18f);
+	c_hitbox->SetHitBoxScale(0.6f);
 }
 
 //ヒットボックス描画
@@ -59,18 +59,20 @@ void ObstacleBase::Draw()
 		this->transform.position = *obstacle_it;
 		if (PlayerDistance() <= 90.0f)
 		{
-			this->transform.position = *obstacle_it += this->move_brock;
+			this->transform.position = *obstacle_it;
 
-			IsHitObjectsDraw(this->transform.position);
-			if (this->c_hitbox->IsHitBox(c_hitbox->Get_Tag_Model()) || (this->transform.position.z <= (PlayerPosition().z - 20.0f))) {
-				obstacle_it = this->obstacle_pos.erase(obstacle_it);
-				continue;
-			}
-
-			this->obstacle_model->SetScale(this->transform.scale * 2.0);
 			this->obstacle_model->SetPosition(this->transform.position);
 			this->obstacle_model->SetRotation(this->transform.rotation);
 			this->obstacle_model->Draw();
+		}
+
+		if (PlayerDistance() <= 2.5f)
+		{
+			//IsHitObjectsDraw(this->transform.position);
+			//if (this->c_hitbox->IsHitBox(c_hitbox->Get_Tag_Model()) || (this->transform.position.z <= (PlayerPosition().z - 20.0f))) {
+			//	obstacle_it = this->obstacle_pos.erase(obstacle_it);
+			//	continue;
+			//}
 		}
 
 		obstacle_it++;
