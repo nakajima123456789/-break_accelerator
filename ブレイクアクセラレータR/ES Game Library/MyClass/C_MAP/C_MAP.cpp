@@ -38,7 +38,7 @@ void C_MAP::Init()
 	material.Specular = material_color;
 
 	auto scale = model[0]->GetScale();
-	scale *= (1.0f,1.0f,0.4f);
+	scale *= (1.0f,1.0f,0.8f);
 	model[0]->SetScale(scale);
 	model[0]->SetMaterial(material);
 
@@ -97,11 +97,11 @@ void C_MAP::CreateMapPrefarence()
 			if (y == PILLAR)
 			{
 				if (x % 2 == 0)
-					 model_position[y][x] =  Vector3( 1.3f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
-				else model_position[y][x] =  Vector3(-1.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
+					 model_position[y][x] =  Vector3( 2.7f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
+				else model_position[y][x] =  Vector3(-2.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
 				continue;
 			}
-			model_position[y][x] = Vector3(-0.25f, -0.25f, (player_pos.z - 5) + (x * 16));
+			model_position[y][x] = Vector3(-0.25f, -0.50f, (player_pos.z - 5) + (x * 16));
 		}
 	}
 };

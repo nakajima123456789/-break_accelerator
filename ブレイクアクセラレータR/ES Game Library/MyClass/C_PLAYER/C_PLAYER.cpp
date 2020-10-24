@@ -27,7 +27,7 @@ void CPlayer::Init()
 	jiki_z = 0.0f;
 	speed = 0.0f;
 	rot = 0.0f;
-	player_model->SetScale(0.02f);
+	player_model->SetScale(0.01f);
 	player_model->SetMaterial(mtrl);
 
 
@@ -95,11 +95,11 @@ void CPlayer::Update()
 	}
 
 
-	if (jiki_x >= 1) {
-		jiki_x = 1;
+	if (jiki_x >= 2.5) {
+		jiki_x = 2.5;
 	}
-	if (jiki_x < -1) {
-		jiki_x = -1;
+	if (jiki_x < -1.5) {
+		jiki_x = -1.5;
 	}
 
 	float speed_z = 0.3f;
