@@ -36,7 +36,7 @@ void C_MAP::Init()
 
 	model_position.resize(model.size());
 
-	const unsigned int model_size = 4;
+	const unsigned int model_size = 11;
 
 	for (int i = 0; i < model_position.size(); ++i)
 		model_position[i].resize(model_size);
@@ -92,7 +92,7 @@ void C_MAP::CreateMapPrefarence()
 		{
 			if (y == PILLAR)
 			{
-				model_position[y][x] = Vector3(5.0f, -7.0f, (player_pos.z - 5) + (x * 44)); 
+				model_position[y][x] = Vector3(5.0f, -7.0f, (player_pos.z - 5) + (x * 104)); 
 			} 
 			else	if (y == PILLAR + 1) {
 				model_position[y][x] = Vector3(-5.0f, -7.0f, (player_pos.z - 5) + (x * 44));
