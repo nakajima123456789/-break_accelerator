@@ -105,6 +105,14 @@ double C_INPUT::AxisStateX()
 	return axis_x != 0 ? axis_x : FALSE;
 }
 
+int C_INPUT::DirectionAxisStateX()
+{
+	int flag = -1;
+	if (AxisStateX() >=  0.01f) { flag = TRUE ; };
+	if (AxisStateX() <= -0.01f) { flag = FALSE; };
+	return flag;
+}
+
 /**
  * @detail 詳細な説明　パットのステックがY方向にどのくらい傾けられているか値を返す
  */

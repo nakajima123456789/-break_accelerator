@@ -21,8 +21,8 @@ public:
 	Vector3  localrotation= Vector3_Zero;;
 
 	//スケール
-	float scale= 0.0254f;;
-	float localscale= 0.0254f;;
+	float scale      = 1.f;
+	float localscale = 1.f;
 
 	//Transformの親
 	Transform * parent = NULL;

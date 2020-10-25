@@ -7,7 +7,14 @@
 #include "../../C_INPUT/C_INPUT.h"
 #include "../../ObjectPlacement/ObjectPlacement.h"
 
-#include "../../OBSTACLEFACTORY/ObstacleFactory.h"
+#include "../../C_OBSTACLE/C_Obstacle.h"
+#include "../../C_OBSTACLEL/CObstacleL.h"
+
+#include "../../C_OBSTACLER/CObstacleR.h"
+
+#include "../../CBROCKOBSTACLE/CBrockObstacle.h"
+
+#include "../../C_ITEMOBSTACLE/CItemOBstacle.h"
 
 #include "../../C_EFFEKSEER/CEffekseer_.h"
 
@@ -27,16 +34,23 @@ void C_MAIN::Initialize(){
 	auto&& c_map = new C_MAP;
 	_objectroot.AddList((ChildObjRef)c_map);
 
-	ObstacleFactory* Obstacle_factory = new ObstacleStationeryFactory();
+	auto&& c_obstacle = new CObstacle(c_objectplacement->GetCharacterPos()[OBJECT_WALL]);
+	_objectroot.AddList((ChildObjRef)c_obstacle);
 
-	for (int i = 0; i < c_objectplacement->GetCharacterPos()[OBJECT_WALL].size(); i++)
-	{
-		Vector3 pos = c_objectplacement->GetCharacterPos()[OBJECT_WALL][i];
-		Object* Obstacle_book = Obstacle_factory->Create("•ÇáŠQ•¨", c_objectplacement->GetCharacterPos()[OBJECT_WALL][i]);
-		_objectroot.AddList((ChildObjRef)Obstacle_book);
-	}
+	auto&& c_obstacleL = new CObstacleL(c_objectplacement->GetCharacterPos()[OBJECT_L]);
+	_objectroot.AddList((ChildObjRef)c_obstacleL);
 
-	delete Obstacle_factory;
+	auto&& c_obstacleR = new CObstacleR(c_objectplacement->GetCharacterPos()[OBJECT_R]);
+	_objectroot.AddList((ChildObjRef)c_obstacleR);
+
+	auto&& c_brockobstacle = new CBrockObstacle(c_objectplacement->GetCharacterPos()[OBJECT_BROCK]);
+	_objectroot.AddList((ChildObjRef)c_brockobstacle);
+
+	auto&& c_itemobstacle = new CItemObstacle(c_objectplacement->GetCharacterPos()[OBJECT_ITEM]);
+	_objectroot.AddList((ChildObjRef)c_itemobstacle);
+
+	 
+	std::vector<std::vector<Vector3>> pos = c_objectplacement->GetCharacterPos();
 }
 
 C_MAIN::~C_MAIN()

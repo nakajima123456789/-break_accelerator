@@ -6,9 +6,7 @@
 #include "../C_INPUT/C_INPUT.h"
 #include "../C_SE/C_SE.h"
 #include "../INFORMATION/INFORMATION.h"
-
-
-
+#include "../C_EFFEKSEER/CEffekseer_.h"
 
 #include <functional>
 
@@ -17,14 +15,14 @@ class CPlayer;
 
 class CPlayerStateProcessor : public  StateProcessor {
 public:
-	CPlayer* player_mng;
+	CPlayer* player_manager;
 };
 
 class CPlayer : public Object
 {
 public:
 	CPlayerStateProcessor player_state_processor;
-
+	
 	CPlayer(Vector3  _pos);
 	virtual ~CPlayer();
 
@@ -79,19 +77,27 @@ private:
 		virtual void Update() override;
 	};
 
+
+
 private:
 	//ŠÖ”éŒ¾
-	Material CPlayer::SetMaterial(Color _color);
+	Material SetMaterial(Color _color);
+	int      IsHitObjectsInit();
+	void	 IsHitObjectsDraw();
 
-	//•Ï”éŒ¾
+	double CPlayer::clamp(double x, double low, double high);
+
+
+    //•Ï”éŒ¾
+
+	std::unique_ptr <HitBox> c_hitbox;
+
 	MODEL player_model;
-	float jiki_x, jiki_z;
-	float speed;
-	float rot, rot_speed;
 
-	MONOSTATE nomostate;
+	float  speed = 0.0f;
+	double rotation = 0.0f; 
 
-	std::unique_ptr<HitBox>c_hitbox;
+
+
+	MONOSTATE monostate;
 };
-
-

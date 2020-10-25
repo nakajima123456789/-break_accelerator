@@ -15,25 +15,47 @@ public:
 	virtual void Update()      override = 0;
 	virtual void Draw3D()      override = 0;
 
-	virtual void DrawAlpha3D() override = 0;
-	virtual void Draw2D()      override = 0;
+	virtual void DrawAlpha3D() override {};
+	virtual void Draw2D()      override {};
 
 private:
 
+	//ŠÖ”éŒ¾
+	
+
+	//•Ï”éŒ¾
+
 protected:
 
-	std::unique_ptr <HitBox> c_hitbox;
-
-	Material SetMaterial(Color _color);
-	float    PlayerDistance();
-
-	Vector3  PlayerPosition();
-
+	//ŠÖ”éŒ¾
 	void   IsHitObjectsInit(std::string _tags);
+
+
 	void   IsHitObjectsDraw(Vector3 _pos);
 
 
+	bool   RemoveModelDistance(int _distance);
+
+
+	bool   DistanceTrigger(double _index);
+
+
+	Material SetMaterial(Color _color);
+
+
+	bool     CollsionTrigger();
+
+
+	float    PlayerDistance();
+
+
+	//•Ï”éŒ¾
+
+	std::unique_ptr <HitBox> c_hitbox;
+
 	MONOSTATE monostate;
 
+	MODEL obstacle_model;
+	std::vector<Vector3> obstacle_pos;
 };
 

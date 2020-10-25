@@ -28,8 +28,6 @@ private:
 	std::vector<MODEL> model;
 	std::vector<std::vector<Vector3>> model_position;
 
-	Vector3 player_pos = Vector3(0.0f,0.0f,0.0f); 
-
 	inline void CreateMapPrefarence();
 
 	Material C_MAP::SetMaterial(Color _color);

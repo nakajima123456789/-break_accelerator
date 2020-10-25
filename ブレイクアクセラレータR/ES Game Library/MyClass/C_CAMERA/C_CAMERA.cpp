@@ -14,9 +14,7 @@ void CCamera_::Init()
 	light.Specular  = color;
 	light.Position  = Vector3(0, 10, 0);
 
-
-	camera->SetLookAt(Vector3(0,1, -5),Vector3(0,0,0), Vector3_Up);
-	camera->SetPerspectiveFieldOfView(45.0, 16.0f / 9.0f, 1.0f, 10000.0f);
+	camera->SetPerspectiveFieldOfView(50.0, 16.0f / 9.0f, 0.1f, 10000.0f);
 
 	GraphicsDevice.SetLight(light);
 	GraphicsDevice.SetCamera(camera);
@@ -24,10 +22,12 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
+	field_of_view_pov = clamp(Input.GetPadInput(5) ? ++field_of_view_pov : --field_of_view_pov, 50, 100);
 
-	Vector3 player_pos = monostate.player_pos;
+	camera->SetFieldOfViewY(field_of_view_pov);
 
-	camera->SetLookAt(player_pos + Vector3(0,1, -2), player_pos + Vector3(0,0,2), Vector3_Up);
+	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.3f, -0.8f), monostate.player_pos + Vector3(0.0f,0.0f,6.0f), Vector3_Up);
+
 	GraphicsDevice.SetCamera(camera);
 }
 
@@ -37,5 +37,10 @@ void CCamera_::DrawEnd()
 	GraphicsDevice.SetCamera(camera);
 };
 
+int CCamera_::clamp(int x, int low, int high)
+{
+	ASSERT(low <= high && "Å¬’l <= Å‘å’l");
+	return min(max(x, low), high);
+}
 
 
