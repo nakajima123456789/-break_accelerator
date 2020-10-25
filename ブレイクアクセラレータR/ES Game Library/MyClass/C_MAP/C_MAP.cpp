@@ -92,7 +92,7 @@ void C_MAP::CreateMapPrefarence()
 		{
 			if (y == PILLAR)
 			{
-				model_position[y][x] = Vector3(5.0f, -7.0f, (player_pos.z - 5) + (x * 104)); 
+				model_position[y][x] = Vector3(5.0f, -7.0f, (player_pos.z - 5) + (x * 44)); 
 			} 
 			else	if (y == PILLAR + 1) {
 				model_position[y][x] = Vector3(-5.0f, -7.0f, (player_pos.z - 5) + (x * 44));
