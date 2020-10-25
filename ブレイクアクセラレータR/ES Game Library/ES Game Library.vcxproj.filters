@@ -190,6 +190,18 @@
     <Filter Include="MyClass\OBSEVER">
       <UniqueIdentifier>{fd9d57ac-5130-4c58-9bc7-3e1aa88e66d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_ObstacleR">
+      <UniqueIdentifier>{d681d284-73cc-4fc6-a6da-4a9811f00a49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_ObstacleL">
+      <UniqueIdentifier>{ea89f7f7-8564-40e7-86e2-ce891d81fb20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_BrockObstacle">
+      <UniqueIdentifier>{7ddd664f-8843-42cd-8982-d707bc9e6d41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_ItemObstacle">
+      <UniqueIdentifier>{da9d1202-3f8f-4b69-9b13-c2fd6185d086}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -396,6 +408,18 @@
     </ClCompile>
     <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp">
       <Filter>MyClass\OBSEVER</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_OBSTACLEL\CObstacleL.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_ObstacleL</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_OBSTACLER\CObstacleR.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_ObstacleR</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\CBROCKOBSTACLE\CBrockObstacle.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_BrockObstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_ITEMOBSTACLE\CItemOBstacle.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_ItemObstacle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -621,6 +645,18 @@
     </ClInclude>
     <ClInclude Include="MyClass\OBSEVER\OBSEVER.h">
       <Filter>MyClass\OBSEVER</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_OBSTACLEL\CObstacleL.h">
+      <Filter>MyClass\Mng_Obstacle\C_ObstacleL</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_OBSTACLER\CObstacleR.h">
+      <Filter>MyClass\Mng_Obstacle\C_ObstacleR</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\CBROCKOBSTACLE\CBrockObstacle.h">
+      <Filter>MyClass\Mng_Obstacle\C_BrockObstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_ITEMOBSTACLE\CItemOBstacle.h">
+      <Filter>MyClass\Mng_Obstacle\C_ItemObstacle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

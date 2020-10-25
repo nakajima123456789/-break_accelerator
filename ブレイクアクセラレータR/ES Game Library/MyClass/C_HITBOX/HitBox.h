@@ -44,6 +44,10 @@ public:
 
 	bool HitBox::IsHitObjects(std::string tags);
 
+	bool IsHitBox(MODEL model);
+
+	static MODEL main_hitbox;
+
 	string tag;
 private:
 	//‘S‚Ä‚ÌHitBox‚ğŠi”[‚µ‚Ä‚¨‚­ƒŠƒXƒg
@@ -64,6 +68,7 @@ private:
 
 	//Õ“Ë”»’èŠÖ”
 	bool HitBox::IsHit(HitBox* other);
+
 
 protected:
 	

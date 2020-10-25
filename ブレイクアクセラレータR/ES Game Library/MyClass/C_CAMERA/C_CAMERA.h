@@ -18,9 +18,12 @@ public:
 
 	virtual void CCamera_::DrawEnd()     override;
 
+	int CCamera_::clamp(int x, int low, int high);
 private:
 	CAMERA  camera;
 	Light   light;
+
+	float field_of_view_pov = 70;
 
 	MONOSTATE monostate;
 };

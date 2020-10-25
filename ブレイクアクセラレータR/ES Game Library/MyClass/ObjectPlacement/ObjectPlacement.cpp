@@ -2,7 +2,7 @@
 
 CharactorManager::CharactorManager()
 {
-	CharactorTagPreference(OBJECT_TYPE_MAX , 'o');
+	CharactorTagPreference(OBJECT_TYPE_MAX , 'o','L','R','b','i');
 };
 
 void CharactorManager::CharactorTagPreference(char _tag, ...) {
@@ -33,12 +33,13 @@ void PlacementManager::Init()
 
 	FILE* fp = fopen("オブジェクト配置.txt", "r");
 	// マップデータを読み込む
-	char load_char[9999 + 1];
+	char load_char[99999 + 1];
 
 	while (fgets(load_char, sizeof load_char - 1, fp) != NULL)
 	{
 		mapdata.push_back(load_char);
 	}
+
 	// ファイルを閉じる
 	fclose(fp);
 
@@ -57,7 +58,7 @@ void PlacementManager::Draw3D()
 
 void PlacementManager::MapdataTagsPos()
 {
-	const float sense = 0.25f;
+	const float sense = 0.56f;
 
 	for (int z = 0; z < mapdata.size(); z++) 
 	{
@@ -65,7 +66,7 @@ void PlacementManager::MapdataTagsPos()
 		{
 			Vector3 position = Vector3((1 * sense) * x, (0 * sense), ((1 * sense) * z));
 
-			character_mng->PosObjectPreference(mapdata[z][x], position + Vector3(-1.0f,0.0f,20.0f));
+			character_mng->PosObjectPreference(mapdata[z][x], position + Vector3(-1.3f,0.0f,20.0f));
 		}
 	}
 }

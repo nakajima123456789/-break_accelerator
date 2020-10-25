@@ -15,8 +15,8 @@ public:
 	virtual void Update()      override = 0;
 	virtual void Draw3D()      override = 0;
 
-	virtual void DrawAlpha3D() override = 0;
-	virtual void Draw2D()      override = 0;
+	virtual void DrawAlpha3D() override {};
+	virtual void Draw2D()      override {};
 
 private:
 
@@ -32,8 +32,13 @@ protected:
 	void   IsHitObjectsInit(std::string _tags);
 	void   IsHitObjectsDraw(Vector3 _pos);
 
+	void   Draw();
 
 	MONOSTATE monostate;
 
+	MODEL obstacle_model;
+	std::vector<Vector3> obstacle_pos;
+
+	Vector3 move_brock = Vector3(0.0f, 0.0f, 0.0f);
 };
 
