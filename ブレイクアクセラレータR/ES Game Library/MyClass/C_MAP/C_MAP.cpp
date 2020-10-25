@@ -22,12 +22,11 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-
-	AddModel(_T("model3D//âºëfçﬁ//road_2.X"));
+	AddModel(_T("model3D//â¸í˘î≈//road_3.X"));
 
 	model_position.resize(model.size());
 
-	const unsigned int model_size = 4;
+	const unsigned int model_size = 8;
 
 	for (int i = 0; i < model_position.size(); ++i)
 		model_position[i].resize(model_size);
@@ -37,14 +36,11 @@ void C_MAP::Init()
 
 void C_MAP:: Update()
 {
-	player_pos = monostate.player_pos;
 
-	if ((int)player_pos.z % 48 == 0)
+	if ((int)monostate.player_pos.z % 60 == 0)
 		CreateMapPrefarence();
 
-	if (bg->IsComplete()) {
-		bg->Replay();
-	}else { bg->Play(); }
+	if (bg->IsComplete()) {bg->Replay();} else { bg->Play(); }
 };
 
 void C_MAP::Draw3D()
@@ -69,7 +65,7 @@ void C_MAP::Draw3D()
 
 void C_MAP::Draw2D() 
 {
-	//SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
 }
 
 void C_MAP::CreateMapPrefarence()
@@ -81,13 +77,13 @@ void C_MAP::CreateMapPrefarence()
 			if (y == PILLAR)
 			{
 				if (x % 2 == 0)
-					 model_position[y][x] =   Vector3( 1.3f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
+					 model_position[y][x] =   Vector3( 1.3f, 0.0f,(monostate.player_pos.z - 5) + (x - 1) * 12.f);
 				else 
-					 model_position[y][x] =   Vector3(-1.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
+					 model_position[y][x] =   Vector3(-1.3f, 0.0f,(monostate.player_pos.z - 5) + (x - 0) * 12.f);
 				continue;   
 			} 
 			else {
-				model_position[y][x] = Vector3(0.0f, -0.5f, (player_pos.z - 5) + (x * 44));
+				model_position[y][x] = Vector3(0.0f, 0.f, (monostate.player_pos.z - 5) + (x * 17));
 			}
 		}
 	}

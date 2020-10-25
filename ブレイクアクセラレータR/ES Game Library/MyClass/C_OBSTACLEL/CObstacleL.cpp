@@ -11,9 +11,8 @@ void CObstacleL::Init()
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 
-	IsHitObjectsInit("item");
+	IsHitObjectsInit("ObstacleHitBox");
 
-	this->move_brock = Vector3(-0.001, 0.0f, 0.0f);
 }
 
 void CObstacleL::Update()
@@ -23,5 +22,28 @@ void CObstacleL::Update()
 
 void CObstacleL::Draw3D()
 {
-	Draw();
+	auto&& obstacle_it = this->obstacle_pos.begin();
+	while (obstacle_it != this->obstacle_pos.end()) {
+
+		this->transform.position = *obstacle_it;
+
+		if (DistanceTrigger(90.0f))
+		{
+			if (RemoveModelDistance(2))
+				this->transform.position = *obstacle_it -= Vector3(0.08f, 0.0f, 0.0f);
+
+			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
+			this->obstacle_model->SetRotation(this->transform.rotation);
+			this->obstacle_model->SetScale(this->transform.scale * 0.015);
+			this->obstacle_model->Draw();
+		}
+
+		if (RemoveModelDistance(-20))
+		{
+			obstacle_it = this->obstacle_pos.erase(obstacle_it);
+			continue;
+		}
+
+		obstacle_it++;
+	}
 }

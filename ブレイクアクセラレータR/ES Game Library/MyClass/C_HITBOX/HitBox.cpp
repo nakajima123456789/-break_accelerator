@@ -22,7 +22,7 @@ void HitBox::Init() {
 void HitBox::Draw3D() {
 	_model->SetScale(scale);
 #if _DEBUG
-   //_model->Draw();
+   _model->Draw();
 #endif
 }
 void HitBox::DrawAlpha3D() {
