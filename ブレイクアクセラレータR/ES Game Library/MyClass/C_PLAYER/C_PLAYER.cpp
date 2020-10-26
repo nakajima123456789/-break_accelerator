@@ -68,11 +68,11 @@ void CPlayer::Update()
 void CPlayer::Draw3D()
 {
 
-	IsHitObjectsDraw();
-	
 	this->transform.position.x = clamp(transform.position.x, -1.0f, 1.0f);
 	player_model->SetPosition(this->transform.position);
 	monostate.player_pos = this->transform.position;
+
+	IsHitObjectsDraw();
 
 	this->transform.rotation.z = rotation;
 
