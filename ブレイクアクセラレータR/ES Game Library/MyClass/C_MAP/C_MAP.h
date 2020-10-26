@@ -14,7 +14,6 @@ public:
 	virtual void DrawAlpha3D() override { return; };
 	virtual void Draw2D()      override;
 
-
 private:
 
 	enum MAP_MODEL
@@ -30,11 +29,12 @@ private:
 
 	inline void CreateMapPrefarence();
 
-	Material C_MAP::SetMaterial(Color _color);
-
 	MEDIA bg;
-	MODEL town;
+
 	MONOSTATE monostate;
+
+	const int ground_model_scene = 17;
+
 protected:
 
 };
