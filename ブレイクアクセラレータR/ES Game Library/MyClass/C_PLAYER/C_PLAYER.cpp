@@ -5,7 +5,7 @@
 
 CPlayer::CPlayer(Vector3  _pos)
 {
-	transform.position = (_pos + Vector3(0,0.5f,0));
+	transform.position = (_pos + Vector3(0,0.5f,-0.0f));
 	this->transform.rotation.y += 180;
 };
 

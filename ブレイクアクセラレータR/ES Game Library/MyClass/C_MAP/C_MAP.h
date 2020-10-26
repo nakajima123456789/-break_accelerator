@@ -20,8 +20,11 @@ private:
 	enum MAP_MODEL
 	{
 		GROUND,
-		PILLAR,
-		BILL,
+		BILL1,
+		BILL2,
+		BILL3,
+		BILL4,
+		BILL5,
 		MAP_MODEL_SIZE,
 	};
 
@@ -38,7 +41,7 @@ private:
 	MODEL town,town2,town3;
 	MONOSTATE monostate;
 
-	const int ground_model_scene = 44;
+	int ground_model_scene[MAP_MODEL_SIZE];
 protected:
 
 };
