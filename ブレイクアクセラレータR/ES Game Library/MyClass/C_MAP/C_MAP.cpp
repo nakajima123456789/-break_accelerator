@@ -36,9 +36,15 @@ void C_MAP::Init()
 
 void C_MAP:: Update()
 {
-
-	if ((int)monostate.player_pos.z % 60 == 0)
-		CreateMapPrefarence();
+	for (int i = 0; i < model_position.size(); ++i)
+	{
+		if (model_position[i][0].z + 17 >= monostate.player_pos.z)
+		{
+			Vector3 pos = Vector3(0.0f, 0.0f, model_position[i].back().z + 17);
+			model_position[i].erase(model_position[i].begin());
+			model_position[i].push_back(pos);
+		}
+	}
 
 	if (bg->IsComplete()) {bg->Replay();} else { bg->Play(); }
 };
@@ -65,7 +71,7 @@ void C_MAP::Draw3D()
 
 void C_MAP::Draw2D() 
 {
-	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	//SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
 }
 
 void C_MAP::CreateMapPrefarence()
