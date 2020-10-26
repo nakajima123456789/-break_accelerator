@@ -37,6 +37,8 @@ private:
 	MEDIA bg;
 	MODEL town,town2,town3;
 	MONOSTATE monostate;
+
+	const int ground_model_scene = 44;
 protected:
 
 };

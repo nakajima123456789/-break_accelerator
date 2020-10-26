@@ -36,7 +36,7 @@ void C_MAP::Init()
 
 	model_position.resize(model.size());
 
-	const unsigned int model_size = 11;
+	const unsigned int model_size = 8;
 
 	for (int i = 0; i < model_position.size(); ++i)
 		model_position[i].resize(model_size);
@@ -46,10 +46,14 @@ void C_MAP::Init()
 
 void C_MAP:: Update()
 {
-	player_pos = monostate.player_pos;
-
-	if ((int)player_pos.z % 48 == 0)
-		CreateMapPrefarence();
+	for (int y = 0; y < model_position.size(); ++y) {
+		if (model_position[y][0].z + ground_model_scene <= monostate.player_pos.z)
+		{
+			Vector3 pos = Vector3(5.0f, -7.0f, (model_position[y].back().z + ground_model_scene));
+			model_position[y].erase(model_position[y].begin());
+			model_position[y].push_back(pos);
+		}
+	}
 
 	if (bg->IsComplete()) {
 		bg->Replay();
@@ -92,13 +96,13 @@ void C_MAP::CreateMapPrefarence()
 		{
 			if (y == PILLAR)
 			{
-				model_position[y][x] = Vector3(5.0f, -7.0f, (player_pos.z - 5) + (x * 44)); 
+				model_position[y][x] = Vector3(5.0f, -7.0f, (player_pos.z - 5) + (x * ground_model_scene)); 
 			} 
 			else	if (y == PILLAR + 1) {
-				model_position[y][x] = Vector3(-5.0f, -7.0f, (player_pos.z - 5) + (x * 44));
+				model_position[y][x] = Vector3(-5.0f, -7.0f, (player_pos.z - 5) + (x * ground_model_scene));
 			}
 			else {
-				model_position[y][x] = Vector3(0.0f, -0.5f, (player_pos.z - 5) + (x * 44));
+				model_position[y][x] = Vector3(0.0f, -0.5f, (player_pos.z - 5) + (x * ground_model_scene));
 			}
 		}
 	}
