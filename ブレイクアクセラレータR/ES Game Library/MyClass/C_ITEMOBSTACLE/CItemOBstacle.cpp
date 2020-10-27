@@ -34,8 +34,15 @@ void CItemObstacle::Draw3D()
 			this->obstacle_model->Draw();
 		}
 
-		if (RemoveModelDistance(-20) || CollsionTrigger())
+		if (RemoveModelDistance(-20))
 		{
+			obstacle_it = this->obstacle_pos.erase(obstacle_it);
+			continue;
+		}
+
+		if (CollsionTrigger())
+		{
+			monostate.move_flag = true;
 			obstacle_it = this->obstacle_pos.erase(obstacle_it);
 			continue;
 		}

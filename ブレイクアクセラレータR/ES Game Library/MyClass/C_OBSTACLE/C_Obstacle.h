@@ -1,5 +1,6 @@
 #pragma once
 #include "../OBSTACLEBASE/ObstacleBase.h"
+#include "..//OBSEVER/OBSEVER.h"
 
 class CObstacle : public ObstacleBase
 {
@@ -13,7 +14,7 @@ public:
 
 private:
 
-
+	OBSERVER observer;
 protected:
 
 };

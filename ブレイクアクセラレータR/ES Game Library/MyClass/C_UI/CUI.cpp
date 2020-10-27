@@ -1,5 +1,17 @@
 #include "CUI.h"
 
+CUI::CUI()
+{
+	//自分をリストに登録
+	observer.addListener(this);
+}
+
+CUI::~CUI()
+{
+	//自分をリストから削除
+	observer.removeListener(this);
+}
+
 void CUI::Init()
 {
 	auto&& AddSprite = [this](LPCTSTR _filename) { sprite.push_back(GraphicsDevice.CreateSpriteFromFile(_filename));};
@@ -27,27 +39,17 @@ void CUI::Update()
 	
 	
 	fw_S -=0.5f;
-	if (fw_S < 0)
-	{
-		fw_S = 0;
-	}
-	 /*if (fw_S == 0)
-	{
-		fw_S = fw_S +3;
-	}
-	 if (fw_S > 540)
-	 {
-		 fw_S = 540;
-	 }*/
 
-	
-	
+}
+
+//PLAYERとENEMYとが衝突したら呼ばれる関数
+void CUI::OnCollision()
+{
+	fw_S  -= 20;
 }
 
 void CUI::Draw2D()
 {
-
-
 
 	for (int y = 0; y < sprite_position.size(); y++)
 	{
@@ -56,8 +58,13 @@ void CUI::Draw2D()
 			SpriteBatch.Draw(*sprite[y], sprite_position[y][x]);
 		}
 	}
-
+	fw_S = clamp(fw_S, 0, 540);
 	SpriteBatch.Draw(*FW_S, Vector3(320.0f, 0.0f, 0.0f), Rect(0, 0, fw_S, 50), 1.f, Vector3_Zero, Vector3(0, 0, 0), 1);
-	
 
+}
+
+double CUI::clamp(double x, double low, double high)
+{
+	ASSERT(low <= high && "最小値 <= 最大値");
+	return min(max(x, low), high);
 }

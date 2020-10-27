@@ -202,6 +202,9 @@
     <Filter Include="MyClass\Mng_Obstacle\C_ItemObstacle">
       <UniqueIdentifier>{da9d1202-3f8f-4b69-9b13-c2fd6185d086}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_GateObstacle">
+      <UniqueIdentifier>{c1b8d4a5-724d-415f-85d9-f6e36c878aff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -420,6 +423,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\C_ITEMOBSTACLE\CItemOBstacle.cpp">
       <Filter>MyClass\Mng_Obstacle\C_ItemObstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\CGATEOBSTACLE\CGateObstacle.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -658,20 +664,21 @@
     <ClInclude Include="MyClass\C_ITEMOBSTACLE\CItemOBstacle.h">
       <Filter>MyClass\Mng_Obstacle\C_ItemObstacle</Filter>
     </ClInclude>
+    <ClInclude Include="MyClass\CGATEOBSTACLE\CGateObstacle.h">
+      <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resource\DirectX.ico">
       <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="Content\オブジェクト配置.csv">
+      <Filter>MAPTXT</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Resource\Resource.rc">
       <Filter>リソース ファイル</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Content\オブジェクト配置.txt">
-      <Filter>MAPTXT</Filter>
-    </Text>
   </ItemGroup>
 </Project>

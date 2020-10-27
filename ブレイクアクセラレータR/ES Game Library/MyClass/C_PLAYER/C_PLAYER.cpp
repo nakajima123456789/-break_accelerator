@@ -62,6 +62,7 @@ CPlayer::~CPlayer()
 void CPlayer::Update()
 {
 	transform.position.z += Input.GetPadInput(5) ? 0.2f : 0.1f;
+
 	this->player_state_processor.Update();
 }
 
@@ -101,7 +102,7 @@ void CPlayer::RUN::Update()
 	auto&& AxisStateMove = [this](std::string _direction_tag)->void {
 		int a = 0;
 		if (_direction_tag == "RIGHT") { a = 1; } else { a = -1; };
-		_owner->player_manager->rotation +=   (1.f * a * 1.0f * 1.0f);
+		_owner->player_manager->rotation +=   (0.8f * a * 1.0f * 1.0f);
 		_owner->player_manager->speed +=  (0.0006f * a * 1.0f * 1.0f);
 		return;
 	};

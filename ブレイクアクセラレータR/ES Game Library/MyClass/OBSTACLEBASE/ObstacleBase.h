@@ -34,7 +34,7 @@ protected:
 	void   IsHitObjectsDraw(Vector3 _pos);
 
 
-	bool   RemoveModelDistance(int _distance);
+	bool   RemoveModelDistance(double _distance);
 
 
 	bool   DistanceTrigger(double _index);

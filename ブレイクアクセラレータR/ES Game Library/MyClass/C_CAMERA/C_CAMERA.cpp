@@ -22,11 +22,11 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
-	field_of_view_pov = clamp(Input.GetPadInput(5) ? ++field_of_view_pov : --field_of_view_pov, 50, 100);
+	field_of_view_pov = clamp(Input.GetPadInput(5) ? field_of_view_pov += 0.5f : field_of_view_pov -= 0.5f, 50.0f, 70.0f);
 
 	camera->SetFieldOfViewY(field_of_view_pov);
 
-	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.3f, -0.8f), monostate.player_pos + Vector3(0.0f,0.0f,6.0f), Vector3_Up);
+	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.2f, -0.7f), monostate.player_pos + Vector3(0.0f,0.0f,5.0f), Vector3_Up);
 
 	GraphicsDevice.SetCamera(camera);
 }
@@ -37,7 +37,7 @@ void CCamera_::DrawEnd()
 	GraphicsDevice.SetCamera(camera);
 };
 
-int CCamera_::clamp(int x, int low, int high)
+double CCamera_::clamp(double x, double low, double high)
 {
 	ASSERT(low <= high && "Å¬’l <= Å‘å’l");
 	return min(max(x, low), high);

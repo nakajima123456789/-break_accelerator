@@ -16,6 +16,8 @@
 
 #include "../../C_ITEMOBSTACLE/CItemOBstacle.h"
 
+#include "../../CGATEOBSTACLE/CGateObstacle.h"
+
 #include "../../C_EFFEKSEER/CEffekseer_.h"
 
 #include "../../C_MAP/C_MAP.h"
@@ -53,7 +55,10 @@ void C_MAIN::Initialize(){
 
 	auto&& c_se = new CUI();
 	_objectroot.AddList((ChildObjRef)c_se);
-	 
+
+	auto&& c_gateobstacle = new CGateObstacle(c_objectplacement->GetCharacterPos()[OBJECT_GATE]);
+	_objectroot.AddList((ChildObjRef)c_gateobstacle);
+
 	std::vector<std::vector<Vector3>> pos = c_objectplacement->GetCharacterPos();
 }
 

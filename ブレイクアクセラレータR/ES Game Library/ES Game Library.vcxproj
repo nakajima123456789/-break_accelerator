@@ -66,6 +66,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -94,6 +95,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/std:c++17 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -171,6 +173,7 @@
     <ClCompile Include="MyClass\ALL_SCENE\SCENEMANAGER\SceneManager.cpp" />
     <ClCompile Include="MyClass\ALL_SCENE\TITLE\C_TITLE.cpp" />
     <ClCompile Include="MyClass\CBROCKOBSTACLE\CBrockObstacle.cpp" />
+    <ClCompile Include="MyClass\CGATEOBSTACLE\CGateObstacle.cpp" />
     <ClCompile Include="MyClass\C_CAMERA\C_CAMERA.cpp" />
     <ClCompile Include="MyClass\C_DIS\C_DIS.cpp" />
     <ClCompile Include="MyClass\C_EFFEKSEER\CEffekseer_.cpp" />
@@ -251,6 +254,7 @@
     <ClInclude Include="MyClass\ALL_SCENE\SCENEMANAGER\SceneManager.h" />
     <ClInclude Include="MyClass\ALL_SCENE\TITLE\C_TITLE.h" />
     <ClInclude Include="MyClass\CBROCKOBSTACLE\CBrockObstacle.h" />
+    <ClInclude Include="MyClass\CGATEOBSTACLE\CGateObstacle.h" />
     <ClInclude Include="MyClass\C_CAMERA\C_CAMERA.h" />
     <ClInclude Include="MyClass\C_DIS\C_DIS.h" />
     <ClInclude Include="MyClass\C_EFFEKSEER\CEffekseer_.h" />
@@ -312,12 +316,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resource\DirectX.ico" />
+    <None Include="Content\オブジェクト配置.csv" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Resource\Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Content\オブジェクト配置.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

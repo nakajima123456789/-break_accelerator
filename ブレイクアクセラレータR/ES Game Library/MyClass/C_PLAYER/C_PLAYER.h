@@ -8,7 +8,9 @@
 #include "../INFORMATION/INFORMATION.h"
 #include "../C_EFFEKSEER/CEffekseer_.h"
 
+
 #include <functional>
+
 
 class CPlayerStateProcessor;
 class CPlayer;
@@ -100,4 +102,5 @@ private:
 
 
 	MONOSTATE monostate;
+
 };
