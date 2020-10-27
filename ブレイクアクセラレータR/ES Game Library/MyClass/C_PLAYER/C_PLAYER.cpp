@@ -15,19 +15,20 @@ void CPlayer::Init()
 	Material mtrl; Color _color = Vector3(1.0f, 1.0f, 1.0f);
 
 	mtrl.Diffuse  = _color;
-	mtrl.Ambient  = _color;
+	mtrl.Ambient = _color;
 	mtrl.Specular = _color;
 	mtrl.Emissive = _color;
 	mtrl.Power = 1.0f;
 
-	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D/Ž©‹@/jiki2.X"));
+	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D/Ž©‹@/jiki_b.X"));
 	player_model->SetPosition(jiki_x, 0.0f, jiki_z);
 	player_model->SetRotation(0.0f, 180.0f, rot);
 	jiki_x = 0.0f;
 	jiki_z = 0.0f;
 	speed = 0.0f;
 	rot = 0.0f;
-	player_model->SetScale(0.02f);
+	kt = 0;
+	player_model->SetScale(0.05f);
 	player_model->SetMaterial(mtrl);
 
 
@@ -61,33 +62,33 @@ void CPlayer::Update()
 {
 	Vector3 pad=Input.GetArrowpadVector();
 	Vector3 key = Input.GetArrowkeyVector();
-	
 
+	
 	player_model->SetPosition(jiki_x, 0.1f, jiki_z);
-	player_model->SetRotation(0, 180, rot);
+	player_model->SetRotation(0, 180, rot+kt);
 	
 	speed = 0.0f;
+	
 	if (key.x < 0||pad.x<0) {
 		speed += 0.05f;
 		jiki_x -= speed;
-		rot -= 1.0f;
-		if (rot <= -10) {
-			rot = -10;
+		kt -= 0.5;
+		
+		if (kt <= -10) {
+			kt = -10;
 		}
 	}
 	else if (key.x>0||pad.x>0) {
 		speed += 0.05f;
 		jiki_x += speed;
-		
-		rot += 1.0f;
-		if (rot >= 10) {
-			rot = 10;
+		kt += 0.5;
+		if (kt >= 10) {
+			kt = 10;
 		}
 	}
-	else {
+	
 		
-		rot = 0;
-	}
+	
 		
 	
 	if (speed >= 0.5) {
@@ -102,12 +103,13 @@ void CPlayer::Update()
 		jiki_x = -1;
 	}
 	
-	float speed_z = 0.08f;
-	jiki_z += speed_z;
+	float speed_z = 0.15f;
+	jiki_z += 0.11;
 	if (Input.GetPadInput(5)||key.z>0) {
-		speed_z += 0.1f;
+		speed_z += 0.05f;
 		jiki_z+= speed_z;
 	}
+	
 	if (speed_z <= 2) {
 		speed_z = 2;
 	}

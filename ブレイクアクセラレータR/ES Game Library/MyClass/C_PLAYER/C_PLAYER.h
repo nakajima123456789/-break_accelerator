@@ -87,7 +87,8 @@ private:
 	MODEL player_model;
 	float jiki_x, jiki_z;
 	float speed;
-	float rot;
+	float rot, rot_speed;
+	float kt;
 
 	MONOSTATE nomostate;
 
