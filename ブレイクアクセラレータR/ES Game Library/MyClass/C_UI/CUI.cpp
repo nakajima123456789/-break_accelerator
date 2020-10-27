@@ -26,19 +26,19 @@ void CUI::Update()
 {
 	
 	
-	fw_S -= 2;
+	fw_S -=0.3f;
 	if (fw_S < 0)
 	{
 		fw_S = 0;
 	}
-	 if (fw_S == 0)
+	 /*if (fw_S == 0)
 	{
 		fw_S = fw_S +3;
 	}
 	 if (fw_S > 540)
 	 {
 		 fw_S = 540;
-	 }
+	 }*/
 
 	
 	

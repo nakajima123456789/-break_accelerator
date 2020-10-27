@@ -29,7 +29,7 @@ private:
 	std::vector<std::vector<Vector3>> sprite_position;
 
 	SPRITE FW_S;
-	int fw_S;
+	float fw_S;
 	
 	
 	
