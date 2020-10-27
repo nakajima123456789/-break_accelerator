@@ -28,11 +28,10 @@ private:
 	std::vector<SPRITE> sprite;
 	std::vector<std::vector<Vector3>> sprite_position;
 
-	SPRITE FW_L;
-	int fw_L;
-	SPRITE FW_R;
-	float fw_R;
-	float Right;
+	SPRITE FW_S;
+	int fw_S;
+	
+	
 	
 };
 

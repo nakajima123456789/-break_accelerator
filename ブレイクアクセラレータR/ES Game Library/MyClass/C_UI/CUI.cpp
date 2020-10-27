@@ -16,30 +16,31 @@ void CUI::Init()
 	AddSpritePos(FW2,  Vector3(320, 0, 0));
 	
 	
-	FW_L = GraphicsDevice.CreateSpriteFromFile(_T("UI/FWÉQÅ[ÉW/FW_left.png"));
-	FW_R = GraphicsDevice.CreateSpriteFromFile(_T("UI/FWÉQÅ[ÉW/FW_R.png"));
-	fw_L = 233;
-	fw_R = 0;
-	Right = 10;
+	FW_S = GraphicsDevice.CreateSpriteFromFile(_T("UI/FWÉQÅ[ÉW/FW_S.png"));
+	
+	fw_S = 540;
+	
 }
 
 void CUI::Update()
 {
 	
 	
-	fw_L -= 1;
-	if (fw_L<0)
+	fw_S -= 2;
+	if (fw_S < 0)
 	{
-		fw_L = 0;
+		fw_S = 0;
 	}
-	else if (fw_L==0)
+	 if (fw_S == 0)
 	{
-		fw_L = fw_L+1;
-		
+		fw_S = fw_S +3;
 	}
-	
+	 if (fw_S > 540)
+	 {
+		 fw_S = 540;
+	 }
 
-	fw_R = fw_R + 1;
+	
 	
 }
 
@@ -56,8 +57,7 @@ void CUI::Draw2D()
 		}
 	}
 
-	SpriteBatch.Draw(*FW_L, Vector3(350.0f, 10.0f, 0.0f), Rect(0, 0, fw_L, 50), 1.f, Vector3_Zero, Vector3(0, 0, 0), 1);
-	SpriteBatch.Draw(*FW_R, Vector3(fw_R+580, 10.0f, 0.0f), Rect(fw_R, 0, 590, 50), 1.f, Vector3_Zero, Vector3(0, 0, 0), 1);
+	SpriteBatch.Draw(*FW_S, Vector3(320.0f, 0.0f, 0.0f), Rect(0, 0, fw_S, 50), 1.f, Vector3_Zero, Vector3(0, 0, 0), 1);
 	
 
 }
