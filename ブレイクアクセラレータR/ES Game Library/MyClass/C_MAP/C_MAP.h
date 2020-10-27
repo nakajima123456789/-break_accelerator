@@ -14,7 +14,6 @@ public:
 	virtual void DrawAlpha3D() override { return; };
 	virtual void Draw2D()      override;
 
-
 private:
 
 	enum MAP_MODEL
@@ -28,13 +27,13 @@ private:
 	std::vector<MODEL> model;
 	std::vector<std::vector<Vector3>> model_position;
 
-	Vector3 player_pos = Vector3(0.0f,0.0f,0.0f); 
-
 	inline void CreateMapPrefarence();
 
 	MEDIA bg;
 
 	MONOSTATE monostate;
+
+	const int ground_model_scene = 17;
 
 protected:
 

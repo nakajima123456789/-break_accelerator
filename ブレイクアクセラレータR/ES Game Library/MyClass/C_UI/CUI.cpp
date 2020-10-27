@@ -26,7 +26,7 @@ void CUI::Update()
 {
 	
 	
-	fw_S -=0.3f;
+	fw_S -=0.5f;
 	if (fw_S < 0)
 	{
 		fw_S = 0;
