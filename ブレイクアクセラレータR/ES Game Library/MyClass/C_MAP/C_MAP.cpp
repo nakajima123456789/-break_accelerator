@@ -6,7 +6,7 @@ void C_MAP::Init()
 {
 
 	MediaManager.Attach(GraphicsDevice);
-    bg = MediaManager.CreateMediaFromFile(_T("SPRITE//ƒRƒ“ƒ| 1.wmv"));
+    bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
 
 	Material mtrl;
 
@@ -18,14 +18,11 @@ void C_MAP::Init()
 	mtrl.Emissive = _color;
 	mtrl.Power = 1.0f;
 
-
 	auto&& AddModel = [=](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-	
-
-	AddModel(_T("model3D//“¹˜H//road_4.X"));
+	AddModel(_T("model3D//“¹˜H//road_3.X"));
 	AddModel(_T("model3D//bill_side//building_V01.X"));
 	AddModel(_T("model3D//bill_side//building_V02.X"));
 	AddModel(_T("model3D//bill_side//building_V03.X"));
@@ -81,7 +78,7 @@ void C_MAP:: Update()
 				AddModelProfarence(Vector3(-13.0f, -6.0f, (model_position[y].back().z + 66)), y);
 				break;
 			default:
-				AddModelProfarence(Vector3(0.0f, -0.8f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
+				AddModelProfarence(Vector3(0.0f, -0.7f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
 				break;
 			}
 		}
@@ -123,8 +120,6 @@ void C_MAP::Draw3D()
 			}
 		}
 	}
-
-
 };
 
 void C_MAP::Draw2D() 
@@ -148,14 +143,14 @@ void C_MAP::CreateMapPrefarence()
 			else if (y == BILL3) {
 				model_position[y][x] = Vector3(20.0f, -8.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL3]));
 			}
-			else if (y == BILL4) {
+			else if (y == BILL4) { 
 				model_position[y][x] = Vector3(-15.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL4]));
 			}
 			else if (y == BILL5) {
 				model_position[y][x] = Vector3(-13.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL5]));
 			}
 			else {
-				model_position[y][x] = Vector3(0.0f, -0.8f, (player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+				model_position[y][x] = Vector3(0.0f, -0.7f, (player_pos.z - 5) + (x * ground_model_scene[GROUND]));
 			}
 		}
 	}

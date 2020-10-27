@@ -78,7 +78,7 @@ void CPlayer::Draw3D()
 	this->transform.rotation.z = rotation;
 
 	player_model->SetRotation(this->transform.rotation);
-	player_model->SetScale(this->transform.scale * 0.006);
+	player_model->SetScale(this->transform.scale * 0.01f);
 	player_model->Draw();
 }
 
@@ -100,10 +100,10 @@ void CPlayer::IDOL::Update()
 void CPlayer::RUN::Update()
 {
 	auto&& AxisStateMove = [this](std::string _direction_tag)->void {
-		int a = 0;
-		if (_direction_tag == "RIGHT") { a = 1; } else { a = -1; };
-		_owner->player_manager->rotation +=   (0.8f * a * 1.0f * 1.0f);
-		_owner->player_manager->speed +=  (0.0006f * a * 1.0f * 1.0f);
+		int sign;
+		if (_direction_tag == "RIGHT") { sign = 1; } else { sign = -1; };
+		_owner->player_manager->rotation +=   (0.8000f * sign * 1.0f * 1.0f);
+		_owner->player_manager->speed    +=   (0.0006f * sign * 1.0f * 1.0f);
 		return;
 	};
 
