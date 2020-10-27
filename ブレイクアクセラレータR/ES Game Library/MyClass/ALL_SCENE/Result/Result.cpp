@@ -1,5 +1,7 @@
 #include "Result.h"
 #include "../SCENEMANAGER/SceneManager.h"
+#include <algorithm>
+
 
 void C_RESULT::Initialize()
 {

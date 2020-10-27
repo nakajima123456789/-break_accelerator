@@ -6,15 +6,18 @@
 #include "../C_INPUT/C_INPUT.h"
 #include "../C_SE/C_SE.h"
 #include "../INFORMATION/INFORMATION.h"
+#include "../C_EFFEKSEER/CEffekseer_.h"
+
 
 #include <functional>
+
 
 class CPlayerStateProcessor;
 class CPlayer;
 
 class CPlayerStateProcessor : public  StateProcessor {
 public:
-	CPlayer* player_mng;
+	CPlayer* player_manager;
 };
 
 class CPlayer : public Object
@@ -31,8 +34,6 @@ public:
 
 	virtual void CPlayer::DrawAlpha3D() override { return; };
 	virtual void CPlayer::Draw2D()      override { return; };
-
-	static Vector3 test_pos;
 
 private:
 
@@ -86,14 +87,20 @@ private:
 	int      IsHitObjectsInit();
 	void	 IsHitObjectsDraw();
 
+	double CPlayer::clamp(double x, double low, double high);
+
+
     //ïœêîêÈåæ
-	MODEL test_model;
 
 	std::unique_ptr <HitBox> c_hitbox;
 
-	int effekt;
+	MODEL player_model;
+
+	float  speed = 0.0f;
+	double rotation = 0.0f; 
+
+
 
 	MONOSTATE monostate;
+
 };
-
-

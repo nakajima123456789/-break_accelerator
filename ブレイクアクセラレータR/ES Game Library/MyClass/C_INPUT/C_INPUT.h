@@ -42,6 +42,8 @@ public:
 	double  AxisStateX();
 	double  AxisStateY();
 
+	int    DirectionAxisStateX();
+
 	bool    AxisFlag();
 
 	void    BufferButtomSetInit(int button, int buttonid);

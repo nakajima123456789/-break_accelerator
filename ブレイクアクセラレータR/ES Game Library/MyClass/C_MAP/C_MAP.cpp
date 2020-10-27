@@ -4,20 +4,28 @@
 
 void C_MAP::Init()
 {
-
 	MediaManager.Attach(GraphicsDevice);
     bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
 
-	auto&& AddModel = [this](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename)); 
-	model[model.size() - 1]->SetScale(transform.scale); };
+	Material mtrl;
 
-	AddModel(_T("model3D//“¹˜H//road_v01.X"));
-	AddModel(_T("model3D//‰¼‘fÞ//hashira_01.X"));
-	AddModel(_T("model3D//bill_side//billdimg_side02.X"));
+	Color _color = Color(1.0f, 1.0f, 1.0f);
+
+	mtrl.Diffuse  = _color;
+	mtrl.Ambient  = _color;
+	mtrl.Specular = _color;
+	mtrl.Emissive = _color;
+	mtrl.Power = 1.0f;
+
+	auto&& AddModel = [=](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
+	model[model.size() - 1]->SetScale(transform.scale);
+	model[model.size() - 1]->SetMaterial(mtrl);	};
+
+	AddModel(_T("model3D//‰ü’ù”Å//road_3.X"));
 
 	model_position.resize(model.size());
 
-	const unsigned int model_size = 11;
+	const unsigned int model_size = 4;
 
 	for (int i = 0; i < model_position.size(); ++i)
 		model_position[i].resize(model_size);
@@ -28,34 +36,28 @@ void C_MAP::Init()
 
 void C_MAP:: Update()
 {
-	player_pos = monostate.player_pos;
 
-	if ((int)player_pos.z % 48 == 0)
-		CreateMapPrefarence();
+	for (int y = 0; y < model_position.size(); ++y) {
+		if (model_position[y][0].z + ground_model_scene <= monostate.player_pos.z)
+		{
+			Vector3 pos = Vector3(0.0f,0.0f, (model_position[y].back().z + ground_model_scene));
+			model_position[y].erase(model_position[y].begin());
+			model_position[y].push_back(pos);
+		}
+	}
 
-	if (bg->IsComplete()) {
-		bg->Replay();
-	}else { bg->Play(); }
+	if (bg->IsComplete()) {bg->Replay();} else { bg->Play(); }
 };
 
 void C_MAP::Draw3D()
 {
-	for (int y = 0; y < model_position.size(); ++y)
-	{
-		for (int x = 0; x < model_position[y].size(); ++x)
+	for (int y = 0; y < model_position.size(); ++y) {
+		for (int x = 0; x < model_position[y].size(); ++x) 
 		{
-			if (y == PILLAR)
-			{
-				if(x % 2 == 0)
-				model[y]->SetRotation(Vector3(0.0f, 0.0f, 0.f));
-				else 
-				model[y]->SetRotation(Vector3(0.0f, 180.0f, 0.f));
-			}
-			model[y]->SetPosition(model_position[y][x]);
-			model[y]->Draw();
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
 		}
 	}
-
 };
 
 void C_MAP::Draw2D() 
@@ -68,15 +70,8 @@ void C_MAP::CreateMapPrefarence()
 	for (int y = 0; y < model_position.size(); y++)
 	{
 		for (int x = 0; x < model_position[y].size(); x++)
-		{
-			if (y == PILLAR)
-			{
-				if (x % 2 == 0)
-					 model_position[y][x] =  Vector3( 1.3f, 0.0f,(player_pos.z - 5) + (x - 1) * 12.f);
-				else model_position[y][x] =  Vector3(-1.3f, 0.0f,(player_pos.z - 5) + (x - 0) * 12.f);
-				continue;
-			}
-			model_position[y][x] = Vector3(0.0f,0.0f,(player_pos.z - 5) + (x * 12));
+		{		
+			model_position[y][x] = Vector3(0.0f, 0.f, (monostate.player_pos.z - 5) + (x * ground_model_scene));
 		}
 	}
 };
