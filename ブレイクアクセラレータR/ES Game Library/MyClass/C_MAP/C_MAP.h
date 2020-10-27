@@ -14,27 +14,34 @@ public:
 	virtual void DrawAlpha3D() override { return; };
 	virtual void Draw2D()      override;
 
+
 private:
 
 	enum MAP_MODEL
 	{
 		GROUND,
-		PILLAR,
-		BILL,
+		BILL1,
+		BILL2,
+		BILL3,
+		BILL4,
+		BILL5,
 		MAP_MODEL_SIZE,
 	};
 
 	std::vector<MODEL> model;
 	std::vector<std::vector<Vector3>> model_position;
 
+	Vector3 player_pos = Vector3(0.0f,0.0f,0.0f); 
+
 	inline void CreateMapPrefarence();
 
-	MEDIA bg;
+	Material C_MAP::SetMaterial(Color _color);
 
+	MEDIA bg;
+	MODEL town,town2,town3;
 	MONOSTATE monostate;
 
-	const int ground_model_scene = 17;
-
+	int ground_model_scene[MAP_MODEL_SIZE];
 protected:
 
 };

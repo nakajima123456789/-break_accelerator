@@ -74,14 +74,13 @@ void PlacementManager::MapdataTagsPos()
 	const float sense = 0.34f;
 	//const float sense = 1.f;
 
-	for (int z = 0; z < mapdata.size(); z++) 
+	for (int z = 0; z < mapdata.size(); z++)
 	{
 		for (int x = 0; x < mapdata[z].size(); x++)
 		{
 			Vector3 position = Vector3((1 * sense) * x, (0 * sense), ((1 * sense) * z));
 
-			character_mng->PosObjectPreference(mapdata[z][x], position + Vector3(-0.85f,0.07f,20.0f));
+			character_mng->PosObjectPreference(mapdata[z][x], position + Vector3(-0.85f, 0.07f, 20.0f));
 		}
 	}
-
 }
