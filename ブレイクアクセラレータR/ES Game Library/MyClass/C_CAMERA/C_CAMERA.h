@@ -18,7 +18,7 @@ public:
 
 	virtual void CCamera_::DrawEnd()     override;
 
-	int CCamera_::clamp(int x, int low, int high);
+	double CCamera_::clamp(double x, double low, double high);
 private:
 	CAMERA  camera;
 	Light   light;

@@ -16,6 +16,8 @@
 
 #include "../../C_ITEMOBSTACLE/CItemOBstacle.h"
 
+#include "../../CGATEOBSTACLE/CGateObstacle.h"
+
 #include "../../C_EFFEKSEER/CEffekseer_.h"
 
 #include "../../C_MAP/C_MAP.h"
@@ -49,6 +51,8 @@ void C_MAIN::Initialize(){
 	auto&& c_itemobstacle = new CItemObstacle(c_objectplacement->GetCharacterPos()[OBJECT_ITEM]);
 	_objectroot.AddList((ChildObjRef)c_itemobstacle);
 
+	auto&& c_gateobstacle = new CGateObstacle(c_objectplacement->GetCharacterPos()[OBJECT_GATE]);
+	_objectroot.AddList((ChildObjRef)c_gateobstacle);
 	 
 	std::vector<std::vector<Vector3>> pos = c_objectplacement->GetCharacterPos();
 }

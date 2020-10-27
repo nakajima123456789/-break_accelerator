@@ -51,7 +51,7 @@ void  ObstacleBase::IsHitObjectsDraw(Vector3 _pos)
 	c_hitbox->Draw3D();
 }
 
-bool ObstacleBase::RemoveModelDistance(int _distance)
+bool ObstacleBase::RemoveModelDistance(double _distance)
 {
 	return this->transform.position.z <= (monostate.player_pos.z  + _distance) ? true : false;
 }
