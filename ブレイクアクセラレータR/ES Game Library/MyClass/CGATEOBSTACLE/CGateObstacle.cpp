@@ -47,6 +47,8 @@ void CGateObstacle::Draw3D()
 			continue;
 		}
 
+
+
 		obstacle_it++;
 	}
 }

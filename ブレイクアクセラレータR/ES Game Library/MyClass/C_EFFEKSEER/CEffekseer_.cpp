@@ -1,4 +1,5 @@
 #include "CEffekseer_.h"
+#include <algorithm>
 
 
 CEffekseer_::CEffekseer_()
@@ -10,7 +11,6 @@ CEffekseer_::CEffekseer_()
 
 CEffekseer_::~CEffekseer_()
 {
-	std::for_each(effekseer.begin(), effekseer.end(), [](EFFEKSEER& _effekseer) {_effekseer = nullptr; });
 	effekseer.clear();
 }
 

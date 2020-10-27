@@ -18,7 +18,7 @@ bool ObstacleBase::CollsionTrigger()
 {
 	if (PlayerDistance() <= 2.0f)
 	{
-		IsHitObjectsDraw(this->transform.position + Vector3(0.0f,0.1f,0.0f));
+		IsHitObjectsDraw(this->transform.position + Vector3(0.0f,0.2f,0.0f));
 		return c_hitbox->IsHitBox(c_hitbox->Get_Tag_Model()) ? true : false;
 	}
 	return false;

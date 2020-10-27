@@ -1,6 +1,8 @@
 #include "C_TITLE.h"
 #include "../SCENEMANAGER/SceneManager.h"
 #include "../../C_INPUT/C_INPUT.h"
+#include <algorithm>
+
 
 void C_TITLE::Initialize()
 {

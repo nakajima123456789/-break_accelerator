@@ -2,6 +2,8 @@
 #include "../../ESGLib.h"
 #include <functional>
 
+using std::string;
+
 class HitBox {
 public:
 	//デストラクタ
@@ -31,7 +33,7 @@ public:
 	//衝突しているHitBoxのリストを取得
 	std::list<HitBox*> HitBox::HitHitBoxlist();
 
-	void    Settags(string tags);
+	void    Settags(std::string tags);
 	void    SetColor(Vector3 colors);
 	void    HitBoxMove(Vector3 move);
 
