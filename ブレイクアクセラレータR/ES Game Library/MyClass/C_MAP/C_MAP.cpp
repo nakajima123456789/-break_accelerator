@@ -23,8 +23,9 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
+	
 
-	AddModel(_T("model3D//âºëfçﬁ//road_2.X"));
+	AddModel(_T("model3D//ìπòH//road_4.X"));
 	AddModel(_T("model3D//bill_side//building_V01.X"));
 	AddModel(_T("model3D//bill_side//building_V02.X"));
 	AddModel(_T("model3D//bill_side//building_V03.X"));
@@ -65,22 +66,22 @@ void C_MAP:: Update()
 			switch (y)
 			{
 			case BILL1:
-				AddModelProfarence(Vector3(5.0f, -7.0f, (model_position[y].back().z + 100)), y);
+				AddModelProfarence(Vector3(8.0f, -8.0f, (model_position[y].back().z + 100)), y);
 				break;
 			case BILL2:
-				AddModelProfarence(Vector3(-5.0f, -7.0f, (model_position[y].back().z + 100)), y);
+				AddModelProfarence(Vector3(-15.0f, -7.0f, (model_position[y].back().z + 100)), y);
 				break;
 			case BILL3:
-				AddModelProfarence(Vector3(17.0f, -7.0f, (model_position[y].back().z + 40)), y);
+				AddModelProfarence(Vector3(20.0f, -8.0f, (model_position[y].back().z + 40)), y);
 				break;
 			case BILL4:
-				AddModelProfarence(Vector3(-8.0f, -6.0f, (model_position[y].back().z + 30)), y);
+				AddModelProfarence(Vector3(-15.0f, -6.0f, (model_position[y].back().z + 30)), y);
 				break;
 			case BILL5:
-				AddModelProfarence(Vector3(-8.0f, -6.0f, (model_position[y].back().z + 66)), y);
+				AddModelProfarence(Vector3(-13.0f, -6.0f, (model_position[y].back().z + 66)), y);
 				break;
 			default:
-				AddModelProfarence(Vector3(0.0f, -0.5f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
+				AddModelProfarence(Vector3(0.0f, -0.8f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
 				break;
 			}
 		}
@@ -139,22 +140,22 @@ void C_MAP::CreateMapPrefarence()
 		{
 			if (y == BILL1)
 			{
-				model_position[y][x] = Vector3(5.0f, -7.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL1])); 
+				model_position[y][x] = Vector3(8.0f, -8.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL1]));
 			} 
 			else if (y == BILL2) {
-				model_position[y][x] = Vector3(-5.0f, -7.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL2]));
+				model_position[y][x] = Vector3(-15.0f, -7.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL2]));
 			}
 			else if (y == BILL3) {
-				model_position[y][x] = Vector3(17.0f, -7.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL3]));
+				model_position[y][x] = Vector3(20.0f, -8.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL3]));
 			}
 			else if (y == BILL4) {
-				model_position[y][x] = Vector3(-8.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL4]));
+				model_position[y][x] = Vector3(-15.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL4]));
 			}
 			else if (y == BILL5) {
-				model_position[y][x] = Vector3(-8.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL5]));
+				model_position[y][x] = Vector3(-13.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL5]));
 			}
 			else {
-				model_position[y][x] = Vector3(0.0f, -0.5f, (player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+				model_position[y][x] = Vector3(0.0f, -0.8f, (player_pos.z - 5) + (x * ground_model_scene[GROUND]));
 			}
 		}
 	}
