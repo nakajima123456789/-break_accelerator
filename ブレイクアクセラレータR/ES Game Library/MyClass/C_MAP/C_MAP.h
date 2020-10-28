@@ -28,22 +28,11 @@ private:
 		MAP_MODEL_SIZE,
 	};
 
-	MODEL model;
-	std::vector<Vector3> model_pos;
-
-	Vector3 player_pos = Vector3(0.0f,0.0f,0.0f); 
+	std::vector<MODEL> model;
+	std::vector<std::vector<Vector3>> model_position;
 
 	inline void CreateMapPrefarence();
 
-<<<<<<< HEAD
-	MODEL model_road;
-	std::vector<Vector3> model_road_pos;
-
-	MODEL model_bill;
-	std::vector<Vector3> model_bill_pos;
-
-=======
->>>>>>> 中島
 	MEDIA bg;
 
 	MONOSTATE monostate;

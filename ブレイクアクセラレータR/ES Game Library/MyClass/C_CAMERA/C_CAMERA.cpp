@@ -14,12 +14,7 @@ void CCamera_::Init()
 	light.Specular  = color;
 	light.Position  = Vector3(0, 10, 0);
 
-<<<<<<< HEAD
-	camera->SetLookAt(Vector3(0,1, -5),Vector3(0,0,0), Vector3_Up);
-	camera->SetPerspectiveFieldOfView(45.0, 16.0f / 9.0f, 1.0f, 10000.0f);
-=======
 	camera->SetPerspectiveFieldOfView(50.0, 16.0f / 9.0f, 0.1f, 10000.0f);
->>>>>>> 中島
 
 	GraphicsDevice.SetLight(light);
 	GraphicsDevice.SetCamera(camera);
@@ -27,18 +22,12 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
-<<<<<<< HEAD
-	camera->SetLookAt(INFORMATION::PLAYER_INFORMATION::player_pos + Vector3(0,2,-5), INFORMATION::PLAYER_INFORMATION::player_pos, Vector3_Up);
-	camera->SetPerspectiveFieldOfView(45.0, 16.0f / 9.0f, 1.0f, 10000.0f);
-
-=======
 	field_of_view_pov = clamp(Input.GetPadInput(5) ? field_of_view_pov += 0.5f : field_of_view_pov -= 0.5f, 50.0f, 70.0f);
 
 	camera->SetFieldOfViewY(field_of_view_pov);
 
 	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.9f, -1.7f), monostate.player_pos + Vector3(0.0f,0.0f,5.0f), Vector3_Up);
 
->>>>>>> 中島
 	GraphicsDevice.SetCamera(camera);
 
 }
