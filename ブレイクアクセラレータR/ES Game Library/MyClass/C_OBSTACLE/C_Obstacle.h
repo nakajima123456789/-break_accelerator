@@ -1,22 +1,20 @@
 #pragma once
 #include "../OBSTACLEBASE/ObstacleBase.h"
+#include "..//OBSEVER/OBSEVER.h"
 
 class CObstacle : public ObstacleBase
 {
 public:
-	CObstacle(Vector3 pos);
+	CObstacle(std::vector<Vector3> _obstacle_pos);
 	virtual ~CObstacle() {};
 
-	virtual void Init()        override ;
-	virtual void Update()      override ;
-	virtual void Draw3D()      override ;
-
-	virtual void DrawAlpha3D() override { return; };
-	virtual void Draw2D()      override { return; }
+	inline virtual void Init()        override ;
+	inline virtual void Update()      override ;
+	inline virtual void Draw3D()      override ;
 
 private:
-	MODEL obstacle_model;
 
+	OBSERVER observer;
 protected:
 
 };

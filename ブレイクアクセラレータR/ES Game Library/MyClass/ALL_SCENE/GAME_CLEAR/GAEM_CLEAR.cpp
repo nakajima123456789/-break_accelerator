@@ -1,5 +1,7 @@
 #include "GAEM_CLEAR.h"
 #include "../SCENEMANAGER/SceneManager.h"
+#include <algorithm>
+
 
 void GAEM_CLEAR::Initialize()
 {

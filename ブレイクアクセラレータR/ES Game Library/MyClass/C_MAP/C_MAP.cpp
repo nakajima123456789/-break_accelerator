@@ -3,20 +3,36 @@
 void C_MAP::Init()
 {
 	MediaManager.Attach(GraphicsDevice);
-	bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
+    bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
 
+	Material mtrl;
 
+<<<<<<< HEAD
 	auto&& ModelPrefarence = [this](MODEL& _model, LPCTSTR _filename){_model = GraphicsDevice.CreateModelFromFile(_filename); 
 	_model->SetScale(transform.scale); };
+=======
+	Color _color = Color(1.0f, 1.0f, 1.0f);
+>>>>>>> ä¸­å³¶
 
-	ModelPrefarence(model,      _T("model3D//‰¼‘fÞ//hashira_01.X"));
-	ModelPrefarence(model_road, _T("model3D//“¹˜H//road_v01.X"));
-	ModelPrefarence(model_bill, _T("model3D//bill_side//billdimg_side02.X"));
+	mtrl.Diffuse  = _color;
+	mtrl.Ambient  = _color;
+	mtrl.Specular = _color;
+	mtrl.Emissive = _color;
+	mtrl.Power = 1.0f;
+
+	auto&& AddModel = [=](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
+	model[model.size() - 1]->SetScale(transform.scale);
+	model[model.size() - 1]->SetMaterial(mtrl);	};
+
+	AddModel(_T("model3D//“¹˜H//road_3.X"));
+	AddModel(_T("model3D//bill_side//building_V01.X"));
+	AddModel(_T("model3D//bill_side//building_V02.X"));
+	AddModel(_T("model3D//bill_side//building_V03.X"));
+	AddModel(_T("model3D//bill_side//building_V04.X"));
+	AddModel(_T("model3D//bill_side//building_V07.X"));
 
 
-
-	const unsigned int model_size = 10;
-
+<<<<<<< HEAD
 	for (int i = 0; i < model_size; ++i)
 	{
 		if (i <= 3) {
@@ -30,10 +46,28 @@ void C_MAP::Init()
 	model->SetScale(0.05f);
 	model_road->SetScale(0.05f);
 	model_road->SetPosition(0, -7, 0);
+=======
+	ground_model_scene[GROUND] = 17;
+	ground_model_scene[BILL1] = 100;
+	ground_model_scene[BILL2] = 100;
+	ground_model_scene[BILL3] = 50;
+	ground_model_scene[BILL4] = 40;
+	ground_model_scene[BILL5] = 66;
+
+	model_position.resize(model.size());
+
+	const unsigned int model_size = 8;
+
+	for (int i = 0; i < model_position.size(); ++i)
+		model_position[i].resize(model_size);
+
+	CreateMapPrefarence();
+>>>>>>> ä¸­å³¶
 };
 
 void C_MAP:: Update()
 {
+<<<<<<< HEAD
 	bg->Play();
 	if (bg->IsComplete()) {
 		bg->Replay();
@@ -55,26 +89,122 @@ void C_MAP::Draw3D()
 
 
 	for (int i = 0; i < model_pos.size(); i++)
+=======
+	auto&& AddModelProfarence = [this](Vector3 _pos, int y)
+>>>>>>> ä¸­å³¶
 	{
-		if (i % 2 == 0)
-			 this->transform.rotation  = Vector3(0.f,180.f,0.f);
-		else this->transform.rotation  = Vector3(0.f, 0.f, 0.f);
+		Vector3 pos = _pos;
+		model_position[y].erase(model_position[y].begin());
+		model_position[y].push_back(pos);
+	};
 
-		this->model->SetRotation(this->transform.rotation);
+	for (int y = 0; y < model_position.size(); ++y) {
 
+<<<<<<< HEAD
 		if (model_pos[i].z <= -10.0f)model_pos[i].z = +70.f;
 
 		ModelDrawPrefarence(model, model_pos[i]);
+=======
+		if (model_position[y][0].z + 17 <= monostate.player_pos.z)
+		{
+			switch (y)
+			{
+			case BILL1:
+				AddModelProfarence(Vector3(8.0f, -8.0f,   (model_position[y].back().z + 100)), y);
+				break;
+			case BILL2:
+				AddModelProfarence(Vector3(-15.0f, -7.0f, (model_position[y].back().z + 100)), y);
+				break;
+			case BILL3:
+				AddModelProfarence(Vector3(20.0f, -8.0f,  (model_position[y].back().z + 40)), y);
+				break;
+			case BILL4:
+				AddModelProfarence(Vector3(-15.0f, -6.0f, (model_position[y].back().z + 30)), y);
+				break;
+			case BILL5:
+				AddModelProfarence(Vector3(-13.0f, -6.0f, (model_position[y].back().z + 66)), y);
+				break;
+			default:
+				AddModelProfarence(Vector3(0.0f,  0.0f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
+				break;
+			}
+		}
+>>>>>>> ä¸­å³¶
 	}
 
-	for (int i = 0; i < model_bill_pos.size(); i++) {
-		if (model_bill_pos[i].z <= -300.0f)model_bill_pos[i].z = +  300.0f;
-		ModelDrawPrefarence(model_bill, model_bill_pos[i]);
+	if (bg->IsComplete()) {
+		bg->Replay();
+	}else { bg->Play(); }
+};
+
+void C_MAP::Draw3D()
+{
+	for (int y = 0; y < model_position.size(); ++y){
+		for (int x = 0; x < model_position[y].size(); ++x){
+			if (y == BILL1) {
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+			}
+			else if (y == BILL2) {
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+			}
+			else if (y == BILL3) {
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+			}
+			else if (y == BILL4) {
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+			}
+			else if (y == BILL5) {
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+			}
+			else
+			{
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+			}
+		}
 	}
 };
 
 void C_MAP::Draw2D() 
 {
+<<<<<<< HEAD
 	SpriteBatch.Draw(*bg, Vector3(0, 0, 10000.0f));
 	
+=======
+	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+}
+
+void C_MAP::CreateMapPrefarence()
+{
+	for (int y = 0; y < model_position.size(); y++)
+	{
+		for (int x = 0; x < model_position[y].size(); x++)
+		{
+			if (y == BILL1)
+			{
+				model_position[y][x] = Vector3(8.0f, -8.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL1]));
+			} 
+			else if (y == BILL2) {
+				model_position[y][x] = Vector3(-15.0f, -7.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL2]));
+			}
+			else if (y == BILL3) {
+				model_position[y][x] = Vector3(20.0f, -8.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL3]));
+			}
+			else if (y == BILL4) { 
+				model_position[y][x] = Vector3(-15.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL4]));
+			}
+			else if (y == BILL5) {
+				model_position[y][x] = Vector3(-13.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL5]));
+			}
+			else {
+				model_position[y][x] = Vector3(0.0f, 0.0f, (player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+			}
+		}
+	}
+>>>>>>> ä¸­å³¶
 };

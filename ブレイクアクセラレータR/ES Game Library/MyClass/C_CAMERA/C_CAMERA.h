@@ -1,6 +1,7 @@
 #pragma once
 #include "../../ESGLib.h"
 #include "../C_OBJECT/Object.h"
+#include "../INFORMATION/INFORMATION.h"
 
 class CCamera_ : public Object
 {
@@ -17,10 +18,13 @@ public:
 
 	virtual void CCamera_::DrawEnd()     override;
 
+	double CCamera_::clamp(double x, double low, double high);
 private:
 	CAMERA  camera;
 	Light   light;
 
+	float field_of_view_pov = 70;
 
+	MONOSTATE monostate;
 };
 

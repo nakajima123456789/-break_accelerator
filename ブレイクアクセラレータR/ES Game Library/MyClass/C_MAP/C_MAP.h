@@ -1,6 +1,7 @@
 #pragma once
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
+#include "../INFORMATION/INFORMATION.h"
 
 class C_MAP : public Object
 {
@@ -19,7 +20,11 @@ private:
 	enum MAP_MODEL
 	{
 		GROUND,
-		PILLAR,
+		BILL1,
+		BILL2,
+		BILL3,
+		BILL4,
+		BILL5,
 		MAP_MODEL_SIZE,
 	};
 
@@ -30,14 +35,20 @@ private:
 
 	inline void CreateMapPrefarence();
 
+<<<<<<< HEAD
 	MODEL model_road;
 	std::vector<Vector3> model_road_pos;
 
 	MODEL model_bill;
 	std::vector<Vector3> model_bill_pos;
 
+=======
+>>>>>>> 中島
 	MEDIA bg;
 
+	MONOSTATE monostate;
+
+	int ground_model_scene[MAP_MODEL_SIZE];
 protected:
 
 };

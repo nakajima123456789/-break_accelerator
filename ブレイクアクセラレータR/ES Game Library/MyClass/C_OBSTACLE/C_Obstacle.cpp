@@ -1,17 +1,17 @@
 #include "C_Obstacle.h"
 
-CObstacle::CObstacle(Vector3 pos)
+CObstacle::CObstacle(std::vector<Vector3> _obstacle_pos)
 {
-	this->transform.position = pos;
+	obstacle_pos = _obstacle_pos;
 }
 
 void CObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("CubeModel//cube.X"));
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//hako_ao2.X"));
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f,1.f,1.f)));
 
-	IsHitObjectsInit("item");
+	IsHitObjectsInit("Item_Hitbox");
 }
 
 void CObstacle::Update()
@@ -21,14 +21,30 @@ void CObstacle::Update()
 
 void CObstacle::Draw3D()
 {
-	if(PlayerDistance() <= 5)
-	{
-		this->obstacle_model->SetPosition(this->transform.position);
-		this->obstacle_model->SetRotation(this->transform.rotation);
-		this->obstacle_model->SetScale(this->transform.scale);
+	auto&& obstacle_it = this->obstacle_pos.begin();
+	while (obstacle_it != this->obstacle_pos.end()) {
 
-		IsHitObjectsDraw(this->transform.position);
+		this->transform.position = *obstacle_it;
 
-		obstacle_model->Draw();
+		if (DistanceTrigger(90.0f))
+		{
+			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.0f,0.08f,0.0f));
+			this->obstacle_model->SetRotation(this->transform.rotation);
+			this->obstacle_model->SetScale(this->transform.scale);
+			this->obstacle_model->Draw();
+		}
+
+		if (RemoveModelDistance(-20))
+		{
+			obstacle_it = this->obstacle_pos.erase(obstacle_it);
+			continue;
+		}
+
+		if (this->CollsionTrigger())
+		{
+			observer.IsCollision();
+		}
+
+		obstacle_it++;
 	}
 }
