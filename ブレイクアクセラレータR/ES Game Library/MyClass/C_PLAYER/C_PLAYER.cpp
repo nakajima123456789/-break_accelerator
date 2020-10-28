@@ -61,7 +61,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
-	transform.position.z += Input.GetPadInput(5) ? 0.2f : 0.1f;
+	transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.15f;
 
 	this->player_state_processor.Update();
 }
@@ -107,8 +107,8 @@ void CPlayer::RUN::Update()
 		return;
 	};
 
-	if ( Input.DirectionAxisStateX())  AxisStateMove("RIGHT");
-	if (!Input.DirectionAxisStateX())  AxisStateMove("LEFT");
+	if (Input.AxisStateX() >=  0.3f)  AxisStateMove("RIGHT");
+	if (Input.AxisStateX() <= -0.3f)  AxisStateMove("LEFT");
 
 
 	if (Input.AxisStateX() == 0){

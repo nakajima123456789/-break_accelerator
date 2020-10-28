@@ -28,10 +28,10 @@ void CObstacle::Draw3D()
 
 		if (DistanceTrigger(90.0f))
 		{
-			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.0f,0.01f,0.0f));
+			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.0f,0.08f,0.0f));
 			this->obstacle_model->SetRotation(this->transform.rotation);
 			this->obstacle_model->SetScale(this->transform.scale);
-			//this->obstacle_model->Draw();
+			this->obstacle_model->Draw();
 		}
 
 		if (RemoveModelDistance(-20))

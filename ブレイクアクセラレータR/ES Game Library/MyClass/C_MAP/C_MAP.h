@@ -35,10 +35,8 @@ private:
 
 	inline void CreateMapPrefarence();
 
-	Material C_MAP::SetMaterial(Color _color);
-
 	MEDIA bg;
-	MODEL town,town2,town3;
+
 	MONOSTATE monostate;
 
 	int ground_model_scene[MAP_MODEL_SIZE];

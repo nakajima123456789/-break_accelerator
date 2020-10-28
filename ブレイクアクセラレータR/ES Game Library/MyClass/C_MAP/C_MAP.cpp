@@ -4,7 +4,6 @@
 
 void C_MAP::Init()
 {
-
 	MediaManager.Attach(GraphicsDevice);
     bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
 
@@ -78,7 +77,7 @@ void C_MAP:: Update()
 				AddModelProfarence(Vector3(-13.0f, -6.0f, (model_position[y].back().z + 66)), y);
 				break;
 			default:
-				AddModelProfarence(Vector3(0.0f, -0.7f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
+				AddModelProfarence(Vector3(0.0f,  0.0f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
 				break;
 			}
 		}
@@ -150,7 +149,7 @@ void C_MAP::CreateMapPrefarence()
 				model_position[y][x] = Vector3(-13.0f, -6.0f, (player_pos.z - 5) + (x * ground_model_scene[BILL5]));
 			}
 			else {
-				model_position[y][x] = Vector3(0.0f, -0.7f, (player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+				model_position[y][x] = Vector3(0.0f, 0.0f, (player_pos.z - 5) + (x * ground_model_scene[GROUND]));
 			}
 		}
 	}
