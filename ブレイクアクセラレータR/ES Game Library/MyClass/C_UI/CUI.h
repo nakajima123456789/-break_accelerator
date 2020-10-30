@@ -38,5 +38,6 @@ private:
 	double clamp(double x, double low, double high);
 	
 	OBSERVER observer;
+	
 };
 

@@ -4,12 +4,14 @@ CUI::CUI()
 {
 	//自分をリストに登録
 	observer.addListener(this);
+	
 }
 
 CUI::~CUI()
 {
 	//自分をリストから削除
 	observer.removeListener(this);
+	
 }
 
 void CUI::Init()
@@ -30,7 +32,7 @@ void CUI::Init()
 	
 	FW_S = GraphicsDevice.CreateSpriteFromFile(_T("UI/FWゲージ/FW_S.png"));
 	
-	fw_S = 540;
+	fw_S = 0;
 	
 }
 
@@ -38,7 +40,7 @@ void CUI::Update()
 {
 	
 	
-	fw_S -=0.5f;
+	fw_S +=0.5f;
 
 }
 

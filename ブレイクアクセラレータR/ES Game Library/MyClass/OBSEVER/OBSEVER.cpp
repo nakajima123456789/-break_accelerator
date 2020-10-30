@@ -15,7 +15,9 @@ void OBSERVER::IsCollision()
 {
 	// Õ“Ë”»’è‚µ‚½‚±‚Æ‚ðŠÏ‘ªŽÒ‚É’Ê’m 
 	OnCollisionNotify();
+	
 }
+
 
 // ŠÏ‘ªŽÒ‚É’Ê’m 
 void OBSERVER::OnCollisionNotify()
@@ -26,4 +28,5 @@ void OBSERVER::OnCollisionNotify()
 		listener->OnCollision();
 	}
 }
+
 

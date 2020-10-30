@@ -24,6 +24,8 @@
 
 #include"..//..//C_UI/CUI.h"
 
+#include"..//..//OBSEVER/OBSEVER.h"
+
 void C_MAIN::Initialize(){
 
 	auto&& c_camera = (new CCamera_);

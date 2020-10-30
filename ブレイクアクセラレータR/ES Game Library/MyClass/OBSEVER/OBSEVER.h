@@ -9,6 +9,7 @@ public:
 	virtual ~OBSERVERLISTENER() {}
 	// 衝突判定した
 	virtual void OnCollision() = 0;
+
 };
 
 // 衝突判定 クラス（ 観測 者 に 通知 する 役）
@@ -21,10 +22,10 @@ public:
 
 	// 衝突判定した
 	void IsCollision();
-
+	
 private:
 	// 観測者に通知 
 	void OnCollisionNotify();
-
+	
 	static std::list<OBSERVERLISTENER*> listeners_;
 };
