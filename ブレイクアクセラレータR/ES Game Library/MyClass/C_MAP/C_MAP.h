@@ -20,11 +20,7 @@ private:
 	enum MAP_MODEL
 	{
 		GROUND,
-		BILL1,
-		BILL2,
-		BILL3,
-		BILL4,
-		BILL5,
+		BILL,
 		MAP_MODEL_SIZE,
 	};
 
@@ -34,7 +30,7 @@ private:
 	inline void CreateMapPrefarence();
 
 	MEDIA bg;
-
+	MODEL town,town2,town3,town4;
 	MONOSTATE monostate;
 
 	int ground_model_scene[MAP_MODEL_SIZE];

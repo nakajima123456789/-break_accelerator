@@ -19,19 +19,16 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-	AddModel(_T("model3D//“¹˜H//road_3.X"));
-	AddModel(_T("model3D//bill_side//building_V01.X"));
-	AddModel(_T("model3D//bill_side//building_V02.X"));
-	AddModel(_T("model3D//bill_side//building_V03.X"));
-	AddModel(_T("model3D//bill_side//building_V04.X"));
-	AddModel(_T("model3D//bill_side//building_V07.X"));
+	AddModel(_T("model3D//“¹˜H//miti_03.X"));
+	AddModel(_T("model3D//bill_side//test.X"));
+	//AddModel(_T("model3D//bill_side//building_V02.X"));
+	//AddModel(_T("model3D//bill_side//building_V03.X"));
+	//AddModel(_T("model3D//bill_side//building_V04.X"));
+	//AddModel(_T("model3D//bill_side//building_V07.X"));
 
 	ground_model_scene[GROUND] = 17;
-	ground_model_scene[BILL1] = 100;
-	ground_model_scene[BILL2] = 100;
-	ground_model_scene[BILL3] = 50;
-	ground_model_scene[BILL4] = 40;
-	ground_model_scene[BILL5] = 66;
+	ground_model_scene[BILL] = 100;
+
 
 	const unsigned int model_size = 8;
 
@@ -54,24 +51,12 @@ void C_MAP:: Update()
 
 	for (int y = 0; y < model_position.size(); ++y) {
 
-		if (model_position[y][0].z + 17 <= monostate.player_pos.z)
+		if (model_position[y][y].z + 17 <= monostate.player_pos.z)
 		{
 			switch (y)
 			{
-			case BILL1:
-				AddModelProfarence(Vector3(8.0f, -8.0f, (model_position[y].back().z + 100)), y);
-				break;
-			case BILL2:
-				AddModelProfarence(Vector3(-15.0f, -7.0f, (model_position[y].back().z + 100)), y);
-				break;
-			case BILL3:
-				AddModelProfarence(Vector3(20.0f, -8.0f, (model_position[y].back().z + 40)), y);
-				break;
-			case BILL4:
-				AddModelProfarence(Vector3(-15.0f, -6.0f, (model_position[y].back().z + 30)), y);
-				break;
-			case BILL5:
-				AddModelProfarence(Vector3(-13.0f, -6.0f, (model_position[y].back().z + 66)), y);
+			case BILL:
+				AddModelProfarence(Vector3(-200.0f, -20.0f, (model_position[y].back().z - 10)), y);
 				break;
 			default:
 				AddModelProfarence(Vector3(0.0f, 0.0f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
@@ -94,25 +79,13 @@ void C_MAP:: Update()
 
 void C_MAP::Draw3D()
 {
+	//town->Draw();
+	//town2->Draw();
+	//town3->Draw();
+	//town4->Draw();
 	for (int y = 0; y < model_position.size(); ++y){
 		for (int x = 0; x < model_position[y].size(); ++x){
-			if (y == BILL1) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else if (y == BILL2) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else if (y == BILL3) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else if (y == BILL4) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else if (y == BILL5) {
+			if (y == BILL) {
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->Draw();
 			}
@@ -127,7 +100,7 @@ void C_MAP::Draw3D()
 
 void C_MAP::Draw2D() 
 {
-	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	//SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
 }
 
 void C_MAP::CreateMapPrefarence()
@@ -136,22 +109,10 @@ void C_MAP::CreateMapPrefarence()
 	{
 		for (int x = 0; x < model_position[y].size(); x++)
 		{
-			if (y == BILL1)
+			if (y == BILL)
 			{
-				model_position[y][x] = Vector3(8.0f, -8.0f,   (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL1]));
+				model_position[y][x] = Vector3(-20.0f, -20.0f,   (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL]));
 			} 
-			else if (y == BILL2) {
-				model_position[y][x] = Vector3(-15.0f, -7.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL2]));
-			}
-			else if (y == BILL3) {
-				model_position[y][x] = Vector3(20.0f, -8.0f,  (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL3]));
-			}
-			else if (y == BILL4) { 
-				model_position[y][x] = Vector3(-15.0f, -6.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL4]));
-			}
-			else if (y == BILL5) {
-				model_position[y][x] = Vector3(-13.0f, -6.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL5]));
-			}
 			else {
 				model_position[y][x] = Vector3(0.0f, 0.0f,    (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
 			}
