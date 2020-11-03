@@ -30,7 +30,6 @@ private:
 	inline void CreateMapPrefarence();
 
 	MEDIA bg;
-	MODEL town,town2,town3,town4;
 	MONOSTATE monostate;
 
 	int ground_model_scene[MAP_MODEL_SIZE];
