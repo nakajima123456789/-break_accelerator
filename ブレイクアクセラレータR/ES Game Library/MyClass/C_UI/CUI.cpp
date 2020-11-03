@@ -36,7 +36,7 @@ void CUI::Init()
 
 void CUI::Update()
 {
-	fw_S -= 0.5f;
+	fw_S += 0.5f;
 }
 
 //PLAYER‚ÆENEMY‚Æ‚ªÕ“Ë‚µ‚½‚çŒÄ‚Î‚ê‚éŠÖ”

@@ -42,7 +42,7 @@ int  CPlayer::IsHitObjectsInit()
 	c_hitbox->Init();
 	c_hitbox->Settags("player");
 
-	c_hitbox->SetHitBoxScale(0.08f);
+	c_hitbox->SetHitBoxScale(0.2f);
 
 	return 0;
 }

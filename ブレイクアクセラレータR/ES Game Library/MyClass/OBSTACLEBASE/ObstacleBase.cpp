@@ -41,7 +41,7 @@ void  ObstacleBase::IsHitObjectsInit(std::string _tags)
 	c_hitbox->Init();
 	c_hitbox->Settags(_tags);
 
-	c_hitbox->SetHitBoxScale(0.1f);
+	c_hitbox->SetHitBoxScale(0.5f);
 }
 
 //ヒットボックス描画
