@@ -69,7 +69,7 @@ void CPlayer::Update()
 void CPlayer::Draw3D()
 {
 
-	this->transform.position.x = clamp(transform.position.x, -1.0f, 1.0f);
+	this->transform.position.x = clamp(transform.position.x, -3.0f, 3.0f);
 	player_model->SetPosition(this->transform.position);
 	monostate.player_pos = this->transform.position;
 

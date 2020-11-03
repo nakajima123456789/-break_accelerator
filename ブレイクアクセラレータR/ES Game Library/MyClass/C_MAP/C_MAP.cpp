@@ -21,11 +21,15 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
 	AddModel(_T("model3D//‰ü’ù”Å//road_3.X"));
+	AddModel(_T("model3D//‰ü’ù”Å//road_3.X"));
+	AddModel(_T("model3D//‰ü’ù”Å//road_3.X"));
 	AddModel(_T("model3D//bill_side//test.X"));
 
 	model_position.resize(model.size());
 
 	ground_model_scene[GROUND] = 17;
+	ground_model_scene[LEFT_GROUND] = 17;
+	ground_model_scene[RIGHT_GROUND] = 17;
 	ground_model_scene[BILL] = 350;
 
 
@@ -54,6 +58,14 @@ void C_MAP:: Update()
 		{
 			switch (y)
 			{
+			case LEFT_GROUND:
+				AddModelProfarence(Vector3(2.0f, 0.0f, (model_position[y].back().z + ground_model_scene[LEFT_GROUND])), y);
+				break;
+			
+			case RIGHT_GROUND:
+				AddModelProfarence(Vector3(-2.0f, 0.0f, (model_position[y].back().z + ground_model_scene[RIGHT_GROUND])), y);
+				break;
+
 			case BILL:
 				AddModelProfarence(Vector3(-20.0f, -20.0f, (model_position[y].back().z + 300)), y);
 				break;
@@ -80,14 +92,25 @@ void C_MAP::Draw3D()
 {
 	for (int y = 0; y < model_position.size(); ++y){
 		for (int x = 0; x < model_position[y].size(); ++x){
-			if (y == BILL) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else
+
+			switch (y)
 			{
+			case LEFT_GROUND:
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->Draw();
+				break;
+			case RIGHT_GROUND:
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+				break;
+			case  BILL :
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+				break;
+			default:
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+				break;
 			}
 		}
 	}
@@ -104,12 +127,20 @@ void C_MAP::CreateMapPrefarence()
 	{
 		for (int x = 0; x < model_position[y].size(); x++)
 		{
-			if (y == BILL)
+			switch (y)
 			{
-				model_position[y][x] = Vector3(-20.0f, -20.0f,   (monostate.player_pos.z - 100) + (x * ground_model_scene[BILL]));
-			} 
-			else {
-				model_position[y][x] = Vector3(0.0f, 0.0f,    (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+			case LEFT_GROUND :
+				model_position[y][x] = Vector3(2.0f, 0.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_GROUND]));
+				break;
+			case RIGHT_GROUND:
+				model_position[y][x] = Vector3(-2.0f, 0.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_GROUND]));
+				break;
+			case BILL:
+				model_position[y][x] = Vector3(-20.0f, -20.0f, (monostate.player_pos.z - 100) + (x * ground_model_scene[BILL]));
+				break;
+			default:
+				model_position[y][x] = Vector3(0.0f, 0.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+				break;
 			}
 		}
 	}
