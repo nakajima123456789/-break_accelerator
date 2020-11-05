@@ -24,8 +24,8 @@ void C_MAP::Init()
 	AddModel(_T("model3D//‰ü’ù”Å//road_3.X"));
 	AddModel(_T("model3D//‰ü’ù”Å//road_3.X"));
 	AddModel(_T("model3D//bill_side//test.X"));
-	AddModel(_T("model3D//’Œ//test2.X"));
-	AddModel(_T("model3D//’Œ//test1.X"));
+	AddModel(_T("model3D//’Œ//test3.X"));
+	AddModel(_T("model3D//’Œ//test3.X"));
 
 	model_position.resize(model.size());
 
@@ -33,10 +33,10 @@ void C_MAP::Init()
 	ground_model_scene[LEFT_GROUND] = 17;
 	ground_model_scene[RIGHT_GROUND] = 17;
 	ground_model_scene[BILL] = 350;
-	ground_model_scene[LEFT_POLE] = 17;
-	ground_model_scene[RIGHT_POLE] = 17;
+	ground_model_scene[LEFT_POLE] = 23;
+	ground_model_scene[RIGHT_POLE] = 23;
 
-	const unsigned int model_size = 8;
+	const unsigned int model_size = 15;
 
 	for (int i = 0; i < model_position.size(); ++i)
 		model_position[i].resize(model_size);
@@ -73,10 +73,10 @@ void C_MAP:: Update()
 				AddModelProfarence(Vector3(-20.0f, -20.0f, (model_position[y].back().z + 300)), y);
 				break;
 			case RIGHT_POLE:
-				AddModelProfarence(Vector3(1.5f, -0.25f, (model_position[y].back().z + ground_model_scene[LEFT_POLE])), y);
+				AddModelProfarence(Vector3(2.3f, -2.0f, (model_position[y].back().z + ground_model_scene[LEFT_POLE])), y);
 				break;
 			case LEFT_POLE:
-				AddModelProfarence(Vector3(-5.0f, -0.25f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
+				AddModelProfarence(Vector3(-2.5f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
 				break;
 			default:
 				AddModelProfarence(Vector3(0.0f, 0.0f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
@@ -118,10 +118,12 @@ void C_MAP::Draw3D()
 				break;
 			case RIGHT_POLE:
 				model[y]->SetPosition(model_position[y][x]);
+				model[y]->SetRotation(0.0f, 30.0f, 0.0f);
 				model[y]->Draw();
 				break;
 			case LEFT_POLE:
 				model[y]->SetPosition(model_position[y][x]);
+				model[y]->SetRotation(-90.0f, -45.0f, 0.0f);
 				model[y]->Draw();
 				break;
 			default:
@@ -135,7 +137,7 @@ void C_MAP::Draw3D()
 
 void C_MAP::Draw2D() 
 {
-	//SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
 }
 
 void C_MAP::CreateMapPrefarence()
@@ -156,10 +158,10 @@ void C_MAP::CreateMapPrefarence()
 				model_position[y][x] = Vector3(-20.0f, -20.0f, (monostate.player_pos.z - 100) + (x * ground_model_scene[BILL]));
 				break;
 			case RIGHT_POLE:
-				model_position[y][x] = Vector3(1.5f, -0.25f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_POLE]));
+				model_position[y][x] = Vector3(2.3f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_POLE]));
 				break;
 			case LEFT_POLE:
-				model_position[y][x] = Vector3(-5.0f, -0.25f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
+				model_position[y][x] = Vector3(-2.5f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
 				break;
 			default:
 				model_position[y][x] = Vector3(0.0f, 0.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
