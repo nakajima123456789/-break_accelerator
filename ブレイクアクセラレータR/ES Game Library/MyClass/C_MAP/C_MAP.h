@@ -20,8 +20,6 @@ private:
 	enum MAP_MODEL
 	{
 		GROUND,
-		LEFT_GROUND,
-		RIGHT_GROUND,
 		BILL,
 		RIGHT_POLE,
 		LEFT_POLE,

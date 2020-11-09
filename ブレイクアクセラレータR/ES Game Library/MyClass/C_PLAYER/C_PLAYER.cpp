@@ -61,7 +61,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
-	transform.position.z += Input.GetPadInput(5) ? 1.0f : 0.5f;//ˆÚ“®‚Ì‘¬‚³
+	transform.position.z += Input.GetPadInput(5) ? 0.5f : 0.3f;//ˆÚ“®‚Ì‘¬‚³
 
 	this->player_state_processor.Update();
 }
