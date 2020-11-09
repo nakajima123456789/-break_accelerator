@@ -63,10 +63,12 @@ void PlacementManager::Init()
 
 void PlacementManager::Update()
 {
+
 }
 
 void PlacementManager::Draw3D()
 {
+
 }
 
 void PlacementManager::MapdataTagsPos()

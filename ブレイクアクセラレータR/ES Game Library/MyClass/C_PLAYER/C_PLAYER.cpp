@@ -2,7 +2,6 @@
 #include "../C_INPUT/C_INPUT.h"
 #include "../INFORMATION/INFORMATION.h"
 
-
 CPlayer::CPlayer(Vector3  _pos)
 {
 	transform.position = (_pos + Vector3(0.f,0.3f,0.f));
@@ -21,6 +20,8 @@ void CPlayer::Init()
 
 	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰¼‘fÞ//jiki2.X"));
     player_model->SetMaterial(SetMaterial(Color(255.0f, 255.0f, 255.0f)));
+
+	effcseer_test = EffekseerMgr.LoadEffekseer(_T("‹O“¹//‹O“¹.efk"));
 }
 
 Material CPlayer::SetMaterial(Color _color)
@@ -61,7 +62,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
-	transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.15f;
+	transform.position.z += Input.GetPadInput(5) ? 0.15f : 0.1f;
 
 	this->player_state_processor.Update();
 }
@@ -136,3 +137,9 @@ double CPlayer::clamp(double x, double low, double high)
 	return min(max(x, low), high);
 }
 
+bool CPlayer::FrameTimeObsever(int _index)
+{
+	_time++;
+	if (_time % _index == 0) { return true; }
+	return false;
+}

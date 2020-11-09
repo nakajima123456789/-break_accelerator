@@ -89,6 +89,7 @@ private:
 
 	double CPlayer::clamp(double x, double low, double high);
 
+	bool   CPlayer::FrameTimeObsever(int _index);
 
     //•Ï”éŒ¾
 
@@ -99,8 +100,13 @@ private:
 	float  speed = 0.0f;
 	double rotation = 0.0f; 
 
-
-
 	MONOSTATE monostate;
+
+	int _time = 0;
+
+	int effcseer_test;
+	EFFEKSEER effekseer;
+	int effcseer_id;
+
 
 };

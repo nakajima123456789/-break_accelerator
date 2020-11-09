@@ -14,7 +14,7 @@ public:
 	virtual void DrawAlpha3D() override { return; };
 	virtual void Draw2D()      override;
 
-
+	static MODEL hoge_model;
 private:
 
 	enum MAP_MODEL
@@ -33,6 +33,9 @@ private:
 	MONOSTATE monostate;
 
 	int ground_model_scene[MAP_MODEL_SIZE];
+
+	MODEL test;
+
 protected:
 
 };

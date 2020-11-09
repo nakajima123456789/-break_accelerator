@@ -1,6 +1,9 @@
 #include "C_MAP.h"
 
 #include "../INFORMATION/INFORMATION.h"
+
+MODEL C_MAP::hoge_model = nullptr;
+
 void C_MAP::Init()
 {
 	MediaManager.Attach(GraphicsDevice);
@@ -28,11 +31,16 @@ void C_MAP::Init()
 	ground_model_scene[GROUND] = 17;
 	ground_model_scene[BILL] = 350;
 
-
 	const unsigned int model_size = 8;
 
 	for (int i = 0; i < model_position.size(); ++i)
 		model_position[i].resize(model_size);
+
+	test = GraphicsDevice.CreateModelFromFile(_T("tst01.X"));
+	test->SetPosition(Vector3_Zero);
+	test->SetRotation(Vector3(0.0f, 90.0f, 0.0f));
+	test->SetMaterial(mtrl);
+	test->SetScale(0.01);
 
 	CreateMapPrefarence();
 
@@ -91,11 +99,12 @@ void C_MAP::Draw3D()
 			}
 		}
 	}
+	test->Draw();
 };
 
 void C_MAP::Draw2D() 
 {
-	//SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
 }
 
 void C_MAP::CreateMapPrefarence()

@@ -205,6 +205,9 @@
     <Filter Include="MyClass\All_Scene\C_Title\C_Game_Over">
       <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\CUI">
+      <UniqueIdentifier>{cbfe2bdf-4ca4-458e-a9e9-b75a84f4675e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -428,7 +431,7 @@
       <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\C_UI\CUI.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MyClass\CUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -671,7 +674,7 @@
       <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\C_UI\CUI.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>MyClass\CUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

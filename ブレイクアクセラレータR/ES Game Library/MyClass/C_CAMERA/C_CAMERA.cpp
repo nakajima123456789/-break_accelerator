@@ -28,6 +28,7 @@ void CCamera_::Update()
 
 	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.9f, -1.7f), monostate.player_pos + Vector3(0.0f,0.0f,5.0f), Vector3_Up);
 
+	EffekseerMgr.Update();
 	GraphicsDevice.SetCamera(camera);
 
 }
@@ -35,6 +36,7 @@ void CCamera_::Update()
 void CCamera_::DrawEnd()
 {
 	GraphicsDevice.SetCamera(camera);
+	EffekseerMgr.Draw(camera);
 };
 
 double CCamera_::clamp(double x, double low, double high)

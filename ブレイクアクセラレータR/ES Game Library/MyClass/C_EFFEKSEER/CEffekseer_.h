@@ -16,11 +16,12 @@ public:
 	int       CEffekseer_::LoadEffekseer(TCHAR* filename);
 	EFFEKSEER CEffekseer_::GetEffekseer(int _number);
 
-	int CEffekseer_::PlayEffekseer(int _number, double _scale, Vector3 _pos);
+	int CEffekseer_::PlayEffekseer(int& _number,Vector3& _pos);
 
 	void Update();
 	void Draw(CAMERA& _camera);
-	 
+	
+
 private:
 	CEffekseer_(const CEffekseer_&)            = delete;
 	CEffekseer_& operator=(const CEffekseer_&) = delete;

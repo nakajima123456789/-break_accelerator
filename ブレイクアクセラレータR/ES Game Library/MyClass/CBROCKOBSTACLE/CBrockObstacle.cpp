@@ -40,6 +40,11 @@ void CBrockObstacle::Draw3D()
 			continue;
 		}
 
+		if (this->CollsionTrigger())
+		{
+			observer.IsCollisionDamage();
+		}
+
 		obstacle_it++;
 	}
 }
