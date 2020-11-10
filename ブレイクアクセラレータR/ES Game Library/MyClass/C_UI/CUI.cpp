@@ -33,7 +33,7 @@ void CUI::Init()
 	_hit_ef = GraphicsDevice.CreateSprite(1280, 720, PixelFormat_RGBX8888);
 	_hit_ef->ColorFill(nullptr, Color(255, 0, 0));
 
-	fw_S = 540;
+	fw_S = 0;
 	
 }
 
@@ -45,14 +45,14 @@ void CUI::Update()
 //PLAYERÇ∆ENEMYÇ∆Ç™è’ìÀÇµÇΩÇÁåƒÇŒÇÍÇÈä÷êî
 void CUI::OnCollisionDamage()
 {
-	fw_S  += 20;
+	fw_S  += 10;
 
 	_damage_collsion_flag = true;
 }
 
 void CUI::OnCollisionClear()
 {
-	fw_S  -= 15;
+	fw_S  -= 20;
 }
 
 void CUI::Draw2D()
@@ -81,6 +81,8 @@ void CUI::Draw2D()
 	}
 
 }
+
+
 
 double CUI::clamp(double x, double low, double high)
 {
