@@ -4,6 +4,9 @@
 
 #include "../C_HITBOX/HitBox.h"
 #include "../INFORMATION/INFORMATION.h"
+#include "..//OBSEVER/OBSEVER.h"
+
+#include "../C_EFFEKSEER/CEffekseer_.h"
 
 class ObstacleBase : public Object
 {
@@ -54,6 +57,8 @@ protected:
 	std::unique_ptr <HitBox> c_hitbox;
 
 	MONOSTATE monostate;
+
+	OBSERVER observer;
 
 	MODEL obstacle_model;
 	std::vector<Vector3> obstacle_pos;

@@ -11,19 +11,22 @@ void OBSERVER::removeListener(OBSERVERLISTENER* listener) {
 };
 
 // 衝突判定した
-void OBSERVER::IsCollision()
+void OBSERVER::IsCollisionDamage()
 {
 	// 衝突判定したことを観測者に通知 
-	OnCollisionNotify();
-}
-
-// 観測者に通知 
-void OBSERVER::OnCollisionNotify()
-{
-	//  衝突判定したことを観測者に通知 
 	for (auto listener : listeners_)
 	{
-		listener->OnCollision();
+		listener->OnCollisionDamage();
 	}
 }
+
+void OBSERVER::IsCollisionClear()
+{
+	// 衝突判定したことを観測者に通知 
+	for (auto listener : listeners_)
+	{
+		listener->OnCollisionClear();
+	}
+}
+
 

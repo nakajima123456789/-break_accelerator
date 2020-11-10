@@ -12,6 +12,8 @@ void CObstacle::Init()
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f,1.f,1.f)));
 
 	IsHitObjectsInit("Item_Hitbox");
+
+	brock_break_ef = EffekseerMgr.LoadEffekseer(_T("01_Pierre01//”g“®.efk"));
 }
 
 void CObstacle::Update()
@@ -42,7 +44,10 @@ void CObstacle::Draw3D()
 
 		if (this->CollsionTrigger())
 		{
-			observer.IsCollision();
+			observer.IsCollisionClear();
+			EffekseerMgr.PlayEffekseer(brock_break_ef, *obstacle_it + Vector3(0.0f, 0.08f, 0.0f));
+			obstacle_it = obstacle_pos.erase(obstacle_it);
+			continue;
 		}
 
 		obstacle_it++;

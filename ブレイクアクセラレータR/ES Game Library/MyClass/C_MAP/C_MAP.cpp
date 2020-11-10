@@ -43,7 +43,6 @@ void C_MAP::Init()
 		model_position[i].resize(model_size);
 
 	CreateMapPrefarence();
-	bgm->Play();
 };
 
 void C_MAP:: Update()

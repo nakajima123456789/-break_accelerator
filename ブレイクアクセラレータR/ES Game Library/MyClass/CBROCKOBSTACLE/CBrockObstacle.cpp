@@ -28,9 +28,6 @@ void CBrockObstacle::Draw3D()
 
 		if (DistanceTrigger(90.0f))
 		{
-			if (RemoveModelDistance(1.5f))
-				this->transform.position = *obstacle_it += Vector3(0.0f, 0.15f, 0.0f);
-
 			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
 			this->obstacle_model->SetRotation(this->transform.rotation);
 			this->obstacle_model->SetScale(this->transform.scale);
@@ -41,6 +38,11 @@ void CBrockObstacle::Draw3D()
 		{
 			obstacle_it = this->obstacle_pos.erase(obstacle_it);
 			continue;
+		}
+
+		if (this->CollsionTrigger())
+		{
+			observer.IsCollisionDamage();
 		}
 
 		obstacle_it++;
