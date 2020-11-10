@@ -1,5 +1,4 @@
 #include "CItemOBstacle.h"
-
 CItemObstacle::CItemObstacle(std::vector<Vector3> _obstacle_pos)
 {
 	obstacle_pos = _obstacle_pos;
@@ -43,6 +42,7 @@ void CItemObstacle::Draw3D()
 		if (CollsionTrigger())
 		{
 			monostate.move_flag = true;
+			observer.IsCollisionDamage();
 			obstacle_it = this->obstacle_pos.erase(obstacle_it);
 			continue;
 		}

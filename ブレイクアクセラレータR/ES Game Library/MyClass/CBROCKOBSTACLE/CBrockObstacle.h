@@ -1,6 +1,6 @@
 #pragma once
 #include "../OBSTACLEBASE/ObstacleBase.h"
-
+#include "..//OBSEVER/OBSEVER.h"
 class CBrockObstacle : public ObstacleBase
 {
 public:
@@ -12,6 +12,6 @@ public:
 	inline virtual void Draw3D()      override;
 
 private:
-
+	OBSERVER observer;
 };
 

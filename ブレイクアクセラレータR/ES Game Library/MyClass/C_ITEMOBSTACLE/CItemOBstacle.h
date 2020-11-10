@@ -1,5 +1,5 @@
 #include "../OBSTACLEBASE/ObstacleBase.h"
-
+#include"..//OBSEVER/OBSEVER.h"
 class CItemObstacle : public ObstacleBase
 {
 public:
@@ -11,5 +11,5 @@ public:
 	inline virtual void Draw3D()      override;
 
 private:
-
+	OBSERVER observer;
 };

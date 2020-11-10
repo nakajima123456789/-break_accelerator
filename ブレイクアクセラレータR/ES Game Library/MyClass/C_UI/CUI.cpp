@@ -39,20 +39,20 @@ void CUI::Init()
 
 void CUI::Update()
 {
-
+	fw_S += 0.3f;
 }
 
 //PLAYERÇ∆ENEMYÇ∆Ç™è’ìÀÇµÇΩÇÁåƒÇŒÇÍÇÈä÷êî
 void CUI::OnCollisionDamage()
 {
-	fw_S  += 1;
+	fw_S  += 20;
 
 	_damage_collsion_flag = true;
 }
 
 void CUI::OnCollisionClear()
 {
-	fw_S  -= 1;
+	fw_S  -= 15;
 }
 
 void CUI::Draw2D()
