@@ -21,6 +21,8 @@ private:
 	{
 		GROUND,
 		BILL,
+		RIGHT_POLE,
+		LEFT_POLE,
 		MAP_MODEL_SIZE,
 	};
 
@@ -33,8 +35,6 @@ private:
 	MONOSTATE monostate;
 
 	int ground_model_scene[MAP_MODEL_SIZE];
-
-	MODEL test;
 
 protected:
 

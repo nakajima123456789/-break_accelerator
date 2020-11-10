@@ -22,11 +22,11 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
-	field_of_view_pov = clamp(Input.GetPadInput(5) ? field_of_view_pov += 0.5f : field_of_view_pov -= 0.5f, 50.0f, 70.0f);
+	field_of_view_pov = clamp(Input.GetPadInput(5) ? field_of_view_pov += 0.5f : field_of_view_pov -= 0.5f, 50.0f, 50.0f);
 
 	camera->SetFieldOfViewY(field_of_view_pov);
 
-	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.9f, -1.7f), monostate.player_pos + Vector3(0.0f,0.0f,5.0f), Vector3_Up);
+	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.6f, -1.2f), monostate.player_pos + Vector3(0.0f,0.0f,4.0f), Vector3_Up);
 
 	EffekseerMgr.Update();
 	GraphicsDevice.SetCamera(camera);

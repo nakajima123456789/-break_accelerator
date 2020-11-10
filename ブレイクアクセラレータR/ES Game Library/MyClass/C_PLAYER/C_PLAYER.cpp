@@ -62,7 +62,9 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
-	transform.position.z += Input.GetPadInput(5) ? 0.15f : 0.1f;
+
+	transform.position.z += Input.GetPadInput(5) ? 0.5f : 0.3f;//ˆÚ“®‚Ì‘¬‚³
+
 
 	this->player_state_processor.Update();
 }
@@ -70,7 +72,7 @@ void CPlayer::Update()
 void CPlayer::Draw3D()
 {
 
-	this->transform.position.x = clamp(transform.position.x, -1.0f, 1.0f);
+	this->transform.position.x = clamp(transform.position.x, -3.0f, 3.0f);
 	player_model->SetPosition(this->transform.position);
 	monostate.player_pos = this->transform.position;
 
