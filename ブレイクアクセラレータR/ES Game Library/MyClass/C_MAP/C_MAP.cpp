@@ -6,6 +6,7 @@ void C_MAP::Init()
 	MediaManager.Attach(GraphicsDevice);
     bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
 
+	bgm = SoundDevice.CreateMusicFromFile(_T("BGM_SE//bgm.wav"));
 
 	Material mtrl;
 
@@ -21,7 +22,7 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-	AddModel(_T("model3D//‰ü’ù”Å//road_5.X"));
+	AddModel(_T("model3D//‰ü’ù”Å//road_5_2.X"));
 	AddModel(_T("model3D//bill_side//test.X"));
 	AddModel(_T("model3D//’Œ//test3.X"));
 	AddModel(_T("model3D//’Œ//hasira.X"));
@@ -62,10 +63,10 @@ void C_MAP:: Update()
 				AddModelProfarence(Vector3(-20.0f, -20.0f, (model_position[y].back().z + 300)), y);
 				break;
 			case RIGHT_POLE:
-				AddModelProfarence(Vector3(2.3f, -2.0f, (model_position[y].back().z + ground_model_scene[LEFT_POLE])), y);
+				AddModelProfarence(Vector3(2.5f, -2.0f, (model_position[y].back().z + ground_model_scene[LEFT_POLE])), y);
 				break;
 			case LEFT_POLE:
-				AddModelProfarence(Vector3(-5.0f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
+				AddModelProfarence(Vector3(-5.3f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
 				break;
 			default:
 				AddModelProfarence(Vector3(0.0f, -0.25f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
@@ -133,10 +134,10 @@ void C_MAP::CreateMapPrefarence()
 				model_position[y][x] = Vector3(-20.0f, -20.0f, (monostate.player_pos.z - 300) + (x * ground_model_scene[BILL]));
 				break;
 			case RIGHT_POLE:
-				model_position[y][x] = Vector3(2.3f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_POLE]));
+				model_position[y][x] = Vector3(2.5f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_POLE]));
 				break;
 			case LEFT_POLE:
-				model_position[y][x] = Vector3(-5.0f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
+				model_position[y][x] = Vector3(-5.3f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
 				break;
 			default:
 				model_position[y][x] = Vector3(0.0f, -0.25f, (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
