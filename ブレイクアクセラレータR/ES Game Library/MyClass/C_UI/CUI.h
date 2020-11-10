@@ -18,7 +18,8 @@ public:
 	virtual void Draw2D()      override;
 	
 	//オブザーバー関数
-	virtual void CUI::OnCollision()     override;
+	virtual void CUI::OnCollisionDamage()    override;
+	virtual void CUI::OnCollisionClear()     override;
 
 private:
 
@@ -34,6 +35,11 @@ private:
 
 	SPRITE FW_S;
 	float fw_S;
+
+	SPRITE _hit_ef;
+
+	bool _damage_collsion_flag = false;
+	float fiedout_alpha = 0.0f;
 	
 	double clamp(double x, double low, double high);
 	

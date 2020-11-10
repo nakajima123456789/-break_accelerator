@@ -14,17 +14,15 @@ public:
 	virtual void DrawAlpha3D() override { return; };
 	virtual void Draw2D()      override;
 
-
+	static MODEL hoge_model;
 private:
 
 	enum MAP_MODEL
 	{
 		GROUND,
-		BILL1,
-		BILL2,
-		BILL3,
-		BILL4,
-		BILL5,
+		BILL,
+		RIGHT_POLE,
+		LEFT_POLE,
 		MAP_MODEL_SIZE,
 	};
 
@@ -34,10 +32,10 @@ private:
 	inline void CreateMapPrefarence();
 
 	MEDIA bg;
-
 	MONOSTATE monostate;
 
 	int ground_model_scene[MAP_MODEL_SIZE];
+
 protected:
 
 };

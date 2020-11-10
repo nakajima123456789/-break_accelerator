@@ -124,9 +124,6 @@
     <Filter Include="MyClass\All_Scene\SceneManager">
       <UniqueIdentifier>{e25a569b-6822-41dc-b5a1-306c1cc4dfe3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\All_Scene\C_Game_Over">
-      <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyClass\All_Scene\C_Main">
       <UniqueIdentifier>{019dcf04-0350-4749-81cb-2d153d321274}</UniqueIdentifier>
     </Filter>
@@ -204,6 +201,12 @@
     </Filter>
     <Filter Include="MyClass\Mng_Obstacle\C_GateObstacle">
       <UniqueIdentifier>{c1b8d4a5-724d-415f-85d9-f6e36c878aff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\All_Scene\C_Title\C_Game_Over">
+      <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\CUI">
+      <UniqueIdentifier>{cbfe2bdf-4ca4-458e-a9e9-b75a84f4675e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -356,7 +359,7 @@
       <Filter>MyClass\All_Scene\SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\ALL_SCENE\GAME_OVER\C_GAME_OVER.cpp">
-      <Filter>MyClass\All_Scene\C_Game_Over</Filter>
+      <Filter>MyClass\All_Scene\C_Title\C_Game_Over</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\ALL_SCENE\MAIN\C_MAIN.cpp">
       <Filter>MyClass\All_Scene\C_Main</Filter>
@@ -426,6 +429,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\CGATEOBSTACLE\CGateObstacle.cpp">
       <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_UI\CUI.cpp">
+      <Filter>MyClass\CUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -593,7 +599,7 @@
       <Filter>MyClass\All_Scene\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\ALL_SCENE\GAME_OVER\C_GAME_OVER.h">
-      <Filter>MyClass\All_Scene\C_Game_Over</Filter>
+      <Filter>MyClass\All_Scene\C_Title\C_Game_Over</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\ALL_SCENE\MAIN\C_MAIN.h">
       <Filter>MyClass\All_Scene\C_Main</Filter>
@@ -666,6 +672,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\CGATEOBSTACLE\CGateObstacle.h">
       <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_UI\CUI.h">
+      <Filter>MyClass\CUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

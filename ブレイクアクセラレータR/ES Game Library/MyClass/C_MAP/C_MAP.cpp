@@ -1,9 +1,11 @@
 #include "C_MAP.h"
 
+#include "../INFORMATION/INFORMATION.h"
 void C_MAP::Init()
 {
 	MediaManager.Attach(GraphicsDevice);
     bg = MediaManager.CreateMediaFromFile(_T("SPRITE//BG_v01.wmv"));
+
 
 	Material mtrl;
 
@@ -19,27 +21,24 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-	AddModel(_T("model3D//“¹˜H//road_3.X"));
-	AddModel(_T("model3D//bill_side//building_V01.X"));
-	AddModel(_T("model3D//bill_side//building_V02.X"));
-	AddModel(_T("model3D//bill_side//building_V03.X"));
-	AddModel(_T("model3D//bill_side//building_V04.X"));
-	AddModel(_T("model3D//bill_side//building_V07.X"));
+	AddModel(_T("model3D//‰ü’ù”Å//road_5.X"));
+	AddModel(_T("model3D//bill_side//test.X"));
+	AddModel(_T("model3D//’Œ//test3.X"));
+	AddModel(_T("model3D//’Œ//hasira.X"));
+
+	model_position.resize(model.size());
 
 	ground_model_scene[GROUND] = 17;
-	ground_model_scene[BILL1] = 100;
-	ground_model_scene[BILL2] = 100;
-	ground_model_scene[BILL3] = 50;
-	ground_model_scene[BILL4] = 40;
-	ground_model_scene[BILL5] = 66;
+	ground_model_scene[BILL] = 350;
+	ground_model_scene[LEFT_POLE] = 23;
+	ground_model_scene[RIGHT_POLE] = 23;
 
-	const unsigned int model_size = 8;
+	const unsigned int model_size = 20;
 
 	for (int i = 0; i < model_position.size(); ++i)
 		model_position[i].resize(model_size);
 
 	CreateMapPrefarence();
-
 };
 
 void C_MAP:: Update()
@@ -58,23 +57,17 @@ void C_MAP:: Update()
 		{
 			switch (y)
 			{
-			case BILL1:
-				AddModelProfarence(Vector3(8.0f, -8.0f, (model_position[y].back().z + 100)), y);
+			case BILL:
+				AddModelProfarence(Vector3(-20.0f, -20.0f, (model_position[y].back().z + 300)), y);
 				break;
-			case BILL2:
-				AddModelProfarence(Vector3(-15.0f, -7.0f, (model_position[y].back().z + 100)), y);
+			case RIGHT_POLE:
+				AddModelProfarence(Vector3(2.3f, -2.0f, (model_position[y].back().z + ground_model_scene[LEFT_POLE])), y);
 				break;
-			case BILL3:
-				AddModelProfarence(Vector3(20.0f, -8.0f, (model_position[y].back().z + 40)), y);
-				break;
-			case BILL4:
-				AddModelProfarence(Vector3(-15.0f, -6.0f, (model_position[y].back().z + 30)), y);
-				break;
-			case BILL5:
-				AddModelProfarence(Vector3(-13.0f, -6.0f, (model_position[y].back().z + 66)), y);
+			case LEFT_POLE:
+				AddModelProfarence(Vector3(-5.0f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
 				break;
 			default:
-				AddModelProfarence(Vector3(0.0f, 0.0f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
+				AddModelProfarence(Vector3(0.0f, -0.25f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
 				break;
 			}
 
@@ -96,30 +89,27 @@ void C_MAP::Draw3D()
 {
 	for (int y = 0; y < model_position.size(); ++y){
 		for (int x = 0; x < model_position[y].size(); ++x){
-			if (y == BILL1) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else if (y == BILL2) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else if (y == BILL3) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else if (y == BILL4) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else if (y == BILL5) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-			}
-			else
+
+			switch (y)
 			{
+			case  BILL :
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->Draw();
+				break;
+			case RIGHT_POLE:
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->SetRotation(0.0f, 30.0f, 0.0f);
+				model[y]->Draw();
+				break;
+			case LEFT_POLE:
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->SetRotation(0.0f, 30.0f, 0.0f);
+				model[y]->Draw();
+				break;
+			default:
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->Draw();
+				break;
 			}
 		}
 	}
@@ -136,24 +126,20 @@ void C_MAP::CreateMapPrefarence()
 	{
 		for (int x = 0; x < model_position[y].size(); x++)
 		{
-			if (y == BILL1)
+			switch (y)
 			{
-				model_position[y][x] = Vector3(8.0f, -8.0f,   (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL1]));
-			} 
-			else if (y == BILL2) {
-				model_position[y][x] = Vector3(-15.0f, -7.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL2]));
-			}
-			else if (y == BILL3) {
-				model_position[y][x] = Vector3(20.0f, -8.0f,  (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL3]));
-			}
-			else if (y == BILL4) { 
-				model_position[y][x] = Vector3(-15.0f, -6.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL4]));
-			}
-			else if (y == BILL5) {
-				model_position[y][x] = Vector3(-13.0f, -6.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[BILL5]));
-			}
-			else {
-				model_position[y][x] = Vector3(0.0f, 0.0f,    (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+			case BILL:
+				model_position[y][x] = Vector3(-20.0f, -20.0f, (monostate.player_pos.z - 300) + (x * ground_model_scene[BILL]));
+				break;
+			case RIGHT_POLE:
+				model_position[y][x] = Vector3(2.3f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_POLE]));
+				break;
+			case LEFT_POLE:
+				model_position[y][x] = Vector3(-5.0f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
+				break;
+			default:
+				model_position[y][x] = Vector3(0.0f, -0.25f, (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+				break;
 			}
 		}
 	}
