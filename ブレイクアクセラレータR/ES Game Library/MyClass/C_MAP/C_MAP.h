@@ -34,6 +34,7 @@ private:
 	MEDIA bg;
 	MONOSTATE monostate;
 	MUSIC bgm;
+	MODEL a;
 
 	int ground_model_scene[MAP_MODEL_SIZE];
 protected:

@@ -10,6 +10,9 @@ void C_MAP::Init()
 
 	Material mtrl;
 
+	a = GraphicsDevice.CreateModelFromFile(_T("model3D//test_ryuhai2.X"));
+	a->SetMaterial(mtrl);
+
 	Color _color = Color(1.0f, 1.0f, 1.0f);
 
 	mtrl.Diffuse  = _color;
