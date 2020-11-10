@@ -92,15 +92,22 @@ void CPlayer::IDOL::Update()
 
 	_owner->player_manager->rotation = _owner->player_manager->rotation > 0 ? _owner->player_manager->rotation = max(_owner->player_manager->rotation -= 0.2f, 0) : _owner->player_manager->rotation = min(_owner->player_manager->rotation += 0.2f, 0);
 
+
 	if (Input.AxisFlag()){
-		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::RUN(&_owner->player_manager->player_state_processor));
+		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::RUNPAD(&_owner->player_manager->player_state_processor));
+		return;
+	}
+
+	if (Input.GetArrowkeyVector().x != 0)
+	{
+		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::RUNKEY(&_owner->player_manager->player_state_processor));
 		return;
 	}
 
 	return;
 }
 
-void CPlayer::RUN::Update()
+void CPlayer::RUNPAD::Update()
 {
 	auto&& AxisStateMove = [this](std::string _direction_tag)->void {
 		int sign;
@@ -111,19 +118,47 @@ void CPlayer::RUN::Update()
 	};
 
 	if (Input.AxisStateX() >=  0.3f)  AxisStateMove("RIGHT");
-	if (Input.AxisStateX() <= -0.3f)  AxisStateMove("LEFT");
 
+	if (Input.AxisStateX() <= -0.3f)   AxisStateMove("LEFT");
 
-	if (Input.AxisStateX() == 0){
+	if (Input.AxisStateX() == 0 || Input.GetKeyState().IsKeyUp(Keys_Right) || Input.GetKeyState().IsKeyUp(Keys_Left)){
 		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
 		return;
 	}
 
 	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
 
-	_owner->player_manager->transform.position.x += Input.GetArrowpadVector().x * 0.008 + _owner->player_manager->speed;
+	_owner->player_manager->transform.position.x += Input.GetArrowpadVector().x * 0.008f + _owner->player_manager->speed;
 
 	return;
+}
+
+void CPlayer::RUNKEY::Update()
+{
+	auto&& AxisStateMove = [this](std::string _direction_tag)->void {
+		int sign;
+		if (_direction_tag == "RIGHT") { sign = 1; }
+		else { sign = -1; };
+		_owner->player_manager->rotation += (0.8000f * sign * 1.0f * 1.0f);
+		_owner->player_manager->speed    += (0.001f * sign * 1.0f * 1.0f);
+		return;
+	};
+
+	if (Input.GetKeyState().IsKeyDown(Keys_Right))  AxisStateMove("RIGHT");
+
+	if (Input.GetKeyState().IsKeyDown(Keys_Left))   AxisStateMove("LEFT");
+
+	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
+
+
+	_owner->player_manager->transform.position.x += Input.GetArrowkeyVector().x * 0.008f + _owner->player_manager->speed;
+
+	if (Input.GetArrowkeyVector().x == 0)
+	{
+		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
+		return;
+	}
+
 }
 
 void CPlayer::DAMAGE::Update()
@@ -145,3 +180,4 @@ bool CPlayer::FrameTimeObsever(int _index)
 	if (_time % _index == 0) { return true; }
 	return false;
 }
+

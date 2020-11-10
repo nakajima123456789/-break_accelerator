@@ -20,6 +20,7 @@ public:
 	//オブザーバー関数
 	virtual void CUI::OnCollisionDamage()    override;
 	virtual void CUI::OnCollisionClear()     override;
+	virtual void CUI::OnCollisionGage()     override;
 
 private:
 
@@ -44,5 +45,14 @@ private:
 	double clamp(double x, double low, double high);
 	
 	OBSERVER observer;
+
+	SPRITE gia;
+	SPRITE gia2;
+	float nobi;
+
+	int _color_state;
+
+	Color gage;
+
 };
 

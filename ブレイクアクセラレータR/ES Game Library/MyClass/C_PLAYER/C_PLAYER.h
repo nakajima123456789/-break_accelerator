@@ -51,13 +51,27 @@ private:
 		virtual void Update() override;
 	};
 
-	class RUN : public State
+	class RUNPAD : public State
 	{
 	private:
 		CPlayerStateProcessor* _owner;
 	public:
-		RUN(CPlayerStateProcessor* owner) : _owner(owner) {}
-		virtual ~RUN() {}
+		RUNPAD(CPlayerStateProcessor* owner) : _owner(owner) {}
+		virtual ~RUNPAD() {}
+
+		virtual int    CancelLv() { return INT_MAX; };
+		virtual int    ExitTime() { return INT_MAX; };
+
+		virtual void Update() override;
+	};
+
+	class RUNKEY : public State
+	{
+	private:
+		CPlayerStateProcessor* _owner;
+	public:
+		RUNKEY(CPlayerStateProcessor* owner) : _owner(owner) {}
+		virtual ~RUNKEY() {}
 
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return INT_MAX; };

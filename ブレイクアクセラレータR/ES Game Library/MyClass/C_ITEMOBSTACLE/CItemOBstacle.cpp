@@ -44,6 +44,7 @@ void CItemObstacle::Draw3D()
 		{
 			monostate.move_flag = true;
 			obstacle_it = this->obstacle_pos.erase(obstacle_it);
+			obsever.IsCollisionGage();
 			continue;
 		}
 
