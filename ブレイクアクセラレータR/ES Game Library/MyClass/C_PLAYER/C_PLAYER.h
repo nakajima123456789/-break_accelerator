@@ -7,6 +7,7 @@
 #include "../C_SE/C_SE.h"
 #include "../INFORMATION/INFORMATION.h"
 #include "../C_EFFEKSEER/CEffekseer_.h"
+#include "../C_CAMERA/C_CAMERA.h"
 
 
 #include <functional>

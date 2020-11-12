@@ -16,6 +16,7 @@ void CPlayer::Init()
 
 	IsHitObjectsInit();
 
+
 	c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
 
 	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰¼‘fÞ//jiki2.X"));
@@ -65,6 +66,9 @@ void CPlayer::Update()
 
 	transform.position.z += Input.GetPadInput(5) ? 0.5f : 0.3f;//ˆÚ“®‚Ì‘¬‚³
 
+	
+
+	EffekseerMgr.PlayEffekseer(effcseer_test, transform.position + Vector3(0,0,5));
 
 	this->player_state_processor.Update();
 }
@@ -117,10 +121,18 @@ void CPlayer::RUNPAD::Update()
 		return;
 	};
 
-	if (Input.AxisStateX() >=  0.3f)  AxisStateMove("RIGHT");
-
-	if (Input.AxisStateX() <= -0.3f)   AxisStateMove("LEFT");
-
+	if (Input.AxisStateX() >= 0.3f) {
+		AxisStateMove("RIGHT");
+		if (Input.GetGamePadBuffer().IsPressed(1)) {
+			this->_owner->player_manager->speed += 0.1f;
+		}
+	}
+	if (Input.AxisStateX() <= -0.3f) {
+		AxisStateMove("LEFT");
+		if (Input.GetGamePadBuffer().IsPressed(1)) {
+			this->_owner->player_manager->speed -= 0.1f;
+		}
+	}
 	if (Input.AxisStateX() == 0 || Input.GetKeyState().IsKeyUp(Keys_Right) || Input.GetKeyState().IsKeyUp(Keys_Left)){
 		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
 		return;
@@ -144,10 +156,18 @@ void CPlayer::RUNKEY::Update()
 		return;
 	};
 
-	if (Input.GetKeyState().IsKeyDown(Keys_Right))  AxisStateMove("RIGHT");
-
-	if (Input.GetKeyState().IsKeyDown(Keys_Left))   AxisStateMove("LEFT");
-
+	if (Input.GetKeyState().IsKeyDown(Keys_Right)) {
+		AxisStateMove("RIGHT");
+		if (Input.GetKeyBuffer().IsPressed(Keys_Space)) {
+			this->_owner->player_manager->speed+=0.1f;
+		}
+	}
+	if (Input.GetKeyState().IsKeyDown(Keys_Left)) {
+		AxisStateMove("LEFT");
+		if (Input.GetKeyBuffer().IsPressed(Keys_Space)) {
+			this->_owner->player_manager->speed-=0.1f;
+		}
+	}
 	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
 
 
@@ -163,8 +183,6 @@ void CPlayer::RUNKEY::Update()
 
 void CPlayer::DAMAGE::Update()
 {
-
-
 	return;
 }
 
