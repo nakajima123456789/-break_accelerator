@@ -160,18 +160,6 @@
     <Filter Include="MyClass\C_Effekseer">
       <UniqueIdentifier>{d212e516-208d-427b-b061-809a98bce6b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\Mng_Obstacle">
-      <UniqueIdentifier>{3eb22aaa-b2f2-4d8f-ba42-e4200e1d8d8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MyClass\Mng_Obstacle\C_Obstacle">
-      <UniqueIdentifier>{aae6da7a-7122-4a62-92f6-79509d2e4231}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MyClass\Mng_Obstacle\ObstacleFactory">
-      <UniqueIdentifier>{6c7c0f48-7dc6-462d-93e7-84e7f8cd63cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MyClass\Mng_Obstacle\ObstacleBase">
-      <UniqueIdentifier>{bc1d58e2-d170-482b-8512-a8237b4adc24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyClass\ObjectPlacement">
       <UniqueIdentifier>{5c32e3f3-804e-48f4-b388-173cffd26c79}</UniqueIdentifier>
     </Filter>
@@ -186,6 +174,24 @@
     </Filter>
     <Filter Include="MyClass\OBSEVER">
       <UniqueIdentifier>{fd9d57ac-5130-4c58-9bc7-3e1aa88e66d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\All_Scene\C_Title\C_Game_Over">
+      <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\CUI">
+      <UniqueIdentifier>{cbfe2bdf-4ca4-458e-a9e9-b75a84f4675e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle">
+      <UniqueIdentifier>{3eb22aaa-b2f2-4d8f-ba42-e4200e1d8d8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_Obstacle">
+      <UniqueIdentifier>{aae6da7a-7122-4a62-92f6-79509d2e4231}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\ObstacleFactory">
+      <UniqueIdentifier>{6c7c0f48-7dc6-462d-93e7-84e7f8cd63cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\ObstacleBase">
+      <UniqueIdentifier>{bc1d58e2-d170-482b-8512-a8237b4adc24}</UniqueIdentifier>
     </Filter>
     <Filter Include="MyClass\Mng_Obstacle\C_ObstacleR">
       <UniqueIdentifier>{d681d284-73cc-4fc6-a6da-4a9811f00a49}</UniqueIdentifier>
@@ -202,11 +208,8 @@
     <Filter Include="MyClass\Mng_Obstacle\C_GateObstacle">
       <UniqueIdentifier>{c1b8d4a5-724d-415f-85d9-f6e36c878aff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\All_Scene\C_Title\C_Game_Over">
-      <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MyClass\CUI">
-      <UniqueIdentifier>{cbfe2bdf-4ca4-458e-a9e9-b75a84f4675e}</UniqueIdentifier>
+    <Filter Include="MyClass\Mng_Obstacle\C_GATEOBSTATCLE">
+      <UniqueIdentifier>{e7747de1-a1ae-49da-83be-0097eb37adff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -432,6 +435,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\C_UI\CUI.cpp">
       <Filter>MyClass\CUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_GATEOBSTATCLE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -675,6 +681,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\C_UI\CUI.h">
       <Filter>MyClass\CUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.h">
+      <Filter>MyClass\Mng_Obstacle\C_GATEOBSTATCLE</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@ enum OBJECT_TYPE
 	OBJECT_BROCK,
 	OBJECT_ITEM,
 	OBJECT_GATE,
+	OBJECT__ZATE,
 	OBJECT_TYPE_MAX,
 };
 
@@ -57,4 +58,5 @@ private:
 	void MapdataTagsPos();
 
 protected:
+	
 };

@@ -18,6 +18,8 @@
 
 #include "../../CGATEOBSTACLE/CGateObstacle.h"
 
+#include"../../C_GATEOBSTATCLE/R_GATEOBSTATCLE.h"
+
 #include "../../C_EFFEKSEER/CEffekseer_.h"
 
 #include "../../C_MAP/C_MAP.h"
@@ -58,6 +60,9 @@ void C_MAIN::Initialize(){
 
 	auto&& c_gateobstacle = new CGateObstacle(c_objectplacement->GetCharacterPos()[OBJECT_GATE]);
 	_objectroot.AddList((ChildObjRef)c_gateobstacle);
+
+	auto&& c_gateobstatcle = new R_GATEOBSTATCLE(c_objectplacement->GetCharacterPos()[OBJECT__ZATE]);
+	_objectroot.AddList((ChildObjRef)c_gateobstatcle);
 
 	std::vector<std::vector<Vector3>> pos = c_objectplacement->GetCharacterPos();
 }
