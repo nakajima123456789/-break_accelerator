@@ -64,9 +64,9 @@ CPlayer::~CPlayer()
 void CPlayer::Update()
 {
 
-	transform.position.z += Input.GetPadInput(5) ? 0.5f : 0.3f;//ˆÚ“®‚Ì‘¬‚³
-
+	transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
 	
+	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
 
 	EffekseerMgr.PlayEffekseer(effcseer_test, transform.position + Vector3(0,0,5));
 
