@@ -7,11 +7,12 @@ CGateObstacle::CGateObstacle(std::vector<Vector3> _obstacle_pos)
 
 void CGateObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//GATE_3.X"));
-
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//GATE_Left.X"));
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
-
 	IsHitObjectsInit("GateHitbox");
+	
+	
+	
 }
 
 void CGateObstacle::Update()
@@ -25,7 +26,7 @@ void CGateObstacle::Draw3D()
 	while (obstacle_it != this->obstacle_pos.end()) {
 
 		this->transform.position = *obstacle_it;
-
+		
 		if (DistanceTrigger(90.0f))
 		{
 
