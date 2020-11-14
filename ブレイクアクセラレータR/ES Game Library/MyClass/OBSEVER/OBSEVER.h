@@ -10,6 +10,7 @@ public:
 	// 衝突判定した
 	virtual void OnCollisionDamage() = 0;
 	virtual void OnCollisionClear() = 0;
+	virtual void OnCollisionGage() = 0;
 };
 
 // 衝突判定 クラス（ 観測 者 に 通知 する 役）
@@ -24,6 +25,7 @@ public:
 	void IsCollisionDamage();
 
 	void IsCollisionClear();
+	void IsCollisionGage();
 
 private:
 	// 観測者に通知 

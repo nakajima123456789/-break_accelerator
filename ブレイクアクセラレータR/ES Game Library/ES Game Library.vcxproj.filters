@@ -124,6 +124,9 @@
     <Filter Include="MyClass\All_Scene\SceneManager">
       <UniqueIdentifier>{e25a569b-6822-41dc-b5a1-306c1cc4dfe3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\All_Scene\C_Game_Over">
+      <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="MyClass\All_Scene\C_Main">
       <UniqueIdentifier>{019dcf04-0350-4749-81cb-2d153d321274}</UniqueIdentifier>
     </Filter>
@@ -172,9 +175,6 @@
     <Filter Include="MyClass\Mng_Obstacle\ObstacleBase">
       <UniqueIdentifier>{bc1d58e2-d170-482b-8512-a8237b4adc24}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\ObjectPlacement">
-      <UniqueIdentifier>{5c32e3f3-804e-48f4-b388-173cffd26c79}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MAPTXT">
       <UniqueIdentifier>{652efd60-c20a-489e-987d-1ffa3e9d4361}</UniqueIdentifier>
     </Filter>
@@ -202,11 +202,8 @@
     <Filter Include="MyClass\Mng_Obstacle\C_GateObstacle">
       <UniqueIdentifier>{c1b8d4a5-724d-415f-85d9-f6e36c878aff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\All_Scene\C_Title\C_Game_Over">
-      <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MyClass\CUI">
-      <UniqueIdentifier>{cbfe2bdf-4ca4-458e-a9e9-b75a84f4675e}</UniqueIdentifier>
+    <Filter Include="MyClass\Mng_Obstacle\ObjectPlacement">
+      <UniqueIdentifier>{5c32e3f3-804e-48f4-b388-173cffd26c79}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -359,7 +356,7 @@
       <Filter>MyClass\All_Scene\SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\ALL_SCENE\GAME_OVER\C_GAME_OVER.cpp">
-      <Filter>MyClass\All_Scene\C_Title\C_Game_Over</Filter>
+      <Filter>MyClass\All_Scene\C_Game_Over</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\ALL_SCENE\MAIN\C_MAIN.cpp">
       <Filter>MyClass\All_Scene\C_Main</Filter>
@@ -404,7 +401,7 @@
       <Filter>MyClass\Mng_Obstacle\ObstacleFactory</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp">
-      <Filter>MyClass\ObjectPlacement</Filter>
+      <Filter>MyClass\Mng_Obstacle\ObjectPlacement</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\C_MAP\C_MAP.cpp">
       <Filter>MyClass\C_MAP</Filter>
@@ -431,7 +428,7 @@
       <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\C_UI\CUI.cpp">
-      <Filter>MyClass\CUI</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -599,7 +596,7 @@
       <Filter>MyClass\All_Scene\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\ALL_SCENE\GAME_OVER\C_GAME_OVER.h">
-      <Filter>MyClass\All_Scene\C_Title\C_Game_Over</Filter>
+      <Filter>MyClass\All_Scene\C_Game_Over</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\ALL_SCENE\MAIN\C_MAIN.h">
       <Filter>MyClass\All_Scene\C_Main</Filter>
@@ -647,7 +644,7 @@
       <Filter>MyClass\Mng_Obstacle\ObstacleFactory</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h">
-      <Filter>MyClass\ObjectPlacement</Filter>
+      <Filter>MyClass\Mng_Obstacle\ObjectPlacement</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\C_MAP\C_MAP.h">
       <Filter>MyClass\C_MAP</Filter>
@@ -674,7 +671,7 @@
       <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\C_UI\CUI.h">
-      <Filter>MyClass\CUI</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
