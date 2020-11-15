@@ -20,8 +20,7 @@ private:
 	enum MAP_MODEL
 	{
 		GROUND,
-		LEFT_LIGHT,
-		RIGHT_LIGHT,
+		LIGHT,
 		RIGHT_POLE,
 		LEFT_POLE,
 		MAP_MODEL_SIZE,

@@ -54,13 +54,14 @@ void GameMain::Draw()
 	GraphicsDevice.BeginScene();
 
 	scene_manager->Draw3D();
-	scene_manager->DrawAlpha3D();
 
 	SpriteBatch.Begin();
 
 	scene_manager->Draw2D();
 
 	SpriteBatch.End();
+
+		scene_manager->DrawAlpha3D();
 
 	scene_manager->DrawEnd();
 

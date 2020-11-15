@@ -19,7 +19,7 @@ void CPlayer::Init()
 
 	c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
 
-	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰¼‘fÞ//jiki2.X"));
+	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Ž©‹@//jiki_new1k.X"));
     player_model->SetMaterial(SetMaterial(Color(255.0f, 255.0f, 255.0f)));
 
 	effcseer_test = EffekseerMgr.LoadEffekseer(_T("‹O“¹//‹O“¹.efk"));
@@ -85,7 +85,7 @@ void CPlayer::Draw3D()
 	this->transform.rotation.z = rotation;
 
 	player_model->SetRotation(this->transform.rotation);
-	player_model->SetScale(this->transform.scale * 0.01f);
+	player_model->SetScale(this->transform.scale);
 	player_model->Draw();
 }
 

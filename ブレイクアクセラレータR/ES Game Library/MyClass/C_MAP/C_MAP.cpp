@@ -24,17 +24,17 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-	AddModel(_T("model3D//‰ü’ù”Å//road_5_2.X"));
-	AddModel(_T("model3D//Œõ//test_ryuhai_part2.X"));
-	AddModel(_T("model3D//Œõ//test_ryuhai_part2.X"));
+	AddModel(_T("model3D//‰ü’ù”Å//road_5.X"));
+	AddModel(_T("model3D//Œõ//test_bg_set2.X"));
 	AddModel(_T("model3D//’Œ//test3.X"));
 	AddModel(_T("model3D//’Œ//hasira.X"));
+
+
 
 	model_position.resize(model.size());
 
 	ground_model_scene[GROUND] = 17;
-	ground_model_scene[LEFT_LIGHT] = 60;
-	ground_model_scene[RIGHT_LIGHT] = 60;
+	ground_model_scene[LIGHT] = 17;
 	ground_model_scene[LEFT_POLE] = 23;
 	ground_model_scene[RIGHT_POLE] = 23;
 
@@ -63,17 +63,14 @@ void C_MAP:: Update()
 		{
 			switch (y)
 			{
-			case LEFT_LIGHT:
-				AddModelProfarence(Vector3(-4.0f, -2.5f, (model_position[y].back().z + ground_model_scene[LEFT_LIGHT])), y);
-				break;
-			case RIGHT_LIGHT:
-				AddModelProfarence(Vector3(4.0f, -2.5f, (model_position[y].back().z + ground_model_scene[LEFT_LIGHT])), y);
+			case LIGHT:
+				AddModelProfarence(Vector3(-2.5f, -5.0f, (model_position[y].back().z + ground_model_scene[LIGHT])), y);
 				break;
 			case RIGHT_POLE:
-				AddModelProfarence(Vector3(2.5f, -2.0f, (model_position[y].back().z + ground_model_scene[LEFT_POLE])), y);
+				AddModelProfarence(Vector3(2.5f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
 				break;
 			case LEFT_POLE:
-				AddModelProfarence(Vector3(-5.3f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
+				AddModelProfarence(Vector3(-5.3f, -2.0f, (model_position[y].back().z + ground_model_scene[LEFT_POLE])), y);
 				break;
 			default:
 				AddModelProfarence(Vector3(0.0f, -0.25f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
@@ -103,9 +100,7 @@ void C_MAP::Draw3D()
 			switch (y)
 			{
 
-			case LEFT_LIGHT:
-			break;
-			case RIGHT_LIGHT:
+			case LIGHT:
 			break;
 			case RIGHT_POLE:
 				model[y]->SetPosition(model_position[y][x]);
@@ -131,14 +126,9 @@ void C_MAP::DrawAlpha3D()
 {
 	for (int y = 0; y < model_position.size(); ++y) {
 		for (int x = 0; x < model_position[y].size(); ++x) {
-			if (y == LEFT_LIGHT) {
+			if (y == LIGHT) {	
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->DrawAlpha(1.f);
-			}
-			if (y == RIGHT_LIGHT) {
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->DrawAlpha(1.f);
-				model[y]->SetRotation(0, 180, 0);
 			}
 		}
 	}
@@ -158,19 +148,14 @@ void C_MAP::CreateMapPrefarence()
 		{
 			switch (y)
 			{
-			case LEFT_LIGHT:
-				model_position[y][x] = Vector3(-4.0f, -2.5f, (monostate.player_pos.z ) + (x * ground_model_scene[LEFT_LIGHT]));
+			case LIGHT:
+				model_position[y][x] = Vector3(-2.5f, -5.0f, (monostate.player_pos.z ) + (x * ground_model_scene[LIGHT]));
 				break;
-
-			case RIGHT_LIGHT:
-				model_position[y][x] = Vector3(4.0f, -2.5f, (monostate.player_pos.z) + (x * ground_model_scene[LEFT_LIGHT]));
-				break;
-
 			case RIGHT_POLE:
-				model_position[y][x] = Vector3(2.5f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_POLE]));
+				model_position[y][x] = Vector3(2.5f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
 				break;
 			case LEFT_POLE:
-				model_position[y][x] = Vector3(-5.3f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
+				model_position[y][x] = Vector3(-5.3f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_POLE]));
 				break;
 			default:
 				model_position[y][x] = Vector3(0.0f, -0.25f, (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
