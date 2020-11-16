@@ -27,6 +27,10 @@ void CharactorManager::PosObjectPreference(char _map_tag, Vector3 _position)
 				charactor_position_manager[i].push_back(Vector3(-3.0, -0.3f, _position.z));
 			else
 				charactor_position_manager[i].push_back(_position);
+			if (tag == 'Z')
+				charactor_position_manager[i].push_back(Vector3(3.0, -0.3f, _position.z));
+			else
+				charactor_position_manager[i].push_back(_position);
 
 		}
 	}

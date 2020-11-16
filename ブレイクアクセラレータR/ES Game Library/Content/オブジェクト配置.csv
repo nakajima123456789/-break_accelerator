@@ -1,518 +1,196 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-     O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-     O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-
-O,O           O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-     O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-
-
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-      B,B
-
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-O,O
-
-             B
-             B
-             B
-             B
- G            B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-             B
-
-             B
-             B
-             B
-             BB
-
-             B
-             B
-             B
-             BB
-
-             BB
-             B
-
-             B
-             B
-             B
-             B
-             B
-             B
-             BB
-             B
-             B
-             B
-             B
-
-             BBB
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+BBBBBBBBBB
+
+GZ
+
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
+OOOOOOOOOO
 
