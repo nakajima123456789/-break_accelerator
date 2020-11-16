@@ -19,7 +19,7 @@ void CPlayer::Init()
 
 	c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
 
-	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰¼‘fÞ//jiki2.X"));
+	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Ž©‹@//jiki_new1k.X"));
     player_model->SetMaterial(SetMaterial(Color(255.0f, 255.0f, 255.0f)));
 
 	effcseer_test = EffekseerMgr.LoadEffekseer(_T("‹O“¹//‹O“¹.efk"));
@@ -68,7 +68,7 @@ void CPlayer::Update()
 	
 	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
 
-	EffekseerMgr.PlayEffekseer(effcseer_test, transform.position + Vector3(0,0,5));
+	EffekseerMgr.PlayEffekseer(effcseer_test, transform.position+ Vector3(0,0,5));
 
 	this->player_state_processor.Update();
 }
@@ -85,7 +85,7 @@ void CPlayer::Draw3D()
 	this->transform.rotation.z = rotation;
 
 	player_model->SetRotation(this->transform.rotation);
-	player_model->SetScale(this->transform.scale * 0.01f);
+	player_model->SetScale(this->transform.scale * 1.0f);
 	player_model->Draw();
 }
 
@@ -123,17 +123,17 @@ void CPlayer::RUNPAD::Update()
 
 	if (Input.AxisStateX() >= 0.3f) {
 		AxisStateMove("RIGHT");
-		if (Input.GetGamePadBuffer().IsPressed(1)) {
+		if (Input.GetPadInputDown(6)) {
 			this->_owner->player_manager->speed += 0.1f;
 		}
 	}
 	if (Input.AxisStateX() <= -0.3f) {
 		AxisStateMove("LEFT");
-		if (Input.GetGamePadBuffer().IsPressed(1)) {
+		if (Input.GetPadInputDown(6)) {
 			this->_owner->player_manager->speed -= 0.1f;
 		}
 	}
-	if (Input.AxisStateX() == 0 || Input.GetKeyState().IsKeyUp(Keys_Right) || Input.GetKeyState().IsKeyUp(Keys_Left)){
+	if (Input.AxisStateX() == 0.0f &&Input.GetKeyState().IsKeyUp(Keys_Right) && Input.GetKeyState().IsKeyUp(Keys_Left)){
 		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
 		return;
 	}

@@ -46,9 +46,11 @@ void CUI::Update()
 {
 	if (nobi <= 68) {
 		gage = Color(0, 255,0);
+
 	}
 	if (nobi <= 37) {
 		gage = Color(255, 255, 0);
+
 	}
 	
 }
