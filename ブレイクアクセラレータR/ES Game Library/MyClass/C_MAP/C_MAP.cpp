@@ -34,7 +34,7 @@ void C_MAP::Init()
 	model_position.resize(model.size());
 
 	ground_model_scene[GROUND] = 17;
-	ground_model_scene[LIGHT] = 17;
+	ground_model_scene[LIGHT] = 25;
 	ground_model_scene[LEFT_POLE] = 23;
 	ground_model_scene[RIGHT_POLE] = 23;
 

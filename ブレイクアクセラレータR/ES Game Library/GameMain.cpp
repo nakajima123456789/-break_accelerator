@@ -61,7 +61,7 @@ void GameMain::Draw()
 
 	SpriteBatch.End();
 
-		scene_manager->DrawAlpha3D();
+	scene_manager->DrawAlpha3D();
 
 	scene_manager->DrawEnd();
 

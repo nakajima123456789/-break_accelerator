@@ -44,6 +44,7 @@ void CUI::Init()
 
 void CUI::Update()
 {
+	
 	if (nobi <= 68) {
 		gage = Color(0, 255,0);
 	}
@@ -73,7 +74,6 @@ void CUI::OnCollisionGage()
 	nobi -= 32.0f;
 	
 }
-
 
 void CUI::Draw2D()
 {
