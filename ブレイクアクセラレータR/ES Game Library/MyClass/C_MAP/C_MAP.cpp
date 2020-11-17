@@ -12,13 +12,13 @@ void C_MAP::Init()
 
 
 
-	Color _color = Color(1.0f, 1.0f, 1.0f);
+	//Color _color = Color(1.0f, 1.0f, 1.0f);
 
-	mtrl.Diffuse  = _color;
-	mtrl.Ambient  = _color;
-	mtrl.Specular = _color;
-	mtrl.Emissive = _color;
-	mtrl.Power = 1.0f;
+	mtrl.Diffuse = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Ambient = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Specular = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Emissive = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Power = 0.0f;
 
 	auto&& AddModel = [=](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
 	model[model.size() - 1]->SetScale(transform.scale);
