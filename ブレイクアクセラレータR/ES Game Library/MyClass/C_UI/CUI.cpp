@@ -34,9 +34,12 @@ void CUI::Init()
 	gia = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ2.png"));
 	gia2 = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ4.png"));
 	
+
+	original = GraphicsDevice.CreateSpriteFont(_T("Digitalism"),50);
 	_hit_ef = GraphicsDevice.CreateSprite(1280, 720, PixelFormat_RGBX8888);
 	_hit_ef->ColorFill(nullptr, Color(255, 0, 0));
 
+	score = 0;
 	fw_S = 0;
 	nobi = 100.0f;
 	gage= Color(255,255, 255);
@@ -44,6 +47,7 @@ void CUI::Init()
 
 void CUI::Update()
 {
+	score += 1;
 	if (nobi <= 68) {
 		gage = Color(0, 255,0);
 
@@ -59,7 +63,7 @@ void CUI::Update()
 void CUI::OnCollisionDamage()
 {
 	fw_S  += 20;
-	
+	nobi += 16.0f;
 
 	_damage_collsion_flag = true;
 }
@@ -67,7 +71,7 @@ void CUI::OnCollisionDamage()
 void CUI::OnCollisionClear()
 {
 	fw_S  -= 10;
-	nobi -= 16.0f;
+	nobi += 16.0f;
 }
 
 void CUI::OnCollisionGage()
@@ -105,6 +109,8 @@ void CUI::Draw2D()
 	SpriteBatch.Draw(*gia2, Vector3(1000.0f, 0.0f, 0.0f), Rect(0, 0, 35, 132),Color(gage));
 	SpriteBatch.Draw(*gia, Vector3(1000.0f, nobi, 0.0f), Rect(0, nobi, 35, 132), Color(gage));
 
+	SpriteBatch.DrawString(original, Vector2(900, 600)
+		, Color(255, 0, 0), _T("SCORE %.0f"), score);
 }
 
 double CUI::clamp(double x, double low, double high)

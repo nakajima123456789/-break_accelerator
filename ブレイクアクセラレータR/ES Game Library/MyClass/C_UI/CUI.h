@@ -53,6 +53,8 @@ private:
 	int _color_state;
 
 	Color gage;
+	FONT original;
 
+	float score;
 };
 
