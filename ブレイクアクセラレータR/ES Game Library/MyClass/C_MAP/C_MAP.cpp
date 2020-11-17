@@ -10,10 +10,6 @@ void C_MAP::Init()
 
 	Material mtrl;
 
-
-
-	//Color _color = Color(1.0f, 1.0f, 1.0f);
-
 	mtrl.Diffuse = Color(0.0f, 0.0f, 0.0f);
 	mtrl.Ambient = Color(0.0f, 0.0f, 0.0f);
 	mtrl.Specular = Color(0.0f, 0.0f, 0.0f);
@@ -68,13 +64,13 @@ void C_MAP:: Update()
 			switch (y)
 			{
 			case LIGHT:
-				AddModelProfarence(Vector3(-2.5f, -5.0f, (model_position[y].back().z + ground_model_scene[LIGHT])), y);
+				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT])), y);
 				break;
 			case LIGHT2:
-				AddModelProfarence(Vector3(-2.5f, -5.0f, (model_position[y].back().z + ground_model_scene[LIGHT2])), y);
+				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT2])), y);
 				break;
 			case LIGHT3:
-				AddModelProfarence(Vector3(-2.5f, -5.0f, (model_position[y].back().z + ground_model_scene[LIGHT3])), y);
+				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT3])), y);
 				break;
 			case RIGHT_POLE:
 				AddModelProfarence(Vector3(2.5f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
@@ -175,13 +171,13 @@ void C_MAP::CreateMapPrefarence()
 			switch (y)
 			{
 			case LIGHT:
-				model_position[y][x] = Vector3(-2.5f, -5.0f, (monostate.player_pos.z ) + (x * ground_model_scene[LIGHT]));
+				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z ) + (x * ground_model_scene[LIGHT]));
 				break;
 			case LIGHT2:
-				model_position[y][x] = Vector3(-2.5f, -5.0f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT]));
+				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT]));
 				break;
 			case LIGHT3:
-				model_position[y][x] = Vector3(-2.5f, -5.0f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT]));
+				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT]));
 				break;
 			case RIGHT_POLE:
 				model_position[y][x] = Vector3(2.5f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
