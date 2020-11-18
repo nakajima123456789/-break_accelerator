@@ -139,7 +139,7 @@ void CPlayer::RUNPAD::Update()
 			this->_owner->player_manager->speed -= 0.1f;
 		}
 	}
-	if (Input.AxisStateX() == 0 || Input.GetKeyState().IsKeyUp(Keys_Right) || Input.GetKeyState().IsKeyUp(Keys_Left)){
+	if (Input.AxisStateX() == 0 && Input.GetKeyState().IsKeyUp(Keys_Right) && Input.GetKeyState().IsKeyUp(Keys_Left)){
 		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
 		return;
 	}
