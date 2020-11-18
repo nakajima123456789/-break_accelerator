@@ -63,12 +63,9 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
-
 	transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
 	
 	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
-
-	EffekseerMgr.PlayEffekseer(effcseer_test, transform.position + Vector3(0,0,5));
 
 	this->player_state_processor.Update();
 }
@@ -116,24 +113,21 @@ void CPlayer::RUNPAD::Update()
 	auto&& AxisStateMove = [this](std::string _direction_tag)->void {
 		int sign;
 		if (_direction_tag == "RIGHT") { sign = 1; } else { sign = -1; };
-		_owner->player_manager->rotation +=   (0.8000f * sign * 1.0f * 1.0f);
-		_owner->player_manager->speed    +=   (0.0006f * sign * 1.0f * 1.0f);
+		_owner->player_manager->rotation +=   (0.8000f * sign);
+		_owner->player_manager->speed    +=   (0.0006f * sign);
 		return;
 	};
 
-	if (Input.AxisStateX() >= 0.3f) {
+	if (Input.AxisStateX() > 0) {
 		AxisStateMove("RIGHT");
-		if (Input.GetGamePadBuffer().IsPressed(1)) {
-			this->_owner->player_manager->speed += 0.1f;
-		}
 	}
-	if (Input.AxisStateX() <= -0.3f) {
+
+	if (Input.AxisStateX() < 0) {
 		AxisStateMove("LEFT");
-		if (Input.GetGamePadBuffer().IsPressed(1)) {
-			this->_owner->player_manager->speed -= 0.1f;
-		}
 	}
-	if (Input.AxisStateX() == 0 || Input.GetKeyState().IsKeyUp(Keys_Right) || Input.GetKeyState().IsKeyUp(Keys_Left)){
+
+	if (Input.AxisStateX() == 0)
+	{
 		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
 		return;
 	}
@@ -169,7 +163,6 @@ void CPlayer::RUNKEY::Update()
 		}
 	}
 	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
-
 
 	_owner->player_manager->transform.position.x += Input.GetArrowkeyVector().x * 0.008f + _owner->player_manager->speed;
 

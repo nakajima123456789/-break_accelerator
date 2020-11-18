@@ -73,7 +73,7 @@ void PlacementManager::Draw3D()
 
 void PlacementManager::MapdataTagsPos()
 {
-	const float sense = 0.35f;
+	const float sense = 0.5f;
 
 	for (int z = 0; z < mapdata.size(); z++)
 	{
