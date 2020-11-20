@@ -29,4 +29,11 @@ void OBSERVER::IsCollisionClear()
 	}
 }
 
-
+void OBSERVER::IsCollisionGage()
+{
+	// Õ“Ë”»’è‚µ‚½‚±‚Æ‚ðŠÏ‘ªŽÒ‚É’Ê’m 
+	for (auto listener : listeners_)
+	{
+		listener->OnCollisionGage();
+	}
+}

@@ -7,7 +7,7 @@ CBrockObstacle::CBrockObstacle(std::vector<Vector3> _obstacle_pos)
 
 void CBrockObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//hako_aka2.X"));
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//hako_P.X"));
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 

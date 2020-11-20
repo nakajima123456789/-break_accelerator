@@ -28,6 +28,8 @@
 
 void C_MAIN::Initialize(){
 
+	GraphicsDevice.SetRenderState(Lighting_Disable);
+
 	auto&& c_camera = (new CCamera_);
 	_objectroot.AddList((ChildObjRef)c_camera);
 

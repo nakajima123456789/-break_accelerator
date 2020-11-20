@@ -49,18 +49,19 @@ int GameMain::Update()
 void GameMain::Draw()
 {
 	// TODO: Add your drawing code here
-	GraphicsDevice.Clear(Color_CornflowerBlue);
+	GraphicsDevice.Clear(Color_Black);
 
 	GraphicsDevice.BeginScene();
 
 	scene_manager->Draw3D();
-	scene_manager->DrawAlpha3D();
 
 	SpriteBatch.Begin();
 
 	scene_manager->Draw2D();
 
 	SpriteBatch.End();
+
+	scene_manager->DrawAlpha3D();
 
 	scene_manager->DrawEnd();
 

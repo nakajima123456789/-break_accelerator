@@ -11,7 +11,7 @@ public:
 	virtual void Update()      override;
 	virtual void Draw3D()      override;
 
-	virtual void DrawAlpha3D() override { return; };
+	virtual void DrawAlpha3D() override;
 	virtual void Draw2D()      override;
 
 	static MODEL hoge_model;
@@ -20,7 +20,9 @@ private:
 	enum MAP_MODEL
 	{
 		GROUND,
-		BILL,
+		LIGHT,
+		LIGHT2,
+		LIGHT3,
 		RIGHT_POLE,
 		LEFT_POLE,
 		MAP_MODEL_SIZE,
@@ -33,6 +35,7 @@ private:
 
 	MEDIA bg;
 	MONOSTATE monostate;
+	MUSIC bgm;
 
 	int ground_model_scene[MAP_MODEL_SIZE];
 
