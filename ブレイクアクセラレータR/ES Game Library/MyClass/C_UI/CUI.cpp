@@ -44,7 +44,7 @@ void CUI::Init()
 
 void CUI::Update()
 {
-	
+	fw_S += 0.3f;
 	if (nobi <= 68) {
 		gage = Color(0, 255,0);
 	}
@@ -57,10 +57,8 @@ void CUI::Update()
 //PLAYER‚ÆENEMY‚Æ‚ªÕ“Ë‚µ‚½‚çŒÄ‚Î‚ê‚éŠÖ”
 void CUI::OnCollisionDamage()
 {
-	fw_S  += 20;
-	
+	fw_S += 10;
 
-	_damage_collsion_flag = true;
 }
 
 void CUI::OnCollisionClear()
