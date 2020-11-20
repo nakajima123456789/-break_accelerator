@@ -25,6 +25,8 @@ public:
 
 	void CharactorManager::PosObjectPreference(char _map_tag, Vector3 _position);
 
+	void CharactorManager::PosObjectPreference2(char _map_tag, Vector3 _position);
+
 	std::vector<std::vector<Vector3>> GetCharacterPosition() const { return this->charactor_position_manager; };
 private:
 
