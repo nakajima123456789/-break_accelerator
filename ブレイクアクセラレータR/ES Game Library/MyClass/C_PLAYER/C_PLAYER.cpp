@@ -22,7 +22,7 @@ void CPlayer::Init()
 	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Ž©‹@//jiki_new1k.X"));
     player_model->SetMaterial(SetMaterial(Color(255.0f, 255.0f, 255.0f)));
 
-	effcseer_test = EffekseerMgr.LoadEffekseer(_T("‹O“¹//‹O“¹.efk"));
+	//effcseer_test = EffekseerMgr.LoadEffekseer(_T("‹O“¹//‹O“¹.efk"));
 }
 
 Material CPlayer::SetMaterial(Color _color)
@@ -74,7 +74,7 @@ void CPlayer::Update()
 	
 	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
 
-	EffekseerMgr.PlayEffekseer(effcseer_test, transform.position + Vector3(0,0,5));
+	//EffekseerMgr.PlayEffekseer(effcseer_test, transform.position + Vector3(0,0,5));
 
 	this->player_state_processor.Update();
 }
