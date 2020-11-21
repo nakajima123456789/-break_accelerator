@@ -57,12 +57,13 @@ void CUI::Update()
 //PLAYERとENEMYとが衝突したら呼ばれる関数
 void CUI::OnCollisionDamage()
 {
+	//赤ブロックにあたったとき
 	fw_S += 10;
-
 }
 
 void CUI::OnCollisionClear()
 {
+	//赤ブロックにあたったとき
 	fw_S  -= 10;
 	nobi -= 16.0f;
 }

@@ -21,9 +21,9 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
 	AddModel(_T("model3D//‰ü’ù”Å//road_5.X"));
-	AddModel(_T("model3D//Œõ//test_bg_set2.X"));
-	AddModel(_T("model3D//Œõ//test_bg_set2.X"));
-	AddModel(_T("model3D//Œõ//test_bg_set2.X"));
+	AddModel(_T("model3D//Œõ//test_set.X"));
+	AddModel(_T("model3D//Œõ//test_set.X"));
+	AddModel(_T("model3D//Œõ//test_set.X"));
 	AddModel(_T("model3D//’Œ//test3.X"));
 	AddModel(_T("model3D//’Œ//hasira.X"));
 
@@ -32,9 +32,9 @@ void C_MAP::Init()
 	model_position.resize(model.size());
 
 	ground_model_scene[GROUND] = 17;
-	ground_model_scene[LIGHT] = 25;
-	ground_model_scene[LIGHT2] = 25;
-	ground_model_scene[LIGHT3] = 25;
+	ground_model_scene[LIGHT] = 55;
+	ground_model_scene[LIGHT2] = 55;
+	ground_model_scene[LIGHT3] = 55;
 	ground_model_scene[LEFT_POLE] = 23;
 	ground_model_scene[RIGHT_POLE] = 23;
 
