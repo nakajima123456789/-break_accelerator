@@ -114,7 +114,7 @@ void CPlayer::RUNPAD::Update()
 		int sign;
 		if (_direction_tag == "RIGHT") { sign = 1; } else { sign = -1; };
 		_owner->player_manager->rotation +=   (0.8000f * sign);
-		_owner->player_manager->speed    +=   (0.0006f * sign);
+		_owner->player_manager->speed    +=   (0.001f * sign);
 		return;
 	};
 
