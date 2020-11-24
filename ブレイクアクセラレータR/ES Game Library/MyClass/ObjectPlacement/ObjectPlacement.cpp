@@ -1,4 +1,5 @@
 #include "ObjectPlacement.h"
+#include"../C_UI/CUI.h"
 
 CharactorManager::CharactorManager()
 {
@@ -24,27 +25,17 @@ void CharactorManager::PosObjectPreference(char _map_tag, Vector3 _position)
 		if (_map_tag == tag)
 		{
 			if (tag == 'G')
-				charactor_position_manager[i].push_back(Vector3(-3.0, -0.3f, _position.z));
+				charactor_position_manager[i].push_back(Vector3(-3.0f, -0.3f, _position.z));
+			else if (tag == 'Z')
+				charactor_position_manager[i].push_back(Vector3(3.0f, -0.3f, _position.z));
 			else
 				charactor_position_manager[i].push_back(_position);
 		}
 	}
 }
 
-void CharactorManager::PosObjectPreference2(char _map_tag, Vector3 _position)
-{
-	for (int j = 0; j < charactor_tag_manager.size(); j++)
-	{
-		char tag = charactor_tag_manager[j];
-		if (_map_tag == tag)
-		{
-			if (tag == 'Z')
-				charactor_position_manager[j].push_back(Vector3(10.0f, -0.3f, _position.z));
-			else
-				charactor_position_manager[j].push_back(_position);
-		}
-	}
-}
+
+
 
 
 void PlacementManager::Init()
@@ -54,7 +45,9 @@ void PlacementManager::Init()
 	FILE* fp = fopen("オブジェクト配置.csv", "r");
 	// マップデータを読み込む
 	char load_char[99999 + 1];
-
+	gate_x = 0.0f;
+	gate2_x = 0.0f;
+	
 	while (fgets(load_char, sizeof load_char - 1, fp) != NULL)
 	{
 		mapdata.push_back(load_char);

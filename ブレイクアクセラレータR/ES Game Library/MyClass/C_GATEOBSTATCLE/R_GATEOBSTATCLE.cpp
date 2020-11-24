@@ -1,5 +1,6 @@
 #include "R_GATEOBSTATCLE.h"
 #include"../C_UI/CUI.h"
+#include "../INFORMATION/INFORMATION.h"
 R_GATEOBSTATCLE::R_GATEOBSTATCLE(std::vector<Vector3> _obstacle_pos)
 {
 	obstacle_pos = _obstacle_pos;
@@ -27,11 +28,12 @@ void R_GATEOBSTATCLE::Draw3D()
 		if (DistanceTrigger(90.0f))
 		{
 
-			if (monostate.move_flag == true)
-			{
-				this->transform.position = *obstacle_it += Vector3(0.0f, 0.1f, 0.0f);
-				monostate.move_flag = false;
-			}
+			float x = 3 * 0.01 * monostate.num;
+
+			this->transform.position = Vector3(this->transform.position.x + -(x), this->transform.position.y, this->transform.position.z);
+
+			monostate.move_flag = false;
+		
 
 			this->obstacle_model->SetPosition(this->transform.position);
 			this->obstacle_model->SetRotation(this->transform.rotation);

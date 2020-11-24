@@ -1,5 +1,5 @@
 #include "CUI.h"
-
+#include"../INFORMATION/INFORMATION.h"
 CUI::CUI()
 {
 	//é©ï™ÇÉäÉXÉgÇ…ìoò^
@@ -33,26 +33,31 @@ void CUI::Init()
 	_hit_ef = GraphicsDevice.CreateSprite(1280, 720, PixelFormat_RGBX8888);
 	_hit_ef->ColorFill(nullptr, Color(255, 0, 0));
 
-	fw_S = 0;
+	fw_S = 540;
 	
 }
 
 void CUI::Update()
 {
-	fw_S += 0.3;
+	/*num += 1 * 0.1f;*/
+
+	fw_S = 540 * 0.01 * num;
+
+	num = clamp(num,0, 100);
+
+	monostate.num = num;
 }
 
 //PLAYERÇ∆ENEMYÇ∆Ç™è’ìÀÇµÇΩÇÁåƒÇŒÇÍÇÈä÷êî
 void CUI::OnCollisionDamage()
 {
-	fw_S  += 5;
-
+	num += 1 * 2.0f;
 	_damage_collsion_flag = true;
 }
 
 void CUI::OnCollisionClear()
 {
-	fw_S  -= 20;
+	num -= 1.0f * 2.0f;
 }
 
 void CUI::Draw2D()

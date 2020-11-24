@@ -1,6 +1,6 @@
 #pragma once
 #include "../OBSTACLEBASE/ObstacleBase.h"
-
+#include "../INFORMATION/INFORMATION.h"
 class CGateObstacle : public ObstacleBase
 {
 public:
@@ -13,6 +13,8 @@ public:
 	
 private:
 
+	MONOSTATE monostate;
+	float x = 0;
 };
 
 

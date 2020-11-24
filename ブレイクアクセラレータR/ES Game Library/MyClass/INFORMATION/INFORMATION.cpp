@@ -7,4 +7,4 @@ Vector3 MONOSTATE::geta_pos = Vector3(0.0f, 0.0f, 0.0f);
 
 bool  MONOSTATE::move_flag = false;
 
-
+float MONOSTATE::num = 0.0f;

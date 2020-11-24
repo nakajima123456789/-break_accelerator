@@ -1,5 +1,8 @@
 #pragma once
 #include "../OBSTACLEBASE/ObstacleBase.h"
+#include "../INFORMATION/INFORMATION.h"
+
+
 
 class R_GATEOBSTATCLE : public ObstacleBase
 {

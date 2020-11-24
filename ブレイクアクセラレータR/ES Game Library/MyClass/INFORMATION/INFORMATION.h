@@ -11,5 +11,7 @@ public:
 	//ƒQ[ƒg‚ÌÀ•W‚ğK“¾
 	static Vector3 geta_pos;
 
+	static float num;
+
 };
 
