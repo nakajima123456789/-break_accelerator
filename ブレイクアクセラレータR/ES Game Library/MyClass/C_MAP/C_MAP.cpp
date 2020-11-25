@@ -10,31 +10,29 @@ void C_MAP::Init()
 
 	Material mtrl;
 
-
-
-	Color _color = Color(1.0f, 1.0f, 1.0f);
-
-	mtrl.Diffuse  = _color;
-	mtrl.Ambient  = _color;
-	mtrl.Specular = _color;
-	mtrl.Emissive = _color;
-	mtrl.Power = 1.0f;
+	mtrl.Diffuse = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Ambient = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Specular = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Emissive = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Power = 0.0f;
 
 	auto&& AddModel = [=](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-	AddModel(_T("model3D//‰ü’ù”Å//road_5.X"));
-	AddModel(_T("model3D//Œõ//test_bg_set2.X"));
+	AddModel(_T("model3D//‰ü’ù”Å_//road_6.X"));
+	AddModel(_T("model3D//Œõ//test_set.X"));
+	AddModel(_T("model3D//Œõ//test_set.X"));
+	AddModel(_T("model3D//Œõ//test_set.X"));
 	AddModel(_T("model3D//’Œ//test3.X"));
 	AddModel(_T("model3D//’Œ//hasira.X"));
-
-
 
 	model_position.resize(model.size());
 
 	ground_model_scene[GROUND] = 17;
-	ground_model_scene[LIGHT] = 25;
+	ground_model_scene[LIGHT] = 55;
+	ground_model_scene[LIGHT2] = 55;
+	ground_model_scene[LIGHT3] = 55;
 	ground_model_scene[LEFT_POLE] = 23;
 	ground_model_scene[RIGHT_POLE] = 23;
 
@@ -64,7 +62,13 @@ void C_MAP:: Update()
 			switch (y)
 			{
 			case LIGHT:
-				AddModelProfarence(Vector3(-2.5f, -5.0f, (model_position[y].back().z + ground_model_scene[LIGHT])), y);
+				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT])), y);
+				break;
+			case LIGHT2:
+				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT2])), y);
+				break;
+			case LIGHT3:
+				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT3])), y);
 				break;
 			case RIGHT_POLE:
 				AddModelProfarence(Vector3(2.5f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
@@ -102,6 +106,10 @@ void C_MAP::Draw3D()
 
 			case LIGHT:
 			break;
+			case LIGHT2:
+				break;
+			case LIGHT3:
+				break;
 			case RIGHT_POLE:
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->SetRotation(0.0f, 30.0f, 0.0f);
@@ -126,9 +134,21 @@ void C_MAP::DrawAlpha3D()
 {
 	for (int y = 0; y < model_position.size(); ++y) {
 		for (int x = 0; x < model_position[y].size(); ++x) {
-			if (y == LIGHT) {	
+			switch (y) {
+			case LIGHT:
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->DrawAlpha(1.f);
+				break;
+			case LIGHT2:
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->SetScale(0.8f, 0.8f, 1.0f);
+				model[y]->DrawAlpha(1.f);
+				break;
+			case LIGHT3:
+				model[y]->SetPosition(model_position[y][x]);
+				model[y]->SetScale(0.9f, 0.9f, 1.0f);
+				model[y]->DrawAlpha(1.f);
+				break;
 			}
 		}
 	}
@@ -149,7 +169,13 @@ void C_MAP::CreateMapPrefarence()
 			switch (y)
 			{
 			case LIGHT:
-				model_position[y][x] = Vector3(-2.5f, -5.0f, (monostate.player_pos.z ) + (x * ground_model_scene[LIGHT]));
+				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z ) + (x * ground_model_scene[LIGHT]));
+				break;
+			case LIGHT2:
+				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT]));
+				break;
+			case LIGHT3:
+				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT]));
 				break;
 			case RIGHT_POLE:
 				model_position[y][x] = Vector3(2.5f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));

@@ -18,7 +18,7 @@ bool ObstacleBase::CollsionTrigger()
 {
 	if (PlayerDistance() <= 10.0f)
 	{
-		IsHitObjectsDraw(this->transform.position + Vector3(0.0f,0.2f,0.0f));
+		IsHitObjectsDraw(this->transform.position + Vector3(0.0f,0.5f,0.0f));
 		return c_hitbox->IsHitBox(c_hitbox->Get_Tag_Model()) ? true : false;
 	}
 	return false;
@@ -48,7 +48,7 @@ void  ObstacleBase::IsHitObjectsInit(std::string _tags)
 void  ObstacleBase::IsHitObjectsDraw(Vector3 _pos)
 {
 	c_hitbox->SetHitBoxPosition(_pos);
-	c_hitbox->Draw3D();
+	//c_hitbox->Draw3D();
 }
 
 bool ObstacleBase::RemoveModelDistance(double _distance)

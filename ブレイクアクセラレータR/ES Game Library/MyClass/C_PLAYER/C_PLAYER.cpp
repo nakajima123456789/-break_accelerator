@@ -22,18 +22,17 @@ void CPlayer::Init()
 	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//©‹@//jiki_new1k.X"));
     player_model->SetMaterial(SetMaterial(Color(255.0f, 255.0f, 255.0f)));
 
-	effcseer_test = EffekseerMgr.LoadEffekseer(_T("‹O“¹//‹O“¹.efk"));
 }
 
 Material CPlayer::SetMaterial(Color _color)
 {
 	Material mtrl;
 
-	mtrl.Diffuse  = _color;
-	mtrl.Ambient  = _color;
-	mtrl.Specular = _color;
-	mtrl.Emissive = _color;
-	mtrl.Power = 1.0f;
+	mtrl.Diffuse  = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Ambient  = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Specular = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Emissive = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Power = 0.0f;
 
 	return mtrl;
 }
@@ -44,7 +43,7 @@ int  CPlayer::IsHitObjectsInit()
 	c_hitbox->Init();
 	c_hitbox->Settags("player");
 
-	c_hitbox->SetHitBoxScale(0.05f);
+	c_hitbox->SetHitBoxScale(0.0005f);
 
 	return 0;
 }
@@ -63,7 +62,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
-	transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
+	transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.01f;//ˆÚ“®‚Ì‘¬‚³
 	
 	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
 
@@ -72,7 +71,6 @@ void CPlayer::Update()
 
 void CPlayer::Draw3D()
 {
-
 	this->transform.position.x = clamp(transform.position.x, -3.0f, 3.0f);
 	player_model->SetPosition(this->transform.position);
 	monostate.player_pos = this->transform.position;
@@ -113,8 +111,8 @@ void CPlayer::RUNPAD::Update()
 	auto&& AxisStateMove = [this](std::string _direction_tag)->void {
 		int sign;
 		if (_direction_tag == "RIGHT") { sign = 1; } else { sign = -1; };
-		_owner->player_manager->rotation +=   (0.8000f * sign);
-		_owner->player_manager->speed    +=   (0.001f * sign);
+		_owner->player_manager->rotation +=   (1.000f * sign);
+		_owner->player_manager->speed    +=   (0.002f * sign);
 		return;
 	};
 
@@ -134,7 +132,7 @@ void CPlayer::RUNPAD::Update()
 
 	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
 
-	_owner->player_manager->transform.position.x += Input.GetArrowpadVector().x * 0.008f + _owner->player_manager->speed;
+	_owner->player_manager->transform.position.x += Input.GetArrowpadVector().x * 0.009f + _owner->player_manager->speed;
 
 	return;
 }
@@ -158,7 +156,8 @@ void CPlayer::RUNKEY::Update()
 	}
 	if (Input.GetKeyState().IsKeyDown(Keys_Left)) {
 		AxisStateMove("LEFT");
-		if (Input.GetKeyBuffer().IsPressed(Keys_Space)) {
+		if (Input.GetKeyBuffer().IsPressed(Keys_Space))
+		{
 			this->_owner->player_manager->speed-=0.1f;
 		}
 	}

@@ -13,7 +13,7 @@ void CObstacle::Init()
 
 	IsHitObjectsInit("Item_Hitbox");
 
-	brock_break_ef = EffekseerMgr.LoadEffekseer(_T("01_Pierre01//”g“®.efk"));
+	brock_break_ef = EffekseerMgr.LoadEffekseer(_T("Effects//"));
 }
 
 void CObstacle::Update()

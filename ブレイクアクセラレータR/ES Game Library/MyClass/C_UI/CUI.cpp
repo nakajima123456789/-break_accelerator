@@ -44,7 +44,7 @@ void CUI::Init()
 
 void CUI::Update()
 {
-	
+	fw_S += 0.3f;
 	if (nobi <= 68) {
 		gage = Color(0, 255,0);
 	}
@@ -57,14 +57,13 @@ void CUI::Update()
 //PLAYERとENEMYとが衝突したら呼ばれる関数
 void CUI::OnCollisionDamage()
 {
-	fw_S  += 20;
-	
-
-	_damage_collsion_flag = true;
+	//赤ブロックにあたったとき
+	fw_S += 10;
 }
 
 void CUI::OnCollisionClear()
 {
+	//赤ブロックにあたったとき
 	fw_S  -= 10;
 	nobi -= 16.0f;
 }

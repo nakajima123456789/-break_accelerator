@@ -36,7 +36,7 @@ void PlacementManager::Init()
 	character_mng.reset(new CharactorManager);
 
 	FILE* fp = fopen("オブジェクト配置.csv", "r");
-	// マップデータを読み込む
+
 	char load_char[99999 + 1];
 
 	while (fgets(load_char, sizeof load_char - 1, fp) != NULL)
@@ -46,14 +46,19 @@ void PlacementManager::Init()
 
 	for (int y = 0; y < mapdata.size(); y++)
 	{
-		for (int x = 0; x < mapdata[y].size(); x++)
-		{
-			if (mapdata[y][x] == ',')
-			mapdata[y].erase(mapdata[y].begin() + x);
-		}
-	}
+		// 先頭の文字が','か調べる
+		if (mapdata[y][0] == ','){ mapdata[y][0] =  ' ';}
+		else
 
-	// ファイルを閉じる
+		for (int x = 1; x < mapdata[y].size(); x++)
+		{
+			if (mapdata[y][x] == ',' && mapdata[y][x + 1] == ','){ mapdata[y][x] = ' ';}
+
+			if (mapdata[y][x] == ',') { mapdata[y].erase(mapdata[y].begin() + x); }
+		}
+
+		if (mapdata[y][mapdata[y].size()] == ','){ mapdata[y][mapdata[y].size()] = ' '; }
+	}
 	fclose(fp);
 
 	MapdataTagsPos();
@@ -73,7 +78,8 @@ void PlacementManager::Draw3D()
 
 void PlacementManager::MapdataTagsPos()
 {
-	const float sense = 0.5f;
+	const float   sense    = 0.7f;
+	const Vector3 lear_pos = Vector3(-2.925f, -0.25f, 50.0f);
 
 	for (int z = 0; z < mapdata.size(); z++)
 	{
@@ -81,7 +87,7 @@ void PlacementManager::MapdataTagsPos()
 		{
 			Vector3 position = Vector3((1 * sense) * x, (0 * sense), ((1 * sense) * z));
 
-			character_mng->PosObjectPreference(mapdata[z][x], position + Vector3(-2.1f, 0.00f, 50.0f));
+			character_mng->PosObjectPreference(mapdata[z][x], position + lear_pos);
 		}
 	}
 }

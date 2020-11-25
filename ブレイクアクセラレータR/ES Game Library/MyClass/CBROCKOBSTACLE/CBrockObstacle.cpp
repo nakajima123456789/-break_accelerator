@@ -7,7 +7,7 @@ CBrockObstacle::CBrockObstacle(std::vector<Vector3> _obstacle_pos)
 
 void CBrockObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//hako_R.X"));
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//hako_P.X"));
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 
@@ -28,9 +28,9 @@ void CBrockObstacle::Draw3D()
 
 		if (DistanceTrigger(90.0f))
 		{
-			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
+			this->obstacle_model->SetPosition(this->transform.position);
 			this->obstacle_model->SetRotation(this->transform.rotation);
-			this->obstacle_model->SetScale(this->transform.scale);
+			this->obstacle_model->SetScale(this->transform.scale * 1.5f);
 			this->obstacle_model->Draw();
 		}
 
