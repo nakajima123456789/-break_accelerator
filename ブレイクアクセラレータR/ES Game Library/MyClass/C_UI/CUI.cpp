@@ -1,4 +1,7 @@
 #include "CUI.h"
+#include "../ALL_SCENE/SCENEMANAGER/SceneManager.h"
+
+float CUI::score = 0.0f;
 
 CUI::CUI()
 {
@@ -39,31 +42,20 @@ void CUI::Init()
 	_hit_ef = GraphicsDevice.CreateSprite(1280, 720, PixelFormat_RGBX8888);
 	_hit_ef->ColorFill(nullptr, Color(255, 0, 0));
 
-	score = 0;
+	score = 0;     bonus = 1;
 	fw_S = 0;
-	nobi = 100.0f;
-	gage= Color(255,255, 255);
 }
 
 void CUI::Update()
 {
-	score += 1;
-	if (nobi <= 68) {
-		gage = Color(0, 255,0);
-
-	}
-	if (nobi <= 37) {
-		gage = Color(255, 255, 0);
-
-	}
-	
+	score += 10*bonus;
+	if(Input.GetKeyState().IsKeyDown(Keys_Up)) { bonus = 3; }
 }
 
 //PLAYER‚ÆENEMY‚Æ‚ªÕ“Ë‚µ‚½‚çŒÄ‚Î‚ê‚éŠÖ”
 void CUI::OnCollisionDamage()
 {
-	fw_S  += 20;
-	nobi += 16.0f;
+	fw_S += 20;
 
 	_damage_collsion_flag = true;
 }
@@ -71,15 +63,19 @@ void CUI::OnCollisionDamage()
 void CUI::OnCollisionClear()
 {
 	fw_S  -= 10;
-	nobi += 16.0f;
+	bonus += 0.5;
+
 }
 
-void CUI::OnCollisionGage()
+void CUI::OnCollisionGate()
 {
-	nobi -= 32.0f;
-	
+	monostate._game_over_flag = true;
 }
 
+void CUI::SetScore()
+{
+	CUI::score = 0;
+}
 
 void CUI::Draw2D()
 {
@@ -106,11 +102,9 @@ void CUI::Draw2D()
 		}
 	}
 
-	SpriteBatch.Draw(*gia2, Vector3(1000.0f, 0.0f, 0.0f), Rect(0, 0, 35, 132),Color(gage));
-	SpriteBatch.Draw(*gia, Vector3(1000.0f, nobi, 0.0f), Rect(0, nobi, 35, 132), Color(gage));
-
+	
 	SpriteBatch.DrawString(original, Vector2(900, 600)
-		, Color(255, 0, 0), _T("SCORE %.0f"), score);
+		, Color(0, 255, 0), _T("SCORE %.0f"), score);
 }
 
 double CUI::clamp(double x, double low, double high)

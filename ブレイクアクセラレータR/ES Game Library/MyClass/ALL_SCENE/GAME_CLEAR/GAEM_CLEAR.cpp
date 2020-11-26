@@ -5,12 +5,12 @@
 
 void GAEM_CLEAR::Initialize()
 {
-	Add_Sprite(_T("‰æ‘œ"));
+	Add_Sprite(_T("SPRITE/geme crear.png"));
 }
 
 void GAEM_CLEAR::Update()
 {
-	if (Input.GetPadInputDown(11)) { SceneManager::ChangeScene(SceneManager::RESULT); }
+	if (Input.GetPadInputDown(11)||Input.GetKeyInputDown(Keys_Space)) { SceneManager::ChangeScene(SceneManager::RESULT); }
 }
 
 void GAEM_CLEAR::Draw2D()

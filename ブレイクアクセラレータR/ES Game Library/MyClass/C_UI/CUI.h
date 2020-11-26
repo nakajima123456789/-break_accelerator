@@ -2,6 +2,8 @@
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
 #include"../OBSEVER/OBSEVER.h"
+#include "../ALL_SCENE/SCENEMANAGER/BaseScreen.h"
+#include "../INFORMATION/INFORMATION.h"
 
 class CUI : public Object, OBSERVERLISTENER
 {
@@ -20,9 +22,16 @@ public:
 	//オブザーバー関数
 	virtual void CUI::OnCollisionDamage()    override;
 	virtual void CUI::OnCollisionClear()     override;
-	virtual void CUI::OnCollisionGage()     override;
+	virtual void CUI::OnCollisionGage()     override {return;};
+	virtual void CUI::OnCollisionGate()     override;
+
+	virtual void SetScore();
+
+	static float GetScore() { return score; }
 
 private:
+	static float score;
+	
 
 	enum Sprite_Manager
 	{
@@ -48,13 +57,17 @@ private:
 
 	SPRITE gia;
 	SPRITE gia2;
-	float nobi;
 
 	int _color_state;
 
 	Color gage;
 	FONT original;
 
-	float score;
+	float bonus;
+
+
+
+	MONOSTATE monostate;
+
 };
 

@@ -37,3 +37,20 @@ void OBSERVER::IsCollisionGage()
 		listener->OnCollisionGage();
 	}
 }
+
+void OBSERVER::IsCollisionGate()
+{
+	// Õ“Ë”»’è‚µ‚½‚±‚Æ‚ðŠÏ‘ªŽÒ‚É’Ê’m 
+	auto it = listeners_.begin();
+	while (it != listeners_.end()) {
+		(*it)->OnCollisionGate();
+		it++;
+	}
+	//for (auto listener : listeners_)
+	//{
+	//	listener->OnCollisionGate();
+	//}
+
+}
+
+

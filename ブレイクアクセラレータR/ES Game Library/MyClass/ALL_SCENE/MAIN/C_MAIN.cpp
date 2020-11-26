@@ -25,6 +25,9 @@
 #include"..//..//C_UI/CUI.h"
 
 void C_MAIN::Initialize(){
+	monostate._game_clear_flag = false;
+	monostate._game_over_flag = false;
+	
 
 	auto&& c_camera = (new CCamera_);
 	_objectroot.AddList((ChildObjRef)c_camera);
@@ -69,6 +72,15 @@ C_MAIN::~C_MAIN()
 
 void C_MAIN::Update() {
 	_objectroot.Update();
+
+	if (monostate._game_over_flag == true)
+	{
+		SceneManager::ChangeScene(SceneManager::SCENE::GAME_OVER);
+	}
+	if (monostate._game_clear_flag == true)
+	{
+		SceneManager::ChangeScene(SceneManager::SCENE::GAME_CLEAR);
+	}
 
 	EffekseerMgr.Update();
 }

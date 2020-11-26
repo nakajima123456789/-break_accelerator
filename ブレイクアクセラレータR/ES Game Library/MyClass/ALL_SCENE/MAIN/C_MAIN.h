@@ -1,6 +1,7 @@
 #pragma once
 #include "../SCENEMANAGER/BaseScreen.h"
 #include "../../C_OBJECT/Object.h"
+#include "../../INFORMATION/INFORMATION.h"
 
 class C_MAIN : public BaseScene
 {
@@ -18,5 +19,6 @@ public:
 private:
 	ObjectManager _objectroot;
 
+	MONOSTATE monostate;
 
 };

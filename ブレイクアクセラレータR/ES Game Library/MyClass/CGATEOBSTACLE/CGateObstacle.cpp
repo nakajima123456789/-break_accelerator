@@ -47,6 +47,10 @@ void CGateObstacle::Draw3D()
 			continue;
 		}
 
+		if (this->CollsionTrigger())
+		{
+			observer.IsCollisionGate();
+		}
 
 
 		obstacle_it++;

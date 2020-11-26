@@ -8,5 +8,9 @@ public:
 	static Vector3 player_pos;
 
 	static bool move_flag;
+
+	static bool _game_over_flag;
+
+	static bool _game_clear_flag;
 };
 

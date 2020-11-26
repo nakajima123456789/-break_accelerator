@@ -8,6 +8,7 @@
 #include "../INFORMATION/INFORMATION.h"
 #include "../C_EFFEKSEER/CEffekseer_.h"
 #include "../C_CAMERA/C_CAMERA.h"
+#include "../OBSEVER/OBSEVER.h"
 
 
 #include <functional>
@@ -21,7 +22,7 @@ public:
 	CPlayer* player_manager;
 };
 
-class CPlayer : public Object
+class CPlayer : public Object, OBSERVERLISTENER
 {
 public:
 	CPlayerStateProcessor player_state_processor;
@@ -34,7 +35,12 @@ public:
 	virtual void CPlayer::Draw3D()      override;
 
 	virtual void CPlayer::DrawAlpha3D() override { return; };
-	virtual void CPlayer::Draw2D()      override { return; };
+	virtual void CPlayer::Draw2D()      override ;
+
+	virtual void CPlayer::OnCollisionDamage()    override;
+	virtual void CPlayer::OnCollisionClear()     override;
+	virtual void CPlayer::OnCollisionGage()     override;
+	virtual void CPlayer::OnCollisionGate()     override { return; };
 
 private:
 
@@ -96,6 +102,7 @@ private:
 
 
 
+
 private:
 	//ä÷êîêÈåæ
 	Material SetMaterial(Color _color);
@@ -116,6 +123,7 @@ private:
 	double rotation = 0.0f; 
 
 	MONOSTATE monostate;
+	OBSERVER observer;
 
 	int _time = 0;
 
@@ -123,5 +131,11 @@ private:
 	EFFEKSEER effekseer;
 	int effcseer_id;
 
+	SPRITE gia;
+	SPRITE gia2;
+	Color gage;
+
+	float nobi;
+	bool acc_flag = false;
 
 };

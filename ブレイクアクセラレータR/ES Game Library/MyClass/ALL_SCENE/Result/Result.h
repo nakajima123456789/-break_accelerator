@@ -16,6 +16,7 @@ public:
 
 private:
 	SPRITE sprite;
+	FONT original;
 
 	void Add_Sprite(LPCTSTR _sprite_name);
 	std::vector<SPRITE> sprite_list_name;
