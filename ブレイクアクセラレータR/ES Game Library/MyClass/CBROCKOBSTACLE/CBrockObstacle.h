@@ -12,6 +12,9 @@ public:
 	inline virtual void Draw3D()      override;
 
 private:
-
+	int damage;
+	EFFEKSEER effekseer;
+	int effcseer_id;
+	MONOSTATE monostate;
 };
 

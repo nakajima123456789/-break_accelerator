@@ -14,7 +14,10 @@ public:
 private:
 
 	int brock_break_ef;
-
+	EFFEKSEER effekseer;
+	int effcseer_id;
+	int block_break;
+	MONOSTATE monostate;
 protected:
 
 };

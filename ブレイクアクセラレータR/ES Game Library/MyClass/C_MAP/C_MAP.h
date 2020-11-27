@@ -38,7 +38,6 @@ private:
 	MUSIC bgm;
 
 	int ground_model_scene[MAP_MODEL_SIZE];
-
 protected:
 
 };
