@@ -119,6 +119,7 @@ private:
 
 	MODEL player_model;
 
+	float speed2;
 	float  speed = 0.0f;
 	double rotation = 0.0f; 
 

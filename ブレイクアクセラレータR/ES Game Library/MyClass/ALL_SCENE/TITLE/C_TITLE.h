@@ -18,6 +18,7 @@ private:
 
 	SPRITE sprite;
 	SPRITE moji;
+	int iro;
 	
 
 	void Add_Sprite(LPCTSTR _sprite_name);
