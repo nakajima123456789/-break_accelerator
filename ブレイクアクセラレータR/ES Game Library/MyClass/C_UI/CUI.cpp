@@ -56,18 +56,6 @@ void CUI::Update()
 	if (nobi <= 37) {
 		gage = Color(255, 255, 0);
 	}
-
-	//int id = 0;
-	//effekseer = EffekseerMgr.GetEffekseer(item);
-
-	//if (Input.GetKeyInputDown(Keys_Space)) 
-	//{
-	//	id = effekseer->Play(monostate.player_pos - Vector3(0, 0, -1));
-	//}
-
-	//effekseer->SetScale(id, 0.4);
-	//effekseer->SetPosition(id, monostate.player_pos - Vector3(0, 0, -1));
-	//
 }
 
 //PLAYER‚ÆENEMY‚Æ‚ªÕ“Ë‚µ‚½‚çŒÄ‚Î‚ê‚éŠÖ”
@@ -102,7 +90,7 @@ void CUI::OnCollisionGage()
 	nobi -= 32.0f;	
 	effekseer = EffekseerMgr.GetEffekseer(item);
 
-	//if(Input.GetKeyInputDown(Keys_Space))
+
 	id = effekseer->Play(monostate.player_pos - Vector3(0, 0, -1));
 
 	if (id != -1)
