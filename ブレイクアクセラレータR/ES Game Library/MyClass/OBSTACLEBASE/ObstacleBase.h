@@ -60,6 +60,7 @@ protected:
 	OBSERVER observer;
 
 	MODEL obstacle_model;
+	
 	std::vector<Vector3> obstacle_pos;
 };
 

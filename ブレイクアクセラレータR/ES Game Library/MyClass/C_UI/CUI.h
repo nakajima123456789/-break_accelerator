@@ -2,7 +2,7 @@
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
 #include"../OBSEVER/OBSEVER.h"
-
+#include"../INFORMATION/INFORMATION.h"
 class CUI : public Object, OBSERVERLISTENER
 {
 public:
@@ -20,8 +20,10 @@ public:
 	//オブザーバー関数
 	virtual void CUI::OnCollisionDamage()    override;
 	virtual void CUI::OnCollisionClear()     override;
-	virtual void CUI::OnCollisionGage()     override;
 
+	
+	float num = 100;
+	
 private:
 
 	enum Sprite_Manager
@@ -35,7 +37,7 @@ private:
 	std::vector<std::vector<Vector3>> sprite_position;
 
 	SPRITE FW_S;
-	float fw_S;
+	int fw_S;
 
 	SPRITE _hit_ef;
 
@@ -46,13 +48,7 @@ private:
 	
 	OBSERVER observer;
 
-	SPRITE gia;
-	SPRITE gia2;
-	float nobi;
-
-	int _color_state;
-
-	Color gage;
+	MONOSTATE monostate;
 
 };
 

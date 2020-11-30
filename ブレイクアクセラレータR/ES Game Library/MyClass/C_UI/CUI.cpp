@@ -1,5 +1,5 @@
 #include "CUI.h"
-
+#include"../INFORMATION/INFORMATION.h"
 CUI::CUI()
 {
 	//自分をリストに登録
@@ -29,49 +29,35 @@ void CUI::Init()
 	
 	
 	FW_S = GraphicsDevice.CreateSpriteFromFile(_T("UI/FWゲージ/FW_S.png"));
-
-
-	gia = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ2.png"));
-	gia2 = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ4.png"));
 	
 	_hit_ef = GraphicsDevice.CreateSprite(1280, 720, PixelFormat_RGBX8888);
 	_hit_ef->ColorFill(nullptr, Color(255, 0, 0));
 
-	fw_S = 0;
-	nobi = 100.0f;
-	gage= Color(255,255, 255);
+	fw_S = 540;
+	
 }
 
 void CUI::Update()
 {
-	fw_S += 0.3f;
-	if (nobi <= 68) {
-		gage = Color(0, 255,0);
-	}
-	if (nobi <= 37) {
-		gage = Color(255, 255, 0);
-	}
-	
+	/*num += 1 * 0.1f;*/
+
+	fw_S = 540 * 0.01 * num;
+
+	num = clamp(num,0, 100);
+
+	monostate.num = num;
 }
 
 //PLAYERとENEMYとが衝突したら呼ばれる関数
 void CUI::OnCollisionDamage()
 {
-	//赤ブロックにあたったとき
-	fw_S += 10;
+	num += 1 * 3.0f;
+	_damage_collsion_flag = true;
 }
 
 void CUI::OnCollisionClear()
 {
-	//赤ブロックにあたったとき
-	fw_S  -= 10;
-	nobi -= 16.0f;
-}
-
-void CUI::OnCollisionGage()
-{
-	nobi -= 32.0f;
-	
+	num -= 1.0f * 5.0f;
 }
 
 void CUI::Draw2D()
@@ -98,9 +84,6 @@ void CUI::Draw2D()
 			_damage_collsion_flag = false;
 		}
 	}
-
-	SpriteBatch.Draw(*gia2, Vector3(1000.0f, 0.0f, 0.0f), Rect(0, 0, 35, 132),Color(gage));
-	SpriteBatch.Draw(*gia, Vector3(1000.0f, nobi, 0.0f), Rect(0, nobi, 35, 132), Color(gage));
 
 }
 

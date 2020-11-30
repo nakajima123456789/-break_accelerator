@@ -1,8 +1,9 @@
 #include "ObjectPlacement.h"
+#include"../C_UI/CUI.h"
 
 CharactorManager::CharactorManager()
 {
-	CharactorTagPreference(OBJECT_TYPE_MAX , 'O','L','R','B','I','G');
+	CharactorTagPreference(OBJECT_TYPE_MAX , 'O','L','R','B','I','G','Z');
 };
 
 void CharactorManager::CharactorTagPreference(char _tag, ...) {
@@ -24,12 +25,18 @@ void CharactorManager::PosObjectPreference(char _map_tag, Vector3 _position)
 		if (_map_tag == tag)
 		{
 			if (tag == 'G')
-				charactor_position_manager[i].push_back(Vector3(0.0f, 0.0f, _position.z));
-			else 
-			charactor_position_manager[i].push_back(_position);
+				charactor_position_manager[i].push_back(Vector3(-3.0f, -0.3f, _position.z));
+			else if (tag == 'Z')
+				charactor_position_manager[i].push_back(Vector3(3.0f, -0.3f, _position.z));
+			else
+				charactor_position_manager[i].push_back(_position);
 		}
 	}
 }
+
+
+
+
 
 void PlacementManager::Init()
 {
@@ -38,7 +45,9 @@ void PlacementManager::Init()
 	FILE* fp = fopen("オブジェクト配置.csv", "r");
 
 	char load_char[99999 + 1];
-
+	gate_x = 0.0f;
+	gate2_x = 0.0f;
+	
 	while (fgets(load_char, sizeof load_char - 1, fp) != NULL)
 	{
 		std::string a = load_char;

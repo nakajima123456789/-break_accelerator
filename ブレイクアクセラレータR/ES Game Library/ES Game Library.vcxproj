@@ -177,6 +177,7 @@
     <ClCompile Include="MyClass\C_CAMERA\C_CAMERA.cpp" />
     <ClCompile Include="MyClass\C_DIS\C_DIS.cpp" />
     <ClCompile Include="MyClass\C_EFFEKSEER\CEffekseer_.cpp" />
+    <ClCompile Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.cpp" />
     <ClCompile Include="MyClass\C_HITBOX\HitBox.cpp" />
     <ClCompile Include="MyClass\C_INPUT\C_INPUT.cpp" />
     <ClCompile Include="MyClass\C_ITEMOBSTACLE\CItemOBstacle.cpp" />
@@ -258,6 +259,7 @@
     <ClInclude Include="MyClass\C_CAMERA\C_CAMERA.h" />
     <ClInclude Include="MyClass\C_DIS\C_DIS.h" />
     <ClInclude Include="MyClass\C_EFFEKSEER\CEffekseer_.h" />
+    <ClInclude Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.h" />
     <ClInclude Include="MyClass\C_HITBOX\HitBox.h" />
     <ClInclude Include="MyClass\C_INPUT\C_INPUT.h" />
     <ClInclude Include="MyClass\C_ITEMOBSTACLE\CItemOBstacle.h" />
