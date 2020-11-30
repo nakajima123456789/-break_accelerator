@@ -153,16 +153,9 @@ void CPlayer::RUNKEY::Update()
 
 	if (Input.GetKeyState().IsKeyDown(Keys_Right)) {
 		AxisStateMove("RIGHT");
-		if (Input.GetKeyBuffer().IsPressed(Keys_Space)) {
-			this->_owner->player_manager->speed+=0.1f;
-		}
 	}
 	if (Input.GetKeyState().IsKeyDown(Keys_Left)) {
 		AxisStateMove("LEFT");
-		if (Input.GetKeyBuffer().IsPressed(Keys_Space))
-		{
-			this->_owner->player_manager->speed-=0.1f;
-		}
 	}
 	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
 
