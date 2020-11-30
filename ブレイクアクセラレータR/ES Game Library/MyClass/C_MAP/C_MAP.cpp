@@ -20,7 +20,7 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-	AddModel(_T("model3D//‰ü’ù”Å//road_7.X"));
+	AddModel(_T("model3D//‰ü’ù”Å//road_8.X"));
 	for (int i = 0; i < 3; i++) {
 		AddModel(_T("model3D//Œõ//test_set.X"));
 

@@ -12,8 +12,6 @@ void CBrockObstacle::Init()
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 
 	IsHitObjectsInit("Item_Hitbox");
-
-	damage = EffekseerMgr.LoadEffekseer(_T("ダメージ//ダメージ.efk"));
 }
 
 void CBrockObstacle::Update()
@@ -45,8 +43,6 @@ void CBrockObstacle::Draw3D()
 		if (this->CollsionTrigger())
 		{
 			observer.IsCollisionDamage();
-			
-			EffekseerMgr.PlayEffekseer(damage, monostate.player_pos - Vector3(0,0,-2),1.0f);
 		}
 
 		obstacle_it++;

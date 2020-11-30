@@ -2,6 +2,8 @@
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
 #include"../OBSEVER/OBSEVER.h"
+#include "../C_EFFEKSEER/CEffekseer_.h"
+#include "../OBSTACLEBASE/ObstacleBase.h"
 
 class CUI : public Object, OBSERVERLISTENER
 {
@@ -51,8 +53,12 @@ private:
 	float nobi;
 
 	int _color_state;
-
+	MONOSTATE monostate;
+	EFFEKSEER effekseer;
+	int item,damage;
 	Color gage;
+
+
 
 };
 

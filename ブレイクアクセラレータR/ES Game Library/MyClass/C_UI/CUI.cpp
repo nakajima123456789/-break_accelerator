@@ -1,4 +1,6 @@
 #include "CUI.h"
+#include "../C_EFFEKSEER/CEffekseer_.h"
+#include "../C_INPUT/C_INPUT.h"
 
 CUI::CUI()
 {
@@ -14,6 +16,7 @@ CUI::~CUI()
 
 void CUI::Init()
 {
+
 	auto&& AddSprite = [this](LPCTSTR _filename) { sprite.push_back(GraphicsDevice.CreateSpriteFromFile(_filename));};
 	
 	auto&& AddSpritePos = [this](unsigned int id, Vector3 pos) {sprite_position[id].push_back(pos); };
@@ -27,7 +30,6 @@ void CUI::Init()
 	AddSpritePos(FW,   Vector3(320, 0, 0));
 	AddSpritePos(FW2,  Vector3(320, 0, 0));
 	
-	
 	FW_S = GraphicsDevice.CreateSpriteFromFile(_T("UI/FWゲージ/FW_S.png"));
 
 
@@ -36,6 +38,9 @@ void CUI::Init()
 	
 	_hit_ef = GraphicsDevice.CreateSprite(1280, 720, PixelFormat_RGBX8888);
 	_hit_ef->ColorFill(nullptr, Color(255, 0, 0));
+
+	item = EffekseerMgr.LoadEffekseer(_T("アイテム取得//アイテム取得.efk"));
+	damage = EffekseerMgr.LoadEffekseer(_T("ダメージ//ダメージ.efk"));
 
 	fw_S = 0;
 	nobi = 100.0f;
@@ -51,7 +56,18 @@ void CUI::Update()
 	if (nobi <= 37) {
 		gage = Color(255, 255, 0);
 	}
-	
+
+	//int id = 0;
+	//effekseer = EffekseerMgr.GetEffekseer(item);
+
+	//if (Input.GetKeyInputDown(Keys_Space)) 
+	//{
+	//	id = effekseer->Play(monostate.player_pos - Vector3(0, 0, -1));
+	//}
+
+	//effekseer->SetScale(id, 0.4);
+	//effekseer->SetPosition(id, monostate.player_pos - Vector3(0, 0, -1));
+	//
 }
 
 //PLAYERとENEMYとが衝突したら呼ばれる関数
@@ -59,19 +75,41 @@ void CUI::OnCollisionDamage()
 {
 	//赤ブロックにあたったとき
 	fw_S += 10;
+	int id = -1;
+
+	effekseer = EffekseerMgr.GetEffekseer(damage);
+	id = effekseer->Play(monostate.player_pos - Vector3(0, 0, -1));
+
+	if (id != -1)
+	{
+		effekseer->SetPosition(id, monostate.player_pos - Vector3(0, 0, -1));
+	}
 }
 
 void CUI::OnCollisionClear()
 {
-	//赤ブロックにあたったとき
+	//青ブロックにあたったとき
 	fw_S  -= 10;
 	nobi -= 16.0f;
 }
 
 void CUI::OnCollisionGage()
 {
-	nobi -= 32.0f;
-	
+#pragma once
+
+	int id = -1;
+	//fw_S -= 5;
+	nobi -= 32.0f;	
+	effekseer = EffekseerMgr.GetEffekseer(item);
+
+	//if(Input.GetKeyInputDown(Keys_Space))
+	id = effekseer->Play(monostate.player_pos - Vector3(0, 0, -1));
+
+	if (id != -1)
+	{
+		effekseer->SetScale(id, 0.5);
+		effekseer->SetPosition(id, monostate.player_pos - Vector3(0, 0, -1));
+	}
 }
 
 void CUI::Draw2D()
