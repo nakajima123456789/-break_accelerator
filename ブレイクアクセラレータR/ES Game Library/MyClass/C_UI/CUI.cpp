@@ -51,13 +51,13 @@ void CUI::Update()
 //PLAYER‚ÆENEMY‚Æ‚ªÕ“Ë‚µ‚½‚çŒÄ‚Î‚ê‚éŠÖ”
 void CUI::OnCollisionDamage()
 {
-	num += 1 * 2.0f;
+	num += 1 * 3.0f;
 	_damage_collsion_flag = true;
 }
 
 void CUI::OnCollisionClear()
 {
-	num -= 1.0f * 2.0f;
+	num -= 1.0f * 5.0f;
 }
 
 void CUI::Draw2D()
