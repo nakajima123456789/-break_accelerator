@@ -20,7 +20,7 @@ public:
 	//オブザーバー関数
 	virtual void CUI::OnCollisionDamage()    override;
 	virtual void CUI::OnCollisionClear()     override;
-
+	virtual void CUI::OnCollisionGage()      override;
 	
 	float num = 100;
 	

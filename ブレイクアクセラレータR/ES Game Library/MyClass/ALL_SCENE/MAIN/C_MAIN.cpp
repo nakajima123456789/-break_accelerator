@@ -23,8 +23,7 @@
 #include "../../C_EFFEKSEER/CEffekseer_.h"
 
 #include "../../C_MAP/C_MAP.h"
-
-#include"..//..//C_UI/CUI.h"
+#include "../../C_UI/CUI.h"
 
 void C_MAIN::Initialize(){
 

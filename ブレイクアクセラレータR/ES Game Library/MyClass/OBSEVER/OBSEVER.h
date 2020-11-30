@@ -23,7 +23,6 @@ public:
 
 	// Õ“Ë”»’è‚µ‚½
 	void IsCollisionDamage();
-
 	void IsCollisionClear();
 	void IsCollisionGage();
 
