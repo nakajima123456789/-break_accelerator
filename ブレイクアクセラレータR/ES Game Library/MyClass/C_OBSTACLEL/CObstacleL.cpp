@@ -7,7 +7,7 @@ CObstacleL::CObstacleL(std::vector<Vector3> _obstacle_pos)
 
 void CObstacleL::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Move_Wall//MoveBoxL.X"));
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å_//MOVEBOX//hako_P.X"));
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 
@@ -29,12 +29,12 @@ void CObstacleL::Draw3D()
 
 		if (DistanceTrigger(90.0f))
 		{
-			if (RemoveModelDistance(1.5f))
+			if (RemoveModelDistance(2.0f))
 				this->transform.position = *obstacle_it -= Vector3(0.08f, 0.0f, 0.0f);
 
-			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
-			this->obstacle_model->SetRotation(this->transform.rotation);
-			this->obstacle_model->SetScale(this->transform.scale * 0.015);
+			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.0f, 0.77f, 0.0f));
+			this->obstacle_model->SetRotation(this->transform.rotation + Vector3(0.0f, 0.0f, 180.0f));
+			this->obstacle_model->SetScale(this->transform.scale);
 			this->obstacle_model->Draw();
 		}
 

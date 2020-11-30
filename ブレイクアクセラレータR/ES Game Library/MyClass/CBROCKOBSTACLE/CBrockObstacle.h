@@ -7,11 +7,17 @@ public:
 	CBrockObstacle(std::vector<Vector3> _obstacle_pos);
 	virtual ~CBrockObstacle() {};
 
-	inline virtual void Init()        override;
-	inline virtual void Update()      override;
-	inline virtual void Draw3D()      override;
+	virtual void Init()        override;
+	virtual void Update()      override;
+	virtual void Draw3D()      override;
+
+	virtual void DrawAlpha3D() override;
 
 private:
+
+	EFFECT shader;
+
+	Vector2 moveUv = Vector2(0.0f,0.0f);
 
 };
 

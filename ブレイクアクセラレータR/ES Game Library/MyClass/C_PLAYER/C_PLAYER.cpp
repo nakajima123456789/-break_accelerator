@@ -4,7 +4,7 @@
 
 CPlayer::CPlayer(Vector3  _pos)
 {
-	transform.position = (_pos + Vector3(0.f,0.3f,0.f));
+	transform.position = (_pos);
 	this->transform.rotation.y += 180;
 };
 
@@ -62,7 +62,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
-	transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.01f;//ˆÚ“®‚Ì‘¬‚³
+	transform.position.z += Input.GetPadInput(5) ? 0.12f : 0.01f;//ˆÚ“®‚Ì‘¬‚³
 	
 	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
 
@@ -71,7 +71,8 @@ void CPlayer::Update()
 
 void CPlayer::Draw3D()
 {
-	this->transform.position.x = clamp(transform.position.x, -3.0f, 3.0f);
+	float _movement_x = 1.3f;
+	this->transform.position.x = clamp(transform.position.x, -_movement_x, _movement_x);
 	player_model->SetPosition(this->transform.position);
 	monostate.player_pos = this->transform.position;
 
@@ -130,6 +131,8 @@ void CPlayer::RUNPAD::Update()
 		return;
 	}
 
+	_owner->player_manager->transform.position.x += _owner->player_manager->speed;
+
 	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
 
 	_owner->player_manager->transform.position.x += Input.GetArrowpadVector().x * 0.009f + _owner->player_manager->speed;
@@ -164,6 +167,7 @@ void CPlayer::RUNKEY::Update()
 	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
 
 	_owner->player_manager->transform.position.x += Input.GetArrowkeyVector().x * 0.008f + _owner->player_manager->speed;
+
 
 	if (Input.GetArrowkeyVector().x == 0)
 	{

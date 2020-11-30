@@ -20,7 +20,7 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
-	AddModel(_T("model3D//‰ü’ù”Å_//road_6.X"));
+	AddModel(_T("model3D//‰ü’ù”Å_//road_7.X"));
 	AddModel(_T("model3D//Œõ//test_set.X"));
 	AddModel(_T("model3D//Œõ//test_set.X"));
 	AddModel(_T("model3D//Œõ//test_set.X"));
@@ -113,12 +113,12 @@ void C_MAP::Draw3D()
 			case RIGHT_POLE:
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->SetRotation(0.0f, 30.0f, 0.0f);
-				model[y]->Draw();
+				//model[y]->Draw();
 				break;
 			case LEFT_POLE:
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->SetRotation(0.0f, 30.0f, 0.0f);
-				model[y]->Draw();
+				//model[y]->Draw();
 				break;
 			default:
 				model[y]->SetPosition(model_position[y][x]);

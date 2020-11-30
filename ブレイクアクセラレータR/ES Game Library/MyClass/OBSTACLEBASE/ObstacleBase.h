@@ -49,8 +49,7 @@ protected:
 	bool     CollsionTrigger();
 
 
-	float    PlayerDistance();
-
+	float    PlayerDistance(); 
 
 	//•Ï”éŒ¾
 

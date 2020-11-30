@@ -41,21 +41,32 @@ void PlacementManager::Init()
 
 	while (fgets(load_char, sizeof load_char - 1, fp) != NULL)
 	{
-		mapdata.push_back(load_char);
+		std::string a = load_char;
+		std::string b = ",";
+
+		std::string c = b + a;
+
+		mapdata.push_back(c);
 	}
+
 
 	for (int y = 0; y < mapdata.size(); y++)
 	{
-		// æ“ª‚Ì•¶Žš‚ª','‚©’²‚×‚é
-		if (mapdata[y][0] == ','){ mapdata[y][0] =  ' ';}
-		else
 
-		for (int x = 1; x < mapdata[y].size(); x++)
+		for (int x = 0; x < mapdata[y].size(); x++)
 		{
-			if (mapdata[y][x] == ',' && mapdata[y][x + 1] == ','){ mapdata[y][x] = ' ';}
 
-			if (mapdata[y][x] == ',') { mapdata[y].erase(mapdata[y].begin() + x); }
+			if (mapdata[y][x] == ',' && mapdata[y][x + 1] == ',')
+			{ 
+				mapdata[y][x] = ' ';
+			}
+
+			if (mapdata[y][x] == ',') 
+			{ 
+				mapdata[y].erase(mapdata[y].begin() + x); 
+			}
 		}
+
 
 		if (mapdata[y][mapdata[y].size()] == ','){ mapdata[y][mapdata[y].size()] = ' '; }
 	}
@@ -78,8 +89,8 @@ void PlacementManager::Draw3D()
 
 void PlacementManager::MapdataTagsPos()
 {
-	const float   sense    = 0.7f;
-	const Vector3 lear_pos = Vector3(-2.925f, -0.25f, 50.0f);
+	const float   sense    = 0.38f;
+	const Vector3 lear_pos = Vector3(-1.33f, -0.25f, 50.0f);
 
 	for (int z = 0; z < mapdata.size(); z++)
 	{

@@ -2,6 +2,7 @@
 #include "../C_Effekseer/CEffekseer_.h"
 #include "../C_INPUT/C_INPUT.h"
 
+CAMERA CCamera_::camera = {};
 
 void CCamera_::Init()
 {
@@ -22,7 +23,10 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
-	field_of_view_pov = clamp(Input.GetPadInput(5) ? field_of_view_pov += 0.5f : field_of_view_pov -= 0.5f, 60.0f, 70.0f);
+
+	float fov_speed = 0.05f;
+
+	field_of_view_pov = clamp(Input.GetPadInput(5) ? field_of_view_pov += fov_speed : field_of_view_pov -= fov_speed, 65.0f, 70.0f);
 
 	camera->SetFieldOfViewY(field_of_view_pov);
 
