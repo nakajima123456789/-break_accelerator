@@ -33,13 +33,23 @@ void CUI::Init()
 	_hit_ef = GraphicsDevice.CreateSprite(1280, 720, PixelFormat_RGBX8888);
 	_hit_ef->ColorFill(nullptr, Color(255, 0, 0));
 
+	gia = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ2.png"));
+	gia2 = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ4.png"));
+
 	fw_S = 540;
 	
+	nobi = 100;
 }
 
 void CUI::Update()
 {
-	/*num += 1 * 0.1f;*/
+	if (nobi <= 68) {
+		game_color = Color(0, 255, 0);
+	}
+	if (nobi <= 37) {
+		game_color = Color(255, 255, 0);
+	}
+
 
 	fw_S = 540 * 0.01 * num;
 
@@ -60,7 +70,7 @@ void CUI::OnCollisionClear()
 
 void CUI::OnCollisionGage()
 {
-
+	nobi -= 32.0f;
 }
 
 void CUI::Draw2D()
@@ -88,6 +98,8 @@ void CUI::Draw2D()
 		}
 	}
 
+	SpriteBatch.Draw(*gia2, Vector3(1000.0f, 0.0f, 0.0f), Rect(0, 0, 35, 132), Color(game_color));
+	SpriteBatch.Draw(*gia, Vector3(1000.0f, nobi, 0.0f), Rect(0, nobi, 35, 132), Color(game_color));
 }
 
 double CUI::clamp(double x, double low, double high)

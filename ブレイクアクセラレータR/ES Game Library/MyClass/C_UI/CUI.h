@@ -41,6 +41,13 @@ private:
 
 	SPRITE _hit_ef;
 
+	SPRITE gia;
+	SPRITE gia2;
+
+	double nobi = 100; 
+
+	Color game_color;
+
 	bool _damage_collsion_flag = false;
 	float fiedout_alpha = 0.0f;
 	
