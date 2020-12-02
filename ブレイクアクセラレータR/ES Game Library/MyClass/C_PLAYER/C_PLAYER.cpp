@@ -19,7 +19,7 @@ void CPlayer::Init()
 
 	c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
 
-	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Ž©‹@//jiki_new1k.X"));
+	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Ž©‹@//jiki_car3.X"));
     player_model->SetMaterial(SetMaterial(Color(255.0f, 255.0f, 255.0f)));
 
 	//effcseer_test = EffekseerMgr.LoadEffekseer(_T("‹O“¹//‹O“¹.efk"));
@@ -28,12 +28,6 @@ void CPlayer::Init()
 Material CPlayer::SetMaterial(Color _color)
 {
 	Material mtrl;
-
-	//mtrl.Diffuse  = _color;
-	//mtrl.Ambient  = _color;
-	//mtrl.Specular = _color;
-	//mtrl.Emissive = _color;
-	//mtrl.Power = 1.0f;
 
 	mtrl.Diffuse  = Color(0.0f, 0.0f, 0.0f);
 	mtrl.Ambient  = Color(0.0f, 0.0f, 0.0f);
@@ -72,9 +66,9 @@ void CPlayer::Update()
 
 	transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
 	
-	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
+	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.0f;//ˆÚ“®‚Ì‘¬‚³
 
-	//EffekseerMgr.PlayEffekseer(effcseer_test, transform.position + Vector3(0,0,5));
+	//EffekseerMgr.PlayEffekseer(effcseer_test, transform.position + Vector3(0,0,5),1.0f);
 
 	this->player_state_processor.Update();
 }
@@ -82,7 +76,7 @@ void CPlayer::Update()
 void CPlayer::Draw3D()
 {
 
-	this->transform.position.x = clamp(transform.position.x, -3.0f, 3.0f);
+	this->transform.position.x = clamp(transform.position.x, -1.3f, 1.3f);
 	player_model->SetPosition(this->transform.position);
 	monostate.player_pos = this->transform.position;
 
@@ -91,7 +85,7 @@ void CPlayer::Draw3D()
 	this->transform.rotation.z = rotation;
 
 	player_model->SetRotation(this->transform.rotation);
-	player_model->SetScale(this->transform.scale);
+	player_model->SetScale(this->transform.scale * 0.55f);
 	player_model->Draw();
 }
 

@@ -21,10 +21,11 @@ private:
 	{
 		GROUND,
 		LIGHT,
-		LIGHT2,
-		LIGHT3,
+		//LIGHT2,
+		//LIGHT3,
 		RIGHT_POLE,
 		LEFT_POLE,
+		BUILD,
 		MAP_MODEL_SIZE,
 	};
 
