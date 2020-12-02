@@ -8,7 +8,6 @@
 BaseScene *SceneManager::m_pScene = nullptr;
 
 void SceneManager::ChangeScene(SCENE scene) {
-
 	if (m_pScene != nullptr) {
 		delete m_pScene;
 	}
@@ -32,8 +31,9 @@ void SceneManager::ChangeScene(SCENE scene) {
 	m_pScene->Initialize();
 }
 
-void SceneManager::Update() {
-	m_pScene->Update();       
+int SceneManager::Update()
+{
+	return m_pScene->Update();       
 }
 
 void SceneManager::Draw3D() {

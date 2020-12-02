@@ -7,3 +7,4 @@ bool  MONOSTATE::move_flag = false;
 bool MONOSTATE::_game_over_flag = false;
 
 bool MONOSTATE::_game_clear_flag = false;
+

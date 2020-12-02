@@ -64,9 +64,7 @@ private:
 	FONT original;
 
 	float bonus;
-
-
-
+	
 	MONOSTATE monostate;
 
 };

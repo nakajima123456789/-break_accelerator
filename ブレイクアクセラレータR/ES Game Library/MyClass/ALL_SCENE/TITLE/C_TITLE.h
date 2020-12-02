@@ -9,7 +9,7 @@ public:
 	virtual ~C_TITLE() {};
 
 	virtual void Initialize()  override;
-	virtual void Update()      override;
+	virtual int Update()      override;
 	virtual void Draw3D()      override { return; };
 	virtual void Draw2D()      override;
 	virtual void DrawAlpha3D() override { return; };
@@ -18,7 +18,11 @@ private:
 
 	SPRITE sprite;
 	SPRITE moji;
-	int iro;
+	SPRITE moji2;
+	SPRITE moji3;
+    float iro;
+	float moji_x;
+	
 	
 
 	void Add_Sprite(LPCTSTR _sprite_name);

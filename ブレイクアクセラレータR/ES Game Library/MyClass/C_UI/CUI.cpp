@@ -33,7 +33,6 @@ void CUI::Init()
 	
 	FW_S = GraphicsDevice.CreateSpriteFromFile(_T("UI/FWゲージ/FW_S.png"));
 
-
 	gia = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ2.png"));
 	gia2 = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ4.png"));
 	
@@ -48,8 +47,10 @@ void CUI::Init()
 
 void CUI::Update()
 {
-	score += 10*bonus;
-	if(Input.GetKeyState().IsKeyDown(Keys_Up)) { bonus = 3; }
+	score += 10 * bonus;
+	if (Input.GetKeyState().IsKeyDown(Keys_Up) || Input.GetPadInput(6)) { bonus = 3; }
+
+	fw_S += 0.3f;
 }
 
 //PLAYERとENEMYとが衝突したら呼ばれる関数
@@ -58,10 +59,14 @@ void CUI::OnCollisionDamage()
 	fw_S += 20;
 
 	_damage_collsion_flag = true;
+
+	//赤ブロックにあたったとき
+	fw_S += 10;
 }
 
 void CUI::OnCollisionClear()
 {
+	//赤ブロックにあたったとき
 	fw_S  -= 10;
 	bonus += 0.5;
 
@@ -71,6 +76,7 @@ void CUI::OnCollisionGate()
 {
 	monostate._game_over_flag = true;
 }
+
 
 void CUI::SetScore()
 {

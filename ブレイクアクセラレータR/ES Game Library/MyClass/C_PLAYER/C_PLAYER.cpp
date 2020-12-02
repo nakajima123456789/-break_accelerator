@@ -7,14 +7,13 @@ CPlayer::CPlayer(Vector3  _pos)
     transform.position = (_pos + Vector3(0.f,0.3f,0.f));
     this->transform.rotation.y += 180;
     // 自分をリストに登録
-        observer.addListener(this);
+    observer.addListener(this);
 }
 CPlayer::~CPlayer()
 {
     //自分をリストから削除
     observer.removeListener(this);
 }
-;
 
 void CPlayer::Init()
 {
@@ -23,7 +22,6 @@ void CPlayer::Init()
     player_state_processor.ChangeState(new CPlayer::IDOL(&player_state_processor));
 
     IsHitObjectsInit();
-
 
     c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
 
@@ -35,9 +33,8 @@ void CPlayer::Init()
     gia = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ2.png"));
     gia2 = GraphicsDevice.CreateSpriteFromFile(_T("UI/gear/タテギアゲージ4.png"));
 
-    speed2 = 0;
+    speed2 = 0;        acc = 0.1;
     nobi = 100.0f;     gage = Color(255, 255, 255);
-
 }
 
 
@@ -45,11 +42,11 @@ Material CPlayer::SetMaterial(Color _color)
 {
     Material mtrl;
 
-    mtrl.Diffuse  = _color;
-    mtrl.Ambient  = _color;
-    mtrl.Specular = _color;
-    mtrl.Emissive = _color;
-    mtrl.Power = 1.0f;
+	mtrl.Diffuse  = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Ambient  = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Specular = Color(0.0f, 0.0f, 0.0f);
+	mtrl.Emissive = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Power = 0.0f;
 
     return mtrl;
 }
@@ -60,8 +57,6 @@ int  CPlayer::IsHitObjectsInit()
     c_hitbox->Init();
     c_hitbox->Settags("player");
 
-    c_hitbox->SetHitBoxScale(0.2f);
-
     return 0;
 }
 
@@ -70,39 +65,30 @@ void CPlayer::IsHitObjectsDraw()
     c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
     c_hitbox->SetHitBoxPosition(this->transform.position);
     c_hitbox->Draw3D();
+    c_hitbox->SetHitBoxScale(0.2f);
 }
 
 void CPlayer::Update()
 {
+    if (nobi <= 68) { gage = Color(0, 255, 0);     acc = 0.2f; }
+    if (nobi <= 37) { gage = Color(255, 255, 0);   acc = 0.3f; }
 
     transform.position.z += 0.2f + speed2;  speed2 -= 0.0025f;
     if (speed2 <= 0) { speed2 = 0.0f; }
-    if (speed2 >= 0.4){speed2 = 0.4f;}
-    if (Input.GetKeyState().IsKeyDown(Keys_Up)) { speed2 += 0.008; }
-
-
-    //transform.position.z += Input.GetPadInput(5) ? 0.3f : 0.15f;//移動の速さ
-    //transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//移動の速さ
-
+    if (speed2 >= acc){speed2 = acc;}
+    if (Input.GetKeyState().IsKeyDown(Keys_Up)||Input.GetPadInput(5)) { speed2 += 0.008; }
     
-    
-    EffekseerMgr.PlayEffekseer(effcseer_test, transform.position+ Vector3(0,0,5));
+    //if (transform.position.z >=  772) { monostate._game_clear_flag = true; }
 
-    if (transform.position.z >=  579) { monostate._game_clear_flag = true; }
-    
-    if (nobi <= 68) {gage = Color(0, 255, 0);	}
-    if (nobi <= 37) {gage = Color(255, 255, 0); }
-    
+    if (transform.position.z >= 100) { monostate._game_clear_flag = true; }
 
-
-    
     this->player_state_processor.Update();
 }
 
 void CPlayer::Draw3D()
 {
 
-    this->transform.position.x = clamp(transform.position.x, -3.0f, 3.0f);
+    this->transform.position.x = clamp(transform.position.x, -1.3f, 1.3f);
     player_model->SetPosition(this->transform.position);
     monostate.player_pos = this->transform.position;
 
@@ -110,10 +96,9 @@ void CPlayer::Draw3D()
 
     this->transform.rotation.y= rotation;
 
-    player_model->SetRotation(this->transform.rotation);
-    player_model->SetScale(this->transform.scale * 1.0f);
-    player_model->Draw();
-    
+	player_model->SetRotation(this->transform.rotation);
+	player_model->SetScale(this->transform.scale);
+	player_model->Draw();
 }
 
 void CPlayer::OnCollisionDamage()
@@ -136,12 +121,10 @@ void CPlayer::Draw2D()
     SpriteBatch.Draw(*gia, Vector3(1000.0f, nobi, 0.0f), Rect(0, nobi, 35, 132), Color(gage));
 }
 
-
 void CPlayer::IDOL::Update()
 {
-    _owner->player_manager->speed = 0.0f;
-    
-    _owner->player_manager->rotation = _owner->player_manager->rotation > 0 ? _owner->player_manager->rotation = max(_owner->player_manager->rotation -= 0.2f, 0) : _owner->player_manager->rotation = min(_owner->player_manager->rotation += 0.2f, 0);
+    _owner->player_manager->speed = 0;
+    //_owner->player_manager->rotation = _owner->player_manager->rotation > 0 ? _owner->player_manager->rotation = max(_owner->player_manager->rotation -= 0.2f, 0) : _owner->player_manager->rotation = min(_owner->player_manager->rotation += 0.2f, 0);
 
     if (Input.AxisFlag()){
         _owner->player_manager->player_state_processor.ChangeState(new CPlayer::RUNPAD(&_owner->player_manager->player_state_processor));
@@ -159,35 +142,38 @@ void CPlayer::IDOL::Update()
 
 void CPlayer::RUNPAD::Update()
 {
-    
     auto&& AxisStateMove = [this](std::string _direction_tag)->void {
         int sign;
         if (_direction_tag == "RIGHT") { sign = 1; } else { sign = -1; };
-        _owner->player_manager->rotation +=   (1.5f * sign * 1.0f * 1.0f);
-        _owner->player_manager->speed    +=   (0.003f * sign * 1.0f * 1.0f);
+        /*_owner->player_manager->rotation +=   (1.5f * sign * 1.0f * 1.0f);*/
+        _owner->player_manager->speed    +=   (0.002f * sign * 1.0f * 1.0f);
         return;
     };
-
-
 
     if (Input.AxisStateX() >= 0.3f) {
         AxisStateMove("RIGHT");
         if (Input.GetPadInputDown(6)) {
-            this->_owner->player_manager->speed += 0.05f;
+            this->_owner->player_manager->speed += 0.03f;
         }
     }
     if (Input.AxisStateX() <= -0.3f) {
         AxisStateMove("LEFT");
         if (Input.GetPadInputDown(6)) {
-            this->_owner->player_manager->speed -= 0.05f;
+            this->_owner->player_manager->speed -= 0.03f;
         }
     }
-    if (Input.AxisStateX() == 0.0f &&Input.GetKeyState().IsKeyUp(Keys_Right) && Input.GetKeyState().IsKeyUp(Keys_Left)){
+
+    if (Input.AxisStateX() == 0.0f && _owner->player_manager->speed > 0) { _owner->player_manager->speed -= 0.003f; }
+    if (Input.AxisStateX() == 0.0f && _owner->player_manager->speed < 0) { _owner->player_manager->speed += 0.003f; }
+
+    if (_owner->player_manager->speed <= 0.002 && _owner->player_manager->speed >= -0.001)
+    {
         _owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
         return;
     }
     
     _owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -7, 7);
+    _owner->player_manager->speed = _owner->player_manager->clamp(_owner->player_manager->speed, -0.025, 0.025);
     _owner->player_manager->transform.position.x += Input.GetArrowpadVector().x * 0.008f + _owner->player_manager->speed;
 
     return;
@@ -199,35 +185,36 @@ void CPlayer::RUNKEY::Update()
         int sign;
         if (_direction_tag == "RIGHT") { sign = 1; }
         else { sign = -1; };
-        _owner->player_manager->rotation += (1.5f * sign * 1.0f * 1.0f);
-        _owner->player_manager->speed    += (0.003f * sign * 1.0f * 1.0f);
-        
+        /*_owner->player_manager->rotation += (1.5f * sign * 1.0f * 1.0f);*/
+        _owner->player_manager->speed += (0.002f * sign * 1.0f * 1.0f);
         return;
     };
 
     if (Input.GetKeyState().IsKeyDown(Keys_Right)) {
         AxisStateMove("RIGHT");
-        if (Input.GetKeyBuffer().IsPressed(Keys_Space)) {
-            this->_owner->player_manager->speed+=0.05f;
+        if (Input.GetKeyInputDown(Keys_Space)) {
+            _owner->player_manager->speed+=0.02f;
         }
     }
     if (Input.GetKeyState().IsKeyDown(Keys_Left)) {
         AxisStateMove("LEFT");
-        if (Input.GetKeyBuffer().IsPressed(Keys_Space)) {
-            this->_owner->player_manager->speed -= 0.05f;
+        if (Input.GetKeyInputDown(Keys_Space)) {
+            _owner->player_manager->speed -= 0.02f;
         }
     }
-
+    _owner->player_manager->speed    = _owner->player_manager->clamp(_owner->player_manager->speed, -0.025f, 0.025f);
     _owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -7, 7);
-    _owner->player_manager->transform.position.x += Input.GetArrowkeyVector().x * 0.008f + _owner->player_manager->speed;
+    
+    _owner->player_manager->transform.position.x +=   _owner->player_manager->speed;
 
-    if (Input.GetArrowkeyVector().x == 0)
+    if (Input.GetArrowkeyVector().x == 0 && _owner->player_manager->speed >= 0) {_owner->player_manager->speed  -= 0.0035f; }
+    if (Input.GetArrowkeyVector().x == 0 && _owner->player_manager->speed < 0)  { _owner->player_manager->speed += 0.0035f; }
+
+    if (_owner->player_manager->speed <=0.002&& _owner->player_manager->speed >= -0.002)
     {
         _owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
         return;
     }
-    
-
 }
 
 void CPlayer::DAMAGE::Update()

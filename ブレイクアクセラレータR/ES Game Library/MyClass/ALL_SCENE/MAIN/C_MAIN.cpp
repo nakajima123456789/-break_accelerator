@@ -29,6 +29,8 @@ void C_MAIN::Initialize(){
 	monostate._game_over_flag = false;
 	
 
+	GraphicsDevice.SetRenderState(Lighting_Disable);
+
 	auto&& c_camera = (new CCamera_);
 	_objectroot.AddList((ChildObjRef)c_camera);
 
@@ -67,22 +69,30 @@ void C_MAIN::Initialize(){
 
 C_MAIN::~C_MAIN()
 {
+	MediaManager.ReleaseAllMedia();
+	GraphicsDevice.ReleaseAllRenderTargets();
+	GraphicsDevice.ReleaseAllStateBlocks();
+	GraphicsDevice.ReleaseAllFonts();
+	GraphicsDevice.ReleaseAllSprites();
+	GraphicsDevice.ReleaseAllAnimationModels();
+	GraphicsDevice.ReleaseAllModels();
+	GraphicsDevice.ReleaseAllVertexBuffers();
+	GraphicsDevice.ReleaseAllEffects();
 
-};
+	SoundDevice.ReleaseAllMusics();
+	SoundDevice.ReleaseAllSounds();
+}
 
-void C_MAIN::Update() {
+int C_MAIN::Update() {
 	_objectroot.Update();
 
-	if (monostate._game_over_flag == true)
-	{
-		SceneManager::ChangeScene(SceneManager::SCENE::GAME_OVER);
-	}
+	EffekseerMgr.Update();
+
 	if (monostate._game_clear_flag == true)
 	{
-		SceneManager::ChangeScene(SceneManager::SCENE::GAME_CLEAR);
+		return 1;
 	}
-
-	EffekseerMgr.Update();
+	return -1;
 }
 
 void C_MAIN::Draw3D()
@@ -100,7 +110,7 @@ void C_MAIN::DrawAlpha3D()
 	_objectroot.DrawAlpha3D();
 
 	GraphicsDevice.EndAlphaBlend();
-};
+}
 
 void C_MAIN::DrawEnd()
 {

@@ -32,7 +32,9 @@
 #include <list>
 #include <map>
 
-#include <btBulletDynamicsCommon.h>
+#include <wrl.h>
+
+// #include <btBulletDynamicsCommon.h>
 
 //------------------------------------------------------------------------------
 //	モデルインタフェース定義
@@ -207,7 +209,7 @@ public:
 	virtual D3DXVECTOR3    GetUpVector   () const;
 
 	virtual D3DMATERIAL9 GetMaterial(const DWORD inIdx) const { return m_Material[inIdx]; }
-	virtual IDirect3DBaseTexture9* GetTexture(const DWORD inIdx) const { return m_Texture[inIdx]; }
+	virtual IDirect3DBaseTexture9* GetTexture(const DWORD inIdx) const { return m_Texture[inIdx].Get(); }
 
 	virtual BOOL IntersectRay(D3DXVECTOR3& inPos, D3DXVECTOR3& inDir, float* pDist, D3DXVECTOR3* pNormal);
 
@@ -264,7 +266,8 @@ private:
 	DWORD                                 m_Meshes;				// サブセット数
 
 	std::vector<D3DMATERIAL9>             m_Material;			// マテリアル
-	std::vector<IDirect3DBaseTexture9*>   m_Texture;			// テクスチャ
+//	std::vector<IDirect3DBaseTexture9*>   m_Texture;			// テクスチャ
+	std::vector < Microsoft::WRL::ComPtr<IDirect3DBaseTexture9> > m_Texture;
 
 	D3DXVECTOR3                           m_Position;			// 位置
 	D3DXVECTOR3                           m_Scale;				// 拡大率

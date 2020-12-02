@@ -14,5 +14,8 @@ public:
 private:
 
 	OBSERVER obsever;
-
+	EFFEKSEER effekseer;
+	int effcseer_id;
+	int item;
+	MONOSTATE monostate;
 };

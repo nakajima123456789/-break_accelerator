@@ -137,6 +137,6 @@ private:
 	Color gage;
 
 	float nobi;
-	bool acc_flag = false;
 
+	float acc;
 };

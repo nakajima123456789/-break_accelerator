@@ -9,7 +9,7 @@ public:
 	virtual ~C_RESULT() {};
 
 	virtual void Initialize()  override;
-	virtual void Update()      override;
+	virtual int Update()      override;
 	virtual void Draw3D()      override { return; };
 	virtual void Draw2D()      override;
 	virtual void DrawAlpha3D() override { return; };
@@ -17,6 +17,7 @@ public:
 private:
 	SPRITE sprite;
 	FONT original;
+	float score_plus;
 
 	void Add_Sprite(LPCTSTR _sprite_name);
 	std::vector<SPRITE> sprite_list_name;

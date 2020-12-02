@@ -7,11 +7,13 @@ CBrockObstacle::CBrockObstacle(std::vector<Vector3> _obstacle_pos)
 
 void CBrockObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//改訂版//hako_aka2.X"));
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//改訂版//hako_P.X"));
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 
 	IsHitObjectsInit("Item_Hitbox");
+
+	damage = EffekseerMgr.LoadEffekseer(_T("ダメージ//ダメージ.efk"));
 }
 
 void CBrockObstacle::Update()
@@ -28,7 +30,7 @@ void CBrockObstacle::Draw3D()
 
 		if (DistanceTrigger(90.0f))
 		{
-			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
+			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.0f, 0.08f, 0.0f));
 			this->obstacle_model->SetRotation(this->transform.rotation);
 			this->obstacle_model->SetScale(this->transform.scale);
 			this->obstacle_model->Draw();
@@ -43,6 +45,8 @@ void CBrockObstacle::Draw3D()
 		if (this->CollsionTrigger())
 		{
 			observer.IsCollisionDamage();
+			
+			EffekseerMgr.PlayEffekseer(damage, monostate.player_pos - Vector3(0,0,-2),1.0f);
 		}
 
 		obstacle_it++;

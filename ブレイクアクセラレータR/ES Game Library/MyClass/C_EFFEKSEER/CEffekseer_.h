@@ -16,7 +16,7 @@ public:
 	int       CEffekseer_::LoadEffekseer(TCHAR* filename);
 	EFFEKSEER CEffekseer_::GetEffekseer(int _number);
 
-	int CEffekseer_::PlayEffekseer(int& _number,Vector3& _pos);
+	int CEffekseer_::PlayEffekseer(int& _number,Vector3& _pos,double size);
 
 	void Update();
 	void Draw(CAMERA& _camera);

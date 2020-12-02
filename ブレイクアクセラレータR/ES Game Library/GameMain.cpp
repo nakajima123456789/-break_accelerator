@@ -1,6 +1,7 @@
 // #include "Extension\DirectX11\DXGraphics11.hpp"
 #include "StdAfx.h"
 #include "GameMain.h"
+#include "MyClass/INFORMATION/INFORMATION.h"
 
 /// <summary>
 /// Allows the game to perform any initialization it needs to before starting to run.
@@ -13,6 +14,7 @@ bool GameMain::Initialize()
 	WindowTitle(_T("ES Game Library"));
 
 	SceneManager::ChangeScene(SceneManager::TITLE);
+
 
 	return true;
 }
@@ -38,7 +40,22 @@ int GameMain::Update()
 {
 	// TODO: Add your update logic here
 
-	scene_manager->Update();
+	isscene = scene_manager->Update();
+
+	switch (isscene)
+	{
+	case 0:
+		SceneManager::ChangeScene(SceneManager::SCENE::MAIN);
+			break;
+	case 1:
+		SceneManager::ChangeScene(SceneManager::SCENE::GAME_CLEAR);
+		break;
+	case 2:
+		SceneManager::ChangeScene(SceneManager::SCENE::RESULT);
+		break;
+	default:
+		break;
+	}
 
 	return 0;
 }
@@ -49,18 +66,19 @@ int GameMain::Update()
 void GameMain::Draw()
 {
 	// TODO: Add your drawing code here
-	GraphicsDevice.Clear(Color_CornflowerBlue);
+	GraphicsDevice.Clear(Color_Black);
 
 	GraphicsDevice.BeginScene();
 
 	scene_manager->Draw3D();
-	scene_manager->DrawAlpha3D();
 
 	SpriteBatch.Begin();
 
 	scene_manager->Draw2D();
 
 	SpriteBatch.End();
+
+	scene_manager->DrawAlpha3D();
 
 	scene_manager->DrawEnd();
 

@@ -11,7 +11,7 @@ void CItemObstacle::Init()
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 
 	IsHitObjectsInit("ObstacleItemHitBox");
-
+	item = EffekseerMgr.LoadEffekseer(_T("アイテム取得//アイテム取得.efk"));
 }
 
 void CItemObstacle::Update()
@@ -45,6 +45,7 @@ void CItemObstacle::Draw3D()
 			monostate.move_flag = true;
 			obstacle_it = this->obstacle_pos.erase(obstacle_it);
 			obsever.IsCollisionGage();
+			EffekseerMgr.PlayEffekseer(item, monostate.player_pos - Vector3(0,0,-1),1.f);
 			continue;
 		}
 

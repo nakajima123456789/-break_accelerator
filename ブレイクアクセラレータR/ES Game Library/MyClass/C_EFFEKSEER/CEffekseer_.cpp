@@ -40,13 +40,12 @@ EFFEKSEER CEffekseer_::GetEffekseer(int _number)
  * @param (int _number) 引数の説明　LoadEffekseerの戻り値を代入することで任意のエフェクトにアクセスできる
  * @detail 詳細な説明　大きさと再生座標を決める。
  */
-int CEffekseer_::PlayEffekseer(int& _number,Vector3& _pos)
+int CEffekseer_::PlayEffekseer(int& _number,Vector3& _pos, double size)
 {
     int id = effekseer[_number]->Play(_pos);
 
 	effekseer[_number]->SetPosition(id, _pos);
-	effekseer[_number]->SetScale(id,  0.08f);
-
+	effekseer[_number]->SetScale(id, size);
 	return effekseer.size() - 1;
 }
 

@@ -7,7 +7,7 @@ CGateObstacle::CGateObstacle(std::vector<Vector3> _obstacle_pos)
 
 void CGateObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//GATE_3.X"));
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//GATE_Left.X"));
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 
@@ -31,7 +31,7 @@ void CGateObstacle::Draw3D()
 
 			if (monostate.move_flag == true)
 			{
-				this->transform.position = *obstacle_it += Vector3(0.0f,0.1f,0.0f);
+				this->transform.position = *obstacle_it += Vector3(1.0f,1.5f,0.0f);
 				monostate.move_flag = false;
 			}
 

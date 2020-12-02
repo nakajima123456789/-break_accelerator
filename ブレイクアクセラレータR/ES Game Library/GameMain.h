@@ -3,6 +3,7 @@
 #include "ESGLib.h"
 #include "GameScene/GameScene.hpp"
 #include "MyClass/ALL_SCENE/SCENEMANAGER/SceneManager.h"
+#include "MyClass/INFORMATION/INFORMATION.h"
 
 class GameMain : public CGameScene {
 public:
@@ -59,6 +60,9 @@ private:
 	// •Ï”éŒ¾
 
 	SceneManager* scene_manager;
+	MONOSTATE monostate;
+
+	int isscene = -1;
 
 	// ŠÖ”éŒ¾
 

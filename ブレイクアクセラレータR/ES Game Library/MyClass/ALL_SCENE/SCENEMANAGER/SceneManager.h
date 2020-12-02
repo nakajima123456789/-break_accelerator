@@ -13,7 +13,7 @@ public:
 	};
 
 	static void ChangeScene(SCENE scene);
-	static void Update();
+	static int Update();
 	static void Draw3D();
 	static void Draw2D();
 	static void DrawAlpha3D();

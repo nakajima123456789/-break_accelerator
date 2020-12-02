@@ -12,5 +12,6 @@ public:
 	static bool _game_over_flag;
 
 	static bool _game_clear_flag;
+	
 };
 

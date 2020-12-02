@@ -52,13 +52,13 @@ CModel::CModel(ID3DXMesh* pMesh, const DWORD inMeshes)
 CModel::~CModel()
 {
 	// エフェクトテクスチャ解放
-	std::list<EFFECTMAP>::iterator   it;
-	for(it = m_EffectMap.begin(); it != m_EffectMap.end(); it++)
-		SafeRelease((*it).pTexture);
+	//std::list<EFFECTMAP>::iterator   it;
+	//for(it = m_EffectMap.begin(); it != m_EffectMap.end(); it++)
+	//	SafeRelease((*it).pTexture);
 
 	// テクスチャ解放
-	for(unsigned int i = 0; i < m_Texture.size(); i++)
-		SafeRelease(m_Texture[i]);
+	//for(unsigned int i = 0; i < m_Texture.size(); i++)
+	//	SafeRelease(m_Texture[i]);
 
 	m_pD3DDevice->Release();
 
@@ -111,7 +111,7 @@ void CModel::Draw()
 	// 描画
 	for(DWORD i = 0; i < m_Meshes; i++) {
 		m_pD3DDevice->SetMaterial(  &m_Material[i]);	// マテリアル設定
-		m_pD3DDevice->SetTexture (0, m_Texture [i]);	// テクスチャ設定
+		m_pD3DDevice->SetTexture (0, m_Texture [i].Get());	// テクスチャ設定
 		m_pBaseMesh->DrawSubset(i);
 	}
 }
@@ -137,7 +137,7 @@ void CModel::Draw(IEffect*& pEffect)
 
 		// メッシュ描画
 		for(DWORD i = 0; i < m_Meshes; i++) {
-			pEffect->SetMaterial(m_Material[i], m_Texture[i]);
+			pEffect->SetMaterial(m_Material[i], m_Texture[i].Get());
 			m_pBaseMesh->DrawSubset(i);
 		}
 
@@ -164,7 +164,7 @@ void CModel::DrawPass(IEffect*& pEffect, const UINT inPass)
 	pEffect->BeginPass(inPass);
 
 	for(DWORD i = 0; i < m_Meshes; i++) {
-		pEffect->SetMaterial(m_Material[i], m_Texture[i]);
+		pEffect->SetMaterial(m_Material[i], m_Texture[i].Get());
 		m_pBaseMesh->DrawSubset(i);
 	}
 
@@ -241,7 +241,7 @@ void CModel::DrawAlpha(const float inAlpha, const DWORD inDraw)
 
 		for(DWORD i = 0; i < m_Meshes; i++) {
 			m_pD3DDevice->SetMaterial(  &m_Material[i]);
-			m_pD3DDevice->SetTexture (0, m_Texture [i]);
+			m_pD3DDevice->SetTexture (0, m_Texture [i].Get());
 			m_pBaseMesh ->DrawSubset (i);
 		}
 
@@ -277,7 +277,7 @@ void CModel::DrawAlpha(const float inAlpha, const DWORD inDraw)
 
 		for(DWORD i = 0; i < m_Meshes; i++) {
 			m_pD3DDevice->SetMaterial(  &m_Material[i]);
-			m_pD3DDevice->SetTexture (0, m_Texture [i]);
+			m_pD3DDevice->SetTexture (0, m_Texture [i].Get());
 			m_pBaseMesh ->DrawSubset (i);
 		}
 
@@ -313,7 +313,7 @@ void CModel::DrawAlpha(const float inAlpha, const DWORD inDraw)
 
 		for(DWORD i = 0; i < m_Meshes; i++) {
 			m_pD3DDevice->SetMaterial(  &m_Material[i]);
-			m_pD3DDevice->SetTexture (0, m_Texture [i]);
+			m_pD3DDevice->SetTexture (0, m_Texture [i].Get());
 			m_pBaseMesh ->DrawSubset (i);
 		}
 
@@ -399,7 +399,7 @@ void CModel::SetMaterial(const D3DMATERIAL9& inMaterial)
 //------------------------------------------------------------------------------
 void CModel::SetTexture(LPCTSTR inFileName, const DWORD inMeshIdx)
 {
-	SafeRelease(m_Texture[inMeshIdx]);
+//	SafeRelease(m_Texture[inMeshIdx]);
 
 	// テクスチャ生成
 	IDirect3DTexture9*   pTexture;
@@ -416,7 +416,7 @@ void CModel::SetTexture(LPCTSTR inFileName, const DWORD inMeshIdx)
 //------------------------------------------------------------------------------
 void CModel::SetCubeTexture(LPCTSTR inFileName, const DWORD inMeshIdx)
 {
-	SafeRelease(m_Texture[inMeshIdx]);
+//	SafeRelease(m_Texture[inMeshIdx]);
 
 	// テクスチャ生成
 	IDirect3DCubeTexture9*   pCubeTexture;
@@ -433,11 +433,11 @@ void CModel::SetCubeTexture(LPCTSTR inFileName, const DWORD inMeshIdx)
 //------------------------------------------------------------------------------
 void CModel::SetTexture(IDirect3DBaseTexture9* pTexture, const DWORD inMeshIdx)
 {
-	SafeRelease(m_Texture[inMeshIdx]);
+//	SafeRelease(m_Texture[inMeshIdx]);
 
 	if(pTexture != NULL) {
 		m_Texture[inMeshIdx] = pTexture;
-		m_Texture[inMeshIdx]->AddRef();
+//		m_Texture[inMeshIdx]->AddRef();
 	}
 }
 

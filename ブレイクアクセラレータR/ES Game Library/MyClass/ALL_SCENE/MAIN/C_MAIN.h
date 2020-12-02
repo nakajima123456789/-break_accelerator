@@ -10,7 +10,7 @@ public:
 	virtual ~C_MAIN();
 
 	virtual void Initialize() override;
-	virtual void Update()     override;
+	virtual int Update()     override;
 	virtual void Draw3D()     override;
 	virtual void Draw2D()     override;
 	virtual void DrawAlpha3D()override;
