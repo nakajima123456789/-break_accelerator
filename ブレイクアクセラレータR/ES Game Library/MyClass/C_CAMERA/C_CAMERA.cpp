@@ -26,7 +26,7 @@ void CCamera_::Update()
 
 	camera->SetFieldOfViewY(field_of_view_pov);
 
-	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.25f, - 0.35f), monostate.player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
+	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.5f, - 0.5f), monostate.player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
 //	camera->SetLookAt(monostate.player_pos + Vector3(0.0f, 0.69f, -0.65f), monostate.player_pos + Vector3(0.0f, -0.56f,4.0f), Vector3_Up);
 
 	EffekseerMgr.Update();
