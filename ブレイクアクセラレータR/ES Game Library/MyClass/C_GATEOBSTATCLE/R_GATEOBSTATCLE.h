@@ -1,13 +1,10 @@
 #pragma once
 #include "../OBSTACLEBASE/ObstacleBase.h"
-#include "../INFORMATION/INFORMATION.h"
-
-
 
 class R_GATEOBSTATCLE : public ObstacleBase
 {
 public:
-	R_GATEOBSTATCLE(std::vector<Vector3> _obstacle_pos);
+	R_GATEOBSTATCLE() {};
 	virtual ~R_GATEOBSTATCLE() {};
 
 	virtual void Init()        override;

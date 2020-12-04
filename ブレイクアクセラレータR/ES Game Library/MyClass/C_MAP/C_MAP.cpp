@@ -1,192 +1,93 @@
 #include "C_MAP.h"
 
-#include "../INFORMATION/INFORMATION.h"
 void C_MAP::Init()
 {
-	MediaManager.Attach(GraphicsDevice);
-    bg = MediaManager.CreateMediaFromFile(_T("SPRITE//ƒRƒ“ƒ| 1a.wmv"));
-
-	bgm = SoundDevice.CreateMusicFromFile(_T("BGM_SE//bgm.wav"));
-
-	Material mtrl;
-
-	mtrl.Diffuse = Color(0.0f, 0.0f, 0.0f);
-	mtrl.Ambient = Color(0.0f, 0.0f, 0.0f);
-	mtrl.Specular = Color(0.0f, 0.0f, 0.0f);
-	mtrl.Emissive = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Power = 0.0f;
-
-	auto&& AddModel = [=](LPCTSTR _filename) { model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
-	model[model.size() - 1]->SetScale(transform.scale);
-	model[model.size() - 1]->SetMaterial(mtrl);	};
-
-	AddModel(_T("model3D//‰ü’ù”Å_//road_7.X"));
-	AddModel(_T("model3D//Œõ//test_set.X"));
-	AddModel(_T("model3D//Œõ//test_set.X"));
-	AddModel(_T("model3D//Œõ//test_set.X"));
-	AddModel(_T("model3D//’Œ//test3.X"));
-	AddModel(_T("model3D//’Œ//hasira.X"));
-
-	model_position.resize(model.size());
-
-	ground_model_scene[GROUND] = 17;
-	ground_model_scene[LIGHT] = 55;
-	ground_model_scene[LIGHT2] = 55;
-	ground_model_scene[LIGHT3] = 55;
-	ground_model_scene[LEFT_POLE] = 23;
-	ground_model_scene[RIGHT_POLE] = 23;
-
-	const unsigned int model_size = 20;
-
-	for (int i = 0; i < model_position.size(); ++i)
-		model_position[i].resize(model_size);
-
-	CreateMapPrefarence();
-	bgm->Play();
+	
+	mapobject[0].SetScenePosition(0);
+	mapobject[1].SetScenePosition((17 * 3));
 };
 
 void C_MAP:: Update()
 {
 
-	auto&& AddModelProfarence = [this](Vector3 _pos, int y)
-	{
-		Vector3 pos = _pos;
-		model_position[y].erase(model_position[y].begin());
-		model_position[y].push_back(pos);
-	};
 
-	for (int y = 0; y < model_position.size(); ++y) {
 
-		if (model_position[y][0].z + 17 <= monostate.player_pos.z)
-		{
-			switch (y)
-			{
-			case LIGHT:
-				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT])), y);
-				break;
-			case LIGHT2:
-				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT2])), y);
-				break;
-			case LIGHT3:
-				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT3])), y);
-				break;
-			case RIGHT_POLE:
-				AddModelProfarence(Vector3(2.5f, -2.0f, (model_position[y].back().z + ground_model_scene[RIGHT_POLE])), y);
-				break;
-			case LEFT_POLE:
-				AddModelProfarence(Vector3(-5.3f, -2.0f, (model_position[y].back().z + ground_model_scene[LEFT_POLE])), y);
-				break;
-			default:
-				AddModelProfarence(Vector3(0.0f, -0.25f, (model_position[y].back().z + ground_model_scene[GROUND])), y);
-				break;
-			}
-
-		}
-	}
-
-		if (bg->IsComplete()) {
-			bg->Replay();
-		}
-		else { bg->Play(); }
-
-	bg->Play();
-	if (bg->IsComplete()) {
-		bg->Replay();
-	}
 };
 
 void C_MAP::Draw3D()
 {
 
-	for (int y = 0; y < model_position.size(); ++y){
-		for (int x = 0; x < model_position[y].size(); ++x){
-
-			switch (y)
-			{
-
-			case LIGHT:
-			break;
-			case LIGHT2:
-				break;
-			case LIGHT3:
-				break;
-			case RIGHT_POLE:
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->SetRotation(0.0f, 30.0f, 0.0f);
-				//model[y]->Draw();
-				break;
-			case LEFT_POLE:
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->SetRotation(0.0f, 30.0f, 0.0f);
-				//model[y]->Draw();
-				break;
-			default:
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->Draw();
-				break;
-			}
-		}
-	}
-
+	mapobject[0].Draw();
+	mapobject[1].Draw();
 };
 
 void C_MAP::DrawAlpha3D()
 {
-	for (int y = 0; y < model_position.size(); ++y) {
-		for (int x = 0; x < model_position[y].size(); ++x) {
-			switch (y) {
-			case LIGHT:
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->DrawAlpha(1.f);
-				break;
-			case LIGHT2:
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->SetScale(0.8f, 0.8f, 1.0f);
-				model[y]->DrawAlpha(1.f);
-				break;
-			case LIGHT3:
-				model[y]->SetPosition(model_position[y][x]);
-				model[y]->SetScale(0.9f, 0.9f, 1.0f);
-				model[y]->DrawAlpha(1.f);
-				break;
-			}
-		}
-	}
+	
 	return;
 };
 
 void C_MAP::Draw2D() 
 {
-	SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	
 }
 
-void C_MAP::CreateMapPrefarence()
+MAPOBJECTS::MAPOBJECTS()
 {
-	for (int y = 0; y < model_position.size(); y++)
+	Color    color = Color(1.f, 1.f, 1.f);
+	Material mtrl;
+
+	mtrl.Diffuse  = color;
+	mtrl.Ambient  = color;
+	mtrl.Specular = color;
+	mtrl.Emissive = color;
+	mtrl.Power = 1.0f;
+
+	models.push_back(GraphicsDevice.CreateModelFromFile(_T("‰ü’ù//kari.X")));
+	models.push_back(GraphicsDevice.CreateModelFromFile(_T("building_set_WB4.fbm//WB4.X")));
+
+	model_graund.push_back(GraphicsDevice.CreateModelFromFile(_T("‰ü’ù//road_8.X")));
+	model_graund.push_back(GraphicsDevice.CreateModelFromFile(_T("‰ü’ù//road_8.X")));
+	model_graund.push_back(GraphicsDevice.CreateModelFromFile(_T("‰ü’ù//road_8.X")));
+
+	for (int i = 0; i < (int)models.size(); i++) { models[i]->SetMaterial(mtrl); };
+
+	for (int i = 0; i < (int)model_graund.size(); i++) { model_graund[i]->SetMaterial(mtrl); };
+
+	_iplayer_data.reset(new IPlayerData);
+}
+
+void MAPOBJECTS::Draw()
+{
+
+	Vector3 player_position = _iplayer_data->GetPlayerPosition("player");
+
+	if (player_position.z >= scene_position + (17 * 3))
 	{
-		for (int x = 0; x < model_position[y].size(); x++)
+		scene_position += (17 * 3) * 2;
+	}
+
+	for (int i = 0; i < (int)model_graund.size(); i++)
+	{
+		model_graund[i]->SetPosition(Vector3(0.0f, -0.3f, scene_position + (i * 17)));
+		model_graund[i]->Draw();
+	}
+
+	for (int i = 0; i < (int)models.size(); i++)
+	{
+		if (i == _PILLAR)
 		{
-			switch (y)
+			for (int g = 0; g < (int)models.size(); g++)
 			{
-			case LIGHT:
-				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z ) + (x * ground_model_scene[LIGHT]));
-				break;
-			case LIGHT2:
-				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT]));
-				break;
-			case LIGHT3:
-				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT]));
-				break;
-			case RIGHT_POLE:
-				model_position[y][x] = Vector3(2.5f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[RIGHT_POLE]));
-				break;
-			case LEFT_POLE:
-				model_position[y][x] = Vector3(-5.3f, -2.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LEFT_POLE]));
-				break;
-			default:
-				model_position[y][x] = Vector3(0.0f, -0.25f, (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
-				break;
+				models[_PILLAR]->SetPosition(Vector3(0.0f, -0.3f, scene_position  + (-10 + (g * 19))));
+				models[_PILLAR]->Draw();
 			}
 		}
+		if (i == _BILL)
+		{
+			models[_BILL]->SetScale(0.8);
+			models[_BILL]->SetPosition(Vector3(0.0f, -5.0f, scene_position + 25.0f));
+			models[_BILL]->Draw();
+		}
 	}
-};
+}

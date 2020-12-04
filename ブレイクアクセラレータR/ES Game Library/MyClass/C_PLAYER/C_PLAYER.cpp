@@ -14,45 +14,21 @@ void CPlayer::Init()
 	player_state_processor.player_manager = this;
 	player_state_processor.ChangeState(new CPlayer::IDOL(&player_state_processor));
 
-	IsHitObjectsInit();
+	player_model.SetModel((_T("jiki_car//jiki_car3_a.X")));
 
+	IPlayerParametor::Instance().CreateParametor("player");
 
-	c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
+	_hitbox.reset(new HitBox("player"));
+	_hitbox->SetHitBoxScale(0.25);
 
-	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Ž©‹@//jiki_new1k.X"));
-    player_model->SetMaterial(SetMaterial(Color(255.0f, 255.0f, 255.0f)));
-
+	_iplayer_data.reset(new IPlayerData);
 }
 
-Material CPlayer::SetMaterial(Color _color)
-{
-	Material mtrl;
-
-	mtrl.Diffuse  = Color(0.0f, 0.0f, 0.0f);
-	mtrl.Ambient  = Color(0.0f, 0.0f, 0.0f);
-	mtrl.Specular = Color(0.0f, 0.0f, 0.0f);
-	mtrl.Emissive = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Power = 0.0f;
-
-	return mtrl;
-}
-
-int  CPlayer::IsHitObjectsInit()
-{
-	c_hitbox.reset(new HitBox);
-	c_hitbox->Init();
-	c_hitbox->Settags("player");
-
-	c_hitbox->SetHitBoxScale(0.0005f);
-
-	return 0;
-}
 
 void CPlayer::IsHitObjectsDraw()
 {
-	c_hitbox->main_hitbox = c_hitbox->Get_Tag_Model();
-	c_hitbox->SetHitBoxPosition(this->transform.position);
-	c_hitbox->Draw3D();
+	_hitbox->SetHitBoxPosition(this->transform.position);
+	_hitbox->Draw3D();
 }
 
 CPlayer::~CPlayer()
@@ -64,25 +40,25 @@ void CPlayer::Update()
 {
 	transform.position.z += Input.GetPadInput(5) ? 0.12f : 0.01f;//ˆÚ“®‚Ì‘¬‚³
 	
-	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.15f;//ˆÚ“®‚Ì‘¬‚³
+	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.4f : 0.3f;//ˆÚ“®‚Ì‘¬‚³
 
 	this->player_state_processor.Update();
 }
 
 void CPlayer::Draw3D()
 {
-	float _movement_x = 1.3f;
-	this->transform.position.x = clamp(transform.position.x, -_movement_x, _movement_x);
-	player_model->SetPosition(this->transform.position);
-	monostate.player_pos = this->transform.position;
+	this->transform.position.x = clamp(transform.position.x, -1.3f, 1.3f);
+	player_model.SetPosition(this->transform.position);
+
+	_iplayer_data->SetPlayerPosition("player", this->transform.position);
 
 	IsHitObjectsDraw();
 
 	this->transform.rotation.z = rotation;
 
-	player_model->SetRotation(this->transform.rotation);
-	player_model->SetScale(this->transform.scale);
-	player_model->Draw();
+	player_model.SetRotation(this->transform.rotation);
+	player_model.SetScale(this->transform.scale);
+	player_model.Draw();
 }
 
 
@@ -117,13 +93,9 @@ void CPlayer::RUNPAD::Update()
 		return;
 	};
 
-	if (Input.AxisStateX() > 0) {
-		AxisStateMove("RIGHT");
-	}
+	if (Input.AxisStateX() > 0) {AxisStateMove("RIGHT");}
 
-	if (Input.AxisStateX() < 0) {
-		AxisStateMove("LEFT");
-	}
+	if (Input.AxisStateX() < 0) {AxisStateMove("LEFT");}
 
 	if (Input.AxisStateX() == 0)
 	{
@@ -159,7 +131,7 @@ void CPlayer::RUNKEY::Update()
 	}
 	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
 
-	_owner->player_manager->transform.position.x += Input.GetArrowkeyVector().x * 0.008f + _owner->player_manager->speed;
+	_owner->player_manager->transform.position.x += _owner->player_manager->speed;
 
 
 	if (Input.GetArrowkeyVector().x == 0)
@@ -172,19 +144,6 @@ void CPlayer::RUNKEY::Update()
 
 void CPlayer::DAMAGE::Update()
 {
+
 	return;
 }
-
-double CPlayer::clamp(double x, double low, double high)
-{
-	ASSERT(low <= high && "Å¬’l <= Å‘å’l");
-	return min(max(x, low), high);
-}
-
-bool CPlayer::FrameTimeObsever(int _index)
-{
-	_time++;
-	if (_time % _index == 0) { return true; }
-	return false;
-}
-

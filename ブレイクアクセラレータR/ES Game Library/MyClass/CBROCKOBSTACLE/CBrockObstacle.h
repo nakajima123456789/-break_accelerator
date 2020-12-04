@@ -4,7 +4,7 @@
 class CBrockObstacle : public ObstacleBase
 {
 public:
-	CBrockObstacle(std::vector<Vector3> _obstacle_pos);
+	CBrockObstacle() {};
 	virtual ~CBrockObstacle() {};
 
 	virtual void Init()        override;
@@ -14,10 +14,6 @@ public:
 	virtual void DrawAlpha3D() override;
 
 private:
-
-	EFFECT shader;
-
-	Vector2 moveUv = Vector2(0.0f,0.0f);
 
 };
 

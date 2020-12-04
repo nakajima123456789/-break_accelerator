@@ -1,10 +1,10 @@
 #pragma once
 #include "../OBSTACLEBASE/ObstacleBase.h"
-#include "../INFORMATION/INFORMATION.h"
+
 class CGateObstacle : public ObstacleBase
 {
 public:
-	CGateObstacle(std::vector<Vector3> _obstacle_pos);
+	CGateObstacle() {};
 	virtual ~CGateObstacle() {};
 
 	virtual void Init()        override;
@@ -13,7 +13,6 @@ public:
 	
 private:
 
-	MONOSTATE monostate;
 	float x = 0;
 };
 

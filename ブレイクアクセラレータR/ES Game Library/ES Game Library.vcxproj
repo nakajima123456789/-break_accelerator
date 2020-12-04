@@ -112,6 +112,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.cpp" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -174,6 +175,9 @@
     <ClCompile Include="MyClass\ALL_SCENE\TITLE\C_TITLE.cpp" />
     <ClCompile Include="MyClass\CBROCKOBSTACLE\CBrockObstacle.cpp" />
     <ClCompile Include="MyClass\CGATEOBSTACLE\CGateObstacle.cpp" />
+    <ClCompile Include="MyClass\CMODELDATA\ModelData.cpp" />
+    <ClCompile Include="MyClass\CPLAYERDATA\CPlayerData.cpp" />
+    <ClCompile Include="MyClass\CSHAREDMETHOD\CSharedMethod.cpp" />
     <ClCompile Include="MyClass\C_CAMERA\C_CAMERA.cpp" />
     <ClCompile Include="MyClass\C_DIS\C_DIS.cpp" />
     <ClCompile Include="MyClass\C_EFFEKSEER\CEffekseer_.cpp" />
@@ -188,12 +192,16 @@
     <ClCompile Include="MyClass\C_OBSTACLE\C_Obstacle.cpp" />
     <ClCompile Include="MyClass\C_PLAYER\C_PLAYER.cpp" />
     <ClCompile Include="MyClass\C_SE\C_SE.cpp" />
+    <ClCompile Include="MyClass\C_SHADER\C_SHADER.cpp" />
+    <ClCompile Include="MyClass\C_SPRITE\C_Sprite.cpp" />
     <ClCompile Include="MyClass\C_UI\CUI.cpp" />
     <ClCompile Include="MyClass\INFORMATION\INFORMATION.cpp" />
+    <ClCompile Include="MyClass\MapPlacementData\MapPlacementData.cpp" />
     <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp" />
     <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp" />
     <ClCompile Include="MyClass\OBSTACLEBASE\ObstacleBase.cpp" />
     <ClCompile Include="MyClass\ObstacleFactory\ObstacleFactory.cpp" />
+    <ClCompile Include="MyClass\UIDATABASE\UiDataBase.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -233,6 +241,7 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.h" />
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp" />
     <ClInclude Include="Extension\DirectX11\DXGraphics11.hpp" />
     <ClInclude Include="Extension\DirectX11\Model11.hpp" />
@@ -256,6 +265,9 @@
     <ClInclude Include="MyClass\ALL_SCENE\TITLE\C_TITLE.h" />
     <ClInclude Include="MyClass\CBROCKOBSTACLE\CBrockObstacle.h" />
     <ClInclude Include="MyClass\CGATEOBSTACLE\CGateObstacle.h" />
+    <ClInclude Include="MyClass\CMODELDATA\ModelData.h" />
+    <ClInclude Include="MyClass\CPLAYERDATA\CPlayerData.h" />
+    <ClInclude Include="MyClass\CSHAREDMETHOD\CSharedMethod.h" />
     <ClInclude Include="MyClass\C_CAMERA\C_CAMERA.h" />
     <ClInclude Include="MyClass\C_DIS\C_DIS.h" />
     <ClInclude Include="MyClass\C_EFFEKSEER\CEffekseer_.h" />
@@ -270,13 +282,17 @@
     <ClInclude Include="MyClass\C_OBSTACLE\C_Obstacle.h" />
     <ClInclude Include="MyClass\C_PLAYER\C_PLAYER.h" />
     <ClInclude Include="MyClass\C_SE\C_SE.h" />
+    <ClInclude Include="MyClass\C_SHADER\C_SHADER.h" />
+    <ClInclude Include="MyClass\C_SPRITE\C_Sprite.h" />
     <ClInclude Include="MyClass\C_STATE\C_STATE.h" />
     <ClInclude Include="MyClass\C_UI\CUI.h" />
     <ClInclude Include="MyClass\INFORMATION\INFORMATION.h" />
+    <ClInclude Include="MyClass\MapPlacementData\MapPlacementData.h" />
     <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h" />
     <ClInclude Include="MyClass\OBSEVER\OBSEVER.h" />
     <ClInclude Include="MyClass\OBSTACLEBASE\ObstacleBase.h" />
     <ClInclude Include="MyClass\ObstacleFactory\ObstacleFactory.h" />
+    <ClInclude Include="MyClass\UIDATABASE\UiDataBase.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ESGLib.h" />
     <ClInclude Include="DirectX\Audio\DXAudio8.hpp" />

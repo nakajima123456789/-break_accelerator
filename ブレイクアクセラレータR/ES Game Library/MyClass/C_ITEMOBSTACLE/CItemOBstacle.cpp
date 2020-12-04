@@ -1,16 +1,13 @@
 #include "CItemOBstacle.h"
 
-CItemObstacle::CItemObstacle(std::vector<Vector3> _obstacle_pos)
-{
-	obstacle_pos = _obstacle_pos;
-}
 
 void CItemObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//ITEM//object_Orange.X"));
+	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("‰ü’ù//program.X"));
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
+	this->obstacle_model->SetScale(0.5f);
 
-	IsHitObjectsInit("ObstacleItemHitBox");
+	IsHitObjectsInit("Item",0.4f);
 
 }
 
@@ -21,33 +18,25 @@ void CItemObstacle::Update()
 
 void CItemObstacle::Draw3D()
 {
-	auto&& obstacle_it = this->obstacle_pos.begin();
-	while (obstacle_it != this->obstacle_pos.end()) {
-
+	auto&& obstacle_it =  IMapParametor::Instance()._map_params['I']._position.begin();
+	while (obstacle_it != IMapParametor::Instance()._map_params['I']._position.end())
+	{
 		this->transform.position = *obstacle_it;
 
 		if (DistanceTrigger(90.0f))
 		{
-			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
-			this->obstacle_model->SetRotation(this->transform.rotation);
-			this->obstacle_model->SetScale(this->transform.scale);
+			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.25f, 0.0f));
 			this->obstacle_model->Draw();
 		}
-
 		if (RemoveModelDistance(-20))
 		{
-			obstacle_it = this->obstacle_pos.erase(obstacle_it);
+			obstacle_it = IMapParametor::Instance()._map_params['I']._position.erase(obstacle_it);
 			continue;
 		}
-
-		if (CollsionTrigger())
+		if (DistanceTrigger(5.0f))
 		{
-			monostate.move_flag = true;
-			obstacle_it = this->obstacle_pos.erase(obstacle_it);
-			obsever.IsCollisionGage();
-			continue;
+			IsHitObjectsDraw(this->transform.position + Vector3(0.0f, 0.5f, 0.0f));
 		}
-
 		obstacle_it++;
 	}
 }
