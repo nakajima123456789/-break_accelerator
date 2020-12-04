@@ -16,10 +16,11 @@ public:
 
 private:
 
-	enum 
+	enum
 	{
 		_PILLAR,
 		_BILL,
+		_GRAUND,
 	};
 
 	double scene_position = 0.0f;

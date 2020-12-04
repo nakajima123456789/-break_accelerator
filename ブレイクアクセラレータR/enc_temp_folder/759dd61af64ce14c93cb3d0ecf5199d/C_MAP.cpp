@@ -66,11 +66,11 @@ void MAPOBJECTS::Draw()
 		models[_PILLAR]->SetPosition(Vector3(0.0f, -0.3f, scene_position  + (-10 + (i * 19))));
 		models[_PILLAR]->Draw();
 
-		models[_GRAUND]->SetPosition(Vector3(0.0f, -0.3f, scene_position  + (i * 17)));
+		models[_GRAUND]->SetPosition(Vector3(0.0f, -0.3f, scene_position + (i * 17)));
 		models[_GRAUND]->Draw();
 	
 		models[_BILL]->SetScale(0.8);
-		models[_BILL]->SetPosition(Vector3(0.0f, -5.0f,   scene_position  + 25.0f));
+		models[_BILL]->SetPosition(Vector3(0.0f, -5.0f, scene_position + 25.0f));
 		models[_BILL]->Draw();
 	}
 }
