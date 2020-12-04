@@ -9,7 +9,7 @@ public:
 	//ラップアラウンド
 	int      wrap(int x, int low, int high);
 	//クランプ
-	int      clamp(int x, int low, int high);
+	double      clamp(double x, double low, double high);
 
 	//フレーム経過時間を伝える
 	bool     FrameTimeObsever(int _index);

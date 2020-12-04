@@ -133,13 +133,11 @@ void CPlayer::RUNKEY::Update()
 
 	_owner->player_manager->transform.position.x += _owner->player_manager->speed;
 
-
 	if (Input.GetArrowkeyVector().x == 0)
 	{
 		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
 		return;
 	}
-
 }
 
 void CPlayer::DAMAGE::Update()

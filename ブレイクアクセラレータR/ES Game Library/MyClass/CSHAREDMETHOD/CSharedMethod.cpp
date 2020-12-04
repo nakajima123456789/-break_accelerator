@@ -7,7 +7,7 @@ int CSharedMethod::wrap(int x, int low, int high)
 	return (n >= 0) ? (n + low) : (n + high);
 }
 
-int CSharedMethod::clamp(int x, int low, int high)
+double CSharedMethod::clamp(double x, double low, double high)
 {
 	ASSERT(low <= high && "Å¬’l <= Å‘å’l");
 	return min(max(x, low), high);
