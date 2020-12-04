@@ -1,4 +1,7 @@
 #include "C_INPUT.h"
+#include"../C_PLAYER/C_PLAYER.h"
+#include "../C_OBJECT/Object.h"
+
 
 C_INPUT::C_INPUT()
 { 
@@ -24,8 +27,10 @@ Vector3 C_INPUT::GetArrowkeyVector()
 	else { 
 		if (GetKeyState().IsKeyDown(Keys_Down))  { result += Vector3_Backward; }
 	}
+	
 	return result;
 }
+
 /**
  * @fn
  * @return 戻り値の説明　パッドのステックの倒した時のXとYの成分ベクトルを返す
@@ -104,6 +109,8 @@ double C_INPUT::AxisStateX()
 	double axis_x = (double)GetGamePadState().X / (double)Axis_Max;
 	return axis_x != 0 ? axis_x : FALSE;
 }
+
+
 
 int C_INPUT::DirectionAxisStateX()
 {

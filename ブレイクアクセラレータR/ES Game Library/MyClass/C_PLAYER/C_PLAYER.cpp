@@ -1,7 +1,7 @@
 #include "C_PLAYER.h"
 #include "../C_INPUT/C_INPUT.h"
 #include "../INFORMATION/INFORMATION.h"
-
+#include "../C_GATEOBSTATCLE/R_GATEOBSTATCLE.h"
 CPlayer::CPlayer(Vector3  _pos)
 {
 	transform.position = (_pos + Vector3(0.f,0.3f,0.f));
@@ -63,10 +63,40 @@ CPlayer::~CPlayer()
 void CPlayer::Update()
 {
 
-	transform.position.z += Input.GetPadInput(5) ? 0.5f : 0.3f;//ˆÚ“®‚Ì‘¬‚³
+	transform.position.z += Input.GetPadInput(5) ? 0.5f : 0.03f;//ˆÚ“®‚Ì‘¬‚³
 
 
 	this->player_state_processor.Update();
+	Vector3 result = Vector3_Zero;
+	Vector3 ray_distance;
+	float dist = FLT_MAX;    // –³ŒÀ‘å
+
+	//if (Input.AxisStateX()) { 
+	//	ray_distance = Vector3_Right;
+	//	if (R_GATEOBSTATCLE::model != nullptr)
+	//		R_GATEOBSTATCLE::model->IntersectRay(player_model->GetPosition(), ray_distance, &dist);
+
+	//	if (dist >= 0.3f)
+	//	{
+	//		position += ray_distance;
+	//	}
+	//}
+
+	auto&& hitbox = c_hitbox->Get_Tag_HitBox("ZateHitbox");
+	MODEL model = hitbox->Get_Tag_Model();
+
+	if (Input.AxisStateX() < 0) { 
+		if (model->IntersectRay(player_model->GetPosition(), Vector3_Left, &dist))
+		{
+			  
+		};
+
+		if (dist >= 0.3f)
+		{
+			position.x += Input.GetArrowpadVector().x * 0.008;
+		}
+	}
+
 }
 
 void CPlayer::Draw3D()

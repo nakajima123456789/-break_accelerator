@@ -19,6 +19,7 @@ bool ObstacleBase::CollsionTrigger()
 	if (PlayerDistance() <= 10.0f)
 	{
 		IsHitObjectsDraw(this->transform.position + Vector3(0.0f,0.2f,0.0f));
+
 		return c_hitbox->IsHitBox(c_hitbox->Get_Tag_Model()) ? true : false;
 	}
 	return false;
@@ -41,7 +42,7 @@ void  ObstacleBase::IsHitObjectsInit(std::string _tags)
 	c_hitbox->Init();
 	c_hitbox->Settags(_tags);
 
-	c_hitbox->SetHitBoxScale(0.5f);
+	c_hitbox->SetHitBoxScale(Vector3(1,8,20));
 }
 
 //ヒットボックス描画

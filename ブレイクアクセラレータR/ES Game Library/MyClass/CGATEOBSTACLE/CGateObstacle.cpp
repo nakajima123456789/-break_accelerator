@@ -36,8 +36,9 @@ void CGateObstacle::Draw3D()
 
 			this->obstacle_model->SetPosition(this->transform.position);
 			this->obstacle_model->SetRotation(this->transform.rotation);
-			this->obstacle_model->SetScale(this->transform.scale);
+			this->obstacle_model->SetScale(this->transform.scale * Vector3(1,1,50));
 			this->obstacle_model->Draw();
+
 		}
 
 		if (RemoveModelDistance(-20))

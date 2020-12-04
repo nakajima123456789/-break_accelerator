@@ -14,6 +14,8 @@ public:
 	virtual void Update()      override;
 	virtual void Draw3D()      override;
 
+	static MODEL model;
 private:
+
 
 };

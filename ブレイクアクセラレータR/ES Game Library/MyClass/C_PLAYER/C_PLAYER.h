@@ -96,7 +96,7 @@ private:
 	std::unique_ptr <HitBox> c_hitbox;
 
 	MODEL player_model;
-
+	Vector3 position = Vector3_Zero;
 	float  speed = 0.0f;
 	double rotation = 0.0f; 
 

@@ -1,6 +1,9 @@
 #include "R_GATEOBSTATCLE.h"
 #include"../C_UI/CUI.h"
 #include "../INFORMATION/INFORMATION.h"
+
+MODEL R_GATEOBSTATCLE::model = nullptr;
+
 R_GATEOBSTATCLE::R_GATEOBSTATCLE(std::vector<Vector3> _obstacle_pos)
 {
 	obstacle_pos = _obstacle_pos;
@@ -15,6 +18,7 @@ void R_GATEOBSTATCLE::Init()
 
 void R_GATEOBSTATCLE::Update()
 {
+	model = obstacle_model;
 }
 
 void R_GATEOBSTATCLE::Draw3D()
@@ -36,6 +40,7 @@ void R_GATEOBSTATCLE::Draw3D()
 		
 
 			this->obstacle_model->SetPosition(this->transform.position);
+			IsHitObjectsDraw(this->transform.position);
 			this->obstacle_model->SetRotation(this->transform.rotation);
 			this->obstacle_model->SetScale(this->transform.scale);
 			this->obstacle_model->Draw();

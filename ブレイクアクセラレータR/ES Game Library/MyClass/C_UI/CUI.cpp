@@ -39,7 +39,7 @@ void CUI::Init()
 
 void CUI::Update()
 {
-	num += 1 * 0.05f ;
+	num += 1 * 0.105f ;
 
 	fw_S = 540 * 0.01 * num;
 
@@ -57,7 +57,7 @@ void CUI::OnCollisionDamage()
 
 void CUI::OnCollisionClear()
 {
-	num -= 1.0f * 2.0f;
+	num -= 1.0f * 12.0f;
 }
 
 void CUI::Draw2D()

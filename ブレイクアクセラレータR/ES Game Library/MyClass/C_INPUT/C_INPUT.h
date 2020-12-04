@@ -1,7 +1,8 @@
 #pragma once
 #include "../../ESGLib.h"
 #include "../C_INPUT/C_INPUT.h"
-
+#include "../C_PLAYER/C_PLAYER.h"
+#include "../C_OBJECT/Object.h"
 int const BUTTON_MAX = 31;
 
 class C_INPUT
@@ -54,6 +55,8 @@ public:
 private:
 	BYTE buttom_manager[BUTTON_MAX];
 	float angle = 0;
+	MODEL player_model;
+	Vector3 position = Vector3_Zero;
 };
 
 #define Input C_INPUT::GetInstance()
