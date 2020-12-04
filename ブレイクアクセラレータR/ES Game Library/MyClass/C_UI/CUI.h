@@ -2,8 +2,12 @@
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
 #include"../OBSEVER/OBSEVER.h"
+#include "../CSHAREDMETHOD/CSharedMethod.h"
+#include "../C_SPRITE/C_Sprite.h"
+#include "../C_UI/CUI.h"
+#include "../UIDATABASE/UiDataBase.h"
 
-class CUI : public Object, OBSERVERLISTENER
+class CUI : public Object, OBSERVERLISTENER, CSharedMethod
 {
 public:
 
@@ -20,29 +24,15 @@ public:
 	//オブザーバー関数
 	virtual void CUI::OnCollisionDamage()    override;
 	virtual void CUI::OnCollisionClear()     override;
-
+	virtual void CUI::OnCollisionGage()      override;
+	
 private:
+	OBSERVER      observer;
+	SpriteManager sprite_mng;
 
-	enum Sprite_Manager
-	{
-		FW,
-		FW2,
-		SPRITE_MAX,
-	};
-	
-	std::vector<SPRITE> sprite;
-	std::vector<std::vector<Vector3>> sprite_position;
+	int gage;
 
-	SPRITE FW_S;
-	float fw_S;
-
-	SPRITE _hit_ef;
-
-	bool _damage_collsion_flag = false;
-	float fiedout_alpha = 0.0f;
-	
-	double clamp(double x, double low, double high);
-	
-	OBSERVER observer;
+	//プレイヤーのデータベース
+	std::unique_ptr<UiData>   _ui_data;
 };
 

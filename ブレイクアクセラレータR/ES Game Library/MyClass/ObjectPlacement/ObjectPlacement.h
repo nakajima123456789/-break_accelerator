@@ -1,43 +1,13 @@
 #pragma once
 #include "../../ESGLib.h"
 #include "../C_OBJECT/Object.h"
-
-enum OBJECT_TYPE
-{
-	OBJECT_WALL,
-	OBJECT_L,
-	OBJECT_R,
-	OBJECT_BROCK,
-	OBJECT_ITEM,
-	OBJECT_GATE,
-	OBJECT_TYPE_MAX,
-};
-
-class CharactorManager
-{
-public:
-
-	CharactorManager();
-   ~CharactorManager() { };
-
-    void CharactorTagPreference(char _tag, ...);
-
-	void CharactorManager::PosObjectPreference(char _map_tag, Vector3 _position);
-
-	std::vector<std::vector<Vector3>> GetCharacterPosition() const { return this->charactor_position_manager; };
-private:
-
-	std::vector<char> charactor_tag_manager;
-	std::vector<std::vector<Vector3>> charactor_position_manager;
-
-protected:
-};
+#include "../MapPlacementData/MapPlacementData.h"
 
 class PlacementManager : public Object
 {
 public:
 
-	PlacementManager() {};
+	PlacementManager();
    ~PlacementManager() {};
 
 	virtual void Init()        override;
@@ -47,14 +17,14 @@ public:
 	virtual void DrawAlpha3D() override { return; };
 	virtual void Draw2D()      override { return; };
 
-	std::vector<std::vector<Vector3>> GetCharacterPos() const { return character_mng->GetCharacterPosition(); };
 private:
 
 	std::vector<cstring>  mapdata;
-	std::shared_ptr<CharactorManager>   character_mng;
-
 
 	void MapdataTagsPos();
 
+	//プレイヤーのデータベース
+	std::unique_ptr<IMapData>   _imap_data;
 protected:
+	
 };

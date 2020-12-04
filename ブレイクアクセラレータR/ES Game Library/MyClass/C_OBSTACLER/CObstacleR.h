@@ -4,12 +4,12 @@
 class CObstacleR : public ObstacleBase
 {
 public:
-	CObstacleR(std::vector<Vector3> _obstacle_pos);
+	CObstacleR() {};
 	virtual ~CObstacleR() {};
 
-	inline virtual void Init()        override;
-	inline virtual void Update()      override;
-	inline virtual void Draw3D()      override;
+	virtual void Init()        override;
+	virtual void Update()      override;
+	virtual void Draw3D()      override;
 
 private:
 

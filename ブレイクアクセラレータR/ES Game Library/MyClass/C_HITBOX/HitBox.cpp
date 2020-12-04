@@ -3,7 +3,10 @@
 //static
 std::list<HitBox*> HitBox::_HitBox_list;
 
-MODEL HitBox::main_hitbox = nullptr;
+HitBox::HitBox(std::string tag) {
+	Init();
+	_tag = tag;
+}
 
 //デストラクタ
 HitBox::~HitBox() {
@@ -11,41 +14,37 @@ HitBox::~HitBox() {
 }
 void HitBox::Init() {
 	//HitBox生成
-	SetHitBox(1.f, 1.f, 1.f);
+	SetHitBox();
 	//自分をリストに挿入
 	_HitBox_list.push_back(this);
 
 	//タグ設定
-	tag = "HitBox";
+	_tag = "HitBox";
 };
 
 void HitBox::Draw3D() {
 	_model->SetScale(scale);
 
-   //_model->Draw();
-
+    //_model->Draw();
 }
+
 void HitBox::DrawAlpha3D() {
 	//
 }
 
 void HitBox::Settags(string tags) {
-	tag = tags;
+	_tag = tags;
 
 }
 
 //ヒットボックス生成
-void HitBox::SetHitBox(float width, float height, float depth) {
-	//パラメータ設定
-	_width = width;
-	_height = height;
-	_depth = depth ;
+void HitBox::SetHitBox() {
 	//Model設定
 	SimpleShape   shape;
 	shape.Type = Shape_Box;
-	shape.Width = _width;
-	shape.Height = _height;
-	shape.Depth = _depth;
+	shape.Width = 1;
+	shape.Height = 1;
+	shape.Depth = 1;
 	_model = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	//Material設定
 	Material _mtrl;
@@ -100,7 +99,7 @@ bool HitBox::Tag_Sarch(string _tag)
 {
 	bool f = false;
 	for (auto&& h : _HitBox_list) {
-		if (h->tag == _tag) { f = true; };
+		if (h->_tag == _tag) { f = true; };
 	}
 	return f;
 }
@@ -127,7 +126,7 @@ HitBox* HitBox::TypeRayRange(std::string tag, Vector3 position, Vector3 angle, f
 
 	for (auto&& other : _HitBox_list) {
 		//タグが異なる場合処理をカット
-		if (other->tag != tag) continue;
+		if (other->_tag != tag) continue;
 		//自身とは判定を行わない
 		if (this == other->GetThisHitBox())  continue;
 		//距離を取得
@@ -157,7 +156,7 @@ HitBox* HitBox::Get_Tag_HitBox(std::string tag)
 	HitBox* hitbox = nullptr;
 	for (auto&& other_hitbox : _HitBox_list)
 	{
-		if (other_hitbox->tag != tag) continue;
+		if (other_hitbox->_tag != tag) continue;
 		//タグ以外を弾く
 		if (this == other_hitbox->GetThisHitBox()) continue;
 		//自分を弾く
@@ -178,7 +177,7 @@ bool HitBox::IsHitObjects(std::string tags) {
 	std::list<HitBox*> HitList = HitHitBoxlist();
 	for (auto&& other : HitList)
 	{
-		if (other->tag == tags) 
+		if (other->_tag == tags) 
 		{
 			result = true;
 		}
@@ -186,10 +185,3 @@ bool HitBox::IsHitObjects(std::string tags) {
 	return result;
 }
 
-bool HitBox::IsHitBox(MODEL model)
-{
-	OrientedBoundingBox model_obb1 = model->GetOBB();
-	OrientedBoundingBox model_obb2 = main_hitbox->GetOBB();
-
-	return model_obb1.Intersects(model_obb2);
-}

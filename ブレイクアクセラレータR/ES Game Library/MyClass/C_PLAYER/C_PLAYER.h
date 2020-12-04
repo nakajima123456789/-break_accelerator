@@ -4,13 +4,10 @@
 #include "../C_OBJECT/Object.h"
 #include "../c_Hitbox/HitBox.h"
 #include "../C_INPUT/C_INPUT.h"
-#include "../C_SE/C_SE.h"
-#include "../INFORMATION/INFORMATION.h"
 #include "../C_EFFEKSEER/CEffekseer_.h"
-
-
-#include <functional>
-
+#include "../CSHAREDMETHOD/CSharedMethod.h"
+#include "../CCHARACTER/Character.h"
+#include "../CPLAYERDATA/CPlayerData.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
@@ -20,7 +17,7 @@ public:
 	CPlayer* player_manager;
 };
 
-class CPlayer : public Object
+class CPlayer : public Object, CSharedMethod
 {
 public:
 	CPlayerStateProcessor player_state_processor;
@@ -51,13 +48,27 @@ private:
 		virtual void Update() override;
 	};
 
-	class RUN : public State
+	class RUNPAD : public State
 	{
 	private:
 		CPlayerStateProcessor* _owner;
 	public:
-		RUN(CPlayerStateProcessor* owner) : _owner(owner) {}
-		virtual ~RUN() {}
+		RUNPAD(CPlayerStateProcessor* owner) : _owner(owner) {}
+		virtual ~RUNPAD() {}
+
+		virtual int    CancelLv() { return INT_MAX; };
+		virtual int    ExitTime() { return INT_MAX; };
+
+		virtual void Update() override;
+	};
+
+	class RUNKEY : public State
+	{
+	private:
+		CPlayerStateProcessor* _owner;
+	public:
+		RUNKEY(CPlayerStateProcessor* owner) : _owner(owner) {}
+		virtual ~RUNKEY() {}
 
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return INT_MAX; };
@@ -83,30 +94,15 @@ private:
 
 private:
 	//関数宣言
-	Material SetMaterial(Color _color);
-	int      IsHitObjectsInit();
 	void	 IsHitObjectsDraw();
-
-	double CPlayer::clamp(double x, double low, double high);
-
-	bool   CPlayer::FrameTimeObsever(int _index);
 
     //変数宣言
 
-	std::unique_ptr <HitBox> c_hitbox;
-
-	MODEL player_model;
+	Model player_model;
 
 	float  speed = 0.0f;
 	double rotation = 0.0f; 
 
-	MONOSTATE monostate;
-
-	int _time = 0;
-
-	int effcseer_test;
-	EFFEKSEER effekseer;
-	int effcseer_id;
-
-
+	//プレイヤーのデータベース
+	std::unique_ptr<IPlayerData>   _iplayer_data;
 };

@@ -24,6 +24,8 @@ Vector3 C_INPUT::GetArrowkeyVector()
 	else { 
 		if (GetKeyState().IsKeyDown(Keys_Down))  { result += Vector3_Backward; }
 	}
+
+
 	return result;
 }
 /**

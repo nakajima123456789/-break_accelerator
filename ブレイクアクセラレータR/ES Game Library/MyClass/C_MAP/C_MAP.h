@@ -1,7 +1,37 @@
 #pragma once
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
-#include "../INFORMATION/INFORMATION.h"
+#include "../CPLAYERDATA/CPlayerData.h"
+
+class MAPOBJECTS
+{
+public:
+	MAPOBJECTS();
+	~MAPOBJECTS() {};
+
+	void Draw();
+
+	void SetScenePosition(double num) { scene_position = num; };
+
+
+private:
+
+	enum
+	{
+		_PILLAR,
+		_BILL,
+		_GRAUND,
+	};
+
+	double scene_position = 0.0f;
+
+	std::vector<MODEL> models;
+
+	std::vector<MODEL> model_graund;
+
+	//プレイヤーのデータベース
+	std::unique_ptr<IPlayerData>   _iplayer_data;
+};
 
 class C_MAP : public Object
 {
@@ -11,30 +41,12 @@ public:
 	virtual void Update()      override;
 	virtual void Draw3D()      override;
 
-	virtual void DrawAlpha3D() override { return; };
+	virtual void DrawAlpha3D() override;
 	virtual void Draw2D()      override;
 
-	static MODEL hoge_model;
 private:
 
-	enum MAP_MODEL
-	{
-		GROUND,
-		BILL,
-		RIGHT_POLE,
-		LEFT_POLE,
-		MAP_MODEL_SIZE,
-	};
-
-	std::vector<MODEL> model;
-	std::vector<std::vector<Vector3>> model_position;
-
-	inline void CreateMapPrefarence();
-
-	MEDIA bg;
-	MONOSTATE monostate;
-
-	int ground_model_scene[MAP_MODEL_SIZE];
+	MAPOBJECTS mapobject[3];
 
 protected:
 
