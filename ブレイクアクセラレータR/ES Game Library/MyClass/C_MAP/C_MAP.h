@@ -22,7 +22,6 @@ private:
 		GROUND,
 		LIGHT,
 		LIGHT2,
-		LIGHT3,
 		POLE,
 		BUILD,
 		MAP_MODEL_SIZE,

@@ -21,7 +21,7 @@ void C_MAP::Init()
 	model[model.size() - 1]->SetMaterial(mtrl);	};
 
 	AddModel(_T("model3D//‰ü’ù”Å//road_8.X"));
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 2; i++) {
 		AddModel(_T("model3D//Œõ//bg_Vr1_set.X"));
 
 	}
@@ -34,7 +34,6 @@ void C_MAP::Init()
 	ground_model_scene[GROUND] = 17;
 	ground_model_scene[LIGHT] = 25;
 	ground_model_scene[LIGHT2] = 25;
-	ground_model_scene[LIGHT3] = 25;
 	ground_model_scene[POLE] = 23;
 	ground_model_scene[BUILD] = 60;
 
@@ -67,9 +66,6 @@ void C_MAP:: Update()
 				break;
 			case LIGHT2:
 				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT2])), y);
-				break;
-			case LIGHT3:
-				AddModelProfarence(Vector3(-2.5f, -6.5f, (model_position[y].back().z + ground_model_scene[LIGHT3])), y);
 				break;
 			case POLE:
 				AddModelProfarence(Vector3(0.0f,0.0f, (model_position[y].back().z + ground_model_scene[POLE])), y);
@@ -108,9 +104,7 @@ void C_MAP::Draw3D()
 			case LIGHT:
 			break;
 			case LIGHT2:
-				break;
-			case LIGHT3:
-				break;
+			break;
 			case POLE:
 				model[y]->SetPosition(model_position[y][x]);
 				model[y]->Draw();
@@ -140,11 +134,6 @@ void C_MAP::DrawAlpha3D()
 					break;
 				case LIGHT2:
 					model[y]->SetPosition(model_position[y][x]);
-					model[y]->SetScale(0.8f, 0.8f, 1.0f);
-					model[y]->DrawAlpha(1.f);
-					break;
-				case LIGHT3:
-					model[y]->SetPosition(model_position[y][x]);
 					model[y]->SetScale(0.9f, 0.9f, 1.0f);
 					model[y]->DrawAlpha(1.f);
 					break;
@@ -173,14 +162,11 @@ void C_MAP::CreateMapPrefarence()
 			case LIGHT2:
 				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT2]));
 				break;
-			case LIGHT3:
-				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT3]));
-				break;
 			case POLE:
 				model_position[y][x] = Vector3(0.0f, 0.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[POLE]));
 				break;
 			case BUILD:
-				model_position[y][x] = Vector3(0.0f, -8.0f, (monostate.player_pos.z - 10) + (x * ground_model_scene[BUILD]));
+				model_position[y][x] = Vector3(0.0f, -8.0f, (monostate.player_pos.z - 20) + (x * ground_model_scene[BUILD]));
 				break;
 			default:
 				model_position[y][x] = Vector3(0.0f, -0.25f, (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
