@@ -22,10 +22,10 @@ void C_MAP::Init()
 
 	AddModel(_T("model3D//‰ü’ù”Å//road_8.X"));
 	for (int i = 0; i < 2; i++) {
-		AddModel(_T("model3D//Œõ//bg_Vr1_set.X"));
+		AddModel(_T("model3D//Œõ//bg_Vr2_purple.X"));
 	}
 	AddModel(_T("model3D//’Œ//kari.X"));
-	AddModel(_T("model3D//bill_side//pro_set.X"));
+	AddModel(_T("model3D//bill_side//building_set_pro_2.X"));
 
 
 	model_position.resize(model.size());

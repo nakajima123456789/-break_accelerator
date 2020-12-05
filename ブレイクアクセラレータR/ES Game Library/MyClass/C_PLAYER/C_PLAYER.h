@@ -119,7 +119,7 @@ private:
 
 	int _time = 0;
 
-	int effcseer_test;
+	int fire;
 	EFFEKSEER effekseer;
 	int effcseer_id;
 

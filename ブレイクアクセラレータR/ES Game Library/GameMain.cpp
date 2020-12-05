@@ -49,7 +49,7 @@ int GameMain::Update()
 void GameMain::Draw()
 {
 	// TODO: Add your drawing code here
-	GraphicsDevice.Clear(Color_Black);
+	GraphicsDevice.Clear(Color_CornflowerBlue);
 
 	GraphicsDevice.BeginScene();
 
