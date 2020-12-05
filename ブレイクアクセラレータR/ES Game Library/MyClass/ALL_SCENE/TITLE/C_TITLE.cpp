@@ -11,7 +11,7 @@ void C_TITLE::Initialize()
 
 void C_TITLE::Update()
 {
-	if (Input.GetPadInputDown(11)){SceneManager::ChangeScene(SceneManager::RESULT);}
+	if (Input.GetKeyInputDown(Keys_Enter)){SceneManager::ChangeScene(SceneManager::MAIN);}
 }
 
 void C_TITLE::Draw2D()

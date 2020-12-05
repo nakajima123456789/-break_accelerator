@@ -24,13 +24,12 @@ bool ObstacleBase::CollsionTrigger()
 			return true;
 		}
 	}
-
 	return false;
 }
 
 float ObstacleBase::PlayerDistance()
 {
-	return Vector3_Distance(this->transform.position, _iplayer_data->GetPlayerPosition("player"));;
+	return Vector3_Distance(this->transform.position, _iplayer_data->GetPlayerPosition("player"));
 }
 
 ObstacleBase::ObstacleBase()

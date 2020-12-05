@@ -14,6 +14,5 @@ public:
 	virtual void DrawAlpha3D() override;
 
 private:
-
 };
 

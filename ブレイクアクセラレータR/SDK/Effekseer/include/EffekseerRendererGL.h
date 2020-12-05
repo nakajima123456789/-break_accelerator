@@ -6,11 +6,6 @@
 // Include
 //----------------------------------------------------------------------------------
 #include <Effekseer.h>
-#include <vector>
-
-#ifdef _WIN32
-#include <Windows.h>
-#endif
 
 #if defined(__EFFEKSEER_RENDERER_GL_GLEW__)
 
@@ -62,7 +57,6 @@
 #if defined(__APPLE__)
 #include <OpenGL/gl3.h>
 #else
-#define GL_GLEXT_PROTOTYPES
 #include <GL/gl.h>
 #endif
 
@@ -132,27 +126,12 @@ public:
 //-----------------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------------
-
-/**
-	@brief	
-	\~english A status of UV when particles are rendered.
-	\~japanese パーティクルを描画する時のUVの状態
-*/
-enum class UVStyle
-{
-	Normal,
-	VerticalFlipped,
-};
-
 class Renderer
 	: ::Effekseer::IReference
 {
 protected:
-	Renderer();
-	virtual ~Renderer();
-
-	class Impl;
-	Impl* impl = nullptr;
+	Renderer() {}
+	virtual ~Renderer() {}
 
 public:
 	/**
@@ -193,7 +172,7 @@ public:
 	/**
 		@brief	ライトの方向を設定する。
 	*/
-	virtual void SetLightDirection( const ::Effekseer::Vector3D& direction ) = 0;
+	virtual void SetLightDirection( ::Effekseer::Vector3D& direction ) = 0;
 
 	/**
 		@brief	ライトの色を取得する。
@@ -203,7 +182,7 @@ public:
 	/**
 		@brief	ライトの色を設定する。
 	*/
-	virtual void SetLightColor( const ::Effekseer::Color& color ) = 0;
+	virtual void SetLightColor( ::Effekseer::Color& color ) = 0;
 
 	/**
 		@brief	ライトの環境光の色を取得する。
@@ -213,7 +192,7 @@ public:
 	/**
 		@brief	ライトの環境光の色を設定する。
 	*/
-	virtual void SetLightAmbientColor( const ::Effekseer::Color& color ) = 0;
+	virtual void SetLightAmbientColor( ::Effekseer::Color& color ) = 0;
 
 		/**
 		@brief	最大描画スプライト数を取得する。
@@ -244,24 +223,6 @@ public:
 		@brief	カメラプロジェクション行列を取得する。
 	*/
 	virtual ::Effekseer::Matrix44& GetCameraProjectionMatrix() = 0;
-
-	/**
-		@brief	Get a front direction of camera
-	*/
-	virtual ::Effekseer::Vector3D GetCameraFrontDirection() const = 0;
-
-	/**
-		@brief	Get a position of camera
-	*/
-	virtual ::Effekseer::Vector3D GetCameraPosition() const = 0;
-
-	/**
-		@brief	Set a front direction and position of camera manually
-		@note
-		These are set based on camera matrix automatically.
-		It is failed on some platform.
-	*/
-	virtual void SetCameraParameter(const ::Effekseer::Vector3D& front, const ::Effekseer::Vector3D& position) = 0;
 
 	/**
 		@brief	スプライトレンダラーを生成する。
@@ -312,72 +273,6 @@ public:
 	@brief	背景を歪ませるエフェクトが描画される前に呼ばれるコールバックを設定する。
 	*/
 	virtual void SetDistortingCallback(DistortingCallback* callback) = 0;
-
-	/**
-	@brief	
-	\~english Get draw call count
-	\~japanese ドローコールの回数を取得する
-	*/
-	virtual int32_t GetDrawCallCount() const = 0;
-
-	/**
-	@brief
-	\~english Get the number of vertex drawn
-	\~japanese 描画された頂点数をリセットする
-	*/
-	virtual int32_t GetDrawVertexCount() const = 0;
-
-	/**
-	@brief
-	\~english Reset draw call count
-	\~japanese ドローコールの回数をリセットする
-	*/
-	virtual void ResetDrawCallCount() = 0;
-
-	/**
-	@brief
-	\~english Reset the number of vertex drawn
-	\~japanese 描画された頂点数をリセットする
-	*/
-	virtual void ResetDrawVertexCount() = 0;
-
-	/**
-	@brief	描画モードを設定する。
-	*/
-	virtual void SetRenderMode( Effekseer::RenderMode renderMode ) = 0;
-
-	/**
-	@brief	描画モードを取得する。
-	*/
-	virtual Effekseer::RenderMode GetRenderMode() = 0;
-
-	/**
-	@brief
-	\~english Get an UV Style of texture when particles are rendered.
-	\~japanese パーティクルを描画するときのUVの状態を取得する。
-	*/
-	UVStyle GetTextureUVStyle() const;
-
-	/**
-	@brief
-	\~english Set an UV Style of texture when particles are rendered.
-	\~japanese パーティクルを描画するときのUVの状態を設定する。
-	*/
-	void SetTextureUVStyle(UVStyle style);
-
-	/**
-	@brief
-	\~english Get an UV Style of background when particles are rendered.
-	\~japanese パーティクルを描画するときの背景のUVの状態を取得する。
-	*/
-	UVStyle GetBackgroundTextureUVStyle() const;
-
-	/**
-	@brief
-	\~english Set an UV Style of background when particles are rendered.
-	\~japanese パーティクルを描画するときの背景のUVの状態を設定する。
-	*/
-	void SetBackgroundTextureUVStyle(UVStyle style);
 };
 
 //----------------------------------------------------------------------------------
@@ -388,7 +283,6 @@ public:
 //
 //----------------------------------------------------------------------------------
 #endif	// __EFFEKSEERRENDERER_RENDERER_H__
-
 #ifndef	__EFFEKSEERRENDERER_GL_RENDERER_H__
 #define	__EFFEKSEERRENDERER_GL_RENDERER_H__
 
@@ -473,27 +367,11 @@ class Model
 private:
 
 public:
-	struct InternalModel
-	{
-		GLuint		VertexBuffer;
-		GLuint		IndexBuffer;
-		int32_t		VertexCount;
-		int32_t		IndexCount;
-
-		std::vector<uint8_t> delayVertexBuffer;
-		std::vector<uint8_t> delayIndexBuffer;
-
-		InternalModel();
-
-		virtual ~InternalModel();
-
-		bool TryDelayLoad();
-	};
-
-
-	InternalModel*				InternalModels = nullptr;
-	int32_t						ModelCount;
-
+	GLuint		VertexBuffer;
+	GLuint		IndexBuffer;
+	int32_t		VertexCount;
+	int32_t		IndexCount;
+	int32_t		ModelCount;
 
 	Model(void* data, int32_t size);
 	~Model();

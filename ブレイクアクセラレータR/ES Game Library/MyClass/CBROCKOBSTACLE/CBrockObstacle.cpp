@@ -42,7 +42,7 @@ void CBrockObstacle::DrawAlpha3D()
 
 		if (CollsionTrigger())
 		{
-			
+			observer.IsCollisionDamage();
 		}
 
 		obstacle_it++;

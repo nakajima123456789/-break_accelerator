@@ -18,6 +18,7 @@ void CObstacle::Update()
 
 void CObstacle::Draw3D()
 {
+
 	//auto&& obstacle_it = this->obstacle_pos.begin();
 	//while (obstacle_it != this->obstacle_pos.end()) {
 
@@ -46,4 +47,35 @@ void CObstacle::Draw3D()
 
 	//	obstacle_it++;
 	//}
+
+
+	//auto&& obstacle_it = this->obstacle_pos.begin();
+	//while (obstacle_it != this->obstacle_pos.end()) {
+
+	//	this->transform.position = *obstacle_it;
+
+	//	if (DistanceTrigger(90.0f))
+	//	{
+	//		this->obstacle_model->SetPosition(this->transform.position + Vector3(0.0f,0.08f,0.0f));
+	//		this->obstacle_model->SetRotation(this->transform.rotation);
+	//		this->obstacle_model->SetScale(this->transform.scale);
+	//		this->obstacle_model->Draw();
+	//	}
+
+	//	if (RemoveModelDistance(-20))
+	//	{
+	//		obstacle_it = this->obstacle_pos.erase(obstacle_it);
+	//		continue;
+	//	}
+
+	//	if (this->CollsionTrigger())
+	//	{
+	//		observer.IsCollisionClear();
+	//		obstacle_it = obstacle_pos.erase(obstacle_it);
+	//		continue;
+	//	}
+
+	//	obstacle_it++;
+	//}
+
 }

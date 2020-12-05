@@ -2,10 +2,14 @@
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
 #include"../OBSEVER/OBSEVER.h"
+
 #include "../CSHAREDMETHOD/CSharedMethod.h"
 #include "../C_SPRITE/C_Sprite.h"
 #include "../C_UI/CUI.h"
 #include "../UIDATABASE/UiDataBase.h"
+
+#include "../C_EFFEKSEER/CEffekseer_.h"
+#include "../CPLAYERDATA/CPlayerData.h"
 
 class CUI : public Object, OBSERVERLISTENER, CSharedMethod
 {
@@ -33,6 +37,9 @@ private:
 	int gage;
 
 	//プレイヤーのデータベース
-	std::unique_ptr<UiData>   _ui_data;
+	std::unique_ptr<UiData>        _ui_data;
+	std::unique_ptr<IPlayerData>   _player_data;
+
+	int item,damage;
 };
 

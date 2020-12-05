@@ -18,11 +18,11 @@ void CItemObstacle::Update()
 
 void CItemObstacle::Draw3D()
 {
-	auto&& obstacle_it =  IMapParametor::Instance()._map_params['I']._position.begin();
-	while (obstacle_it != IMapParametor::Instance()._map_params['I']._position.end())
+	auto& itr = this->_imap_data->GetPlayerPosition('I');
+	auto& obstacle_it = itr.begin();
+	while (obstacle_it != itr.end())
 	{
 		this->transform.position = *obstacle_it;
-
 		if (DistanceTrigger(90.0f))
 		{
 			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.25f, 0.0f));
@@ -30,13 +30,14 @@ void CItemObstacle::Draw3D()
 		}
 		if (RemoveModelDistance(-20))
 		{
-			obstacle_it = IMapParametor::Instance()._map_params['I']._position.erase(obstacle_it);
+			obstacle_it = itr.erase(obstacle_it);
 			continue;
 		}
-		if (DistanceTrigger(5.0f))
+		if (CollsionTrigger())
 		{
-			IsHitObjectsDraw(this->transform.position + Vector3(0.0f, 0.5f, 0.0f));
+			observer.IsCollisionClear();
 		}
+
 		obstacle_it++;
 	}
 }

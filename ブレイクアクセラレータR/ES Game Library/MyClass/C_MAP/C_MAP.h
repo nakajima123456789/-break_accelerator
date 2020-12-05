@@ -3,36 +3,6 @@
 #include "../../ESGLib.h"
 #include "../CPLAYERDATA/CPlayerData.h"
 
-class MAPOBJECTS
-{
-public:
-	MAPOBJECTS();
-	~MAPOBJECTS() {};
-
-	void Draw();
-
-	void SetScenePosition(double num) { scene_position = num; };
-
-
-private:
-
-	enum
-	{
-		_PILLAR,
-		_BILL,
-		_GRAUND,
-	};
-
-	double scene_position = 0.0f;
-
-	std::vector<MODEL> models;
-
-	std::vector<MODEL> model_graund;
-
-	//プレイヤーのデータベース
-	std::unique_ptr<IPlayerData>   _iplayer_data;
-};
-
 class C_MAP : public Object
 {
 public:
@@ -46,8 +16,28 @@ public:
 
 private:
 
-	MAPOBJECTS mapobject[3];
+	enum MAP_MODEL
+	{
+		GROUND,
+		LIGHT,
+		LIGHT2,
+		POLE,
+		BUILD,
+		MAP_MODEL_SIZE,
+	};
 
+	std::vector<MODEL> model;
+	std::vector<std::vector<Vector3>> model_position;
+
+	inline void CreateMapPrefarence();
+
+	MEDIA bg;
+	MUSIC bgm;
+
+	int ground_model_scene[MAP_MODEL_SIZE];
+
+	//プレイヤーのデータベース
+	std::unique_ptr<IPlayerData>   _iplayer_data;
 protected:
 
 };

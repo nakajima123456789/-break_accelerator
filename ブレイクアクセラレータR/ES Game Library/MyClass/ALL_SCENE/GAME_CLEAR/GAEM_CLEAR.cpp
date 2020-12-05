@@ -10,7 +10,7 @@ void GAEM_CLEAR::Initialize()
 
 void GAEM_CLEAR::Update()
 {
-	if (Input.GetPadInputDown(11)) { SceneManager::ChangeScene(SceneManager::RESULT); }
+	if (Input.GetKeyInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::TITLE); }
 }
 
 void GAEM_CLEAR::Draw2D()
