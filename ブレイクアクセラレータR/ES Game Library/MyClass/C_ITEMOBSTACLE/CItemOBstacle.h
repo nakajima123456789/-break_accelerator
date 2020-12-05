@@ -13,6 +13,4 @@ public:
 
 private:
 
-	OBSERVER obsever;
-
 };

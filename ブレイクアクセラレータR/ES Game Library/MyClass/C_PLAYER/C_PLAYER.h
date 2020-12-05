@@ -52,6 +52,7 @@ private:
 	{
 	private:
 		CPlayerStateProcessor* _owner;
+		float speed = 0;
 	public:
 		RUNPAD(CPlayerStateProcessor* owner) : _owner(owner) {}
 		virtual ~RUNPAD() {}
@@ -66,6 +67,9 @@ private:
 	{
 	private:
 		CPlayerStateProcessor* _owner;
+		int   time  = 0;
+		int   frame = 0;
+		float speed = 0;
 	public:
 		RUNKEY(CPlayerStateProcessor* owner) : _owner(owner) {}
 		virtual ~RUNKEY() {}
@@ -96,11 +100,19 @@ private:
 	//関数宣言
 	void	 IsHitObjectsDraw();
 
+	float    AccelaretorTime();
+
     //変数宣言
+
+	int   time  = 0;
+	int   frame = 0;
 
 	Model player_model;
 
+	float accelaretor = 0.3f;
+
 	float  speed = 0.0f;
+
 	double rotation = 0.0f; 
 
 	//プレイヤーのデータベース

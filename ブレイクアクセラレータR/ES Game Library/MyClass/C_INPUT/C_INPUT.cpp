@@ -150,16 +150,12 @@ void C_INPUT::BufferButtomSetInit(int button, int buttonid)
 }
 
 bool C_INPUT::KeyBoardButtomState(DWORD _key_buttom) {
-	if (GetKeyState().IsKeyDown(_key_buttom))
-		return true;
-	else return false;
+	return GetKeyState().IsKeyDown(_key_buttom);
 }
 
 bool C_INPUT::KeyBoardButtomBuffer(DWORD _key_buttom)
 {
-	if (GetKeyBuffer().IsPressed(_key_buttom))
-		return true;
-	else return false;
+	return GetKeyBuffer().IsPressed(_key_buttom);
 }
 
 

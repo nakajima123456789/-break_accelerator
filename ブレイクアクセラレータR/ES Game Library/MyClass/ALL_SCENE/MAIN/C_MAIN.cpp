@@ -78,6 +78,8 @@ C_MAIN::~C_MAIN()
 void C_MAIN::Update() {
 	_objectroot.Update();
 
+	if (Input.GetKeyInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::GAME_CLEAR); }
+
 	EffekseerMgr.Update();
 }
 

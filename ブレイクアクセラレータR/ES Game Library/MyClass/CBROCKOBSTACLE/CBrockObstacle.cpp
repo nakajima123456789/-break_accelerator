@@ -23,8 +23,9 @@ void CBrockObstacle::Draw3D()
 
 void CBrockObstacle::DrawAlpha3D()
 {
-	auto&& obstacle_it  = IMapParametor::Instance()._map_params['B']._position.begin();
-	while (obstacle_it != IMapParametor::Instance()._map_params['B']._position.end())
+	auto& itr = this->_imap_data->GetPlayerPosition('B');
+	auto& obstacle_it = itr.begin();
+	while (obstacle_it != itr.end())
 	{
 		this->transform.position = *obstacle_it;
 
@@ -35,13 +36,13 @@ void CBrockObstacle::DrawAlpha3D()
 		}
 		if (RemoveModelDistance(-20))
 		{
-			obstacle_it = IMapParametor::Instance()._map_params['B']._position.erase(obstacle_it);
+			obstacle_it = itr.erase(obstacle_it);
 			continue;
 		}
 
 		if (CollsionTrigger())
 		{
-			
+			observer.IsCollisionDamage();
 		}
 
 		obstacle_it++;

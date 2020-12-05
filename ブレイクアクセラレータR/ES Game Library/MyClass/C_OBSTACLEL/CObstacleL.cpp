@@ -19,14 +19,14 @@ void CObstacleL::Update()
 void CObstacleL::Draw3D()
 {
 
-	auto&& obstacle_it = IMapParametor::Instance()._map_params['R']._position.begin();
+	auto&& obstacle_it =  IMapParametor::Instance()._map_params['R']._position.begin();
 	while (obstacle_it != IMapParametor::Instance()._map_params['R']._position.end())
 	{
 		this->transform.position = *obstacle_it;
 
 		if (DistanceTrigger(90.0f))
 		{
-			if (RemoveModelDistance(2.0f))
+			if (RemoveModelDistance(3.0f))
 				this->transform.position = *obstacle_it -= Vector3(0.1f, 0.0f, 0.0f);
 
 			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.85f, 0.0f));
@@ -39,10 +39,6 @@ void CObstacleL::Draw3D()
 			continue;
 		}
 
-		if (DistanceTrigger(5.0f))
-		{
-			IsHitObjectsDraw(this->transform.position + Vector3(0.0f, 0.5f, 0.0f));
-		}
 		obstacle_it++;
 	}
 }

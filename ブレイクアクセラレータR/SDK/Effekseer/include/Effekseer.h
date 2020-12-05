@@ -24,7 +24,7 @@
 //----------------------------------------------------------------------------------
 
 #ifdef _WIN32
-//#include <windows.h>
+#include <windows.h>
 #elif defined(_PSVITA)
 #include "Effekseer.PSVita.h"
 #elif defined(_PS4)
@@ -42,7 +42,7 @@
 //----------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------
-typedef char16_t			EFK_CHAR;
+typedef uint16_t			EFK_CHAR;
 
 //----------------------------------------------------------------------------------
 //
@@ -195,33 +195,6 @@ enum class TextureFormatType : int32_t
 	BC1,
 	BC2,
 	BC3,
-};
-
-enum class ZSortType : int32_t
-{
-	None,
-	NormalOrder,
-	ReverseOrder,
-};
-
-//-----------------------------------------------------------------------------------
-// 
-//-----------------------------------------------------------------------------------
-enum class RenderMode : int32_t
-{
-	Normal,				// 通常描画
-	Wireframe,			// ワイヤーフレーム描画
-};
-
-/**
-	@brief
-	\~English	A thread where reload function is called
-	\~Japanese	リロードの関数が呼ばれるスレッド
-*/
-enum class ReloadingThreadType
-{
-	Main,
-	Render,
 };
 
 //----------------------------------------------------------------------------------
@@ -472,18 +445,6 @@ public:
 		return m_reference;
 	}
 };
-
-/**
-	@brief	This object generates random values.
-*/
-class IRandObject
-{
-public:
-	virtual float GetRand() = 0;
-
-	virtual float GetRand(float min_, float max_) = 0;
-};
-
 //----------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------
@@ -605,8 +566,6 @@ public:
 	*/
 	Vector3D( float x, float y, float z );
 
-	Vector3D operator-();
-
 	Vector3D operator + ( const Vector3D& o ) const;
 
 	Vector3D operator - ( const Vector3D& o ) const;
@@ -615,10 +574,6 @@ public:
 
 	Vector3D operator / ( const float& o ) const;
 
-	Vector3D operator * (const Vector3D& o) const;
-
-	Vector3D operator / (const Vector3D& o) const;
-
 	Vector3D& operator += ( const Vector3D& o );
 
 	Vector3D& operator -= ( const Vector3D& o );
@@ -626,8 +581,6 @@ public:
 	Vector3D& operator *= ( const float& o );
 
 	Vector3D& operator /= ( const float& o );
-
-	bool operator == (const Vector3D& o);
 
 	/**
 		@brief	加算
@@ -732,7 +685,7 @@ struct Color
 	/**
 		@brief	コンストラクタ
 	*/
-	Color() = default;
+	Color();
 
 	/**
 		@brief	コンストラクタ
@@ -742,13 +695,7 @@ struct Color
 	/**
 		@brief	乗算
 	*/
-	static Color Mul( Color in1, Color in2 );
-	static Color Mul( Color in1, float in2 );
-	
-	/**
-		@brief	線形補間
-	*/
-	static Color Lerp( const Color in1, const Color in2, float t );
+	static void Mul( Color& o, const Color& in1, const Color& in2 );
 };
 #pragma pack(pop)
 //----------------------------------------------------------------------------------
@@ -822,8 +769,6 @@ namespace Effekseer {
 //----------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------
-
-struct Matrix44;
 
 /**
 	@brief	4x3行列
@@ -949,11 +894,6 @@ public:
 		@param	t	[in]	位置
 	*/
 	void SetSRT( const Vector3D& s, const Matrix43& r, const Vector3D& t );
-
-	/**
-		@brief	convert into matrix44
-	*/
-	void ToMatrix44(Matrix44& dst);
 
 	/**
 		@brief	行列同士の乗算を行う。
@@ -1307,7 +1247,7 @@ class Effect
 {
 protected:
 	Effect() {}
-    virtual ~Effect() {}
+    ~Effect() {}
 
 public:
 
@@ -1357,19 +1297,6 @@ public:
 	@brief	標準のエフェクト読込インスタンスを生成する。
 	*/
 	static ::Effekseer::EffectLoader* CreateEffectLoader(::Effekseer::FileInterface* fileInterface = NULL);
-
-	/**
-	@brief	
-	\~English	Get this effect's name. If this effect is loaded from file, default name is file name without extention.
-	\~Japanese	エフェクトの名前を取得する。もしファイルからエフェクトを読み込んだ場合、名前は拡張子を除いたファイル名である。
-	*/
-	virtual const char16_t* GetName() const = 0;
-
-	/**
-		\~English	Set this effect's name
-	\~Japanese	エフェクトの名前を設定する。
-	*/
-	virtual void SetName(const char16_t* name) = 0;
 
 	/**
 	@brief	設定を取得する。
@@ -1445,127 +1372,44 @@ public:
 	virtual int32_t GetModelCount() const = 0;
 
 	/**
-		@brief
-		\~English	Reload this effect
-		\~Japanese	エフェクトのリロードを行う。
-		@param	data
-		\~English	An effect's data
-		\~Japanese	エフェクトのデータ
-		@param	size
-		\~English	An effect's size
-		\~Japanese	エフェクトのデータサイズ
-		@param	materialPath
-		\~English	A path where reaources are loaded
-		\~Japanese	リソースの読み込み元
-		@param	reloadingThreadType
-		\~English	A thread where reload function is called
-		\~Japanese	リロードの関数が呼ばれるスレッド
-		@return
-		\~English	Result
-		\~Japanese	結果
-		@note
-		\~English
-		If reloadingThreadType is RenderThread, new resources aren't loaded and old resources aren't disposed.
-		\~Japanese
-		もし、reloadingThreadType が RenderThreadの場合、新規のリソースは読み込まれず、古いリソースは破棄されない。
+		@brief	エフェクトのリロードを行う。
 	*/
-	virtual bool Reload( void* data, int32_t size, const EFK_CHAR* materialPath = nullptr, ReloadingThreadType reloadingThreadType = ReloadingThreadType::Main) = 0;
+	virtual bool Reload( void* data, int32_t size, const EFK_CHAR* materialPath = NULL ) = 0;
 
 	/**
-		@brief
-		\~English	Reload this effect
-		\~Japanese	エフェクトのリロードを行う。
-		@param	path
-		\~English	An effect's path
-		\~Japanese	エフェクトのパス
-		@param	materialPath
-		\~English	A path where reaources are loaded
-		\~Japanese	リソースの読み込み元
-		@param	reloadingThreadType
-		\~English	A thread where reload function is called
-		\~Japanese	リロードの関数が呼ばれるスレッド
-		@return
-		\~English	Result
-		\~Japanese	結果
-		@note
-		\~English
-		If reloadingThreadType is RenderThread, new resources aren't loaded and old resources aren't disposed.
-		\~Japanese
-		もし、reloadingThreadType が RenderThreadの場合、新規のリソースは読み込まれず、古いリソースは破棄されない。
+		@brief	エフェクトのリロードを行う。
 	*/
-	virtual bool Reload( const EFK_CHAR* path, const EFK_CHAR* materialPath = nullptr, ReloadingThreadType reloadingThreadType = ReloadingThreadType::Main) = 0;
+	virtual bool Reload( const EFK_CHAR* path, const EFK_CHAR* materialPath = NULL ) = 0;
 
 	/**
-		@brief
-		\~English	Reload this effect
-		\~Japanese	エフェクトのリロードを行う。
-		@param	managers
-		\~English	An array of manager instances
-		\~Japanese	マネージャーの配列
-		@param	managersCount
-		\~English	Length of array
-		\~Japanese	マネージャーの個数
-		@param	data
-		\~English	An effect's data
-		\~Japanese	エフェクトのデータ
-		@param	size
-		\~English	An effect's size
-		\~Japanese	エフェクトのデータサイズ
-		@param	materialPath
-		\~English	A path where reaources are loaded
-		\~Japanese	リソースの読み込み元
-		@param	reloadingThreadType
-		\~English	A thread where reload function is called
-		\~Japanese	リロードの関数が呼ばれるスレッド
-		@return
-		\~English	Result
-		\~Japanese	結果
+		@brief	エフェクトのリロードを行う。
+		@param	managers	[in]	マネージャーの配列
+		@param	managersCount	[in]	マネージャーの個数
+		@param	data	[in]	エフェクトのデータ
+		@param	size	[in]	エフェクトのデータサイズ
+		@param	materialPath	[in]	リソースの読み込み元
+		@return	成否
 		@note
-		\~English
-		If an effect is generated with Setting, the effect in managers is reloaded with managers
-		If reloadingThreadType is RenderThread, new resources aren't loaded and old resources aren't disposed.
-		\~Japanese
 		Settingを用いてエフェクトを生成したときに、Managerを指定することで対象のManager内のエフェクトのリロードを行う。
-		もし、reloadingThreadType が RenderThreadの場合、新規のリソースは読み込まれず、古いリソースは破棄されない。
 	*/
-	virtual bool Reload( Manager** managers, int32_t managersCount, void* data, int32_t size, const EFK_CHAR* materialPath = nullptr, ReloadingThreadType reloadingThreadType = ReloadingThreadType::Main) = 0;
+	virtual bool Reload( Manager* managers, int32_t managersCount, void* data, int32_t size, const EFK_CHAR* materialPath = NULL ) = 0;
 
 	/**
-		@brief
-		\~English	Reload this effect
-		\~Japanese	エフェクトのリロードを行う。
-		@param	managers
-		\~English	An array of manager instances
-		\~Japanese	マネージャーの配列
-		@param	managersCount
-		\~English	Length of array
-		\~Japanese	マネージャーの個数
-		@param	path
-		\~English	An effect's path
-		\~Japanese	エフェクトのパス
-		@param	materialPath
-		\~English	A path where reaources are loaded
-		\~Japanese	リソースの読み込み元
-		@param	reloadingThreadType
-		\~English	A thread where reload function is called
-		\~Japanese	リロードの関数が呼ばれるスレッド
-		@return
-		\~English	Result
-		\~Japanese	結果
-		@note
-		\~English
-		If an effect is generated with Setting, the effect in managers is reloaded with managers
-		If reloadingThreadType is RenderThread, new resources aren't loaded and old resources aren't disposed.
-		\~Japanese
-		Settingを用いてエフェクトを生成したときに、Managerを指定することで対象のManager内のエフェクトのリロードを行う。
-		もし、reloadingThreadType が RenderThreadの場合、新規のリソースは読み込まれず、古いリソースは破棄されない。
+	@brief	エフェクトのリロードを行う。
+	@param	managers	[in]	マネージャーの配列
+	@param	managersCount	[in]	マネージャーの個数
+	@param	path	[in]	エフェクトの読み込み元
+	@param	materialPath	[in]	リソースの読み込み元
+	@return	成否
+	@note
+	Settingを用いてエフェクトを生成したときに、Managerを指定することで対象のManager内のエフェクトのリロードを行う。
 	*/
-	virtual bool Reload( Manager** managers, int32_t managersCount,const EFK_CHAR* path, const EFK_CHAR* materialPath = nullptr, ReloadingThreadType reloadingThreadType = ReloadingThreadType::Main) = 0;
+	virtual bool Reload( Manager* managers, int32_t managersCount,const EFK_CHAR* path, const EFK_CHAR* materialPath = NULL ) = 0;
 
 	/**
 		@brief	画像等リソースの再読み込みを行う。
 	*/
-	virtual void ReloadResources( const EFK_CHAR* materialPath = nullptr ) = 0;
+	virtual void ReloadResources( const EFK_CHAR* materialPath = NULL ) = 0;
 
 	/**
 		@brief	画像等リソースの破棄を行う。
@@ -1686,7 +1530,7 @@ class Manager
 {
 protected:
 	Manager() {}
-    virtual ~Manager() {}
+    ~Manager() {}
 
 public:
 	/**
@@ -1975,13 +1819,6 @@ public:
 	virtual void SetScale( Handle handle, float x, float y, float z ) = 0;
 
 	/**
-	@brief
-		\~English	Specify the color of overall effect.
-		\~Japanese	エフェクト全体の色を指定する。
-	*/
-	virtual void SetAllColor(Handle handle, Color color) = 0;
-
-	/**
 		@brief	エフェクトのインスタンスのターゲット位置を指定する。
 		@param	x	[in]	X座標
 		@param	y	[in]	Y座標
@@ -2061,19 +1898,6 @@ public:
 	virtual void SetPausedToAllEffects(bool paused) = 0;
 
 	/**
-	@brief
-	\~English	Get a playing speed of particle of effect.
-	\~Japanese	エフェクトのパーティクルの再生スピードを取得する。
-	@param	handle
-	\~English	Particle's handle
-	\~Japanese	パーティクルのハンドル
-	@return
-	\~English	Speed
-	\~Japanese	スピード
-	*/
-	virtual float GetSpeed(Handle handle) const = 0;
-
-	/**
 		@brief	エフェクトのインスタンスを再生スピードを設定する。
 		@param	handle	[in]	インスタンスのハンドル
 		@param	speed	[in]	スピード
@@ -2122,46 +1946,14 @@ public:
 	virtual void UpdateHandle( Handle handle, float deltaFrame = 1.0f ) = 0;
 
 	/**
-	@brief	
-	\~English	Draw particles.
-	\~Japanese	描画処理を行う。
+		@brief	描画処理を行う。
 	*/
 	virtual void Draw() = 0;
 	
 	/**
-	@brief
-	\~English	Draw particles in the back of priority 0.
-	\~Japanese	背面の描画処理を行う。
-	*/
-	virtual void DrawBack() = 0;
-
-	/**
-	@brief
-	\~English	Draw particles in the front of priority 0.
-	\~Japanese	前面の描画処理を行う。
-	*/
-	virtual void DrawFront() = 0;
-
-	/**
-	@brief
-	\~English	Draw particles with a handle.
-	\~Japanese	ハンドル単位の描画処理を行う。
+		@brief	ハンドル単位の描画処理を行う。
 	*/
 	virtual void DrawHandle( Handle handle ) = 0;
-
-	/**
-	@brief
-	\~English	Draw particles in the back of priority 0.
-	\~Japanese	背面のハンドル単位の描画処理を行う。
-	*/
-	virtual void DrawHandleBack(Handle handle) = 0;
-	
-	/**
-	@brief
-	\~English	Draw particles in the front of priority 0.
-	\~Japanese	前面のハンドル単位の描画処理を行う。
-	*/
-	virtual void DrawHandleFront(Handle handle) = 0;
 
 	/**
 		@brief	再生する。
@@ -2173,22 +1965,6 @@ public:
 	*/
 	virtual Handle Play( Effect* effect, float x, float y, float z ) = 0;
 	
-	/**
-		@brief
-		\~English	Play an effect.
-		\~Japanese	エフェクトを再生する。
-		@param	effect
-		\~English	Played effect
-		\~Japanese	再生されるエフェクト
-		@param	position
-		\~English	Initial position
-		\~Japanese	初期位置
-		@param	startFrame
-		\~English	A time to play from middle
-		\~Japanese	途中から再生するための時間
-	*/
-	virtual Handle Play(Effect* effect, const Vector3D& position, int32_t startFrame = 0) = 0;
-
 	/**
 		@brief	Update処理時間を取得。
 	*/
@@ -2264,16 +2040,9 @@ public:
 		bool				ZTest;
 		bool				ZWrite;
 		BillboardType		Billboard;
-		bool				IsRightHand;
 
 		bool				Distortion;
 		float				DistortionIntensity;
-
-		float				DepthOffset;
-		bool				IsDepthOffsetScaledWithCamera;
-		bool				IsDepthOffsetScaledWithParticleScale;
-
-		ZSortType			ZSort;
 	};
 
 	struct InstanceParameter
@@ -2281,7 +2050,7 @@ public:
 		Matrix43		SRTMatrix43;
 		Color		AllColor;
 
-		// Lower left, Lower right, Upper left, Upper right
+		// 左下、右下、左上、右上
 		Color		Colors[4];
 
 		Vector2D	Positions[4];
@@ -2322,70 +2091,65 @@ public:
 //----------------------------------------------------------------------------------
 namespace Effekseer
 {
-	//----------------------------------------------------------------------------------
-	//
-	//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
 
-	class RibbonRenderer
+class RibbonRenderer
+{
+public:
+
+	struct NodeParameter
 	{
-	public:
+		Effect*				EffectPointer;
+		int32_t				ColorTextureIndex;
+		AlphaBlendType			AlphaBlend;
+		TextureFilterType	TextureFilter;
+		TextureWrapType	TextureWrap;
+		bool				ZTest;
+		bool				ZWrite;
+		bool				ViewpointDependent;
 
-		struct NodeParameter
-		{
-			Effect*				EffectPointer;
-			int32_t				ColorTextureIndex;
-			AlphaBlendType			AlphaBlend;
-			TextureFilterType	TextureFilter;
-			TextureWrapType	TextureWrap;
-			bool				ZTest;
-			bool				ZWrite;
-			bool				ViewpointDependent;
-
-			bool				Distortion;
-			float				DistortionIntensity;
-
-			int32_t				SplineDivision;
-		};
-
-		struct InstanceParameter
-		{
-			int32_t			InstanceCount;
-			int32_t			InstanceIndex;
-			Matrix43		SRTMatrix43;
-			Color		AllColor;
-
-			// Lower left, Lower right, Upper left, Upper right
-			Color	Colors[4];
-
-			float	Positions[4];
-
-			RectF	UV;
-		};
-
-	public:
-		RibbonRenderer() {}
-
-		virtual ~RibbonRenderer() {}
-
-		virtual void BeginRendering(const NodeParameter& parameter, int32_t count, void* userData) {}
-
-		virtual void Rendering(const NodeParameter& parameter, const InstanceParameter& instanceParameter, void* userData) {}
-
-		virtual void EndRendering(const NodeParameter& parameter, void* userData) {}
-
-		virtual void BeginRenderingGroup(const NodeParameter& parameter, int32_t count, void* userData) {}
-
-		virtual void EndRenderingGroup(const NodeParameter& parameter, int32_t count, void* userData) {}
+		bool				Distortion;
+		float				DistortionIntensity;
 	};
 
-	//----------------------------------------------------------------------------------
-	//
-	//----------------------------------------------------------------------------------
+	struct InstanceParameter
+	{
+		int32_t			InstanceCount;
+		int32_t			InstanceIndex;
+		Matrix43		SRTMatrix43;
+		Color		AllColor;
+
+		// 左、右
+		Color		Colors[2];
+
+		float	Positions[2];
+
+		RectF	UV;
+	};
+
+public:
+	RibbonRenderer() {}
+
+	virtual ~RibbonRenderer() {}
+
+	virtual void BeginRendering( const NodeParameter& parameter, int32_t count, void* userData ) {}
+
+	virtual void Rendering( const NodeParameter& parameter, const InstanceParameter& instanceParameter, void* userData ) {}
+
+	virtual void EndRendering( const NodeParameter& parameter, void* userData ) {}
+};
+
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
 }
 //----------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------
 #endif	// __EFFEKSEER_RIBBON_RENDERER_H__
+
 #ifndef	__EFFEKSEER_RING_RENDERER_H__
 #define	__EFFEKSEER_RING_RENDERER_H__
 
@@ -2417,14 +2181,9 @@ public:
 		bool				ZWrite;
 		BillboardType		Billboard;
 		int32_t				VertexCount;
-		bool				IsRightHand;
 
 		bool				Distortion;
 		float				DistortionIntensity;
-
-		float				DepthOffset;
-		bool				IsDepthOffsetScaledWithCamera;
-		bool				IsDepthOffsetScaledWithParticleScale;
 	};
 
 	struct InstanceParameter
@@ -2490,8 +2249,6 @@ public:
 		TextureWrapType	TextureWrap;
 		bool				ZTest;
 		bool				ZWrite;
-		BillboardType		Billboard;
-
 		bool				Lighting;
 		CullingType		Culling;
 		int32_t				ModelIndex;
@@ -2502,10 +2259,6 @@ public:
 
 		bool				Distortion;
 		float				DistortionIntensity;
-
-		float				DepthOffset;
-		bool				IsDepthOffsetScaledWithCamera;
-		bool				IsDepthOffsetScaledWithParticleScale;
 	};
 
 	struct InstanceParameter
@@ -2513,7 +2266,6 @@ public:
 		Matrix43		SRTMatrix43;
 		RectF			UV;
 		Color			AllColor;
-		int32_t			Time;
 	};
 
 public:
@@ -2549,80 +2301,75 @@ public:
 //----------------------------------------------------------------------------------
 namespace Effekseer
 {
-	//----------------------------------------------------------------------------------
-	//
-	//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
 
-	class TrackRenderer
+class TrackRenderer
+{
+public:
+
+	struct NodeParameter
 	{
-	public:
+		Effect*				EffectPointer;
+		int32_t				ColorTextureIndex;
+		AlphaBlendType			AlphaBlend;
+		TextureFilterType	TextureFilter;
+		TextureWrapType		TextureWrap;
+		bool				ZTest;
+		bool				ZWrite;
 
-		struct NodeParameter
-		{
-			Effect*				EffectPointer;
-			int32_t				ColorTextureIndex;
-			AlphaBlendType			AlphaBlend;
-			TextureFilterType	TextureFilter;
-			TextureWrapType		TextureWrap;
-			bool				ZTest;
-			bool				ZWrite;
-
-			bool				Distortion;
-			float				DistortionIntensity;
-
-			int32_t				SplineDivision;
-		};
-
-		struct InstanceGroupParameter
-		{
-
-		};
-
-		struct InstanceParameter
-		{
-			int32_t			InstanceCount;
-			int32_t			InstanceIndex;
-			Matrix43		SRTMatrix43;
-
-			Color	ColorLeft;
-			Color	ColorCenter;
-			Color	ColorRight;
-
-			Color	ColorLeftMiddle;
-			Color	ColorCenterMiddle;
-			Color	ColorRightMiddle;
-
-			float	SizeFor;
-			float	SizeMiddle;
-			float	SizeBack;
-
-			RectF	UV;
-		};
-
-	public:
-		TrackRenderer() {}
-
-		virtual ~TrackRenderer() {}
-
-		virtual void BeginRendering(const NodeParameter& parameter, int32_t count, void* userData) {}
-
-		virtual void Rendering(const NodeParameter& parameter, const InstanceParameter& instanceParameter, void* userData) {}
-
-		virtual void EndRendering(const NodeParameter& parameter, void* userData) {}
-
-		virtual void BeginRenderingGroup(const NodeParameter& parameter, int32_t count, void* userData) {}
-
-		virtual void EndRenderingGroup(const NodeParameter& parameter, int32_t count, void* userData) {}
+		bool				Distortion;
+		float				DistortionIntensity;
 	};
 
-	//----------------------------------------------------------------------------------
-	//
-	//----------------------------------------------------------------------------------
+	struct InstanceGroupParameter
+	{
+		
+	};
+
+	struct InstanceParameter
+	{
+		int32_t			InstanceCount;
+		int32_t			InstanceIndex;
+		Matrix43		SRTMatrix43;
+
+		Color	ColorLeft;
+		Color	ColorCenter;
+		Color	ColorRight;
+
+		Color	ColorLeftMiddle;
+		Color	ColorCenterMiddle;
+		Color	ColorRightMiddle;
+
+		float	SizeFor;
+		float	SizeMiddle;
+		float	SizeBack;
+
+		RectF	UV;
+	};
+
+public:
+	TrackRenderer() {}
+
+	virtual ~TrackRenderer() {}
+
+	virtual void BeginRendering( const NodeParameter& parameter, int32_t count, void* userData ) {}
+
+	virtual void Rendering( const NodeParameter& parameter, const InstanceParameter& instanceParameter, void* userData ) {}
+
+	virtual void EndRendering( const NodeParameter& parameter, void* userData ) {}
+};
+
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
 }
 //----------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------
 #endif	// __EFFEKSEER_TRACK_RENDERER_H__
+
 #ifndef	__EFFEKSEER_EFFECTLOADER_H__
 #define	__EFFEKSEER_EFFECTLOADER_H__
 
@@ -2868,108 +2615,84 @@ private:
 
 	int32_t		m_version;
 
-	struct InternalModel
-	{
-		int32_t		m_vertexCount;
-		Vertex*		m_vertexes;
+	int32_t		m_vertexCount;
+	Vertex*		m_vertexes;
 
-		int32_t		m_faceCount;
-		Face*		m_faces;
-	};
-
-	InternalModel*	models;
+	int32_t		m_faceCount;
+	Face*		m_faces;
 
 	int32_t		m_modelCount;
-	int32_t		m_frameCount;
 
-protected:
-	int32_t		m_vertexSize = sizeof(Vertex);
 public:
 
 	/**
-	@brief
-	\~English	Constructor
-	\~Japanese	コンストラクタ
+		@brief
+		\~English	Constructor
+		\~Japanese	コンストラクタ
 	*/
-	Model(void* data, int32_t size)
-		: m_data(NULL)
-		, m_size(size)
-		, m_version(0)
-		, models(nullptr)
+	Model( void* data, int32_t size ) 
+		: m_data	( NULL )
+		, m_size	( size )
+		, m_version	( 0 )
+		, m_vertexCount	( 0 )
+		, m_vertexes	( NULL )
+		, m_faceCount	( 0 )
+		, m_faces		( NULL )
 	{
 		m_data = new uint8_t[m_size];
-		memcpy(m_data, data, m_size);
+		memcpy( m_data, data, m_size );
 
-		uint8_t* p = (uint8_t*) m_data;
-
-		memcpy(&m_version, p, sizeof(int32_t));
+		uint8_t* p = (uint8_t*)m_data;
+	
+		memcpy( &m_version, p, sizeof(int32_t) );
 		p += sizeof(int32_t);
 
 		// load scale except version 3(for compatibility)
-		if (m_version == 2 || m_version >= 5)
+		if (m_version == 2)
 		{
 			// Scale
 			p += sizeof(int32_t);
 		}
 
-		memcpy(&m_modelCount, p, sizeof(int32_t));
+		memcpy( &m_modelCount, p, sizeof(int32_t) );
 		p += sizeof(int32_t);
 
-		if (m_version >= 5)
+		memcpy( &m_vertexCount, p, sizeof(int32_t) );
+		p += sizeof(int32_t);
+
+		if (m_version >= 1)
 		{
-			memcpy(&m_frameCount, p, sizeof(int32_t));
-			p += sizeof(int32_t);
+			m_vertexes = (Vertex*) p;
+			p += (sizeof(Vertex) * m_vertexCount);
 		}
 		else
 		{
-			m_frameCount = 1;
-		}
+			// allocate new buffer
+			m_vertexes = new Vertex[m_vertexCount];
 
-		models = new InternalModel[m_frameCount];
-
-		for (int32_t f = 0; f < m_frameCount; f++)
-		{
-			memcpy(&models[f].m_vertexCount, p, sizeof(int32_t));
-			p += sizeof(int32_t);
-
-			if (m_version >= 1)
+			for (int32_t i = 0; i < m_vertexCount; i++)
 			{
-				models[f].m_vertexes = (Vertex*) p;
-				p += (sizeof(Vertex) * models[f].m_vertexCount);
+				memcpy(&m_vertexes[i], p, sizeof(Vertex) - sizeof(Color));
+				m_vertexes[i].VColor = Color(255, 255, 255, 255);
+
+				p += sizeof(Vertex) - sizeof(Color);
 			}
-			else
-			{
-				// allocate new buffer
-				models[f].m_vertexes = new Vertex[models[f].m_vertexCount];
-
-				for (int32_t i = 0; i < models[f].m_vertexCount; i++)
-				{
-					memcpy((void*)&models[f].m_vertexes[i], p, sizeof(Vertex) - sizeof(Color));
-					models[f].m_vertexes[i].VColor = Color(255, 255, 255, 255);
-
-					p += sizeof(Vertex) - sizeof(Color);
-				}
-			}
-
-			memcpy(&models[f].m_faceCount, p, sizeof(int32_t));
-			p += sizeof(int32_t);
-
-			models[f].m_faces = (Face*) p;
-			p += (sizeof(Face) * models[f].m_faceCount);
 		}
+		
+		memcpy( &m_faceCount, p, sizeof(int32_t) );
+		p += sizeof(int32_t);
+
+		m_faces = (Face*)p;
+		p += ( sizeof(Face) * m_faceCount );
 	}
 
-	Vertex* GetVertexes(int32_t index = 0) const { return models[index].m_vertexes; }
-	int32_t GetVertexCount(int32_t index = 0) { return models[index].m_vertexCount; }
+	Vertex* GetVertexes() const { return m_vertexes; }
+	int32_t GetVertexCount() { return m_vertexCount; }
 
-	Face* GetFaces(int32_t index = 0) const { return models[index].m_faces; }
-	int32_t GetFaceCount(int32_t index = 0) { return models[index].m_faceCount; }
-
-	int32_t GetFrameCount() const { return m_frameCount; }
+	Face* GetFaces() const { return m_faces; }
+	int32_t GetFaceCount() { return m_faceCount; }
 
 	int32_t GetModelCount() { return m_modelCount; }
-
-	int32_t GetVertexSize() const { return m_vertexSize; }
 
 	/**
 		@brief
@@ -2980,26 +2703,26 @@ public:
 	{
 		if (m_version == 0)
 		{
-			ES_SAFE_DELETE_ARRAY(models[0].m_vertexes);
+			ES_SAFE_DELETE_ARRAY(m_vertexes);
 		}
 
-		ES_SAFE_DELETE_ARRAY(models);
-		ES_SAFE_DELETE_ARRAY(m_data);
+		ES_SAFE_DELETE_ARRAY( m_data );
 	}
 
-	Emitter GetEmitter(IRandObject* g, int32_t time, CoordinateSystem coordinate, float magnification )
+	Emitter GetEmitter( Manager* manager, CoordinateSystem coordinate, float magnification )
 	{
-		time = time % GetFrameCount();
+		RandFunc randFunc = manager->GetRandFunc();
+		int32_t randMax = manager->GetRandMax();
 
-		int32_t faceInd = (int32_t) ((GetFaceCount(time) - 1) * (g->GetRand()));
-		faceInd = Clamp(faceInd, GetFaceCount(time) - 1, 0);
-		Face& face = GetFaces(time)[faceInd];
-		Vertex& v0 = GetVertexes(time)[face.Indexes[0]];
-		Vertex& v1 = GetVertexes(time)[face.Indexes[1]];
-		Vertex& v2 = GetVertexes(time)[face.Indexes[2]];
+		int32_t faceInd = (int32_t)( (GetFaceCount() - 1) * ( (float)randFunc() / (float)randMax ) );
+		faceInd = Clamp( faceInd, GetFaceCount() - 1, 0 );
+		Face& face = GetFaces()[faceInd];
+		Vertex& v0 = GetVertexes()[face.Indexes[0]];
+		Vertex& v1 = GetVertexes()[face.Indexes[1]];
+		Vertex& v2 = GetVertexes()[face.Indexes[2]];
 
-		float p1 = g->GetRand();
-		float p2 = g->GetRand();
+		float p1 = ( (float)randFunc() / (float)randMax );
+		float p2 = ( (float)randFunc() / (float)randMax );
 
 		// Fit within plane
 		if( p1 + p2 > 1.0f )
@@ -3027,13 +2750,14 @@ public:
 		return emitter;
 	}
 
-	Emitter GetEmitterFromVertex(IRandObject* g, int32_t time, CoordinateSystem coordinate, float magnification)
+	Emitter GetEmitterFromVertex( Manager* manager, CoordinateSystem coordinate, float magnification )
 	{
-		time = time % GetFrameCount();
+		RandFunc randFunc = manager->GetRandFunc();
+		int32_t randMax = manager->GetRandMax();
 
-		int32_t vertexInd = (int32_t) ((GetVertexCount(time) - 1) * (g->GetRand()));
-		vertexInd = Clamp(vertexInd, GetVertexCount(time) - 1, 0);
-		Vertex& v = GetVertexes(time)[vertexInd];
+		int32_t vertexInd = (int32_t)( (GetVertexCount() - 1) * ( (float)randFunc() / (float)randMax ) );
+		vertexInd = Clamp( vertexInd, GetVertexCount() - 1, 0 );
+		Vertex& v = GetVertexes()[vertexInd];
 		
 		Emitter emitter;
 		emitter.Position = v.Position * magnification;
@@ -3052,12 +2776,10 @@ public:
 		return emitter;
 	}
 
-	Emitter GetEmitterFromVertex(int32_t index, int32_t time, CoordinateSystem coordinate, float magnification)
+	Emitter GetEmitterFromVertex( int32_t index, CoordinateSystem coordinate, float magnification )
 	{
-		time = time % GetFrameCount();
-
-		int32_t vertexInd = index % GetVertexCount(time);
-		Vertex& v = GetVertexes(time)[vertexInd];
+		int32_t vertexInd = index % GetVertexCount();
+		Vertex& v = GetVertexes()[vertexInd];
 		
 		Emitter emitter;
 		emitter.Position = v.Position * magnification;
@@ -3076,16 +2798,17 @@ public:
 		return emitter;
 	}
 
-	Emitter GetEmitterFromFace(IRandObject* g, int32_t time, CoordinateSystem coordinate, float magnification)
+	Emitter GetEmitterFromFace( Manager* manager, CoordinateSystem coordinate, float magnification )
 	{
-		time = time % GetFrameCount();
+		RandFunc randFunc = manager->GetRandFunc();
+		int32_t randMax = manager->GetRandMax();
 
-		int32_t faceInd = (int32_t) ((GetFaceCount(time) - 1) * (g->GetRand()));
-		faceInd = Clamp(faceInd, GetFaceCount(time) - 1, 0);
-		Face& face = GetFaces(time)[faceInd];
-		Vertex& v0 = GetVertexes(time)[face.Indexes[0]];
-		Vertex& v1 = GetVertexes(time)[face.Indexes[1]];
-		Vertex& v2 = GetVertexes(time)[face.Indexes[2]];
+		int32_t faceInd = (int32_t)( (GetFaceCount() - 1) * ( (float)randFunc() / (float)randMax ) );
+		faceInd = Clamp( faceInd, GetFaceCount() - 1, 0 );
+		Face& face = GetFaces()[faceInd];
+		Vertex& v0 = GetVertexes()[face.Indexes[0]];
+		Vertex& v1 = GetVertexes()[face.Indexes[1]];
+		Vertex& v2 = GetVertexes()[face.Indexes[2]];
 
 		float p0 = 1.0f / 3.0f;
 		float p1 = 1.0f / 3.0f;
@@ -3108,15 +2831,13 @@ public:
 		return emitter;
 	}
 
-	Emitter GetEmitterFromFace(int32_t index, int32_t time, CoordinateSystem coordinate, float magnification)
+	Emitter GetEmitterFromFace( int32_t index, CoordinateSystem coordinate, float magnification )
 	{
-		time = time % GetFrameCount();
-
-		int32_t faceInd = index % (GetFaceCount(time) - 1);
-		Face& face = GetFaces(time)[faceInd];
-		Vertex& v0 = GetVertexes(time)[face.Indexes[0]];
-		Vertex& v1 = GetVertexes(time)[face.Indexes[1]];
-		Vertex& v2 = GetVertexes(time)[face.Indexes[2]];
+		int32_t faceInd = index % (GetFaceCount() - 1);
+		Face& face = GetFaces()[faceInd];
+		Vertex& v0 = GetVertexes()[face.Indexes[0]];
+		Vertex& v1 = GetVertexes()[face.Indexes[1]];
+		Vertex& v2 = GetVertexes()[face.Indexes[2]];
 
 		float p0 = 1.0f / 3.0f;
 		float p1 = 1.0f / 3.0f;
@@ -3397,7 +3118,7 @@ namespace Effekseer {
 #ifndef	__EFFEKSEER_SERVER_H__
 #define	__EFFEKSEER_SERVER_H__
 
-#if !( defined(_PSVITA) || defined(_XBOXONE) )
+#if !( defined(_PSVITA) || defined(_PS4) || defined(_SWITCH) || defined(_XBOXONE) )
 
 //----------------------------------------------------------------------------------
 // Include
@@ -3410,11 +3131,6 @@ namespace Effekseer {
 //----------------------------------------------------------------------------------
 //
 //----------------------------------------------------------------------------------
-/**
-	@brief
-	\~English	A server to edit effect from client such an editor
-	\~Japanese	エディタといったクライアントからエフェクトを編集するためのサーバー
-*/
 class Server
 {
 public:
@@ -3422,84 +3138,37 @@ public:
 	Server() {}
 	virtual ~Server() {}
 
-	/**
-		@brief
-		\~English	create a server instance
-		\~Japanese	サーバーのインスタンスを生成する。
-	*/
 	static Server* Create();
 
 	/**
-		@brief
-		\~English	start a server
-		\~Japanese	サーバーを開始する。
+		@brief	サーバーを開始する。
 	*/
 	virtual bool Start( uint16_t port ) = 0;
 
-	/**
-		@brief
-		\~English	stop a server
-		\~Japanese	サーバーを終了する。
-	*/
 	virtual void Stop() = 0;
 
 	/**
-		@brief
-		\~English	register an effect as a target to edit.
-		\~Japanese	エフェクトを編集の対象として登録する。
-		@param	key	
-		\~English	a key to search an effect
-		\~Japanese	検索用キー
-		@param	effect
-		\~English	an effect to be edit
-		\~Japanese	編集される対象のエフェクト
+		@brief	エフェクトをリロードの対象として登録する。
+		@param	key	[in]	検索用キー
+		@param	effect	[in]	リロードする対象のエフェクト
 	*/
-	virtual void Register(const EFK_CHAR* key, Effect* effect) = 0;
+	virtual void Regist( const EFK_CHAR* key, Effect* effect ) = 0;
 
 	/**
-		@brief
-		\~English	unregister an effect
-		\~Japanese	エフェクトを対象から外す。
-		@param	effect
-		\~English	an effect registered
-		\~Japanese	登録されているエフェクト
+		@brief	エフェクトをリロードの対象から外す。
+		@param	effect	[in]	リロードから外すエフェクト
 	*/
-	virtual void Unregister(Effect* effect) = 0;
+	virtual void Unregist( Effect* effect ) = 0;
 
 	/**
-		@brief	
-		\~English	update a server and reload effects
-		\~Japanese	サーバーを更新し、エフェクトのリロードを行う。
-		@brief	managers
-		\~English	all managers which is playing effects.
-		\~Japanese	エフェクトを再生している全てのマネージャー
-		@brief	managerCount
-		\~English	the number of manager
-		\~Japanese	マネージャーの個数
-
+		@brief	サーバーを更新し、エフェクトのリロードを行う。
 	*/
-	virtual void Update(Manager** managers = nullptr, int32_t managerCount = 0, ReloadingThreadType reloadingThreadType = ReloadingThreadType::Main) = 0;
+	virtual void Update() = 0;
 
 	/**
-		@brief
-		\~English	Specify root path to load materials
-		\~Japanese	素材のルートパスを設定する。
+		@brief	素材パスを設定する。
 	*/
 	virtual void SetMaterialPath( const EFK_CHAR* materialPath ) = 0;
-
-	/**
-		@brief
-		\~English	deprecated
-		\~Japanese	非推奨
-	*/
-	virtual void Regist(const EFK_CHAR* key, Effect* effect) = 0;
-
-	/**
-		@brief
-		\~English	deprecated
-		\~Japanese	非推奨
-	*/
-	virtual void Unregist(Effect* effect) = 0;
 };
 
 //----------------------------------------------------------------------------------
@@ -3510,7 +3179,7 @@ public:
 //
 //----------------------------------------------------------------------------------
 
-#endif	// #if !( defined(_PSVITA) || defined(_XBOXONE) )
+#endif	// #if !( defined(_PSVITA) || defined(_PS4) || defined(_SWITCH) || defined(_XBOXONE) )
 
 #endif	// __EFFEKSEER_SERVER_H__
 
@@ -3557,3 +3226,126 @@ public:
 #endif	// #if !( defined(_PSVITA) || defined(_PS4) || defined(_SWITCH) || defined(_XBOXONE) )
 
 #endif	// __EFFEKSEER_CLIENT_H__
+
+#ifndef	__EFFEKSEER_CRITICALSESSION_H__
+#define	__EFFEKSEER_CRITICALSESSION_H__
+
+//----------------------------------------------------------------------------------
+// Include
+//----------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+namespace Effekseer
+{
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+/**
+	@brief	クリティカルセクション
+*/
+class CriticalSection
+{
+private:
+#ifdef _WIN32
+	mutable CRITICAL_SECTION m_criticalSection;
+#elif defined(_PSVITA) || defined(_PS4) || defined(_SWITCH) || defined(_XBOXONE)
+	mutable CONSOLE_GAME_MUTEX	m_mutex;
+#else
+	mutable pthread_mutex_t m_mutex;
+#endif
+
+public:
+
+	CriticalSection();
+
+	~CriticalSection();
+
+	void Enter() const;
+
+	void Leave() const;
+};
+
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+}
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+#endif	//	__EFFEKSEER_CRITICALSESSION_H__
+
+#ifndef	__EFFEKSEER_THREAD_H__
+#define	__EFFEKSEER_THREAD_H__
+
+//----------------------------------------------------------------------------------
+// Include
+//----------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+namespace Effekseer { 
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+	
+class Thread
+{
+private:
+#ifdef _WIN32
+	/* DWORDを置きかえ */
+	static unsigned long EFK_STDCALL ThreadProc(void* arguments);
+#elif defined(_PSVITA) || defined(_PS4) || defined(_SWITCH) || defined(_XBOXONE)
+
+#else
+	static void* ThreadProc( void* arguments );
+#endif
+
+private:
+#ifdef _WIN32
+	HANDLE m_thread;
+#elif defined(_PSVITA) || defined(_PS4) || defined(_SWITCH) || defined(_XBOXONE)
+
+#else
+	pthread_t m_thread;
+	bool m_running;
+#endif
+
+	void* m_data;
+	void (*m_mainProc)( void* );
+	CriticalSection m_cs;
+
+public:
+
+	Thread();
+	~Thread();
+
+
+	/**
+		@brief スレッドを生成する。
+		@param threadFunc	[in] スレッド関数
+		@param pData		[in] スレッドに引き渡すデータポインタ
+		@return	成否
+	*/
+	bool Create( void (*threadFunc)( void* ), void* data );
+
+	/**
+		@brief スレッド終了を確認する。
+	*/
+	bool IsExitThread() const;
+
+	/**
+		@brief スレッド終了を待つ。
+	*/
+	bool Wait() const;
+};
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+ } 
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+#endif	// __EFFEKSEER_VECTOR3D_H__
