@@ -22,7 +22,7 @@ void CPlayer::Init()
 	player_model = GraphicsDevice.CreateModelFromFile(_T("model3D//Ž©‹@//jiki_car3.X"));
     player_model->SetMaterial(SetMaterial(Color(255.0f, 255.0f, 255.0f)));
 
-	fire = EffekseerMgr.LoadEffekseer(_T("Ž©‹@‰Š//fire.efk"));
+//	fire = EffekseerMgr.LoadEffekseer(_T("Ž©‹@‰Š//fire.efk"));
 }
 
 Material CPlayer::SetMaterial(Color _color)
@@ -68,7 +68,7 @@ void CPlayer::Update()
 	
 	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.3f : 0.0f;//ˆÚ“®‚Ì‘¬‚³
 
-	EffekseerMgr.PlayEffekseer(fire, transform.position + Vector3(0.05, 0, 5.002f),1.0f);
+	//EffekseerMgr.PlayEffekseer(fire, transform.position + Vector3(0.05, 0, 5.002f),1.0f);
 	this->player_state_processor.Update();
 }
 
