@@ -20,6 +20,7 @@ void CUI::Init()
 {
 	sprite_mng.CreateSpriteFromFile(_T("UI/FWƒQ[ƒW/FW_base.png"),  Vector3(365.0f, 0.0f, 0.0f));
 	sprite_mng.CreateSpriteFromFile(_T("UI/FWƒQ[ƒW/FW_base2.png"), Vector3(365.0f, 0.0f, 0.0f));
+	sprite_mng.CreateSpriteFromFile(_T("SPRITE//aka.png"), Vector3(0.0f, 0.0f, SpriteBatch_BottomMost));
 	
 	gage = sprite_mng.CreateSpriteFromFileRect(_T("UI/FWƒQ[ƒW/FW_S.png"), Vector3(365.0f, 0.0f, 0.0f));
 	
@@ -65,7 +66,7 @@ void CUI::OnCollisionGage()
 	id = effekseer->Play(player_pos - Vector3(0, 0, -1));
 	if (id != -1)
 	{
-		effekseer->SetScale(id, 0.5);
+		//effekseer->SetScale(id, 1.0);
 		effekseer->SetPosition(id, player_pos - Vector3(0, 0, -1));
 	}
 

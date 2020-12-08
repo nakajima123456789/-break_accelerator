@@ -22,7 +22,7 @@ void C_MAP::Init()
 		AddModel(_T("model3D//Œõ//bg_Vr1_set.X"));
 	}
 	AddModel(_T("model3D//’Œ//kari.X"));
-	AddModel(_T("model3D//bill_side//pro_set.X"));
+	AddModel(_T("model3D//bill_side//building_set_pro_3.X"));
 
 
 	model_position.resize(model.size());
@@ -136,7 +136,7 @@ void C_MAP::DrawAlpha3D()
 
 void C_MAP::Draw2D() 
 {
-	//SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	return;
 }
 
 void C_MAP::CreateMapPrefarence()

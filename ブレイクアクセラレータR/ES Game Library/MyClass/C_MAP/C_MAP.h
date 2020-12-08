@@ -33,7 +33,6 @@ private:
 
 	MEDIA bg;
 	MUSIC bgm;
-
 	int ground_model_scene[MAP_MODEL_SIZE];
 
 	//プレイヤーのデータベース
