@@ -8,6 +8,8 @@ void R_GATEOBSTATCLE::Init()
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
 
 	IsHitObjectsInit("Gate_R", 0.5);
+	_hitbox->SetHitBoxScale(Vector3(0.5, 1, 80));
+
 }
 
 void R_GATEOBSTATCLE::Update()
@@ -26,6 +28,7 @@ void R_GATEOBSTATCLE::Draw3D()
 		{
 			this->transform.position.x -= (1.5f * 0.01f) * _i_ui_data->GetGageParams("ui");
 
+			this->IsHitObjectsDraw(this->transform.position);
 			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
 			this->obstacle_model->Draw();
 		}

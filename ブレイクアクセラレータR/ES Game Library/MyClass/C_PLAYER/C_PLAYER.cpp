@@ -38,9 +38,9 @@ CPlayer::~CPlayer()
 
 void CPlayer::Update()
 {
-	transform.position.z += Input.GetPadInput(5) ? 0.12f : 0.01f;//ˆÚ“®‚Ì‘¬‚³
+	transform.position.z += Input.GetPadInput(5) ? 0.12f : 0.25f;//ˆÚ“®‚Ì‘¬‚³
 	
-	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.4f : 0.3f;//ˆÚ“®‚Ì‘¬‚³
+//	transform.position.z += Input.GetKeyState().IsKeyDown(Keys_Up) ? 0.4f : 0.3f;//ˆÚ“®‚Ì‘¬‚³
 
 	this->player_state_processor.Update();
 }
@@ -87,28 +87,38 @@ void CPlayer::RUNPAD::Update()
 {
 	auto&& AxisStateMove = [this](std::string _direction_tag)->void {
 		int sign;
-		if (_direction_tag == "RIGHT") { sign = 1; } else { sign = -1; };
-		_owner->player_manager->rotation +=   (1.000f * sign);
-		_owner->player_manager->speed    +=   (0.002f * sign);
-		return;
+		if (_direction_tag == "RIGHT") { sign = 1; }
+		else { sign = -1; };
+		_owner->player_manager->speed    += (0.006f * sign);
 	};
 
-	if (Input.AxisStateX() > 0) {AxisStateMove("RIGHT");}
+	auto&& hit_box = _owner->player_manager->_hitbox->Get_Tag_HitBox("Gate_R");
+	MODEL  hit_model = hit_box->Get_Tag_Model();
 
-	if (Input.AxisStateX() < 0) {AxisStateMove("LEFT");}
+	float distance_left  = FLT_MAX;
+	float distance_right = FLT_MAX;
 
-	if (Input.AxisStateX() == 0)
+	hit_model->IntersectRay(_owner->player_manager->transform.position, Vector3_Left,  &distance_left);
+	hit_model->IntersectRay(_owner->player_manager->transform.position, Vector3_Right, &distance_right);
+	
+	float min_distance = distance_left > distance_right ? distance_right : distance_left;
+
+	if (min_distance >= 0.25f)
+	{
+	   _owner->player_manager->transform.position.x += Input.GetArrowpadVector().x * 0.05f;
+	}
+	else 
+	{
+		int num = distance_left == FLT_MAX ? -1 : 1;
+		_owner->player_manager->transform.position.x += 0.015 * num;
+	}
+
+
+	if (Input.AxisStateX() == 0) 
 	{
 		_owner->player_manager->player_state_processor.ChangeState(new CPlayer::IDOL(&_owner->player_manager->player_state_processor));
 		return;
 	}
-
-	_owner->player_manager->transform.position.x += _owner->player_manager->speed;
-
-	_owner->player_manager->rotation = _owner->player_manager->clamp(_owner->player_manager->rotation, -14, 14);
-
-	_owner->player_manager->transform.position.x += Input.GetArrowpadVector().x * 0.009f + _owner->player_manager->speed;
-
 	return;
 }
 

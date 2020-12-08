@@ -26,22 +26,23 @@ void CUI::Init()
 
 void CUI::Update()
 {
-	
+	if (FrameTimeObsever(20));
+	_ui_data->SetGageParams("ui", -1);
 }
 
 void CUI::OnCollisionDamage()
 {
-
+	_ui_data->SetGageParams("ui", +1);
 }
 
 void CUI::OnCollisionClear()
 {
-	
+	_ui_data->SetGageParams("ui", -1);
 }
 
 void CUI::OnCollisionGage()
 {
-
+	_ui_data->SetGageParams("ui", +1);
 }
 
 void CUI::Draw2D()
