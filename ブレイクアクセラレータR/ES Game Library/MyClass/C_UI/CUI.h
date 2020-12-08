@@ -36,10 +36,17 @@ private:
 
 	int gage;
 
+	std::vector<std::vector<int>>gage_apha;
+
+	int count = 0;
+
+	unsigned int size = 1;
+
 	//プレイヤーのデータベース
 	std::unique_ptr<UiData>        _ui_data;
 	std::unique_ptr<IPlayerData>   _player_data;
 
 	int item,damage;
+
 };
 

@@ -23,6 +23,8 @@ public:
 
 	void SpriteManager::SetRectWH(int slot, const int l, const int t, const int w, const int h) { _sprite_rectwh[slot] = RectWH(l, t, w, h); };
 
+	void SpriteManager::SetAlpha(int slot, float alpha) { _sprite_alpha[slot] = alpha; };
+
 private:
 
 	enum DRAW_TYPE{NOMAL,RECTWH,ALPHA,TYPE_MAX,} type;
