@@ -1,0 +1,57 @@
+#pragma once
+#include "../../ESGLib.h"
+#include "../CSHAREDMETHOD/CSharedMethod.h"
+
+class  IUiParametor;
+struct UiParam;
+class  UiData;
+
+struct UiParam {
+	int gage_size = 100;
+};
+
+class IUiParametor
+{
+public:
+	friend class UiData;
+
+	IUiParametor() {};
+	virtual ~IUiParametor() {};
+
+	static IUiParametor& Instance() {
+		static IUiParametor instance;
+		return instance;
+	};
+
+	void CreateParametor(std::string name) { _ui_params.emplace(name, _ui_param); }
+private:
+	IUiParametor(const IUiParametor&)   = delete;
+	void operator=(const IUiParametor&) = delete;
+
+	std::map<std::string, UiParam> _ui_params;
+	UiParam                        _ui_param;
+};
+
+
+class UiData : public CSharedMethod
+{
+public:
+	UiData() {};
+	virtual ~UiData() {};
+
+	void SetGageParams(std::string name, int num) {
+		if (IUiParametor::Instance()._ui_params.count(name) == 0)
+			ASSERT("連想配列の存在しません。");
+
+		IUiParametor::Instance()._ui_params[name].gage_size = clamp(IUiParametor::Instance()._ui_params[name].gage_size + num, 0, 100);
+
+	}
+
+	int GetGageParams(std::string name)
+	{
+		if (IUiParametor::Instance()._ui_params.count(name) == 0)
+			ASSERT("連想配列の存在しません。");
+
+		return IUiParametor::Instance()._ui_params[name].gage_size;
+	}
+};

@@ -4,12 +4,14 @@
 class CBrockObstacle : public ObstacleBase
 {
 public:
-	CBrockObstacle(std::vector<Vector3> _obstacle_pos);
+	CBrockObstacle() {};
 	virtual ~CBrockObstacle() {};
 
-	inline virtual void Init()        override;
-	inline virtual void Update()      override;
-	inline virtual void Draw3D()      override;
+	virtual void Init()        override;
+	virtual void Update()      override;
+	virtual void Draw3D()      override;
+
+	virtual void DrawAlpha3D() override;
 
 private:
 };

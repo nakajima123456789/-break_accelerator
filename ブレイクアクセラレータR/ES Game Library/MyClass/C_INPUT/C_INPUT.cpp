@@ -104,7 +104,7 @@ bool C_INPUT::GetKeyInputDown(int keyID)//buffer
 double C_INPUT::AxisStateX()
 {
 	double axis_x = (double)GetGamePadState().X / (double)Axis_Max;
-	return axis_x != 0 ? axis_x : FALSE;
+	return axis_x;
 }
 
 int C_INPUT::DirectionAxisStateX()

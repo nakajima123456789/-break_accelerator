@@ -7,6 +7,8 @@ using std::string;
 class HitBox {
 public:
 	//デストラクタ
+	HitBox::HitBox(std::string tag);
+
 	virtual HitBox::~HitBox();
 
 	//初期化
@@ -17,7 +19,7 @@ public:
 	virtual void HitBox::DrawAlpha3D();
 
 	//パラメータを設定
-	virtual void HitBox::SetHitBox(float width, float height, float depth);
+	virtual void HitBox::SetHitBox();
 
 	//消去時に呼ばれる処理
 	void HitBox::OnReMove();
@@ -46,22 +48,13 @@ public:
 
 	bool HitBox::IsHitObjects(std::string tags);
 
-	bool IsHitBox(MODEL model);
-
-	static MODEL main_hitbox;
-
-	string tag;
+	string _tag;
 private:
 	//全てのHitBoxを格納しておくリスト
 	static std::list<HitBox*> _HitBox_list;
 
 	//判定用のモデル
 	MODEL _model = nullptr;
-
-	//パラメータ
-	float _width = 1.0f;
-	float _height = 1.0f;
-	float _depth = 1.0f;
 
 	Vector3 position;
 	Vector3    scale;

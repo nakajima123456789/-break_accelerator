@@ -103,7 +103,7 @@ private:
 	void	 IsHitObjectsDraw();
 
 	double CPlayer::clamp(double x, double low, double high);
-
+	
 	bool   CPlayer::FrameTimeObsever(int _index);
 
     //•Ï”éŒ¾
@@ -116,7 +116,6 @@ private:
 	double rotation = 0.0f; 
 
 	MONOSTATE monostate;
-
 	int _time = 0;
 
 	int fire;

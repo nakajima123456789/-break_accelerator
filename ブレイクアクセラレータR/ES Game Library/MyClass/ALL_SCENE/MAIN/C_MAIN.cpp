@@ -18,11 +18,14 @@
 
 #include "../../CGATEOBSTACLE/CGateObstacle.h"
 
+#include"../../C_GATEOBSTATCLE/R_GATEOBSTATCLE.h"
+
 #include "../../C_EFFEKSEER/CEffekseer_.h"
 
 #include "../../C_MAP/C_MAP.h"
+#include "../../C_UI/CUI.h"
 
-#include"..//..//C_UI/CUI.h"
+#include "../../C_SHADER/C_SHADER.h"
 
 void C_MAIN::Initialize(){
 
@@ -30,6 +33,8 @@ void C_MAIN::Initialize(){
 
 	auto&& c_camera = (new CCamera_);
 	_objectroot.AddList((ChildObjRef)c_camera);
+
+	CShaderAnimation::CameraSetting(*c_camera);
 
 	auto&& c_player = (new CPlayer(Vector3_Zero));
 	_objectroot.AddList((ChildObjRef)c_player);
@@ -40,28 +45,29 @@ void C_MAIN::Initialize(){
 	auto&& c_map = new C_MAP;
 	_objectroot.AddList((ChildObjRef)c_map);
 
-	auto&& c_obstacle = new CObstacle(c_objectplacement->GetCharacterPos()[OBJECT_WALL]);
+	auto&& c_obstacle = new CObstacle();
 	_objectroot.AddList((ChildObjRef)c_obstacle);
 
-	auto&& c_obstacleL = new CObstacleL(c_objectplacement->GetCharacterPos()[OBJECT_L]);
+	auto&& c_obstacleL = new CObstacleL();
 	_objectroot.AddList((ChildObjRef)c_obstacleL);
 
-	auto&& c_obstacleR = new CObstacleR(c_objectplacement->GetCharacterPos()[OBJECT_R]);
+	auto&& c_obstacleR = new CObstacleR();
 	_objectroot.AddList((ChildObjRef)c_obstacleR);
 
-	auto&& c_brockobstacle = new CBrockObstacle(c_objectplacement->GetCharacterPos()[OBJECT_BROCK]);
+	auto&& c_brockobstacle = new CBrockObstacle();
 	_objectroot.AddList((ChildObjRef)c_brockobstacle);
 
-	auto&& c_itemobstacle = new CItemObstacle(c_objectplacement->GetCharacterPos()[OBJECT_ITEM]);
+	auto&& c_itemobstacle = new CItemObstacle();
 	_objectroot.AddList((ChildObjRef)c_itemobstacle);
+
+	auto&& c_gateobstacle = new CGateObstacle();
+	_objectroot.AddList((ChildObjRef)c_gateobstacle);
+
+	auto&& c_gateobstatcle = new R_GATEOBSTATCLE();
+	_objectroot.AddList((ChildObjRef)c_gateobstatcle);
 
 	auto&& c_se = new CUI();
 	_objectroot.AddList((ChildObjRef)c_se);
-
-	auto&& c_gateobstacle = new CGateObstacle(c_objectplacement->GetCharacterPos()[OBJECT_GATE]);
-	_objectroot.AddList((ChildObjRef)c_gateobstacle);
-
-	std::vector<std::vector<Vector3>> pos = c_objectplacement->GetCharacterPos();
 }
 
 C_MAIN::~C_MAIN()

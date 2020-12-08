@@ -124,9 +124,6 @@
     <Filter Include="MyClass\All_Scene\SceneManager">
       <UniqueIdentifier>{e25a569b-6822-41dc-b5a1-306c1cc4dfe3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\All_Scene\C_Game_Over">
-      <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyClass\All_Scene\C_Main">
       <UniqueIdentifier>{019dcf04-0350-4749-81cb-2d153d321274}</UniqueIdentifier>
     </Filter>
@@ -204,6 +201,36 @@
     </Filter>
     <Filter Include="MyClass\Mng_Obstacle\ObjectPlacement">
       <UniqueIdentifier>{5c32e3f3-804e-48f4-b388-173cffd26c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\DATABASE">
+      <UniqueIdentifier>{b9911ab7-29c4-4238-9e7a-dfcaf917f26d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\DATABASE\ModelDataBase">
+      <UniqueIdentifier>{fb7bd839-d890-4097-ad5e-5a7ae0af700a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\DATABASE\PlayerDataBase">
+      <UniqueIdentifier>{2f5fdb7c-cc27-47bd-b31b-84996bb04799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\CSprite">
+      <UniqueIdentifier>{391d65b3-5697-4161-8373-84e8daf1f991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Character">
+      <UniqueIdentifier>{4b1672f4-3bca-45ba-9f80-1f05ef73c5da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\CShader">
+      <UniqueIdentifier>{f711c0f3-c460-48ec-9e56-8769fac918a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\All_Scene\C_Game_Over">
+      <UniqueIdentifier>{aaab378a-f451-4806-aa39-c8b96010d37f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\CSharedMethod">
+      <UniqueIdentifier>{2145b897-7735-4b67-a7d0-7738fc761563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\DATABASE\UIDataBase">
+      <UniqueIdentifier>{0ff5e94f-2f2b-43f8-b8af-705187fe27e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\DATABASE\MapPlacementDataBase">
+      <UniqueIdentifier>{a97d35f1-078b-43b4-8756-8679ebc98fef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -429,6 +456,33 @@
     </ClCompile>
     <ClCompile Include="MyClass\C_UI\CUI.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\CPLAYERDATA\CPlayerData.cpp">
+      <Filter>MyClass\DATABASE\PlayerDataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\CMODELDATA\ModelData.cpp">
+      <Filter>MyClass\DATABASE\ModelDataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_SPRITE\C_Sprite.cpp">
+      <Filter>MyClass\CSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_SHADER\C_SHADER.cpp">
+      <Filter>MyClass\CShader</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\CSHAREDMETHOD\CSharedMethod.cpp">
+      <Filter>MyClass\CSharedMethod</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\UIDATABASE\UiDataBase.cpp">
+      <Filter>MyClass\DATABASE\UIDataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\MapPlacementData\MapPlacementData.cpp">
+      <Filter>MyClass\DATABASE\MapPlacementDataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\CCHARACTER\Character.cpp">
+      <Filter>MyClass\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -672,6 +726,33 @@
     </ClInclude>
     <ClInclude Include="MyClass\C_UI\CUI.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\CPLAYERDATA\CPlayerData.h">
+      <Filter>MyClass\DATABASE\PlayerDataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\CMODELDATA\ModelData.h">
+      <Filter>MyClass\DATABASE\ModelDataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_SPRITE\C_Sprite.h">
+      <Filter>MyClass\CSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_SHADER\C_SHADER.h">
+      <Filter>MyClass\CShader</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\CSHAREDMETHOD\CSharedMethod.h">
+      <Filter>MyClass\CSharedMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\UIDATABASE\UiDataBase.h">
+      <Filter>MyClass\DATABASE\UIDataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\MapPlacementData\MapPlacementData.h">
+      <Filter>MyClass\DATABASE\MapPlacementDataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\CCHARACTER\Character.h">
+      <Filter>MyClass\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
