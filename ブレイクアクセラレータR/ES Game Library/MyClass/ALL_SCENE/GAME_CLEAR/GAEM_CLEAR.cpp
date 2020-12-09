@@ -1,3 +1,4 @@
+
 #include "GAEM_CLEAR.h"
 #include "../SCENEMANAGER/SceneManager.h"
 #include <algorithm>
@@ -5,12 +6,16 @@
 
 void GAEM_CLEAR::Initialize()
 {
-	Add_Sprite(_T("SPRITE/game crear.png"));
+	Add_Sprite(_T("SPRITE/geme crear.png"));
 }
 
-void GAEM_CLEAR::Update()
+int GAEM_CLEAR::Update()
 {
-	if (Input.GetKeyInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::TITLE); }
+	if (Input.GetPadInputDown(11) || Input.GetKeyInputDown(Keys_Enter))
+	{
+		return 2;
+	}
+	return -1;
 }
 
 void GAEM_CLEAR::Draw2D()
@@ -23,3 +28,4 @@ void GAEM_CLEAR::Add_Sprite(LPCTSTR _sprite_name)
 	sprite = GraphicsDevice.CreateSpriteFromFile(_sprite_name);
 	sprite_list_name.push_back(sprite);
 }
+

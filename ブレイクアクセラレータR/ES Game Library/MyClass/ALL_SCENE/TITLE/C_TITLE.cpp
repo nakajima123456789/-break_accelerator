@@ -14,15 +14,15 @@ void C_TITLE::Initialize()
 
 }
 
-void C_TITLE::Update()
+int C_TITLE::Update()
 {
 	if (Input.GetPadInputDown(1) || Input.GetKeyInputDown(Keys_Enter)) {
-		SceneManager::ChangeScene(SceneManager::RESULT);
+		return 0;
 	}
 
 	moji_x += 20;
 	if (moji_x >= 1280) { moji_x = 1280;   iro += 0.01; }
-
+	return 99;
 }
 
 void C_TITLE::Draw2D()

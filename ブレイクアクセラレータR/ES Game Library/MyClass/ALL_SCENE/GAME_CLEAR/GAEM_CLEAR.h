@@ -8,7 +8,7 @@ public:
 	virtual ~GAEM_CLEAR() {};
 
 	virtual void Initialize();
-	virtual void Update();
+	virtual int Update();
 	virtual void Draw3D() {};
 	virtual void Draw2D();
 	virtual void DrawAlpha3D() {};

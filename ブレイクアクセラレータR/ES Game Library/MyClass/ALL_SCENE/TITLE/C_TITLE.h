@@ -9,7 +9,7 @@ public:
 	virtual ~C_TITLE() {};
 
 	virtual void Initialize()  override;
-	virtual void Update()      override;
+	virtual int Update()      override;
 	virtual void Draw3D()      override { return; };
 	virtual void Draw2D()      override;
 	virtual void DrawAlpha3D() override { return; };

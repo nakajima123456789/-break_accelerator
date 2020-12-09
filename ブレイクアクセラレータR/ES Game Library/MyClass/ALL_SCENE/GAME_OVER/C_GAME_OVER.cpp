@@ -7,9 +7,13 @@ void C_GAME_OVER::Initialize()
 	Add_Sprite(_T("‰æ‘œ"));
 }
 
-void C_GAME_OVER::Update()
+int C_GAME_OVER::Update()
 {
-	if (Input.GetPadInputDown(11)) { SceneManager::ChangeScene(SceneManager::RESULT); }
+	if (Input.GetPadInputDown(11)) { 
+		return 0;
+	}
+
+	return -1;
 }
 
 void C_GAME_OVER::Draw2D()

@@ -32,8 +32,9 @@ void SceneManager::ChangeScene(SCENE scene) {
 	m_pScene->Initialize();
 }
 
-void SceneManager::Update() {
-	m_pScene->Update();       
+int SceneManager::Update() {
+	m_pScene->Update();  
+	return - 1;
 }
 
 void SceneManager::Draw3D() {

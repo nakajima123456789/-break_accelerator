@@ -12,7 +12,7 @@ bool GameMain::Initialize()
 	// TODO: Add your initialization logic here
 	WindowTitle(_T("ES Game Library"));
 
-	SceneManager::ChangeScene(SceneManager::MAIN);
+	SceneManager::ChangeScene(SceneManager::TITLE);
 
 
 	return true;
@@ -35,11 +35,27 @@ void GameMain::Finalize()
 /// <returns>
 /// Scene continued value.
 /// </returns>
+
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
 
-	scene_manager->Update();
+	isscene = scene_manager->Update();
+
+	switch (isscene)
+	{
+	case 0:
+		SceneManager::ChangeScene(SceneManager::SCENE::MAIN);
+		break;
+	case 1:
+		SceneManager::ChangeScene(SceneManager::SCENE::GAME_CLEAR);
+		break;
+	case 2:
+		SceneManager::ChangeScene(SceneManager::SCENE::RESULT);
+		break;
+	default:
+		break;
+	}
 
 	return 0;
 }
