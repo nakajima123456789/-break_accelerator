@@ -3,39 +3,48 @@
 
 void CItemObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("‰ü’ù//program.X"));
-	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
-	this->obstacle_model->SetScale(0.5f);
+	this->p_model.SetModel(_T("‰ü’ù//program.X"));
+	this->p_model.SetScale(0.5f);
 
-	IsHitObjectsInit("Item",0.4f);
+	p_hitbox = new HitBox();
+	this->ChildObj_AddList((ChildObjRef)p_hitbox);
+
+	p_hitbox->Settags("item");
+	p_hitbox->transform.localposition.y += 0.5f;
 
 }
 
 void CItemObstacle::Update()
 {
-	this->transform.rotation.y = this->transform.rotation.y += 5.0f;
+	
 }
 
 void CItemObstacle::Draw3D()
 {
 	auto& itr = this->_imap_data->GetPlayerPosition('I');
-	auto& obstacle_it = itr.begin();
+
+	float player_pos_z = _iplayer_data->GetPlayerPosition("player").z;
+
+	auto& obstacle_it   = itr.begin();
 	while (obstacle_it != itr.end())
 	{
 		this->transform.position = *obstacle_it;
-		if (DistanceTrigger(90.0f))
-		{
-			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.25f, 0.0f));
-			this->obstacle_model->Draw();
-		}
-		if (RemoveModelDistance(-20))
-		{
-			obstacle_it = itr.erase(obstacle_it);
-			continue;
-		}
-		if (CollsionTrigger())
-		{
-			observer.IsCollisionClear();
+
+		float distance = this->transform.position.z - player_pos_z;
+
+		if (distance <= 90.0f){
+
+			if (OnCollsion(distance)) { 
+				this->observer.IsCollisionClear(); 
+				obstacle_it = itr.erase(obstacle_it);
+				continue;
+			};
+
+			if (distance <= -5.0f) { obstacle_it = itr.erase(obstacle_it); continue; };
+
+			this->p_model.SetPosition(this->transform.position + Vector3(0.f, 0.25f, 0.0f));
+			this->p_model.Draw();
+
 		}
 
 		obstacle_it++;

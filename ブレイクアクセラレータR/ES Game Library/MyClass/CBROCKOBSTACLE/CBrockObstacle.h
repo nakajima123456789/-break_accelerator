@@ -13,6 +13,10 @@ public:
 
 	virtual void DrawAlpha3D() override;
 
+	std::vector<Vector3> position;
+
+	int count = 0;
+
 private:
 };
 

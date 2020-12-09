@@ -46,7 +46,7 @@ public:
 		IMapParametor::Instance()._map_params[name]._position.push_back(position);
 	}
 
-	std::vector<Vector3> GetPlayerPosition(char name)
+	std::vector<Vector3>& GetPlayerPosition(char name)
 	{
 		if (IMapParametor::Instance()._map_params.count(name) == 0)
 			ASSERT("連想配列の存在しません。");

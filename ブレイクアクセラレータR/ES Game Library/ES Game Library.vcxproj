@@ -206,6 +206,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Velocity.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="DirectX\Audio\DXAudio8.cpp" />
     <ClCompile Include="DirectX\Audio\MusicSegment.cpp" />
@@ -331,6 +332,7 @@
     <ClInclude Include="Framework\Stream.hpp" />
     <ClInclude Include="Framework\Thread.hpp" />
     <ClInclude Include="..\Resource\resource.h" />
+    <ClInclude Include="Velocity.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resource\DirectX.ico" />

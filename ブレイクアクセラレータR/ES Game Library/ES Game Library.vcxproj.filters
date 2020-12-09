@@ -232,6 +232,12 @@
     <Filter Include="MyClass\DATABASE\MapPlacementDataBase">
       <UniqueIdentifier>{a97d35f1-078b-43b4-8756-8679ebc98fef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\CUI">
+      <UniqueIdentifier>{ba30f2c2-e166-4687-ad63-d890c5b9bb3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_GateObstacleR">
+      <UniqueIdentifier>{152ea3c1-6d55-4d0b-b911-4c19293dd247}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -454,12 +460,6 @@
     <ClCompile Include="MyClass\CGATEOBSTACLE\CGateObstacle.cpp">
       <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
     </ClCompile>
-    <ClCompile Include="MyClass\C_UI\CUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="MyClass\CPLAYERDATA\CPlayerData.cpp">
       <Filter>MyClass\DATABASE\PlayerDataBase</Filter>
     </ClCompile>
@@ -483,6 +483,15 @@
     </ClCompile>
     <ClCompile Include="MyClass\MapPlacementData\MapPlacementData.cpp">
       <Filter>MyClass\DATABASE\MapPlacementDataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_UI\CUI.cpp">
+      <Filter>MyClass\CUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_GateObstacleR</Filter>
+    </ClCompile>
+    <ClCompile Include="Velocity.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -724,12 +733,6 @@
     <ClInclude Include="MyClass\CGATEOBSTACLE\CGateObstacle.h">
       <Filter>MyClass\Mng_Obstacle\C_GateObstacle</Filter>
     </ClInclude>
-    <ClInclude Include="MyClass\C_UI\CUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="MyClass\CPLAYERDATA\CPlayerData.h">
       <Filter>MyClass\DATABASE\PlayerDataBase</Filter>
     </ClInclude>
@@ -753,6 +756,15 @@
     </ClInclude>
     <ClInclude Include="MyClass\MapPlacementData\MapPlacementData.h">
       <Filter>MyClass\DATABASE\MapPlacementDataBase</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_UI\CUI.h">
+      <Filter>MyClass\CUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.h">
+      <Filter>MyClass\Mng_Obstacle\C_GateObstacleR</Filter>
+    </ClInclude>
+    <ClInclude Include="Velocity.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

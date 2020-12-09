@@ -48,12 +48,12 @@ void CUI::OnCollisionDamage()
 	{
 		effekseer->SetPosition(id, player_pos - Vector3(0, 0, -1));
 	}
-	_ui_data->SetGageParams("ui", +1);
+	_ui_data->SetGageParams("ui", +2);
 }
 
 void CUI::OnCollisionClear()
 {
-	_ui_data->SetGageParams("ui", -1);
+	_ui_data->SetGageParams("ui", -2);
 
 }
 

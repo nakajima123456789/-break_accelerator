@@ -3,9 +3,9 @@
 
 void CObstacle::Init()
 {
-	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å_//hako_B.X"));
+	//this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å_//hako_B.X"));
 
-	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f,1.f,1.f)));
+	//this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f,1.f,1.f)));
 
 	//IsHitObjectsInit("Item_Hitbox");
 

@@ -8,6 +8,7 @@
 #include "../CSHAREDMETHOD/CSharedMethod.h"
 #include "../CCHARACTER/Character.h"
 #include "../CPLAYERDATA/CPlayerData.h"
+#include "../../Velocity.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
@@ -52,7 +53,6 @@ private:
 	{
 	private:
 		CPlayerStateProcessor* _owner;
-		float speed = 0;
 	public:
 		RUNPAD(CPlayerStateProcessor* owner) : _owner(owner) {}
 		virtual ~RUNPAD() {}
@@ -67,13 +67,10 @@ private:
 	{
 	private:
 		CPlayerStateProcessor* _owner;
-		int   time  = 0;
-		int   frame = 0;
-		float speed = 0;
 	public:
 		RUNKEY(CPlayerStateProcessor* owner) : _owner(owner) {}
 		virtual ~RUNKEY() {}
-
+		float speed = 0;
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return INT_MAX; };
 
@@ -98,22 +95,12 @@ private:
 
 private:
 	//関数宣言
-	void	 IsHitObjectsDraw();
-
-	float    AccelaretorTime();
 
     //変数宣言
 
-	int   time  = 0;
-	int   frame = 0;
-
-	Model player_model;
-
-	float accelaretor = 0.3f;
-
-	float  speed = 0.0f;
-
-	double rotation = 0.0f; 
+	Model     p_model;
+	HitBox*   p_hitbox;
+	Velocity* p_velocity;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;
