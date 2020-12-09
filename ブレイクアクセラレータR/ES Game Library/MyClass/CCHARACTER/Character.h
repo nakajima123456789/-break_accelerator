@@ -88,6 +88,8 @@ public:
 	virtual void SetScale(float character_scale)     override { _model->SetScale(character_scale); };
 	virtual void SetDirection(Quaternion quaternion) override { _model->SetDirection(quaternion); };
 
+	float GetRadius() {OrientedBoundingBox model = _model->GetOBB();Vector3 radius = model.Radius;return radius.x;};
+
 	void Attenuation(float attenuation);
 
 	//アニメーションのパラメータを取得

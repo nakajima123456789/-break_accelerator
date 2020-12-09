@@ -113,6 +113,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.cpp" />
+    <ClCompile Include="C_Tonnel.cpp" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -201,6 +202,7 @@
     <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp" />
     <ClCompile Include="MyClass\OBSTACLEBASE\ObstacleBase.cpp" />
     <ClCompile Include="MyClass\ObstacleFactory\ObstacleFactory.cpp" />
+    <ClCompile Include="MyClass\ObstacleManager\ObstacleManager.cpp" />
     <ClCompile Include="MyClass\UIDATABASE\UiDataBase.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -243,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.h" />
+    <ClInclude Include="C_Tonnel.h" />
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp" />
     <ClInclude Include="Extension\DirectX11\DXGraphics11.hpp" />
     <ClInclude Include="Extension\DirectX11\Model11.hpp" />
@@ -293,6 +296,7 @@
     <ClInclude Include="MyClass\OBSEVER\OBSEVER.h" />
     <ClInclude Include="MyClass\OBSTACLEBASE\ObstacleBase.h" />
     <ClInclude Include="MyClass\ObstacleFactory\ObstacleFactory.h" />
+    <ClInclude Include="MyClass\ObstacleManager\ObstacleManager.h" />
     <ClInclude Include="MyClass\UIDATABASE\UiDataBase.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ESGLib.h" />

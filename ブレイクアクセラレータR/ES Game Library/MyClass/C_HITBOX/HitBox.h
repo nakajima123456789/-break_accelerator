@@ -18,6 +18,8 @@ public:
 
 	void HitBox::OnReMove();
 
+	void HitBox::SetScale(Vector3 scale) { _model->SetScale(scale); };
+
 	//©g‚ğ•Ô‚·
 	HitBox* HitBox::GetThisHitBox() { return this; };
 

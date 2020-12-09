@@ -27,7 +27,7 @@ protected:
 
 	//ŠÖ”éŒ¾
 
-	bool   OnCollsion(float distance);
+	bool   OnCollsion(float distance, Vector3 _position = Vector3(0.0f, 0.5f, 0.0f));
 
 	//•Ï”éŒ¾
 	HitBox*  p_hitbox;

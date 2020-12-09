@@ -25,6 +25,7 @@ void CPlayer::Init()
 
 	p_velocity = new Velocity();
 	this->ChildObj_AddList((ChildObjRef)p_velocity);
+
 	p_velocity->gameObject = this;
 
 	_iplayer_data.reset(new IPlayerData);

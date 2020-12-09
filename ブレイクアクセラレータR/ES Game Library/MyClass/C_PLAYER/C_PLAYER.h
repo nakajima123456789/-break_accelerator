@@ -9,6 +9,7 @@
 #include "../CCHARACTER/Character.h"
 #include "../CPLAYERDATA/CPlayerData.h"
 #include "../../Velocity.h"
+#include "../../C_Tonnel.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
@@ -99,8 +100,10 @@ private:
     //変数宣言
 
 	Model     p_model;
+
 	HitBox*   p_hitbox;
 	Velocity* p_velocity;
+	C_Tonnel* p_tonnel;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;

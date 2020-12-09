@@ -1,12 +1,12 @@
 #include "ObstacleBase.h"
 
-bool ObstacleBase::OnCollsion(float distance)
+bool ObstacleBase::OnCollsion(float distance,Vector3 _position)
 {
 	if (distance <= 5.0f)
 	{
-		this->p_hitbox->GetModel()->SetPosition(this->transform.position + Vector3(0.0f, 0.5f, 0.0f));
-		if (p_hitbox->IsHitObjects("player"))
-			return true; 
+		this->p_hitbox->GetModel()->SetPosition(this->transform.position + _position);
+
+		if (p_hitbox->IsHitObjects("player"))return true; 
 	}
 	return false;
 }

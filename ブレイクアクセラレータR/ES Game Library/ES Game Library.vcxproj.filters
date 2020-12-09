@@ -238,6 +238,18 @@
     <Filter Include="MyClass\Mng_Obstacle\C_GateObstacleR">
       <UniqueIdentifier>{152ea3c1-6d55-4d0b-b911-4c19293dd247}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\Mng_Obstacle\C_Tonnel">
+      <UniqueIdentifier>{c87cd51c-45de-4c3e-84ee-95be831f0b27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\C_Player\Velocity">
+      <UniqueIdentifier>{db5099b3-7f4d-4ee7-ad3c-f811477cff2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\C_Player\CPlayer">
+      <UniqueIdentifier>{377fd79a-70fd-4eae-9855-740a66745a89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\ObstacleManager">
+      <UniqueIdentifier>{53ec3f80-4c47-4ddf-8627-a572a164f593}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -418,9 +430,6 @@
     <ClCompile Include="MyClass\C_SE\C_SE.cpp">
       <Filter>MyClass\C_Se</Filter>
     </ClCompile>
-    <ClCompile Include="MyClass\C_PLAYER\C_PLAYER.cpp">
-      <Filter>MyClass\C_Player</Filter>
-    </ClCompile>
     <ClCompile Include="MyClass\C_EFFEKSEER\CEffekseer_.cpp">
       <Filter>MyClass\C_Effekseer</Filter>
     </ClCompile>
@@ -490,8 +499,17 @@
     <ClCompile Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.cpp">
       <Filter>MyClass\Mng_Obstacle\C_GateObstacleR</Filter>
     </ClCompile>
+    <ClCompile Include="C_Tonnel.cpp">
+      <Filter>MyClass\Mng_Obstacle\C_Tonnel</Filter>
+    </ClCompile>
     <ClCompile Include="Velocity.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MyClass\C_Player\Velocity</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_PLAYER\C_PLAYER.cpp">
+      <Filter>MyClass\C_Player\CPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\ObstacleManager\ObstacleManager.cpp">
+      <Filter>MyClass\ObstacleManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -691,9 +709,6 @@
     <ClInclude Include="MyClass\C_SE\C_SE.h">
       <Filter>MyClass\C_Se</Filter>
     </ClInclude>
-    <ClInclude Include="MyClass\C_PLAYER\C_PLAYER.h">
-      <Filter>MyClass\C_Player</Filter>
-    </ClInclude>
     <ClInclude Include="MyClass\C_EFFEKSEER\CEffekseer_.h">
       <Filter>MyClass\C_Effekseer</Filter>
     </ClInclude>
@@ -763,8 +778,17 @@
     <ClInclude Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.h">
       <Filter>MyClass\Mng_Obstacle\C_GateObstacleR</Filter>
     </ClInclude>
+    <ClInclude Include="C_Tonnel.h">
+      <Filter>MyClass\Mng_Obstacle\C_Tonnel</Filter>
+    </ClInclude>
     <ClInclude Include="Velocity.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>MyClass\C_Player\Velocity</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_PLAYER\C_PLAYER.h">
+      <Filter>MyClass\C_Player\CPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\ObstacleManager\ObstacleManager.h">
+      <Filter>MyClass\ObstacleManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

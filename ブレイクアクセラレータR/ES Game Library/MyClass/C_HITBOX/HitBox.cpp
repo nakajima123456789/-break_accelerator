@@ -19,13 +19,14 @@ void HitBox::Init() {
 	shape.Type = Shape_Box;
 	shape.Width = 1.0f;shape.Height = 1.0f;shape.Depth = 1.0f;
 	_model = GraphicsDevice.CreateModelFromSimpleShape(shape);
+
+	_model->SetScale(0.3f);
 };
 
 void HitBox::Draw3D() {
 	if (_flag) return;
-	_model->SetScale(0.3f);
 	_model->SetPosition(this->transform.position);
-   // _model->Draw();
+
 }
 
 void HitBox::Settags(std::string tags){

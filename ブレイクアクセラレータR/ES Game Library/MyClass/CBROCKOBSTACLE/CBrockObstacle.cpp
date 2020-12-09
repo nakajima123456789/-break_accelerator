@@ -27,7 +27,7 @@ void CBrockObstacle::DrawAlpha3D()
 
 	Vector3 player_pos = this->_iplayer_data->GetPlayerPosition("player");
 
-	auto& obstacle_it = itr.begin();
+	auto& obstacle_it   = itr.begin();
 	while (obstacle_it != itr.end())
 	{
 		this->transform.position = *obstacle_it;
@@ -36,8 +36,7 @@ void CBrockObstacle::DrawAlpha3D()
 	    if (distance <= 90)
 		{
 			if (OnCollsion(distance)) { this->observer.IsCollisionDamage(); };
-
-			if (distance <= -5.0f) { obstacle_it = itr.erase(obstacle_it); continue; };
+			if (distance <= -5.0f)    { obstacle_it = itr.erase(obstacle_it); continue; };
 
 			this->p_model.SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
 			this->p_model.Draw();
