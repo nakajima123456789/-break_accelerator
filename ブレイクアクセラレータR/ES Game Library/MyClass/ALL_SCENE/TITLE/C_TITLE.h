@@ -17,6 +17,12 @@ public:
 private:
 
 	SPRITE sprite;
+	SPRITE moji;
+	SPRITE moji2;
+	SPRITE moji3;
+
+	float moji_x;
+	float iro;
 
 	void Add_Sprite(LPCTSTR _sprite_name);
 	std::vector<SPRITE> sprite_list_name;

@@ -5,7 +5,7 @@
 
 void GAEM_CLEAR::Initialize()
 {
-	Add_Sprite(_T("‰æ‘œ"));
+	Add_Sprite(_T("SPRITE/game crear.png"));
 }
 
 void GAEM_CLEAR::Update()

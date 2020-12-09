@@ -36,9 +36,9 @@ private:
 
 	int gage;
 
-	std::vector<std::vector<int>>gage_apha;
+	int speed_meta;
 
-	int count = 0;
+	int count = 1;
 
 	unsigned int size = 1;
 
