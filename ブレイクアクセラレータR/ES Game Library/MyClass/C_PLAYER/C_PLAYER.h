@@ -4,14 +4,10 @@
 #include "../C_OBJECT/Object.h"
 #include "../c_Hitbox/HitBox.h"
 #include "../C_INPUT/C_INPUT.h"
-#include "../C_SE/C_SE.h"
-#include "../INFORMATION/INFORMATION.h"
 #include "../C_EFFEKSEER/CEffekseer_.h"
-#include "../C_CAMERA/C_CAMERA.h"
-
-
-#include <functional>
-
+#include "../CSHAREDMETHOD/CSharedMethod.h"
+#include "../CCHARACTER/Character.h"
+#include "../CPLAYERDATA/CPlayerData.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
@@ -21,7 +17,7 @@ public:
 	CPlayer* player_manager;
 };
 
-class CPlayer : public Object
+class CPlayer : public Object, CSharedMethod
 {
 public:
 	CPlayerStateProcessor player_state_processor;
@@ -56,6 +52,7 @@ private:
 	{
 	private:
 		CPlayerStateProcessor* _owner;
+		float speed = 0;
 	public:
 		RUNPAD(CPlayerStateProcessor* owner) : _owner(owner) {}
 		virtual ~RUNPAD() {}
@@ -70,6 +67,9 @@ private:
 	{
 	private:
 		CPlayerStateProcessor* _owner;
+		int   time  = 0;
+		int   frame = 0;
+		float speed = 0;
 	public:
 		RUNKEY(CPlayerStateProcessor* owner) : _owner(owner) {}
 		virtual ~RUNKEY() {}
@@ -98,29 +98,23 @@ private:
 
 private:
 	//関数宣言
-	Material SetMaterial(Color _color);
-	int      IsHitObjectsInit();
 	void	 IsHitObjectsDraw();
 
-	double CPlayer::clamp(double x, double low, double high);
-	
-	bool   CPlayer::FrameTimeObsever(int _index);
+	float    AccelaretorTime();
 
     //変数宣言
 
-	std::unique_ptr <HitBox> c_hitbox;
+	int   time  = 0;
+	int   frame = 0;
 
-	MODEL player_model;
+	Model player_model;
+
+	float accelaretor = 0.3f;
 
 	float  speed = 0.0f;
+
 	double rotation = 0.0f; 
 
-	MONOSTATE monostate;
-	int _time = 0;
-
-	int fire;
-	EFFEKSEER effekseer;
-	int effcseer_id;
-
-
+	//プレイヤーのデータベース
+	std::unique_ptr<IPlayerData>   _iplayer_data;
 };

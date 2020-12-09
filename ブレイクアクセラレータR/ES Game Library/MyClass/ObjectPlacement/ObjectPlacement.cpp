@@ -59,7 +59,7 @@ void PlacementManager::Draw3D()
 void PlacementManager::MapdataTagsPos()
 {
 	const float   sense    = 0.38f;
-	const Vector3 lear_pos = Vector3(-1.33f, -0.35f, 50.0f);
+	const Vector3 lear_pos = Vector3(-1.33f, -0.3f, 50.0f);
 
 	for (int z = 0; z < mapdata.size(); z++)
 	{

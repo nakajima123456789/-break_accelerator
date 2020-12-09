@@ -3,10 +3,7 @@
 #include "../INFORMATION/INFORMATION.h"
 void C_MAP::Init()
 {
-	//MediaManager.Attach(GraphicsDevice);
- //   bg = MediaManager.CreateMediaFromFile(_T("SPRITE//ƒRƒ“ƒ| 1a.wmv"));
-
-	bgm = SoundDevice.CreateMusicFromFile(_T("BGM_SE//bgm.wav"));
+	//bgm = SoundDevice.CreateMusicFromFile(_T("BGM_SE//bgm.wav"));
 
 	Material mtrl;
 
@@ -22,10 +19,10 @@ void C_MAP::Init()
 
 	AddModel(_T("model3D//‰ü’ù”Å//road_8.X"));
 	for (int i = 0; i < 2; i++) {
-		AddModel(_T("model3D//Œõ//bg_Vr2_purple.X"));
+		AddModel(_T("model3D//Œõ//bg_Vr1_set.X"));
 	}
 	AddModel(_T("model3D//’Œ//kari.X"));
-	AddModel(_T("model3D//bill_side//building_set_pro_2.X"));
+	AddModel(_T("model3D//bill_side//building_set_pro_3.X"));
 
 
 	model_position.resize(model.size());
@@ -42,7 +39,9 @@ void C_MAP::Init()
 		model_position[i].resize(model_size);
 
 	CreateMapPrefarence();
-	bgm->Play();
+	//bgm->Play();
+
+	_iplayer_data.reset(new IPlayerData);
 };
 
 void C_MAP:: Update()
@@ -54,9 +53,11 @@ void C_MAP:: Update()
 		model_position[y].push_back(pos);
 	};
 
+	Vector3 player_pos = _iplayer_data->GetPlayerPosition("player");
+
 	for (int y = 0; y < model_position.size(); ++y) {
 
-		if (model_position[y][0].z + 17 <= monostate.player_pos.z)
+		if (model_position[y][0].z + 17 <= player_pos.z)
 		{
 			switch (y)
 			{
@@ -80,15 +81,6 @@ void C_MAP:: Update()
 		}
 	}
 
-		//if (bg->IsComplete()) {
-		//	bg->Replay();
-		//}
-		//else { bg->Play(); }
-
-	//bg->Play();
-	//if (bg->IsComplete()) {
-	//	bg->Replay();
-	//}
 	return;
 };
 
@@ -144,11 +136,13 @@ void C_MAP::DrawAlpha3D()
 
 void C_MAP::Draw2D() 
 {
-	//SpriteBatch.Draw(*bg, Vector3(0, 0, SpriteBatch_BottomMost));
+	return;
 }
 
 void C_MAP::CreateMapPrefarence()
 {
+	Vector3 player_pos = _iplayer_data->GetPlayerPosition("player");
+
 	for (int y = 0; y < model_position.size(); y++)
 	{
 		for (int x = 0; x < model_position[y].size(); x++)
@@ -156,19 +150,19 @@ void C_MAP::CreateMapPrefarence()
 			switch (y) 
 			{
 			case LIGHT:
-				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z - 5) + (x * ground_model_scene[LIGHT]));
-				break;
-			case LIGHT2:
-				model_position[y][x] = Vector3(-2.5f, -6.5f, (monostate.player_pos.z) + (x * ground_model_scene[LIGHT2]));
-				break;
-			case POLE:
-				model_position[y][x] = Vector3(0.0f, 0.0f, (monostate.player_pos.z - 5) + (x * ground_model_scene[POLE]));
-				break;
-			case BUILD:
-				model_position[y][x] = Vector3(0.0f, -8.0f, (monostate.player_pos.z - 20) + (x * ground_model_scene[BUILD]));
-				break;
-			default:
-				model_position[y][x] = Vector3(0.0f, -0.25f, (monostate.player_pos.z - 5) + (x * ground_model_scene[GROUND]));
+				model_position[y][x] = Vector3(-2.5f, -6.5f, (player_pos.z - 5) + (x * ground_model_scene[LIGHT]));
+				break;										 
+			case LIGHT2:									 
+				model_position[y][x] = Vector3(-2.5f, -6.5f, (player_pos.z) + (x * ground_model_scene[LIGHT2]));
+				break;										 
+			case POLE:										 
+				model_position[y][x] = Vector3(0.0f, 0.0f,   (player_pos.z - 5) + (x * ground_model_scene[POLE]));
+				break;										 
+			case BUILD:										 
+				model_position[y][x] = Vector3(0.0f, -8.0f,  (player_pos.z - 20) + (x * ground_model_scene[BUILD]));
+				break;										  
+			default:										  
+				model_position[y][x] = Vector3(0.0f, -0.25f, (player_pos.z - 5) + (x * ground_model_scene[GROUND]));
 				break;
 			}
 		}

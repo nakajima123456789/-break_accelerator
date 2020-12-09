@@ -1,9 +1,6 @@
 #include "C_Obstacle.h"
 
-CObstacle::CObstacle(std::vector<Vector3> _obstacle_pos)
-{
-	obstacle_pos = _obstacle_pos;
-}
+#include "../C_CAMERA/C_CAMERA.h"
 
 void CObstacle::Init()
 {
@@ -11,7 +8,8 @@ void CObstacle::Init()
 
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f,1.f,1.f)));
 
-	IsHitObjectsInit("Item_Hitbox");
+	IsHitObjectsInit("Item_Hitbox", 0.4f);
+
 }
 
 void CObstacle::Update()
@@ -21,32 +19,30 @@ void CObstacle::Update()
 
 void CObstacle::Draw3D()
 {
-	auto&& obstacle_it = this->obstacle_pos.begin();
-	while (obstacle_it != this->obstacle_pos.end()) {
 
+	auto& itr = this->_imap_data->GetPlayerPosition('O');
+	auto& obstacle_it = itr.begin();
+	while (obstacle_it != itr.end())
+	{
 		this->transform.position = *obstacle_it;
 
 		if (DistanceTrigger(90.0f))
 		{
-			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.0f,0.08f,0.0f));
-			this->obstacle_model->SetRotation(this->transform.rotation);
-			this->obstacle_model->SetScale(this->transform.scale);
+			this->obstacle_model->SetPosition(this->transform.position + Vector3(0.f, 0.08f, 0.0f));
 			this->obstacle_model->Draw();
 		}
-
 		if (RemoveModelDistance(-20))
 		{
-			obstacle_it = this->obstacle_pos.erase(obstacle_it);
+			obstacle_it = itr.erase(obstacle_it);
 			continue;
 		}
 
-		if (this->CollsionTrigger())
+		if (CollsionTrigger())
 		{
-			observer.IsCollisionClear();
-			obstacle_it = obstacle_pos.erase(obstacle_it);
-			continue;
+			observer.IsCollisionDamage();
 		}
 
 		obstacle_it++;
 	}
+
 }

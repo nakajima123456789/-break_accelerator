@@ -14,6 +14,7 @@ bool GameMain::Initialize()
 
 	SceneManager::ChangeScene(SceneManager::MAIN);
 
+
 	return true;
 }
 

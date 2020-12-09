@@ -1,7 +1,7 @@
 #pragma once
 #include "../C_OBJECT/Object.h"
 #include "../../ESGLib.h"
-#include "../INFORMATION/INFORMATION.h"
+#include "../CPLAYERDATA/CPlayerData.h"
 
 class C_MAP : public Object
 {
@@ -14,7 +14,6 @@ public:
 	virtual void DrawAlpha3D() override;
 	virtual void Draw2D()      override;
 
-	static MODEL hoge_model;
 private:
 
 	enum MAP_MODEL
@@ -33,10 +32,11 @@ private:
 	inline void CreateMapPrefarence();
 
 	MEDIA bg;
-	MONOSTATE monostate;
 	MUSIC bgm;
-
 	int ground_model_scene[MAP_MODEL_SIZE];
+
+	//プレイヤーのデータベース
+	std::unique_ptr<IPlayerData>   _iplayer_data;
 protected:
 
 };

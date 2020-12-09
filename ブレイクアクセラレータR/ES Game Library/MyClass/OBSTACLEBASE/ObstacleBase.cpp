@@ -24,13 +24,12 @@ bool ObstacleBase::CollsionTrigger()
 			return true;
 		}
 	}
-
 	return false;
 }
 
 float ObstacleBase::PlayerDistance()
 {
-	return Vector3_Distance(this->transform.position, _iplayer_data->GetPlayerPosition("player"));;
+	return Vector3_Distance(this->transform.position, _iplayer_data->GetPlayerPosition("player"));
 }
 
 ObstacleBase::ObstacleBase()
@@ -51,7 +50,7 @@ void  ObstacleBase::IsHitObjectsInit(std::string _tags, float scale)
 void  ObstacleBase::IsHitObjectsDraw(Vector3 _pos)
 {
 	_hitbox->SetHitBoxPosition(_pos);
-	_hitbox->Draw3D();
+	//_hitbox->Draw3D();
 }
 
 bool ObstacleBase::RemoveModelDistance(double _distance)

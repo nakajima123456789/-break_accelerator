@@ -24,10 +24,10 @@ void CCamera_::Update()
 {
 	//field_of_view_pov = clamp(Input.GetPadInput(5) ? field_of_view_pov += 0.5f : field_of_view_pov -= 0.5f, 50.0f, 500.0f);
 
-	camera->SetFieldOfViewY(field_of_view_pov);
+	//camera->SetFieldOfViewY(field_of_view_pov);
+	Vector3 player_pos = _iplayer_data->GetPlayerPosition("player");
+	camera->SetLookAt(player_pos + Vector3(0.0f,0.5f, - 0.65f), player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
 
-	camera->SetLookAt(monostate.player_pos + Vector3(0.0f,0.5f, - 0.65f), monostate.player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
-//	camera->SetLookAt(monostate.player_pos + Vector3(0.0f, 0.69f, -0.65f), monostate.player_pos + Vector3(0.0f, -0.56f,4.0f), Vector3_Up);
 
 	EffekseerMgr.Update();
 	GraphicsDevice.SetCamera(camera);
@@ -40,10 +40,10 @@ void CCamera_::DrawEnd()
 	EffekseerMgr.Draw(camera);
 };
 
-double CCamera_::clamp(double x, double low, double high)
-{
-	ASSERT(low <= high && "最小値 <= 最大値");
-	return min(max(x, low), high);
-}
+//double CCamera_::clamp(double x, double low, double high)
+//{
+//	ASSERT(low <= high && "最小値 <= 最大値");
+//	return min(max(x, low), high);
+//}
 
 
