@@ -12,7 +12,7 @@ int C_RESULT::Update()
 {
 	
 	if (Input.GetPadInputDown(1) || Input.GetKeyInputDown(Keys_Enter)) {
-		return 0;
+		return 3;
 	}
 	return -1;
 }

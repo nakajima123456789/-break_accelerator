@@ -53,6 +53,9 @@ int GameMain::Update()
 	case 2:
 		SceneManager::ChangeScene(SceneManager::SCENE::RESULT);
 		break;
+	case 3:
+		SceneManager::ChangeScene(SceneManager::SCENE::TITLE);
+		break;
 	default:
 		break;
 	}
