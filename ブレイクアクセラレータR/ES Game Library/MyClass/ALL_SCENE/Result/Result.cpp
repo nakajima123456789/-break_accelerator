@@ -10,7 +10,6 @@ void C_RESULT::Initialize()
 
 int C_RESULT::Update()
 {
-	
 	if (Input.GetPadInputDown(1) || Input.GetKeyInputDown(Keys_Enter)) {
 		return 3;
 	}
