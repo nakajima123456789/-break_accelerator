@@ -55,6 +55,7 @@ void CPlayer::Update()
 		transform.position.z = transform.position.z + accelaretor;
 	};
 
+
 	this->player_state_processor.Update();
 }
 
@@ -100,6 +101,7 @@ void CPlayer::IDOL::Update()
 
 void CPlayer::RUNPAD::Update()
 {
+
 	if (Input.AxisStateX() >= 0.3f){ speed = speed + _owner->player_manager->AccelaretorTime();}
 	else 
 	if (Input.AxisStateX() <= 0.3f){ speed = speed - _owner->player_manager->AccelaretorTime();}

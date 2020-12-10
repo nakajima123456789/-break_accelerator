@@ -21,7 +21,10 @@ void CUI::Init()
 	sprite_mng.CreateSpriteFromFile(_T("UI/FWゲージ/FW_base.png"),  Vector3(365.0f, 0.0f, 0.0f));
 	sprite_mng.CreateSpriteFromFile(_T("UI/FWゲージ/FW_base2.png"), Vector3(365.0f, 0.0f, 0.0f));
 	sprite_mng.CreateSpriteFromFile(_T("SPRITE//aka.png"), Vector3(0.0f, 0.0f, SpriteBatch_BottomMost));
-	
+
+
+	speed_meta = sprite_mng.CreateSpriteFromFileRect(_T("UI/speedgage/sp.png"), Vector3(0.0f, 0.0f, 0.0f));
+
 	gage = sprite_mng.CreateSpriteFromFileRect(_T("UI/FWゲージ/FW_S.png"), Vector3(365.0f, 0.0f, 0.0f));
 	
 	IUiParametor::Instance().CreateParametor("ui");
@@ -31,13 +34,12 @@ void CUI::Init()
 
 	item   = EffekseerMgr.LoadEffekseer(_T("アイテム取得//アイテム取得.efk"));
 	damage = EffekseerMgr.LoadEffekseer(_T("ダメージ//ダメージ.efk"));
-	door = EffekseerMgr.LoadEffekseer(_T("門爆破//門爆破.efk"));
+
 }
 
 void CUI::Update()
 {
-
-
+	
 }
 
 void CUI::OnCollisionDamage()
@@ -56,39 +58,32 @@ void CUI::OnCollisionDamage()
 void CUI::OnCollisionClear()
 {
 	_ui_data->SetGageParams("ui", -1);
+	count++;
 
 }
 
 void CUI::OnCollisionGage()
 {
-
-	//int id = -1;
-	//Vector3 player_pos = _player_data->GetPlayerPosition("player");
-	//EFFEKSEER effekseer = EffekseerMgr.GetEffekseer(damage);
-	//id = effekseer->Play(player_pos - Vector3(0, 0, -1));
-	//if (id != -1)
-	//{
-	//	effekseer->SetPosition(id, player_pos - Vector3(0, 0, -1));
-	//}
-	//_ui_data->SetGageParams("ui", +1);
-
-}
-
-void CUI::OnCollisionDoor() 
-{
 	int id = -1;
 	Vector3 player_pos = _player_data->GetPlayerPosition("player");
-	EFFEKSEER effekseer = EffekseerMgr.GetEffekseer(door);
+	EFFEKSEER effekseer = EffekseerMgr.GetEffekseer(item);
 	id = effekseer->Play(player_pos - Vector3(0, 0, -1));
 	if (id != -1)
 	{
+		effekseer->SetScale(id, 0.5);
 		effekseer->SetPosition(id, player_pos - Vector3(0, 0, -1));
 	}
+	
 }
 
 void CUI::Draw2D()
 {
 	sprite_mng.SetRectWH(gage, 0, 0, (540 * 0.01) * _ui_data->GetGageParams("ui"), 48);
+
+	sprite_mng.SetRectWH(speed_meta, 192 * count, 0, 192, 192);
+	count = this->clamp(count, 1, 9);
+	
+
 	sprite_mng.DrawSprite();
 }
 

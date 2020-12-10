@@ -75,12 +75,15 @@ C_MAIN::~C_MAIN()
 
 };
 
-void C_MAIN::Update() {
+int C_MAIN::Update() {
 	_objectroot.Update();
 
-	if (Input.GetKeyInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::GAME_CLEAR); }
+	if (Input.GetKeyInputDown(Keys_Enter)) {
+		return 1;
+	}
 
 	EffekseerMgr.Update();
+	return -1;
 }
 
 void C_MAIN::Draw3D()

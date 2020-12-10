@@ -60,6 +60,8 @@ private:
 
 	SceneManager* scene_manager;
 
+	int isscene = -1;
+
 	// ŠÖ”éŒ¾
 
 };

@@ -5,12 +5,15 @@
 
 void C_RESULT::Initialize()
 {
-	Add_Sprite(_T("‰æ‘œ"));
+	Add_Sprite(_T("SPRITE/result.png"));
 }
 
-void C_RESULT::Update()
+int C_RESULT::Update()
 {
-	if (Input.GetPadInputDown(11)) { SceneManager::ChangeScene(SceneManager::RESULT); }
+	if (Input.GetPadInputDown(1) || Input.GetKeyInputDown(Keys_Enter)) {
+		return 3;
+	}
+	return -1;
 }
 
 void C_RESULT::Draw2D()

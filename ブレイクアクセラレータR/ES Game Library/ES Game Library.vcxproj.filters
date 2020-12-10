@@ -214,9 +214,6 @@
     <Filter Include="MyClass\CSprite">
       <UniqueIdentifier>{391d65b3-5697-4161-8373-84e8daf1f991}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\Character">
-      <UniqueIdentifier>{4b1672f4-3bca-45ba-9f80-1f05ef73c5da}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyClass\CShader">
       <UniqueIdentifier>{f711c0f3-c460-48ec-9e56-8769fac918a5}</UniqueIdentifier>
     </Filter>
@@ -231,6 +228,9 @@
     </Filter>
     <Filter Include="MyClass\DATABASE\MapPlacementDataBase">
       <UniqueIdentifier>{a97d35f1-078b-43b4-8756-8679ebc98fef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\CharacterManager">
+      <UniqueIdentifier>{4b1672f4-3bca-45ba-9f80-1f05ef73c5da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -482,7 +482,7 @@
       <Filter>MyClass\DATABASE\MapPlacementDataBase</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\CCHARACTER\Character.cpp">
-      <Filter>MyClass\Character</Filter>
+      <Filter>MyClass\CharacterManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -752,7 +752,7 @@
       <Filter>MyClass\DATABASE\MapPlacementDataBase</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\CCHARACTER\Character.h">
-      <Filter>MyClass\Character</Filter>
+      <Filter>MyClass\CharacterManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

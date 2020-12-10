@@ -35,10 +35,6 @@ void CGateObstacle::Draw3D()
 			obstacle_it = itr.erase(obstacle_it);
 			continue;
 		}
-		if (CollsionTrigger())
-		{
-			observer.IsCollisionDoor();
-		}
 		obstacle_it++;
 	}
 }

@@ -29,18 +29,24 @@ public:
 	virtual void CUI::OnCollisionDamage()    override;
 	virtual void CUI::OnCollisionClear()     override;
 	virtual void CUI::OnCollisionGage()      override;
-	virtual void CUI::OnCollisionDoor()      override;
 	
 private:
 	OBSERVER      observer;
 	SpriteManager sprite_mng;
-	SOUND dam,ite;
+
 	int gage;
+
+	int speed_meta;
+
+	int count = 1;
+
+	unsigned int size = 1;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<UiData>        _ui_data;
 	std::unique_ptr<IPlayerData>   _player_data;
 
-	int item,damage,door;
+	int item,damage;
+
 };
 
