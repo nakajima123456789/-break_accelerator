@@ -35,6 +35,9 @@ private:
 	SpriteManager sprite_mng;
 
 	int gage;
+	int speed_gage;
+
+	int count = 1;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<UiData>        _ui_data;
@@ -42,4 +45,3 @@ private:
 
 	int item,damage;
 };
-

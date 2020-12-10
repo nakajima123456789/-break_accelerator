@@ -12,7 +12,7 @@ bool GameMain::Initialize()
 	// TODO: Add your initialization logic here
 	WindowTitle(_T("ES Game Library"));
 
-	SceneManager::ChangeScene(SceneManager::MAIN);
+	SceneManager::ChangeScene(SceneManager::TITLE);
 
 
 	return true;
