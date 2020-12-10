@@ -6,7 +6,7 @@
 
 void C_TITLE::Initialize()
 {
-	Add_Sprite(_T("‰æ‘œ"));
+	Add_Sprite(_T("SPRITE/title.png"));
 }
 
 void C_TITLE::Update()
