@@ -6,6 +6,7 @@
 #include "..//OBSEVER/OBSEVER.h"
 #include "../MapPlacementData/MapPlacementData.h"
 #include "../UIDATABASE/UiDataBase.h"
+#include "../CCHARACTER/Character.h"
 
 class ObstacleBase : public Object
 {
@@ -25,28 +26,20 @@ private:
 protected:
 
 	//関数宣言
-	void   IsHitObjectsInit(std::string _tags,float scale);
-	void   IsHitObjectsDraw(Vector3 _pos);
 
-	bool   RemoveModelDistance(double _distance);
-	bool   DistanceTrigger(double _index);
-	bool   CollsionTrigger();
-
-	float  PlayerDistance(); 
-
-	Material SetMaterial(Color color);
+	bool   OnCollsion(float distance, Vector3 _position = Vector3(0.0f, 0.5f, 0.0f));
 
 	//変数宣言
-	std::unique_ptr <HitBox> _hitbox;
+	HitBox*  p_hitbox;
 
 	OBSERVER observer;
-	MODEL                obstacle_model;
+
+	Model    p_model;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>  _iplayer_data;
 	std::unique_ptr<IMapData>     _imap_data;
 	std::unique_ptr<UiData>       _i_ui_data;
 
-	std::vector<Vector3> obstacle_position;
 };
 

@@ -109,13 +109,13 @@ void SpriteManager::DrawSprite()
 			switch (i)
 			{
 			case SpriteManager::NOMAL:
-				SpriteBatch.Draw(*this->_sprite[i][j], _sprite_position[i][j]);
+				SpriteBatch.Draw(*this->_sprite[i][j], this->_sprite_position[i][j]);
 				break;
 			case SpriteManager::RECTWH:
-				SpriteBatch.Draw(*this->_sprite[i][j], _sprite_position[i][j], _sprite_rectwh[j]);
+				SpriteBatch.Draw(*this->_sprite[i][j], this->_sprite_position[i][j], this->_sprite_rectwh[j]);
 				break;
 			case SpriteManager::ALPHA:
-				SpriteBatch.Draw(*this->_sprite[i][j], _sprite_position[i][j], _sprite_alpha[j]);
+				SpriteBatch.Draw(*this->_sprite[i][j], this->_sprite_position[i][j], this->_sprite_alpha[j]);
 				break;
 			}
 		}

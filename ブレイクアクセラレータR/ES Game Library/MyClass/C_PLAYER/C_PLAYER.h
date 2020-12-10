@@ -8,9 +8,17 @@
 #include "../CSHAREDMETHOD/CSharedMethod.h"
 #include "../CCHARACTER/Character.h"
 #include "../CPLAYERDATA/CPlayerData.h"
+#include "../../Velocity.h"
+#include "../../RotationMove.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
+
+enum PLAYER_MOVE_TYPE
+{
+	NOMAL,
+	ROTATION,
+};
 
 class CPlayerStateProcessor : public  StateProcessor {
 public:
@@ -32,15 +40,17 @@ public:
 	virtual void CPlayer::DrawAlpha3D() override { return; };
 	virtual void CPlayer::Draw2D()      override { return; };
 
+	void ChangeStateType(PLAYER_MOVE_TYPE move_type);
+
 private:
 
-	class IDOL : public State
+	class NOMAL : public State
 	{
 	private:
 		CPlayerStateProcessor* _owner;
 	public:
-		IDOL(CPlayerStateProcessor* owner) : _owner(owner) { };
-		virtual ~IDOL() {};
+		NOMAL(CPlayerStateProcessor* owner) : _owner(owner) { };
+		virtual ~NOMAL() {};
 
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return INT_MAX; };
@@ -48,31 +58,13 @@ private:
 		virtual void Update() override;
 	};
 
-	class RUNPAD : public State
+	class ROTATION : public State
 	{
 	private:
 		CPlayerStateProcessor* _owner;
-		float speed = 0;
 	public:
-		RUNPAD(CPlayerStateProcessor* owner) : _owner(owner) {}
-		virtual ~RUNPAD() {}
-
-		virtual int    CancelLv() { return INT_MAX; };
-		virtual int    ExitTime() { return INT_MAX; };
-
-		virtual void Update() override;
-	};
-
-	class RUNKEY : public State
-	{
-	private:
-		CPlayerStateProcessor* _owner;
-		int   time  = 0;
-		int   frame = 0;
-		float speed = 0;
-	public:
-		RUNKEY(CPlayerStateProcessor* owner) : _owner(owner) {}
-		virtual ~RUNKEY() {}
+		ROTATION(CPlayerStateProcessor* owner) : _owner(owner) {}
+		virtual ~ROTATION() {}
 
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return INT_MAX; };
@@ -98,22 +90,21 @@ private:
 
 private:
 	//関数宣言
-	void	 IsHitObjectsDraw();
 
-	float    AccelaretorTime();
+	void ChangeMoveType (PLAYER_MOVE_TYPE move_type);
 
     //変数宣言
 
-	int   time  = 0;
-	int   frame = 0;
+	Model     p_model;
 
-	Model player_model;
+	HitBox*   p_hitbox;
+	Velocity* p_velocity;
 
-	float accelaretor = 0.3f;
+	RotationMove* p_rotation;
 
-	float  speed = 0.0f;
+	unsigned int MOVE_TYPE_MAX_SIZE = 2;
 
-	double rotation = 0.0f; 
+	int state_type;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;
