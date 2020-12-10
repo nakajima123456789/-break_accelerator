@@ -5,37 +5,19 @@ void Velocity::Init()
 {
 	_velocity_processor._velocity = this;
 	_velocity_processor.ChangeState(new Velocity::IDOL(&_velocity_processor));
+
+	accelaretors = (new AccelaretorFront);
+	this->ChildObj_AddList((ChildObjRef)accelaretors);
+
+	accelaretors->gameObject = gameObject;
 }
 
 void Velocity::Update()
 {
-	AdvanceSpeed();
-
 	this->_velocity_processor.Update();
 
 	gameObject->transform.position.x = Math_Min(gameObject->transform.position.x,  _MOVEMENT_SCENE);
 	gameObject->transform.position.x = Math_Max(gameObject->transform.position.x, -_MOVEMENT_SCENE);
-}
-
-void Velocity::AdvanceSpeed()
-{
-	Input.KeyBoardButtomState(Keys_Up) ? AccelaretorSpeed() : DragSpeed();
-}
-
-void Velocity::AccelaretorSpeed()
-{
-	this->_speed_z = this->_speed_z + this->_accelaretor;
-	this->_speed_z = Math_Min(this->_speed_z, this->_MAX_ACCELARETOR);
-
-	gameObject->transform.position.z = gameObject->transform.position.z + this->_speed_z;
-}
-
-void Velocity::DragSpeed()
-{
-	this->_speed_z = this->_speed_z * 0.99;
-	this->_speed_z = Math_Max(this->_speed_z, 0.3f);
-
-	gameObject->transform.position.z = gameObject->transform.position.z + this->_speed_z;
 }
 
 void Velocity::IDOL::Update()

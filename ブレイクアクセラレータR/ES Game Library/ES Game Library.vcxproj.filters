@@ -250,6 +250,9 @@
     <Filter Include="MyClass\ObstacleManager">
       <UniqueIdentifier>{53ec3f80-4c47-4ddf-8627-a572a164f593}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\C_Player\Rotation">
+      <UniqueIdentifier>{a3b0f891-2b0b-4256-9d20-e2a0bb42b6e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -510,6 +513,12 @@
     </ClCompile>
     <ClCompile Include="MyClass\ObstacleManager\ObstacleManager.cpp">
       <Filter>MyClass\ObstacleManager</Filter>
+    </ClCompile>
+    <ClCompile Include="RotationMove.cpp">
+      <Filter>MyClass\C_Player\Rotation</Filter>
+    </ClCompile>
+    <ClCompile Include="AccelaretorBase.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -789,6 +798,12 @@
     </ClInclude>
     <ClInclude Include="MyClass\ObstacleManager\ObstacleManager.h">
       <Filter>MyClass\ObstacleManager</Filter>
+    </ClInclude>
+    <ClInclude Include="RotationMove.h">
+      <Filter>MyClass\C_Player\Rotation</Filter>
+    </ClInclude>
+    <ClInclude Include="AccelaretorBase.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

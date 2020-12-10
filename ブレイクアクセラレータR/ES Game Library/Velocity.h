@@ -2,6 +2,7 @@
 #include "ESGLib.h"
 #include "MyClass/C_OBJECT/Object.h"
 #include "MyClass/C_STATE/C_STATE.h"
+#include "AccelaretorBase.h"
 
 class VelocityStateProcessor;
 class Velocity;
@@ -15,17 +16,14 @@ class Velocity : public Object
 {
 private:
 	VelocityStateProcessor _velocity_processor;
+
+	AccelaretorFront* accelaretors;
 public:
 
 	float _speed      = 0.0f;
 	float _drag_speed = 0.0f;
 
-	float _speed_z     = 0.3f;
-
-	float _accelaretor = 0.0030f;
-
 	const float _MAX_SPEED       = 0.075f;
-	const float _MAX_ACCELARETOR = 0.6f;
 	const float _MOVEMENT_SCENE  = 1.3f;
 
 	Velocity() {};
@@ -38,12 +36,6 @@ public:
 	{
 		return _speed == 0.0f;
 	};
-
-	void Velocity::AdvanceSpeed();
-
-
-	void Velocity::AccelaretorSpeed();
-	void Velocity::DragSpeed();
 
 	class IDOL : public State
 	{

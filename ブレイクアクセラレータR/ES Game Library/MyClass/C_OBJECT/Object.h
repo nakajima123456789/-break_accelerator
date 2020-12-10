@@ -20,6 +20,8 @@ public:
 	Vector3 rotation= Vector3_Zero;;
 	Vector3  localrotation= Vector3_Zero;;
 
+	Quaternion direction = Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+
 	//スケール
 	float scale      = 1.f;
 	float localscale = 1.f;
@@ -65,7 +67,10 @@ private:
    bool _isRemove = false;
 public:
 	//親オブジェクト
-	Object * gameObject = nullptr;
+	Object* gameObject = nullptr;
+
+	Object* m_gameObject = nullptr;
+
 	//座標
 	Transform transform;
 	//タグ

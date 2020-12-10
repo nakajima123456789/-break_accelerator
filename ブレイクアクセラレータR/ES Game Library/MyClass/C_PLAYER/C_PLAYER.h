@@ -9,10 +9,16 @@
 #include "../CCHARACTER/Character.h"
 #include "../CPLAYERDATA/CPlayerData.h"
 #include "../../Velocity.h"
-#include "../../C_Tonnel.h"
+#include "../../RotationMove.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
+
+enum PLAYER_MOVE_TYPE
+{
+	NOMAL,
+	ROTATION,
+};
 
 class CPlayerStateProcessor : public  StateProcessor {
 public:
@@ -34,15 +40,17 @@ public:
 	virtual void CPlayer::DrawAlpha3D() override { return; };
 	virtual void CPlayer::Draw2D()      override { return; };
 
+	void ChangeStateType(PLAYER_MOVE_TYPE move_type);
+
 private:
 
-	class IDOL : public State
+	class NOMAL : public State
 	{
 	private:
 		CPlayerStateProcessor* _owner;
 	public:
-		IDOL(CPlayerStateProcessor* owner) : _owner(owner) { };
-		virtual ~IDOL() {};
+		NOMAL(CPlayerStateProcessor* owner) : _owner(owner) { };
+		virtual ~NOMAL() {};
 
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return INT_MAX; };
@@ -50,28 +58,14 @@ private:
 		virtual void Update() override;
 	};
 
-	class RUNPAD : public State
+	class ROTATION : public State
 	{
 	private:
 		CPlayerStateProcessor* _owner;
 	public:
-		RUNPAD(CPlayerStateProcessor* owner) : _owner(owner) {}
-		virtual ~RUNPAD() {}
+		ROTATION(CPlayerStateProcessor* owner) : _owner(owner) {}
+		virtual ~ROTATION() {}
 
-		virtual int    CancelLv() { return INT_MAX; };
-		virtual int    ExitTime() { return INT_MAX; };
-
-		virtual void Update() override;
-	};
-
-	class RUNKEY : public State
-	{
-	private:
-		CPlayerStateProcessor* _owner;
-	public:
-		RUNKEY(CPlayerStateProcessor* owner) : _owner(owner) {}
-		virtual ~RUNKEY() {}
-		float speed = 0;
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return INT_MAX; };
 
@@ -97,13 +91,20 @@ private:
 private:
 	//関数宣言
 
+	void ChangeMoveType (PLAYER_MOVE_TYPE move_type);
+
     //変数宣言
 
 	Model     p_model;
 
 	HitBox*   p_hitbox;
 	Velocity* p_velocity;
-	C_Tonnel* p_tonnel;
+
+	RotationMove* p_rotation;
+
+	unsigned int MOVE_TYPE_MAX_SIZE = 2;
+
+	int state_type;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;
