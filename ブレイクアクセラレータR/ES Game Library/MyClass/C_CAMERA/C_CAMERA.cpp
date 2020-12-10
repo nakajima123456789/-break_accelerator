@@ -26,7 +26,7 @@ void CCamera_::Update()
 
 	//camera->SetFieldOfViewY(field_of_view_pov);
 	Vector3 player_pos = _iplayer_data->GetPlayerPosition("player");
-	camera->SetLookAt(player_pos + Vector3(0.0f,0.5f, - 0.65f), player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
+	camera->SetLookAt(player_pos + Vector3(0.0f,0.6f, - 0.8f), player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
 
 
 	EffekseerMgr.Update();

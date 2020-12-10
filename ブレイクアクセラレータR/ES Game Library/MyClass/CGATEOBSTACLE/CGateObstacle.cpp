@@ -6,7 +6,7 @@ void CGateObstacle::Init()
 	this->obstacle_model = GraphicsDevice.CreateModelFromFile(_T("model3D//‰ü’ù”Å//GATE_Left.X"));
 	this->obstacle_model->SetMaterial(this->SetMaterial(Color(1.f, 1.f, 1.f)));
     
-	IsHitObjectsInit("Gate_L",0.5);
+	IsHitObjectsInit("Gate_L",7.);
 	
 }
 
@@ -34,6 +34,10 @@ void CGateObstacle::Draw3D()
 		{
 			obstacle_it = itr.erase(obstacle_it);
 			continue;
+		}
+		if (CollsionTrigger())
+		{
+			observer.IsCollisionDoor();
 		}
 		obstacle_it++;
 	}

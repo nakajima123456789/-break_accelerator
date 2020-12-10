@@ -29,6 +29,7 @@ public:
 	virtual void CUI::OnCollisionDamage()    override;
 	virtual void CUI::OnCollisionClear()     override;
 	virtual void CUI::OnCollisionGage()      override;
+	virtual void CUI::OnCollisionDoor()      override;
 	
 private:
 	OBSERVER      observer;

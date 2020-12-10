@@ -61,15 +61,7 @@ void CUI::OnCollisionClear()
 
 void CUI::OnCollisionGage()
 {
-	//int id = -1;
-	//Vector3 player_pos = _player_data->GetPlayerPosition("player");
-	//EFFEKSEER effekseer = EffekseerMgr.GetEffekseer(item);
-	//id = effekseer->Play(player_pos - Vector3(0, 0, -1));
-	//if (id != -1)
-	//{
-	//	//effekseer->SetScale(id, 1.0);
-	//	effekseer->SetPosition(id, player_pos - Vector3(0, 0, -1));
-	//}
+
 	//int id = -1;
 	//Vector3 player_pos = _player_data->GetPlayerPosition("player");
 	//EFFEKSEER effekseer = EffekseerMgr.GetEffekseer(damage);
@@ -80,6 +72,18 @@ void CUI::OnCollisionGage()
 	//}
 	//_ui_data->SetGageParams("ui", +1);
 
+}
+
+void CUI::OnCollisionDoor() 
+{
+	int id = -1;
+	Vector3 player_pos = _player_data->GetPlayerPosition("player");
+	EFFEKSEER effekseer = EffekseerMgr.GetEffekseer(door);
+	id = effekseer->Play(player_pos - Vector3(0, 0, -1));
+	if (id != -1)
+	{
+		effekseer->SetPosition(id, player_pos - Vector3(0, 0, -1));
+	}
 }
 
 void CUI::Draw2D()

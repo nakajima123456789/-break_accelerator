@@ -37,3 +37,12 @@ void OBSERVER::IsCollisionGage()
 		listener->OnCollisionGage();
 	}
 }
+
+void OBSERVER::IsCollisionDoor()
+{
+	// Õ“Ë”»’è‚µ‚½‚±‚Æ‚ðŠÏ‘ªŽÒ‚É’Ê’m 
+	for (auto listener : listeners_)
+	{
+		listener->OnCollisionDoor();
+	}
+}

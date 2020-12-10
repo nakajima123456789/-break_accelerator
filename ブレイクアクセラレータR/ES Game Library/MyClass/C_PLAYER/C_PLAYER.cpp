@@ -23,6 +23,8 @@ void CPlayer::Init()
 
 	_iplayer_data.reset(new IPlayerData);
 
+
+	fire = EffekseerMgr.LoadEffekseer(_T("Ž©‹@‰Š//Fire.efk"));
 }
 
 void CPlayer::IsHitObjectsDraw()
@@ -58,6 +60,7 @@ void CPlayer::Update()
 
 void CPlayer::Draw3D()
 {
+
 	this->transform.position.x = clamp(transform.position.x, -1.3f, 1.3f);
 	player_model.SetPosition(this->transform.position);
 

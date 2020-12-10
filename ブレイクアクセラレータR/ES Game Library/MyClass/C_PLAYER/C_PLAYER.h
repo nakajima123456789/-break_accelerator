@@ -114,6 +114,8 @@ private:
 	float  speed = 0.0f;
 
 	double rotation = 0.0f; 
+	EFFEKSEER effeckseer;
+	int fire;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;
