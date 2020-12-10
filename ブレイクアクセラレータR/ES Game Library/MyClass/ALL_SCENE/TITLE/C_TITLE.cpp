@@ -30,8 +30,8 @@ void C_TITLE::Draw2D()
 	std::for_each(sprite_list_name.begin(), sprite_list_name.end(), [](SPRITE& _sprite)
 		{SpriteBatch.Draw(*_sprite, Vector3(0, 0, 0)); });
 
-	SpriteBatch.Draw(*moji, Vector3(1280 - moji_x, -200, 0));
-	SpriteBatch.Draw(*moji2, Vector3(-1280 + moji_x, -200, 0));
+	SpriteBatch.Draw(*moji, Vector3(1280 - moji_x, 0, 0));
+	SpriteBatch.Draw(*moji2, Vector3(-1280 + moji_x, 0, 0));
 	SpriteBatch.Draw(*moji3, Vector3(0, 0, 0), iro);
 
 }
