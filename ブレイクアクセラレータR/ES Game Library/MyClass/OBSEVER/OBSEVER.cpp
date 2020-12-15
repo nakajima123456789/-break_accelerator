@@ -24,7 +24,3 @@ void OBSERVER::IsCollisionClear()
 	for (auto listener : listeners_){listener->OnCollisionClear();}
 }
 
-void OBSERVER::IsCollisionEffekseer(PLAYER::PLAYEREFFEKSEERTYPE player_effekseer_type)
-{
-	for (auto listener : listeners_){listener->OnCollisionEffekseer(player_effekseer_type);}
-}

@@ -33,9 +33,9 @@ public:
 
 	virtual void CPlayer::Init()        override;
 	virtual void CPlayer::Update()      override;
-	virtual void CPlayer::Draw3D()      override;
+	virtual void CPlayer::Draw3D()      override { return; };
 
-	virtual void CPlayer::DrawAlpha3D() override { return; };
+	virtual void CPlayer::DrawAlpha3D() override;
 	virtual void CPlayer::Draw2D()      override { return; };
 
 	void AttackHit(ObstacleBase* attack_parameters);
@@ -102,8 +102,6 @@ private:
 	void LordEffekseer   ();
 	void GameObjectIsMove();
 
-	virtual void OnCollisionEffekseer(PLAYER::PLAYEREFFEKSEERTYPE player_effekseer_type) override;
-
     //変数宣言
 	MODEL         p_model;
 	RotationMove* p_rotation;
@@ -115,6 +113,11 @@ private:
 
 	int state_type = -1;
 
+	EFFECT shader = nullptr;
+	int  alpha   = 1;
+	int  color_r = 0;
+
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;
+
 };

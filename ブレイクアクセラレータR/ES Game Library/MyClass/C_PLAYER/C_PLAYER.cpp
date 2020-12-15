@@ -20,6 +20,11 @@ void CPlayer::Init()
 	p_state_processor.ChangeState(new CPlayer::NOMAL(&p_state_processor));
 
 	p_model = GraphicsDevice.CreateModelFromFile(_T("jiki_car//jiki_car3_a.X"));
+	shader = GraphicsDevice.CreateEffectFromFile(_T("FX//ShaderPlayer.hlsl"));
+
+	SPRITE texture = nullptr;
+	texture = GraphicsDevice.CreateSpriteFromFile(_T("jiki_car//jiki_car3.png"));
+	shader->SetTexture("modelTex1", *texture);
 
 	IPlayerParametor::Instance().CreateParametor("player");
 
@@ -68,7 +73,7 @@ void CPlayer::Update()
 	GameObjectIsMove();
 }
 
-void CPlayer::Draw3D()
+void CPlayer::DrawAlpha3D()
 {
 	p_model->SetPosition(this->transform.position);
 
@@ -80,7 +85,15 @@ void CPlayer::Draw3D()
 	auto&& itr = this->p_childObjects.rbegin();
 	if (typeid(*((*itr).get())) == typeid(RotationMove)) {p_model->SetDirection(transform.direction);}
 
-	p_model->Draw();
+	shader->SetTechnique("Sobel");
+	Matrix world    = p_model->GetWorldMatrix();
+	Matrix viewproj = CShaderAnimation::camera->GetCamera().GetViewProjectionMatrix();
+	shader->SetParameter("wvp", world * viewproj);
+
+	shader->SetParameter("alpha",alpha);
+	shader->SetParameter("r_color", color_r);
+
+	p_model->Draw(shader);
 }
 
 void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
@@ -103,17 +116,13 @@ void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
 	}
 }
 
-void CPlayer::OnCollisionEffekseer(PLAYER::PLAYEREFFEKSEERTYPE player_effekseer_type)
-{
-	p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
-}
-
 void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 {
+	p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
+
 	switch (attack_parameters->GetAttackParameters()._Type) 
 	{
 	case ATTACK_TYPE::NOCKBACK:
-		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
 		break;
 	case ATTACK_TYPE::SCREW:
 		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
@@ -155,7 +164,11 @@ CPlayer::DAMAGE::DAMAGE(CPlayerStateProcessor* owner) : _owner(owner)
 
 void CPlayer::DAMAGE::Update()
 {
+	_owner->p_player->alpha   ^= 1;_owner->p_player->color_r  = 1;
+
 	if (this->GetTime() >= 120){
+
+		_owner->p_player->alpha   = 1;_owner->p_player->color_r = 0;
 		_owner->p_player->p_state_processor.ChangeState(new CPlayer::IDOL(&_owner->p_player->p_state_processor));
 		return;
 	}

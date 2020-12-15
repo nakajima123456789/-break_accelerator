@@ -11,7 +11,6 @@ public:
 	// 衝突判定した
 	virtual void OnCollisionDamage()    {};
 	virtual void OnCollisionClear()     {};
-	virtual void OnCollisionEffekseer(PLAYER::PLAYEREFFEKSEERTYPE player_effekseer_type) {};
 };
 
 // 衝突判定 クラス（ 観測 者 に 通知 する 役）
@@ -25,7 +24,6 @@ public:
 	// 衝突判定した
 	void IsCollisionDamage();
 	void IsCollisionClear();
-	void IsCollisionEffekseer(PLAYER::PLAYEREFFEKSEERTYPE player_effekseer_type);
 private:
 	// 観測者に通知 
 

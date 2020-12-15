@@ -3,7 +3,7 @@
 
 void ObstacleBase::OnCollsion(float distance,Vector3 _position)
 {
-	if (distance >= 0.3f) return;
+	if (distance >= 5) return;
 	this->p_hitbox->GetModel()->SetPosition(this->transform.position + _position);
 	std::list<HitBox*> hitlist = p_hitbox->HitHitBoxlist();
 	for (auto&& other : hitlist) {
@@ -49,6 +49,7 @@ void ObstacleBase::Draw3D()
 			this->p_model.SetPosition(this->transform.position + brock_parameters.model_pos_correction);
 			this->p_model.Draw();
 		}
+
 		obstacle_itr++;
 	}
 };
