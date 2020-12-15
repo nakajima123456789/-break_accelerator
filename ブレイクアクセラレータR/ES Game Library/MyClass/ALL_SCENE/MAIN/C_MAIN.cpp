@@ -1,13 +1,10 @@
 #include "C_MAIN.h"
 #include "../SCENEMANAGER/SceneManager.h"
 
-#include "../../C_PLAYER/C_PLAYER.h"
 #include "../../C_CAMERA/C_CAMERA.h"
 
 #include "../../C_INPUT/C_INPUT.h"
 #include "../../ObjectPlacement/ObjectPlacement.h"
-
-#include "../../C_EFFEKSEER/CEffekseer_.h"
 
 #include "../../C_MAP/C_MAP.h"
 #include "../../C_UI/CUI.h"
@@ -16,7 +13,12 @@
 
 #include "../../ObstacleManager/ObstacleManager.h"
 
+#include "../../../CMapMove.h"
+
 void C_MAIN::Initialize(){
+
+	auto&& c_mapmove = (new CMapMove());
+	_objectroot.AddList((ChildObjRef)c_mapmove);
 
 	GraphicsDevice.SetRenderState(Lighting_Disable);
 
@@ -24,9 +26,6 @@ void C_MAIN::Initialize(){
 	_objectroot.AddList((ChildObjRef)c_camera);
 
 	CShaderAnimation::CameraSetting(*c_camera);
-
-	auto&& c_player = (new CPlayer(Vector3_Zero));
-	_objectroot.AddList((ChildObjRef)c_player);
 
 	auto&& c_objectplacement = (new PlacementManager);
 	_objectroot.AddList((ChildObjRef)c_objectplacement);
@@ -50,8 +49,6 @@ void C_MAIN::Update() {
 	_objectroot.Update();
 
 	if (Input.GetKeyInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::GAME_CLEAR); }
-
-	EffekseerMgr.Update();
 }
 
 void C_MAIN::Draw3D()

@@ -81,6 +81,7 @@ public:
 
 	//アニメーションのパラメータの設定関数
 	virtual void SetModel(LPCTSTR model_filename)    override;
+
 	virtual void SetShader(LPCTSTR model_filename)	 override;
 	virtual void SetMove(Vector3  move_position)     override { _model->Move(move_position); };
 	virtual void SetPosition(Vector3 position)       override { _model->SetPosition(position); };
@@ -88,15 +89,21 @@ public:
 	virtual void SetScale(float character_scale)     override { _model->SetScale(character_scale); };
 	virtual void SetDirection(Quaternion quaternion) override { _model->SetDirection(quaternion); };
 
-	float GetRadius() {OrientedBoundingBox model = _model->GetOBB();Vector3 radius = model.Radius;return radius.x;};
+	MODEL GetModel() const { return _model; };
+
+	float GetRadius() {float model = _model->GetOBB().Radius.x;};
 
 	void Attenuation(float attenuation);
+
+	void Model::SetModelData(MODEL Model) { _model = Model; 	_model->SetMaterial(SetMaterial(Color(1.0f, 1.0f, 1.0f)));};
 
 	//アニメーションのパラメータを取得
 
 	//描画タイプ選択　静止したモデルなので普通描画だけ
 	void Draw();
 	void DrawShader(float alpha);
+
+    void SetModels(MODEL model);
 
 private:
 

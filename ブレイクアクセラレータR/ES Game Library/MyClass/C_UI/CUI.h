@@ -8,7 +8,6 @@
 #include "../C_UI/CUI.h"
 #include "../UIDATABASE/UiDataBase.h"
 
-#include "../C_EFFEKSEER/CEffekseer_.h"
 #include "../CPLAYERDATA/CPlayerData.h"
 
 class CUI : public Object, OBSERVERLISTENER, CSharedMethod
@@ -26,10 +25,9 @@ public:
 	virtual void Draw2D()      override;
 	
 	//オブザーバー関数
-	virtual void CUI::OnCollisionDamage()    override;
-	virtual void CUI::OnCollisionClear()     override;
-	virtual void CUI::OnCollisionGage()      override;
-	
+	virtual void CUI::OnCollisionDamage()     override;
+	virtual void CUI::OnCollisionClear()      override;
+
 private:
 	OBSERVER      observer;
 	SpriteManager sprite_mng;
@@ -42,6 +40,4 @@ private:
 	//プレイヤーのデータベース
 	std::unique_ptr<UiData>        _ui_data;
 	std::unique_ptr<IPlayerData>   _player_data;
-
-	int item,damage;
 };

@@ -26,7 +26,7 @@ void HitBox::Init() {
 void HitBox::Draw3D() {
 	if (_flag) return;
 	_model->SetPosition(this->transform.position);
-
+	//_model->Draw();
 }
 
 void HitBox::Settags(std::string tags){
@@ -89,4 +89,3 @@ bool HitBox::IsHitObjects(std::string tags)
 	}
 	return result;
 }
-

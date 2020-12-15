@@ -19,9 +19,6 @@ void ObstacleManager::Init()
 	auto&& c_obstacleR = new CObstacleR();
 	this->ChildObj_AddList((ChildObjRef)c_obstacleR);
 
-	auto&& c_brockobstacle = new CBrockObstacle();
-	this->ChildObj_AddList((ChildObjRef)c_brockobstacle);
-
 	auto&& c_itemobstacle = new CItemObstacle();
 	this->ChildObj_AddList((ChildObjRef)c_itemobstacle);
 
@@ -30,4 +27,7 @@ void ObstacleManager::Init()
 
 	auto&& c_gateobstatcle = new R_GATEOBSTATCLE();
 	this->ChildObj_AddList((ChildObjRef)c_gateobstatcle);
+
+	auto&& c_brockobstacle = new CBrockObstacle();
+	this->ChildObj_AddList((ChildObjRef)c_brockobstacle);
 }

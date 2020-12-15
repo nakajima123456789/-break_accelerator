@@ -3,14 +3,15 @@
 #include "MyClass/C_OBJECT/Object.h"
 #include "MyClass/CCHARACTER/Character.h"
 #include "MyClass/MapPlacementData/MapPlacementData.h"
-
+#include "MyClass/CPLAYERDATA/CPlayerData.h"
 
 class C_Tonnel : public Object
 {
 private:
 	Model p_model;
 
-	std::unique_ptr<IMapData>     _imap_data;
+	std::unique_ptr<IMapData>        _imap_data;
+	std::unique_ptr<IPlayerData>     _iplayer_data;
 
 public:
 	virtual void C_Tonnel::Init()        override;

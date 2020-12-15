@@ -34,6 +34,7 @@ public:
    }
 
    void  StateProcessor::ChangeState(State* state) {
+	   if (_state == state) return;
 	delete _state;
 	_state = state;
    }

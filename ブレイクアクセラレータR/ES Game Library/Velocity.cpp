@@ -38,12 +38,12 @@ void Velocity::IDOL::Update()
 void Velocity::RUN::Update()
 {
 	if (Input.GetArrowkeyVector().x >= 0.3f) { 
-		_owner->_velocity->_speed = _owner->_velocity->_speed + 0.0025f;
+		_owner->_velocity->_speed = _owner->_velocity->_speed + 0.003f;
 		_owner->_velocity->_speed = Math_Min(_owner->_velocity->_speed,  _owner->_velocity->_MAX_SPEED);
 	}
 	else
 	if (Input.GetArrowkeyVector().x <= 0.3f) { 
-		_owner->_velocity->_speed = _owner->_velocity->_speed - 0.0025f;
+		_owner->_velocity->_speed = _owner->_velocity->_speed - 0.003f;
 		_owner->_velocity->_speed = Math_Max(_owner->_velocity->_speed, -_owner->_velocity->_MAX_SPEED);
 	}
 

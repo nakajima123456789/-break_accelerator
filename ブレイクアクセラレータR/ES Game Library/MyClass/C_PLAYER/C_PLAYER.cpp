@@ -1,105 +1,163 @@
 #include "C_PLAYER.h"
 #include "../C_INPUT/C_INPUT.h"
-#include "../INFORMATION/INFORMATION.h"
+#include "../C_SHADER/C_SHADER.h"
+#include "../../C_Tonnel.h"
+#include "../../CMapMove.h"
+#include "../OBSTACLEBASE/ObstacleBase.h"
 
 CPlayer::CPlayer(Vector3  _pos)
 {
 	transform.position = (_pos);
 	this->transform.rotation.y += 180;
+
+	obsever.addListener(this);
 };
 
 void CPlayer::Init()
 {
 	//オリジナルのプレイヤークラスにアクセス用
-	player_state_processor.player_manager = this;
-	player_state_processor.ChangeState(new CPlayer::NOMAL(&player_state_processor));
+	p_state_processor.p_player = this;
+	p_state_processor.ChangeState(new CPlayer::NOMAL(&p_state_processor));
 
-	p_model.SetModel((_T("jiki_car//jiki_car3_a.X")));
+	p_model = GraphicsDevice.CreateModelFromFile(_T("jiki_car//jiki_car3_a.X"));
 
 	IPlayerParametor::Instance().CreateParametor("player");
 
 	p_hitbox = new HitBox();
-	this->ChildObj_AddList((ChildObjRef)p_hitbox);
-	p_hitbox->Settags("player");
+	this->ChildObj_AddList((ChildObjRef)p_hitbox);p_hitbox->Settags("player");
+
 	p_hitbox->transform.localposition.y += 0.1f;
+
+	p_effekseerMng = new EffekseerMng();
+	this->ChildObj_AddList((ChildObjRef)p_effekseerMng);
+	p_effekseerMng->transform.localscale = 0.1f;
+
+	auto&& c_distance = new C_Distance();
+	this->ChildObj_AddList((ChildObjRef)c_distance);c_distance->IsTagSet("player");
+
+	this->LordEffekseer();
 
 	_iplayer_data.reset(new IPlayerData);
 }
 
+void CPlayer::LordEffekseer()
+{
+
+}
+
+void CPlayer::GameObjectIsMove()
+{
+	if (gameObject->gameObject == nullptr)
+	{ 
+		ChangeMoveType(PLAYER::PLAYERMOVETYPE::NOMAL);
+	    return;
+	}
+
+	if (typeid(*gameObject->gameObject) == typeid(C_Tonnel)){ChangeMoveType(PLAYER::PLAYERMOVETYPE::ROTATION);};
+}
+
 CPlayer::~CPlayer()
 {
-	
+	obsever.removeListener(this);
 };
 
 void CPlayer::Update()
 {
-	this->player_state_processor.Update();
+	this->p_state_processor.Update();
+
+	GameObjectIsMove();
 }
 
 void CPlayer::Draw3D()
 {
-	p_model.SetPosition(this->transform.position);
-	p_model.SetRotation(transform.rotation);
+	p_model->SetPosition(this->transform.position);
+
+	//データベース更新
+	_iplayer_data->SetPlayerPosition("player", this->transform.position);
+
+	p_model->SetRotation(transform.rotation);
 
 	auto&& itr = this->p_childObjects.rbegin();
-	if (typeid(*((*itr).get())) == typeid(RotationMove)) {p_model.SetDirection(transform.direction);}
+	if (typeid(*((*itr).get())) == typeid(RotationMove)) {p_model->SetDirection(transform.direction);}
 
-	p_model.Draw();
-
-	_iplayer_data->SetPlayerPosition("player", this->transform.position);
+	p_model->Draw();
 }
 
-void CPlayer::ChangeMoveType(PLAYER_MOVE_TYPE move_type)
+void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
 {
-	if (this->p_childObjects.size() > MOVE_TYPE_MAX_SIZE)	{p_childObjects.pop_back();};
+	if (state_type == move_type) return; else 	state_type = move_type;
+	if (this->p_childObjects.size() > PLAYER::PLAYERMOVETYPE::PLAYERMOVETYPEMAX)	{p_childObjects.pop_back();}
 
 	switch (move_type)
 	{
-	case PLAYER_MOVE_TYPE::NOMAL:
-		p_velocity = new Velocity();
-		this->ChildObj_AddList((ChildObjRef)p_velocity);
-		p_velocity->gameObject = this;
+	case PLAYER::PLAYERMOVETYPE::NOMAL:
+		p_velocity = new Velocity();	this->ChildObj_AddList((ChildObjRef)p_velocity);
+		                                                  p_velocity->gameObject = this;
 		break;
-	case PLAYER_MOVE_TYPE::ROTATION:
-		p_rotation = new RotationMove();
-        this->ChildObj_AddList((ChildObjRef)p_rotation);
-        p_rotation->gameObject = this;
+	case PLAYER::PLAYERMOVETYPE::ROTATION:
+		p_rotation = new RotationMove();this->ChildObj_AddList((ChildObjRef)p_rotation);
+                                                          p_rotation->gameObject = this;
 		break;
 	default:
 		break;
 	}
 }
 
-void CPlayer::ChangeStateType(PLAYER_MOVE_TYPE move_type)
+void CPlayer::OnCollisionEffekseer(PLAYER::PLAYEREFFEKSEERTYPE player_effekseer_type)
 {
-	if (state_type != move_type){
-		switch (move_type){
-		case PLAYER_MOVE_TYPE::NOMAL:
-			player_state_processor.ChangeState(new CPlayer::NOMAL(&player_state_processor));
-			break;
-		case PLAYER_MOVE_TYPE::ROTATION:
-			player_state_processor.ChangeState(new CPlayer::ROTATION(&player_state_processor));
-			break;
-		}
-		state_type = move_type;
-    }
+	p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
 }
 
+void CPlayer::AttackHit(ObstacleBase* attack_parameters)
+{
+	switch (attack_parameters->GetAttackParameters()._Type) 
+	{
+	case ATTACK_TYPE::NOCKBACK:
+		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
+		break;
+	case ATTACK_TYPE::SCREW:
+		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
+		break;
+	case ATTACK_TYPE::SMASH:
+		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
+		break;
+	}
+}
 
 void CPlayer::NOMAL::Update()
 {
-	if (GetTime() == 3){ _owner->player_manager->ChangeMoveType(PLAYER_MOVE_TYPE::NOMAL);   }
-	return;
+	if (GetTime() == 1){ _owner->p_player->ChangeMoveType(PLAYER::PLAYERMOVETYPE::NOMAL);}
 }
 
 void CPlayer::ROTATION::Update()
 {
-	if (GetTime() == 3){ _owner->player_manager->ChangeMoveType(PLAYER_MOVE_TYPE::ROTATION);}
-	return;
+	if (GetTime() == 1){_owner->p_player->ChangeMoveType(PLAYER::PLAYERMOVETYPE::ROTATION);}
+}
+
+CPlayer::IDOL::IDOL(CPlayerStateProcessor* owner) : _owner(owner)
+{
+	_owner->p_player->p_hitbox = new HitBox();
+	_owner->p_player->ChildObj_AddListBegin((ChildObjRef)_owner->p_player->p_hitbox);
+	_owner->p_player->p_hitbox->Settags("player");
+	_owner->p_player->p_hitbox->transform.localposition.y += 0.1f;
+}
+
+void CPlayer::IDOL::Update()
+{
+	
+
+}
+
+CPlayer::DAMAGE::DAMAGE(CPlayerStateProcessor* owner) : _owner(owner)
+{
+	if (_owner->p_player->p_hitbox != nullptr){_owner->p_player->p_hitbox->Remove();};
 }
 
 void CPlayer::DAMAGE::Update()
 {
-
+	if (this->GetTime() >= 120){
+		_owner->p_player->p_state_processor.ChangeState(new CPlayer::IDOL(&_owner->p_player->p_state_processor));
+		return;
+	}
 	return;
 }

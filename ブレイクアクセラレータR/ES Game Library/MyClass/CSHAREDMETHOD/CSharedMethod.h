@@ -2,19 +2,20 @@
 
 #include "../C_HITBOX/HitBox.h"
 #include "../CSHAREDMETHOD/CSharedMethod.h"
+#include "../OBSEVER/OBSEVER.h"
 
 class CSharedMethod
 {
 public:
 	//ラップアラウンド
-	int      wrap(int x, int low, int high);
+	int         wrap(int x, int low, int high);
 	//クランプ
 	double      clamp(double x, double low, double high);
 
 	//フレーム経過時間を伝える
 	bool     FrameTimeObsever(int _index);
 
-	std::unique_ptr<HitBox>     _hitbox;
+	int a = 5;
 
 private:
 

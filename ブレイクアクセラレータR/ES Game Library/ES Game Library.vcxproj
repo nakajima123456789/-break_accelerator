@@ -116,7 +116,9 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.cpp" />
     <ClCompile Include="AccelaretorBase.cpp" />
+    <ClCompile Include="CMapMove.cpp" />
     <ClCompile Include="C_Tonnel.cpp" />
+    <ClCompile Include="EnumManager.cpp" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -184,7 +186,7 @@
     <ClCompile Include="MyClass\CSHAREDMETHOD\CSharedMethod.cpp" />
     <ClCompile Include="MyClass\C_CAMERA\C_CAMERA.cpp" />
     <ClCompile Include="MyClass\C_DIS\C_DIS.cpp" />
-    <ClCompile Include="MyClass\C_EFFEKSEER\CEffekseer_.cpp" />
+    <ClCompile Include="MyClass\C_EFFEKSEER\EffekseerMng.cpp" />
     <ClCompile Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.cpp" />
     <ClCompile Include="MyClass\C_HITBOX\HitBox.cpp" />
     <ClCompile Include="MyClass\C_INPUT\C_INPUT.cpp" />
@@ -199,13 +201,13 @@
     <ClCompile Include="MyClass\C_SHADER\C_SHADER.cpp" />
     <ClCompile Include="MyClass\C_SPRITE\C_Sprite.cpp" />
     <ClCompile Include="MyClass\C_UI\CUI.cpp" />
-    <ClCompile Include="MyClass\INFORMATION\INFORMATION.cpp" />
     <ClCompile Include="MyClass\MapPlacementData\MapPlacementData.cpp" />
     <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp" />
     <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp" />
     <ClCompile Include="MyClass\OBSTACLEBASE\ObstacleBase.cpp" />
     <ClCompile Include="MyClass\ObstacleFactory\ObstacleFactory.cpp" />
     <ClCompile Include="MyClass\ObstacleManager\ObstacleManager.cpp" />
+    <ClCompile Include="MyClass\ResouceManager\ResouceManager.cpp" />
     <ClCompile Include="MyClass\UIDATABASE\UiDataBase.cpp" />
     <ClCompile Include="RotationMove.cpp" />
     <ClCompile Include="StdAfx.cpp">
@@ -250,7 +252,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.h" />
     <ClInclude Include="AccelaretorBase.h" />
+    <ClInclude Include="CMapMove.h" />
     <ClInclude Include="C_Tonnel.h" />
+    <ClInclude Include="EnumManager.h" />
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp" />
     <ClInclude Include="Extension\DirectX11\DXGraphics11.hpp" />
     <ClInclude Include="Extension\DirectX11\Model11.hpp" />
@@ -279,7 +283,7 @@
     <ClInclude Include="MyClass\CSHAREDMETHOD\CSharedMethod.h" />
     <ClInclude Include="MyClass\C_CAMERA\C_CAMERA.h" />
     <ClInclude Include="MyClass\C_DIS\C_DIS.h" />
-    <ClInclude Include="MyClass\C_EFFEKSEER\CEffekseer_.h" />
+    <ClInclude Include="MyClass\C_EFFEKSEER\EffekseerMng.h" />
     <ClInclude Include="MyClass\C_GATEOBSTATCLE\R_GATEOBSTATCLE.h" />
     <ClInclude Include="MyClass\C_HITBOX\HitBox.h" />
     <ClInclude Include="MyClass\C_INPUT\C_INPUT.h" />
@@ -295,13 +299,13 @@
     <ClInclude Include="MyClass\C_SPRITE\C_Sprite.h" />
     <ClInclude Include="MyClass\C_STATE\C_STATE.h" />
     <ClInclude Include="MyClass\C_UI\CUI.h" />
-    <ClInclude Include="MyClass\INFORMATION\INFORMATION.h" />
     <ClInclude Include="MyClass\MapPlacementData\MapPlacementData.h" />
     <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h" />
     <ClInclude Include="MyClass\OBSEVER\OBSEVER.h" />
     <ClInclude Include="MyClass\OBSTACLEBASE\ObstacleBase.h" />
     <ClInclude Include="MyClass\ObstacleFactory\ObstacleFactory.h" />
     <ClInclude Include="MyClass\ObstacleManager\ObstacleManager.h" />
+    <ClInclude Include="MyClass\ResouceManager\ResouceManager.h" />
     <ClInclude Include="MyClass\UIDATABASE\UiDataBase.h" />
     <ClInclude Include="RotationMove.h" />
     <ClInclude Include="StdAfx.h" />

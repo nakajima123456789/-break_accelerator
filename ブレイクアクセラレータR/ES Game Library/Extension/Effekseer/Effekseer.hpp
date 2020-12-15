@@ -42,14 +42,14 @@
 //------------------------------------------------------------------------------
 //	Effekseerクラス定義
 //------------------------------------------------------------------------------
-class CEffekseer {
+class i {
 public:
-	virtual ~CEffekseer();
+	virtual ~i();
 
 	// シングルトンインスタンスの取得
-	static CEffekseer& GetInstance()
+	static i& GetInstance()
 	{
-		static CEffekseer   theEffekseer;
+		static i   theEffekseer;
 		return theEffekseer;
 	}
 
@@ -92,15 +92,15 @@ private:
 	std::set <void*>                  m_protected_resource;
 
 private:
-	CEffekseer();
+	i();
 
-	CEffekseer(const CEffekseer&);
-	CEffekseer& operator=(const CEffekseer&);
+	i(const i&);
+	i& operator=(const i&);
 };
 
 //------------------------------------------------------------------------------
 //	インライン関数定義
 //------------------------------------------------------------------------------
-inline CEffekseer& EffekseerManager() { return CEffekseer::GetInstance(); }
+inline i& EffekseerManager() { return i::GetInstance(); }
 
 #endif /* _INC_EFFEKSEER */

@@ -1,11 +1,6 @@
 #include "AccelaretorBase.h"
 #include "MyClass/C_INPUT/C_INPUT.h"
 
-void AccelaretorFront::AdvanceSpeed()
-{
-	Input.KeyBoardButtomState(Keys_Up) ? AccelaretorSpeed() : DragSpeed();
-}
-
 void AccelaretorFront::AccelaretorSpeed()
 {
 	this->_speed_z = this->_speed_z + this->_accelaretor;
@@ -29,5 +24,5 @@ void AccelaretorFront::Init()
 
 void AccelaretorFront::Update()
 {
-	AdvanceSpeed();
+	Input.KeyBoardButtomState(Keys_Up) ? AccelaretorSpeed() : DragSpeed();
 }

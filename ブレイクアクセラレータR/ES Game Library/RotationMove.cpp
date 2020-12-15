@@ -1,6 +1,6 @@
 #include "RotationMove.h"
 #include "MyClass/C_INPUT/C_INPUT.h"
-
+#include "MyClass/C_PLAYER/C_PLAYER.h"
 
 void RotationMove::Init()
 {
@@ -13,6 +13,7 @@ void RotationMove::Init()
 	this->m_gameObject = this;
 
 	accelaretors->gameObject = gameObject;
+
 }
 
 void RotationMove::Update()
