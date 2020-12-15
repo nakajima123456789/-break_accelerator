@@ -23,6 +23,9 @@ void CUI::Init()
 	
 	gage = sprite_mng.CreateSpriteFromFileRect(_T("UI/FWƒQ[ƒW/FW_S.png"), Vector3(365.0f, 0.0f, 0.0f));
 	
+
+	speed_meta = sprite_mng.CreateSpriteFromFileRect(_T("UI/gear/sp.png"), Vector3(0.0f, 0.0f, 0.0f));
+
 	IUiParametor::Instance().CreateParametor("ui");
 
 	_ui_data.reset(new UiData);
@@ -55,6 +58,7 @@ void CUI::OnCollisionClear()
 {
 	_ui_data->SetGageParams("ui", -2);
 
+	count++;
 }
 
 void CUI::OnCollisionGage()
@@ -74,6 +78,11 @@ void CUI::OnCollisionGage()
 void CUI::Draw2D()
 {
 	sprite_mng.SetRectWH(gage, 0, 0, (540 * 0.01) * _ui_data->GetGageParams("ui"), 48);
+	
+
+	sprite_mng.SetRectWH(speed_meta, 192 * count, 0, 192, 192);
+	count = this->clamp(count, 1, 9);
+
 	sprite_mng.DrawSprite();
 }
 

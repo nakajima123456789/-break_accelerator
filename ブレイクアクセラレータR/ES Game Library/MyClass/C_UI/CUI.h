@@ -36,6 +36,10 @@ private:
 
 	int gage;
 
+	int speed_meta;
+	int count = 1;
+
+
 	//プレイヤーのデータベース
 	std::unique_ptr<UiData>        _ui_data;
 	std::unique_ptr<IPlayerData>   _player_data;
