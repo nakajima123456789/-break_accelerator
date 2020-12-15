@@ -178,9 +178,6 @@
     <Filter Include="MyClass\C_MAP">
       <UniqueIdentifier>{973b790e-050f-42bb-a017-409216a623d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\INFORMATION">
-      <UniqueIdentifier>{33c89afb-fd34-4217-8c9c-e79a0f1f2cee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyClass\OBSEVER">
       <UniqueIdentifier>{fd9d57ac-5130-4c58-9bc7-3e1aa88e66d6}</UniqueIdentifier>
     </Filter>
@@ -238,9 +235,6 @@
     <Filter Include="MyClass\Mng_Obstacle\C_GateObstacleR">
       <UniqueIdentifier>{152ea3c1-6d55-4d0b-b911-4c19293dd247}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyClass\Mng_Obstacle\C_Tonnel">
-      <UniqueIdentifier>{c87cd51c-45de-4c3e-84ee-95be831f0b27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyClass\C_Player\Velocity">
       <UniqueIdentifier>{db5099b3-7f4d-4ee7-ad3c-f811477cff2f}</UniqueIdentifier>
     </Filter>
@@ -252,6 +246,24 @@
     </Filter>
     <Filter Include="MyClass\C_Player\Rotation">
       <UniqueIdentifier>{a3b0f891-2b0b-4256-9d20-e2a0bb42b6e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\ResouceManager">
+      <UniqueIdentifier>{664878c5-2d9a-4efd-94a9-72b71e6a8032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\C_Player\Accelaretor">
+      <UniqueIdentifier>{2c6109fc-11d2-4818-9390-a090ae9bf2bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\EnumManager">
+      <UniqueIdentifier>{ff5e595a-1446-4a0b-9b09-2f2f6faf0889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\MapMove">
+      <UniqueIdentifier>{3e1ca221-8fc2-4ec6-8ff7-4b02b669c617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\MapMove\C_Tonnel">
+      <UniqueIdentifier>{c87cd51c-45de-4c3e-84ee-95be831f0b27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\MapMove\MapMove">
+      <UniqueIdentifier>{93757cdc-a606-4ae2-84e0-a24e56e0657d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -433,9 +445,6 @@
     <ClCompile Include="MyClass\C_SE\C_SE.cpp">
       <Filter>MyClass\C_Se</Filter>
     </ClCompile>
-    <ClCompile Include="MyClass\C_EFFEKSEER\CEffekseer_.cpp">
-      <Filter>MyClass\C_Effekseer</Filter>
-    </ClCompile>
     <ClCompile Include="MyClass\C_OBSTACLE\C_Obstacle.cpp">
       <Filter>MyClass\Mng_Obstacle\C_Obstacle</Filter>
     </ClCompile>
@@ -450,9 +459,6 @@
     </ClCompile>
     <ClCompile Include="MyClass\C_MAP\C_MAP.cpp">
       <Filter>MyClass\C_MAP</Filter>
-    </ClCompile>
-    <ClCompile Include="MyClass\INFORMATION\INFORMATION.cpp">
-      <Filter>MyClass\INFORMATION</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp">
       <Filter>MyClass\OBSEVER</Filter>
@@ -503,7 +509,7 @@
       <Filter>MyClass\Mng_Obstacle\C_GateObstacleR</Filter>
     </ClCompile>
     <ClCompile Include="C_Tonnel.cpp">
-      <Filter>MyClass\Mng_Obstacle\C_Tonnel</Filter>
+      <Filter>MyClass\MapMove\C_Tonnel</Filter>
     </ClCompile>
     <ClCompile Include="Velocity.cpp">
       <Filter>MyClass\C_Player\Velocity</Filter>
@@ -517,8 +523,20 @@
     <ClCompile Include="RotationMove.cpp">
       <Filter>MyClass\C_Player\Rotation</Filter>
     </ClCompile>
+    <ClCompile Include="MyClass\ResouceManager\ResouceManager.cpp">
+      <Filter>MyClass\ResouceManager</Filter>
+    </ClCompile>
     <ClCompile Include="AccelaretorBase.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>MyClass\C_Player\Accelaretor</Filter>
+    </ClCompile>
+    <ClCompile Include="EnumManager.cpp">
+      <Filter>MyClass\EnumManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_EFFEKSEER\EffekseerMng.cpp">
+      <Filter>MyClass\C_Effekseer</Filter>
+    </ClCompile>
+    <ClCompile Include="CMapMove.cpp">
+      <Filter>MyClass\MapMove\MapMove</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -718,9 +736,6 @@
     <ClInclude Include="MyClass\C_SE\C_SE.h">
       <Filter>MyClass\C_Se</Filter>
     </ClInclude>
-    <ClInclude Include="MyClass\C_EFFEKSEER\CEffekseer_.h">
-      <Filter>MyClass\C_Effekseer</Filter>
-    </ClInclude>
     <ClInclude Include="MyClass\C_OBSTACLE\C_Obstacle.h">
       <Filter>MyClass\Mng_Obstacle\C_Obstacle</Filter>
     </ClInclude>
@@ -735,9 +750,6 @@
     </ClInclude>
     <ClInclude Include="MyClass\C_MAP\C_MAP.h">
       <Filter>MyClass\C_MAP</Filter>
-    </ClInclude>
-    <ClInclude Include="MyClass\INFORMATION\INFORMATION.h">
-      <Filter>MyClass\INFORMATION</Filter>
     </ClInclude>
     <ClInclude Include="MyClass\OBSEVER\OBSEVER.h">
       <Filter>MyClass\OBSEVER</Filter>
@@ -788,7 +800,7 @@
       <Filter>MyClass\Mng_Obstacle\C_GateObstacleR</Filter>
     </ClInclude>
     <ClInclude Include="C_Tonnel.h">
-      <Filter>MyClass\Mng_Obstacle\C_Tonnel</Filter>
+      <Filter>MyClass\MapMove\C_Tonnel</Filter>
     </ClInclude>
     <ClInclude Include="Velocity.h">
       <Filter>MyClass\C_Player\Velocity</Filter>
@@ -802,8 +814,20 @@
     <ClInclude Include="RotationMove.h">
       <Filter>MyClass\C_Player\Rotation</Filter>
     </ClInclude>
+    <ClInclude Include="MyClass\ResouceManager\ResouceManager.h">
+      <Filter>MyClass\ResouceManager</Filter>
+    </ClInclude>
     <ClInclude Include="AccelaretorBase.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>MyClass\C_Player\Accelaretor</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumManager.h">
+      <Filter>MyClass\EnumManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_EFFEKSEER\EffekseerMng.h">
+      <Filter>MyClass\C_Effekseer</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapMove.h">
+      <Filter>MyClass\MapMove\MapMove</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

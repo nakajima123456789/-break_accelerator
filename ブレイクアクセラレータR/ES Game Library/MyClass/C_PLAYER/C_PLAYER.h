@@ -4,43 +4,41 @@
 #include "../C_OBJECT/Object.h"
 #include "../c_Hitbox/HitBox.h"
 #include "../C_INPUT/C_INPUT.h"
-#include "../C_EFFEKSEER/CEffekseer_.h"
 #include "../CSHAREDMETHOD/CSharedMethod.h"
 #include "../CCHARACTER/Character.h"
 #include "../CPLAYERDATA/CPlayerData.h"
 #include "../../Velocity.h"
 #include "../../RotationMove.h"
+#include "../../EnumManager.h"
+#include "../C_EFFEKSEER/EffekseerMng.h"
+#include "../C_DIS/C_DIS.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
 
-enum PLAYER_MOVE_TYPE
-{
-	NOMAL,
-	ROTATION,
-};
+class ObstacleBase;
 
 class CPlayerStateProcessor : public  StateProcessor {
 public:
-	CPlayer* player_manager;
+	CPlayer* p_player;
 };
 
-class CPlayer : public Object, CSharedMethod
+class CPlayer : public Object, CSharedMethod, OBSERVERLISTENER
 {
 public:
-	CPlayerStateProcessor player_state_processor;
-	
+	CPlayerStateProcessor p_state_processor;
+
 	CPlayer(Vector3  _pos);
 	virtual ~CPlayer();
 
 	virtual void CPlayer::Init()        override;
 	virtual void CPlayer::Update()      override;
-	virtual void CPlayer::Draw3D()      override;
+	virtual void CPlayer::Draw3D()      override { return; };
 
-	virtual void CPlayer::DrawAlpha3D() override { return; };
+	virtual void CPlayer::DrawAlpha3D() override;
 	virtual void CPlayer::Draw2D()      override { return; };
 
-	void ChangeStateType(PLAYER_MOVE_TYPE move_type);
+	void AttackHit(ObstacleBase* attack_parameters);
 
 private:
 
@@ -77,8 +75,8 @@ private:
 	private:
 		CPlayerStateProcessor* _owner;
 	public:
-		DAMAGE(CPlayerStateProcessor* owner) : _owner(owner) {}
-		virtual ~DAMAGE() {}
+		DAMAGE(CPlayerStateProcessor* owner);
+		virtual ~DAMAGE() {};
 
 		virtual int    CancelLv() { return INT_MAX; };
 		virtual int    ExitTime() { return 30; };
@@ -86,26 +84,40 @@ private:
 		virtual void Update() override;
 	};
 
+	class IDOL : public State
+	{
+	private:
+		CPlayerStateProcessor* _owner;
+	public:
+		IDOL(CPlayerStateProcessor* owner);
+		virtual ~IDOL() {};
 
+		virtual void Update() override;
+	};
 
 private:
 	//関数宣言
 
-	void ChangeMoveType (PLAYER_MOVE_TYPE move_type);
+	void ChangeMoveType (PLAYER::PLAYERMOVETYPE move_type);
+	void LordEffekseer   ();
+	void GameObjectIsMove();
 
     //変数宣言
-
-	Model     p_model;
-
-	HitBox*   p_hitbox;
-	Velocity* p_velocity;
-
+	MODEL         p_model;
 	RotationMove* p_rotation;
+	HitBox*       p_hitbox;
+	EffekseerMng* p_effekseerMng;
+	Velocity*     p_velocity;
 
-	unsigned int MOVE_TYPE_MAX_SIZE = 2;
+	OBSERVER      obsever;
 
-	int state_type;
+	int state_type = -1;
+
+	EFFECT shader = nullptr;
+	int  alpha   = 1;
+	int  color_r = 0;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;
+
 };

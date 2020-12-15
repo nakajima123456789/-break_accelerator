@@ -3914,7 +3914,7 @@ struct Point2F : public D2D_POINT_2F {
 //------------------------------------------------------------------------------
 #ifdef _INC_EFFEKSEER
 
-#define Effekseer CEffekseer::GetInstance()
+#define Effekseer i::GetInstance()
 
 typedef IEffekseerEffect *EFFEKSEER;
 typedef int               EFFEKSEERID;

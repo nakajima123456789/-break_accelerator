@@ -43,14 +43,14 @@
 //------------------------------------------------------------------------------
 //	デフォルトコンストラクタ
 //------------------------------------------------------------------------------
-CEffekseer::CEffekseer() : m_manager(NULL), m_renderer(NULL)
+i::i() : m_manager(NULL), m_renderer(NULL)
 {
 }
 
 //------------------------------------------------------------------------------
 //	デストラクタ
 //------------------------------------------------------------------------------
-CEffekseer::~CEffekseer()
+i::~i()
 {
 	Release();
 }
@@ -58,7 +58,7 @@ CEffekseer::~CEffekseer()
 //------------------------------------------------------------------------------
 //	初期化
 //------------------------------------------------------------------------------
-bool CEffekseer::Initialize(IDirect3DDevice9* pD3DDevice, const int inMaxSprite)
+bool i::Initialize(IDirect3DDevice9* pD3DDevice, const int inMaxSprite)
 {
 	assert(pD3DDevice != NULL);
 	Release();
@@ -101,7 +101,7 @@ bool CEffekseer::Initialize(IDirect3DDevice9* pD3DDevice, const int inMaxSprite)
 //------------------------------------------------------------------------------
 //	解放
 //------------------------------------------------------------------------------
-void CEffekseer::Release()
+void i::Release()
 {
 	m_protected_resource.clear();
 	ReleaseAllEffects();
@@ -120,7 +120,7 @@ void CEffekseer::Release()
 //------------------------------------------------------------------------------
 //	エフェクト生成
 //------------------------------------------------------------------------------
-IEffekseerEffect* CEffekseer::CreateEffectFromFile(LPCWSTR inFileName)
+IEffekseerEffect* i::CreateEffectFromFile(LPCWSTR inFileName)
 {
 #ifdef _DEBUG
 	if(m_manager == NULL) {
@@ -144,7 +144,7 @@ IEffekseerEffect* CEffekseer::CreateEffectFromFile(LPCWSTR inFileName)
 //------------------------------------------------------------------------------
 //	エフェクト解放
 //------------------------------------------------------------------------------
-void CEffekseer::ReleaseEffect(IEffekseerEffect*& pEffect)
+void i::ReleaseEffect(IEffekseerEffect*& pEffect)
 {
 	m_protected_resource.erase(pEffect);
 	m_effect_list.remove(pEffect);
@@ -156,7 +156,7 @@ void CEffekseer::ReleaseEffect(IEffekseerEffect*& pEffect)
 //------------------------------------------------------------------------------
 //	全エフェクト解放
 //------------------------------------------------------------------------------
-void CEffekseer::ReleaseAllEffects()
+void i::ReleaseAllEffects()
 {
 	std::list<IEffekseerEffect*>::iterator   list_it = m_effect_list.begin();
 	if(m_protected_resource.empty()) {
@@ -185,7 +185,7 @@ void CEffekseer::ReleaseAllEffects()
 //------------------------------------------------------------------------------
 //	リソースプロテクト設定
 //------------------------------------------------------------------------------
-void CEffekseer::SetResourceProtect(void* pResource, const bool inProtect)
+void i::SetResourceProtect(void* pResource, const bool inProtect)
 {
 	if(inProtect) {
 		m_protected_resource.insert(pResource);		// プロテクト設定
@@ -229,7 +229,7 @@ void CEffekseer::SetProjection(const Effekseer::Matrix44& inMatrix)
 //------------------------------------------------------------------------------
 //	ビュー設定
 //------------------------------------------------------------------------------
-void CEffekseer::SetView(D3DMATRIX& inMatrix)
+void i::SetView(D3DMATRIX& inMatrix)
 {
 #ifdef _DEBUG
 	if(m_renderer == NULL) {
@@ -246,7 +246,7 @@ void CEffekseer::SetView(D3DMATRIX& inMatrix)
 //------------------------------------------------------------------------------
 //	プロジェクション設定
 //------------------------------------------------------------------------------
-void CEffekseer::SetProjection(D3DMATRIX& inMatrix)
+void i::SetProjection(D3DMATRIX& inMatrix)
 {
 #ifdef _DEBUG
 	if(m_renderer == NULL) {
@@ -263,7 +263,7 @@ void CEffekseer::SetProjection(D3DMATRIX& inMatrix)
 //------------------------------------------------------------------------------
 //	カメラ設定
 //------------------------------------------------------------------------------
-void CEffekseer::SetCamera(CCamera& inCamera)
+void i::SetCamera(CCamera& inCamera)
 {
 #ifdef _DEBUG
 	if(m_renderer == NULL) {
@@ -284,7 +284,7 @@ void CEffekseer::SetCamera(CCamera& inCamera)
 //------------------------------------------------------------------------------
 //	更新
 //------------------------------------------------------------------------------
-void CEffekseer::Update()
+void i::Update()
 {
 #ifdef _DEBUG
 	if(m_manager == NULL) {
@@ -299,7 +299,7 @@ void CEffekseer::Update()
 //------------------------------------------------------------------------------
 //	描画
 //------------------------------------------------------------------------------
-void CEffekseer::Draw()
+void i::Draw()
 {
 #ifdef _DEBUG
 	if(m_manager == NULL) {
@@ -316,7 +316,7 @@ void CEffekseer::Draw()
 //------------------------------------------------------------------------------
 //	カリング領域生成
 //------------------------------------------------------------------------------
-void CEffekseer::CreateCullingWorld(const float inWidth, const float inHeight,
+void i::CreateCullingWorld(const float inWidth, const float inHeight,
 									const float inDepth, const int inLayerCount)
 {
 #ifdef _DEBUG
@@ -332,7 +332,7 @@ void CEffekseer::CreateCullingWorld(const float inWidth, const float inHeight,
 //------------------------------------------------------------------------------
 //	カリング演算
 //------------------------------------------------------------------------------
-void CEffekseer::CalculateCulling()
+void i::CalculateCulling()
 {
 #ifdef _DEBUG
 	if(m_manager == NULL) {
@@ -347,7 +347,7 @@ void CEffekseer::CalculateCulling()
 //------------------------------------------------------------------------------
 //	スクリーン座標→Effekseerワールド座標変換
 //------------------------------------------------------------------------------
-D3DXVECTOR3 CEffekseer::ScreenToWorld(const float inScreenX, const float inScreenY,
+D3DXVECTOR3 i::ScreenToWorld(const float inScreenX, const float inScreenY,
 									  const float inEffectPosZ)
 {
 	// ビューポート逆行列

@@ -2,6 +2,7 @@
 
 #include "../../ESGLib.h"
 #include <algorithm>
+#include "../ResouceManager/ResouceManager.h"
 
 class Transform;
 class Object;
@@ -90,6 +91,7 @@ public:
 
 	//子オブジェクトリストに挿入
 	void ChildObj_AddList(ChildObjRef& c);
+	void ChildObj_AddListBegin(ChildObjRef& c);
 
 	virtual void ChildUpdate();
 
@@ -157,4 +159,5 @@ public:
 
 	//子オブジェクトリストに挿入
 	void AddList(ChildObjRef& c);
+	void AddListBegin(ChildObjRef& c);
 };

@@ -54,6 +54,23 @@ void Object::ChildObj_AddList(ChildObjRef& c) {
 	c->Init();
 }
 
+//子オブジェクトリストに挿入
+void Object::ChildObj_AddListBegin(ChildObjRef& c)
+{
+	//親として自分を指定
+	c->gameObject = this;
+	//親を元に座標更新
+	c->transform.parent = &this->transform;
+	c->transform.position = Vector3_Add(c->transform.position, c->transform.parent->position);
+	c->transform.rotation = Vector3_Add(c->transform.rotation, c->transform.parent->rotation);
+	c->transform.scale = c->transform.scale / c->transform.parent->scale;
+	c->transform.Update();
+	//リストに挿入
+	this->p_childObjects.insert(p_childObjects.begin(), c);
+	//初期化関数を呼ぶ
+	c->Init();
+}
+
 //子オブジェクトの更新
 void Object::ChildUpdate() {
    //消去フラグがTRUEなら消去
@@ -156,4 +173,8 @@ void ObjectManager::DrawEnd(){
 //子オブジェクトリストに挿入
 void ObjectManager::AddList(ChildObjRef& c) {
 	_root.ChildObj_AddList((ChildObjRef)c);
+}
+void ObjectManager::AddListBegin(ChildObjRef& c) 
+{
+	_root.ChildObj_AddListBegin((ChildObjRef)c);
 }

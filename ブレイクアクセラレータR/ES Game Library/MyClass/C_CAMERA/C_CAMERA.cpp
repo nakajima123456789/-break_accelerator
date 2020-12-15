@@ -1,9 +1,10 @@
 #include "C_CAMERA.h"
-#include "../C_Effekseer/CEffekseer_.h"
 #include "../C_INPUT/C_INPUT.h"
 
 void CCamera_::Init()
 {
+	Effekseer.Attach(GraphicsDevice);
+
 	Color color = (0.5f, 0.5f, 0.5f);
 
 	light.Type      = Light_Directional;
@@ -23,20 +24,21 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
-	
 	Vector3 player_pos = _iplayer_data->GetPlayerPosition("player");
 
 	camera->SetLookAt(player_pos + Vector3(0.0f,0.5f, - 0.65f),player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
 
-	EffekseerMgr.Update();
-	GraphicsDevice.SetCamera(camera);
+	Effekseer.Update();
 
+	GraphicsDevice.SetCamera(camera);
 }
 
 void CCamera_::DrawEnd()
 {
 	GraphicsDevice.SetCamera(camera);
-	EffekseerMgr.Draw(camera);
+
+	Effekseer.SetCamera(camera);
+	Effekseer.Draw();
 };
 
 

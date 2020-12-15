@@ -1,20 +1,14 @@
 #include "C_DIS.h"
-#include <algorithm>
 
+std::list<C_Distance*> C_Distance::c_dis_list = {};
 
-std::list<CDis*> CDis::c_dis_list = {};
-
-void CDis::Init()
+void C_Distance::Init()
 {
 	c_dis_list.push_back(this);
 	tag = "default";
 }
 
- /**
-  * @fn
-  * @detail 詳細な説明　解放されたときに呼び出し自分の情報をリストから削除する。
-  */
-void CDis::IsRemove()
+void C_Distance::IsRemove()
 {
 	auto is_it = c_dis_list.begin();
 	while (is_it != c_dis_list.end()) {
@@ -27,31 +21,13 @@ void CDis::IsRemove()
 	}
 }
 
-/**
- * @fn
- * @param (std::string _tag) 引数の説明　インスタンス元のタグを指定する
- * @detail 詳細な説明　タグ登録　"default"以外
- */
-void CDis::IsTagSet(std::string _tag)
+void C_Distance::IsTagSet(std::string _tag)
 { 
 	ASSERT(_tag != "default" && "default以外にしてください。");
 	tag = _tag;
 };
 
-/**
- * @fn
- * @param (Vector3 _pos) 引数の説明　インスタンス元のモデルの座標
- * @detail 詳細な説明 座標の登録
- */
-void CDis::IsPosition(Vector3 _pos){pos = _pos;}
-
-/**
- * @fn
- * @param (std::string _tag) 引数の説明　タグ登録
- * @return 戻り値の説明　指定されたタグが見つかればTRUE　そうでなければFALSE
- * @detail 詳細な説明　　タグ検索関数
- */
-bool CDis::TagSerch(std::string _tag)
+bool C_Distance::TagSerch(std::string _tag)
 {
 	bool flag = false;
 	for (auto&& h : c_dis_list) {
@@ -60,36 +36,39 @@ bool CDis::TagSerch(std::string _tag)
 	return flag;
 }
 
-/**
- * @fn
- * @param (std::string _tag) 引数の説明　欲しいタグの最小距離を取得する。
- * @return 戻り値の説明　計算した最小距離を返す
- * @detail 詳細な説明　　今まで登録してきたタグの中で最小の値を取得できる関数
- */
-float CDis::GetTagDistance(std::string _tag)
+std::vector<C_Distance*> C_Distance::DistanceList(std::string _tag)
+{
+	std::vector<C_Distance*>  c_dis;
+	for (auto&& h : c_dis_list) {
+		if (h->tag != _tag)          continue;
+		if (h->GetThisDis() == this) continue;
+		c_dis.push_back(h->GetThisDis());
+	}
+	return c_dis;
+};
+
+
+std::vector<float> C_Distance::IsOtherTagDistance(std::vector<C_Distance*> tag_c_dis)
+{
+	std::vector<float> at_distance;
+	for (auto&& other : tag_c_dis) {
+		float other_distance = Vector3_Distance(other->gameObject->transform.position, this->gameObject->transform.position);
+		at_distance.push_back(other_distance);
+	}
+	return at_distance;
+};
+
+float C_Distance::GetTagDistance(std::string _tag)
 {
 	ASSERT(TagSerch(_tag) && "tagが存在していない!");
 
-	std::vector<CDis*> C_DIS;
-	for (auto&& other : c_dis_list)
-	{
-		if (other->tag != _tag)          continue;
-		if (other->GetThisDis() == this) continue; 
-		C_DIS.push_back(other->GetThisDis());
+	std::vector<C_Distance*> c_dis = DistanceList(_tag);
+
+	if (c_dis.size() != 0){
+		std::vector<float> at_distance = IsOtherTagDistance(c_dis);
+		auto&& tag_min_distance = *std::min_element(at_distance.begin(), at_distance.end(), [](float a, float b) {return a < b; });
+		return tag_min_distance;
 	}
-
-	float tag_min_dis = FLT_MAX;
-
-	if (C_DIS.size() != 0){
-		std::vector<float> at_distance;
-		for (auto&& other : C_DIS){
-			float other_distance = Vector3_Distance(other->pos, this->pos);
-			at_distance.push_back(other_distance);
-		}
-		auto&& min_dis = std::min_element(at_distance.begin(), at_distance.end(), [](float a, float b) {return a < b; });
-
-		tag_min_dis = *min_dis;
-	}
-	return tag_min_dis == FLT_MAX ? 0.0f : tag_min_dis;
+	return FLT_MAX;
 }
 

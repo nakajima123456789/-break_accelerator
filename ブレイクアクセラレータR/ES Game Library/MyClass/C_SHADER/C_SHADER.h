@@ -15,9 +15,9 @@ public:
 	virtual void SetAttenuation(float _set_attenuation)                        = 0;
 
 	static void CameraSetting(CCamera_& _get_camera_manager) { camera = &_get_camera_manager; };
+	static CCamera_* camera;
 protected:
 
-	static CCamera_* camera;
 	const Vector3 light_pos_correction = Vector3(0, 1, 0);
 	EFFECT  shader = nullptr;
 
