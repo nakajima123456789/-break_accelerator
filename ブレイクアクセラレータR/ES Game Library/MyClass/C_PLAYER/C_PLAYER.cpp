@@ -28,7 +28,6 @@ void CPlayer::Init()
 
 CPlayer::~CPlayer()
 {
-	
 };
 
 void CPlayer::Update()
@@ -100,6 +99,5 @@ void CPlayer::ROTATION::Update()
 
 void CPlayer::DAMAGE::Update()
 {
-
 	return;
 }

@@ -75,6 +75,11 @@ void CUI::OnCollisionGage()
 
 }
 
+int CUI::count_num()
+{
+	return count;
+}
+
 void CUI::Draw2D()
 {
 	sprite_mng.SetRectWH(gage, 0, 0, (540 * 0.01) * _ui_data->GetGageParams("ui"), 48);

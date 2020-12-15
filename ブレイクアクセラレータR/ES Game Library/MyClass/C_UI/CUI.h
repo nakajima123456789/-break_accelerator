@@ -30,6 +30,8 @@ public:
 	virtual void CUI::OnCollisionClear()     override;
 	virtual void CUI::OnCollisionGage()      override;
 	
+	int count_num();
+
 private:
 	OBSERVER      observer;
 	SpriteManager sprite_mng;
