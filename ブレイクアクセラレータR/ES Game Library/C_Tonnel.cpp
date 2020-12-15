@@ -13,7 +13,8 @@ void C_Tonnel::Init()
 void C_Tonnel::Update()
 {
 	if (p_model.GetModel()->IntersectRay(_iplayer_data->GetPlayerPosition("player"), Vector3_Down, nullptr, nullptr)){
-		((CMapMove*)(gameObject))->ObjectAdds(this);  }
+		((CMapMove*)(gameObject))->ObjectAdds(this); 
+	}
 	else {
 		((CMapMove*)(gameObject))->ObjectAdds(nullptr);
 	}

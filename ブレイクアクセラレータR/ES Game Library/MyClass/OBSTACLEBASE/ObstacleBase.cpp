@@ -40,7 +40,7 @@ void ObstacleBase::Draw3D()
 			this->transform.position.x += brock_parameters.move_gate_position;
 
 			if(brock_parameters.move_flag == true)
-			if (_with_distance <= 4.0f) { this->transform.position = *obstacle_itr += brock_parameters.move_position; }
+				if (_with_distance <= 4.0f) { this->transform.position = *obstacle_itr += brock_parameters.move_position; }
 
 			OnCollsion(_with_distance, brock_parameters.pos_correction);
 
@@ -49,7 +49,6 @@ void ObstacleBase::Draw3D()
 			this->p_model.SetPosition(this->transform.position + brock_parameters.model_pos_correction);
 			this->p_model.Draw();
 		}
-
 		obstacle_itr++;
 	}
 };

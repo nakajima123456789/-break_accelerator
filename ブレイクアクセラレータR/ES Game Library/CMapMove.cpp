@@ -3,7 +3,6 @@
 #include "C_Tonnel.h"
 void CMapMove::Init()
 {
-
 	auto&& c_player = (new CPlayer(Vector3_Zero));
 	this->ChildObj_AddList((ChildObjRef)c_player);
 
