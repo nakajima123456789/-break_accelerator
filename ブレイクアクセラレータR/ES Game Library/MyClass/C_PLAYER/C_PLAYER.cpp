@@ -52,9 +52,7 @@ void CPlayer::LordEffekseer()
 
 void CPlayer::GameObjectIsMove()
 {
-	if (gameObject->gameObject == nullptr)
-	{ 
-		ChangeMoveType(PLAYER::PLAYERMOVETYPE::NOMAL);
+	if (gameObject->gameObject == nullptr){ ChangeMoveType(PLAYER::PLAYERMOVETYPE::NOMAL);
 	    return;
 	}
 
