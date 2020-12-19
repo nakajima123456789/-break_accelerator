@@ -1,5 +1,4 @@
 #include "RotationMove.h"
-#include "MyClass/C_INPUT/C_INPUT.h"
 #include "MyClass/C_PLAYER/C_PLAYER.h"
 
 void RotationMove::Init()

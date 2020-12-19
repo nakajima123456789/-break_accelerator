@@ -1,5 +1,5 @@
 #include "Velocity.h"
-#include "MyClass/C_INPUT/C_INPUT.h"
+
 
 void Velocity::Init()
 {

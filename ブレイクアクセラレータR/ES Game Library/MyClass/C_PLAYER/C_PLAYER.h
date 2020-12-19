@@ -3,7 +3,6 @@
 #include "../C_STATE/C_STATE.h"
 #include "../C_OBJECT/Object.h"
 #include "../c_Hitbox/HitBox.h"
-#include "../C_INPUT/C_INPUT.h"
 #include "../CSHAREDMETHOD/CSharedMethod.h"
 #include "../CCHARACTER/Character.h"
 #include "../CPLAYERDATA/CPlayerData.h"

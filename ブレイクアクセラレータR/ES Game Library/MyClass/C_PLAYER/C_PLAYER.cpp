@@ -1,5 +1,4 @@
 #include "C_PLAYER.h"
-#include "../C_INPUT/C_INPUT.h"
 #include "../C_SHADER/C_SHADER.h"
 #include "../../C_Tonnel.h"
 #include "../../CMapMove.h"

@@ -1,5 +1,5 @@
 #include "AccelaretorBase.h"
-#include "MyClass/C_INPUT/C_INPUT.h"
+
 
 void AccelaretorFront::AccelaretorSpeed()
 {
@@ -24,5 +24,5 @@ void AccelaretorFront::Init()
 
 void AccelaretorFront::Update()
 {
-	Input.KeyBoardButtomState(Keys_Up) ? AccelaretorSpeed() : DragSpeed();
+	Input.GetKeybordInput(Keys_Up) ? AccelaretorSpeed() : DragSpeed();
 }

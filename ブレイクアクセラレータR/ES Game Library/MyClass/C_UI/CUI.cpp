@@ -1,7 +1,6 @@
 #include "CUI.h"
 #include"../INFORMATION/INFORMATION.h"
 
-#include "../C_INPUT/C_INPUT.h"
 
 CUI::CUI()
 {

@@ -10,7 +10,7 @@ void C_RESULT::Initialize()
 
 void C_RESULT::Update()
 {
-	if (Input.GetPadInputDown(11)) { SceneManager::ChangeScene(SceneManager::RESULT); }
+	if (Input.GetKeybordInputDown(11)) { SceneManager::ChangeScene(SceneManager::RESULT); }
 }
 
 void C_RESULT::Draw2D()

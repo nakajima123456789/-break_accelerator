@@ -1,5 +1,4 @@
 #include "C_CAMERA.h"
-#include "../C_INPUT/C_INPUT.h"
 
 void CCamera_::Init()
 {

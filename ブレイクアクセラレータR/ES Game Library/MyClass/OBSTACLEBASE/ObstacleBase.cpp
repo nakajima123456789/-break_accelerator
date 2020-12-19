@@ -36,19 +36,24 @@ void ObstacleBase::Draw3D()
 		this->transform.position = *obstacle_itr;
 		float _with_distance = this->transform.position.z - player_position.z;
 
-		if (_with_distance <= OBSTACLE_DRAW_RANGE) {
-			this->transform.position.x += brock_parameters.move_gate_position;
+		LopePositionSetModel(_with_distance ,obstacle_itr);
 
-			if(brock_parameters.move_flag == true)
-				if (_with_distance <= 4.0f) { this->transform.position = *obstacle_itr += brock_parameters.move_position; }
+		if (_with_distance <= OBSTACLE_REMOVE_RANGE) { obstacle_itr = itr.erase(obstacle_itr); continue; };
 
-			OnCollsion(_with_distance, brock_parameters.pos_correction);
-
-			if (_with_distance <= OBSTACLE_REMOVE_RANGE) { obstacle_itr = itr.erase(obstacle_itr); continue; };
-
-			this->p_model.SetPosition(this->transform.position + brock_parameters.model_pos_correction);
-			this->p_model.Draw();
-		}
 		obstacle_itr++;
 	}
 };
+
+void ObstacleBase::LopePositionSetModel(float distance, std::vector<Vector3>::iterator& itr)
+{
+	if (distance >= OBSTACLE_DRAW_RANGE) return;
+
+	this->transform.position.x += brock_parameters.move_gate_position;
+
+	if (brock_parameters.move_flag == true) { if (distance <= 4.0f) { this->transform.position = *itr += brock_parameters.move_position; } }
+
+	OnCollsion(distance, brock_parameters.pos_correction);
+
+	this->p_model.SetPosition(this->transform.position + brock_parameters.model_pos_correction);
+	this->p_model.Draw();
+}

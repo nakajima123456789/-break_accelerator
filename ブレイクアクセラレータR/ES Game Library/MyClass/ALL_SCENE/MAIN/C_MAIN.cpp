@@ -3,7 +3,6 @@
 
 #include "../../C_CAMERA/C_CAMERA.h"
 
-#include "../../C_INPUT/C_INPUT.h"
 #include "../../ObjectPlacement/ObjectPlacement.h"
 
 #include "../../C_MAP/C_MAP.h"
@@ -48,7 +47,7 @@ C_MAIN::~C_MAIN()
 void C_MAIN::Update() {
 	_objectroot.Update();
 
-	if (Input.GetKeyInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::GAME_CLEAR); }
+	if (Input.GetKeybordInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::GAME_CLEAR); }
 }
 
 void C_MAIN::Draw3D()

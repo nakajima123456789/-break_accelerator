@@ -59,6 +59,8 @@ protected:
 	//Õ“Ë‚µ‚½‚Æ‚«‚Ìˆ—
 	virtual void IsCollsion() { return; };
 
+	void LopePositionSetModel(float distance,std::vector<Vector3>::iterator& itr);
+
 	ATTACK_PARAMETERS attack_parameters;
 	BROCK_PARAMETERS  brock_parameters;
 
