@@ -41,7 +41,7 @@ void CUI::OnCollisionDamage()
 
 void CUI::OnCollisionClear()
 {
-	_ui_data->SetGageParams("ui", -5);
+	_ui_data->SetGageParams("ui", -10);
 	_ui_data->SetSpeedMeterParams("ui",  1);
 }
 

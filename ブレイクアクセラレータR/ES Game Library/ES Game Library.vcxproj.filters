@@ -484,9 +484,6 @@
     <ClCompile Include="MyClass\C_SPRITE\C_Sprite.cpp">
       <Filter>MyClass\CSprite</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.cpp">
-      <Filter>MyClass\Character</Filter>
-    </ClCompile>
     <ClCompile Include="MyClass\C_SHADER\C_SHADER.cpp">
       <Filter>MyClass\CShader</Filter>
     </ClCompile>
@@ -537,6 +534,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\C_INPUT\Input.cpp">
       <Filter>MyClass\C_Input</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\CCHARACTER\Character.cpp">
+      <Filter>MyClass\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -775,9 +775,6 @@
     <ClInclude Include="MyClass\C_SPRITE\C_Sprite.h">
       <Filter>MyClass\CSprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.h">
-      <Filter>MyClass\Character</Filter>
-    </ClInclude>
     <ClInclude Include="MyClass\C_SHADER\C_SHADER.h">
       <Filter>MyClass\CShader</Filter>
     </ClInclude>
@@ -828,6 +825,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\C_INPUT\Input.h">
       <Filter>MyClass\C_Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\CCHARACTER\Character.h">
+      <Filter>MyClass\Character</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

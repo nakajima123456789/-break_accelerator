@@ -114,7 +114,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.cpp" />
     <ClCompile Include="AccelaretorBase.cpp" />
     <ClCompile Include="CMapMove.cpp" />
     <ClCompile Include="C_Tonnel.cpp" />
@@ -180,6 +179,7 @@
     <ClCompile Include="MyClass\ALL_SCENE\SCENEMANAGER\SceneManager.cpp" />
     <ClCompile Include="MyClass\ALL_SCENE\TITLE\C_TITLE.cpp" />
     <ClCompile Include="MyClass\CBROCKOBSTACLE\CBrockObstacle.cpp" />
+    <ClCompile Include="MyClass\CCHARACTER\Character.cpp" />
     <ClCompile Include="MyClass\CGATEOBSTACLE\CGateObstacle.cpp" />
     <ClCompile Include="MyClass\CMODELDATA\ModelData.cpp" />
     <ClCompile Include="MyClass\CPLAYERDATA\CPlayerData.cpp" />
@@ -250,7 +250,6 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Light_Range\作品ライトレンジ\LightRange\ES Game Library\MyClass\C_Character\Character.h" />
     <ClInclude Include="AccelaretorBase.h" />
     <ClInclude Include="CMapMove.h" />
     <ClInclude Include="C_Tonnel.h" />
@@ -277,6 +276,7 @@
     <ClInclude Include="MyClass\ALL_SCENE\SCENEMANAGER\SceneManager.h" />
     <ClInclude Include="MyClass\ALL_SCENE\TITLE\C_TITLE.h" />
     <ClInclude Include="MyClass\CBROCKOBSTACLE\CBrockObstacle.h" />
+    <ClInclude Include="MyClass\CCHARACTER\Character.h" />
     <ClInclude Include="MyClass\CGATEOBSTACLE\CGateObstacle.h" />
     <ClInclude Include="MyClass\CMODELDATA\ModelData.h" />
     <ClInclude Include="MyClass\CPLAYERDATA\CPlayerData.h" />
