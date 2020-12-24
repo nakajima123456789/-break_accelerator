@@ -25,7 +25,6 @@ private:
 	CAMERA  camera;
 	Light   light;
 
-
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;
 };

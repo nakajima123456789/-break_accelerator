@@ -13,6 +13,9 @@ void CBrockObstacle::Init()
 
 	brock_parameters.map_tags = 'B';
 	brock_parameters.pos_correction = Vector3(0.0f, 0.5f, 0.0f);
+
+	this->attack_parameters._Type = ATTACK_TYPE::DAMEGE;
+
 	return;
 }
 

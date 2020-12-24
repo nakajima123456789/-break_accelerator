@@ -18,11 +18,12 @@ public:
 	Vector3 model_pos_correction = Vector3(0.f, 0.08f, 0.0f);
 
 	bool    move_flag          = false;
+	bool    remove_flag        = false;
 
 private:
 
 };
-enum ATTACK_TYPE {NOCKBACK,SMASH,SCREW,END};
+enum ATTACK_TYPE {DAMEGE,ITEM,END};
 
 struct ATTACK_PARAMETERS
 {
@@ -54,12 +55,12 @@ protected:
 	//ä÷êîêÈåæ
 
 	//è’ìÀîªíËä÷êî
-	void   OnCollsion(float distance, Vector3 _position = Vector3(0.0f, 0.5f, 0.0f));
+	bool   OnCollsion(float distance, Vector3 _position = Vector3(0.0f, 0.5f, 0.0f));
 
 	//è’ìÀÇµÇΩÇ∆Ç´ÇÃèàóù
 	virtual void IsCollsion() { return; };
 
-	void LopePositionSetModel(float distance,std::vector<Vector3>::iterator& itr);
+	bool LopePositionSetModel(float distance,std::vector<Vector3>::iterator& itr);
 
 	ATTACK_PARAMETERS attack_parameters;
 	BROCK_PARAMETERS  brock_parameters;

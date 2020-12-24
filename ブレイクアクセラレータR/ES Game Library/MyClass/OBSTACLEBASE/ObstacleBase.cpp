@@ -1,19 +1,21 @@
 #include "ObstacleBase.h"
 #include "../C_PLAYER/C_PLAYER.h"
 
-void ObstacleBase::OnCollsion(float distance,Vector3 _position)
+bool ObstacleBase::OnCollsion(float distance,Vector3 _position)
 {
-	if (distance >= 5) return;
+	if (distance >= 5) return false;
 	this->p_hitbox->GetModel()->SetPosition(this->transform.position + _position);
 	std::list<HitBox*> hitlist = p_hitbox->HitHitBoxlist();
 	for (auto&& other : hitlist) {
 		if (other->gameObject == this->gameObject) continue;
 		if (typeid(*other->gameObject) == typeid(CPlayer)) 
 		{
-			((CPlayer*)(other->gameObject))->AttackHit(this);
 			this->IsCollsion();
+			((CPlayer*)(other->gameObject))->AttackHit(this);
+			return true;
 		}
 	}
+	return false;
 }
 
 ObstacleBase::ObstacleBase()
@@ -34,26 +36,28 @@ void ObstacleBase::Draw3D()
 	auto& obstacle_itr   = itr.begin();
 	while (obstacle_itr != itr.end()) {
 		this->transform.position = *obstacle_itr;
+
 		float _with_distance = this->transform.position.z - player_position.z;
 
-		LopePositionSetModel(_with_distance ,obstacle_itr);
-
-		if (_with_distance <= OBSTACLE_REMOVE_RANGE) { obstacle_itr = itr.erase(obstacle_itr); continue; };
+		if (LopePositionSetModel(_with_distance, obstacle_itr) == true){ obstacle_itr = itr.erase(obstacle_itr); continue;}
+		if (_with_distance <= OBSTACLE_REMOVE_RANGE)                   { obstacle_itr = itr.erase(obstacle_itr); continue;};
 
 		obstacle_itr++;
 	}
 };
 
-void ObstacleBase::LopePositionSetModel(float distance, std::vector<Vector3>::iterator& itr)
+bool ObstacleBase::LopePositionSetModel(float distance, std::vector<Vector3>::iterator& itr)
 {
-	if (distance >= OBSTACLE_DRAW_RANGE) return;
+	if (distance >= OBSTACLE_DRAW_RANGE) return false;
 
 	this->transform.position.x += brock_parameters.move_gate_position;
 
 	if (brock_parameters.move_flag == true) { if (distance <= 4.0f) { this->transform.position = *itr += brock_parameters.move_position; } }
 
-	OnCollsion(distance, brock_parameters.pos_correction);
+	if (OnCollsion(distance, brock_parameters.pos_correction) == true && brock_parameters.remove_flag == true) { return true; };
 
 	this->p_model.SetPosition(this->transform.position + brock_parameters.model_pos_correction);
 	this->p_model.Draw();
+
+	return false;
 }

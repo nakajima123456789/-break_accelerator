@@ -5,11 +5,6 @@ void Velocity::Init()
 {
 	_velocity_processor._velocity = this;
 	_velocity_processor.ChangeState(new Velocity::IDOL(&_velocity_processor));
-
-	accelaretors = (new AccelaretorFront);
-	this->ChildObj_AddList((ChildObjRef)accelaretors);
-
-	accelaretors->gameObject = gameObject;
 }
 
 void Velocity::Update()
