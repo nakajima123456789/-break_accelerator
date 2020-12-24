@@ -882,6 +882,7 @@ inline void Matrix_Decompose(const Matrix& matT, Vector3& scale, Quaternion& rot
 #define Math_Sqrt(single)         ::sqrtf(single)
 #define Math_Tan(single)          ::tanf(single)
 #define Math_Tanh(single)         ::tanhf(single)
+#define Math_Add(a,b)             ((a)+(b))
 
 #define Math_E                    (2.718282f)
 #define Math_PI                   (3.141592f)

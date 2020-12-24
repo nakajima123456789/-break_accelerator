@@ -1,5 +1,4 @@
 #include "C_CAMERA.h"
-#include "../C_INPUT/C_INPUT.h"
 
 void CCamera_::Init()
 {
@@ -26,7 +25,7 @@ void CCamera_::Update()
 {
 	Vector3 player_pos = _iplayer_data->GetPlayerPosition("player");
 
-	camera->SetLookAt(player_pos + Vector3(0.0f,0.5f, - 0.65f),player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
+	camera->SetLookAt(player_pos + Vector3(0.0f,0.5f, - 0.85f),player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
 
 	Effekseer.Update();
 

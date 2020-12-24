@@ -16,25 +16,15 @@ public:
 
 private:
 
-	enum MAP_MODEL
-	{
-		GROUND,
-		LIGHT,
-		LIGHT2,
-		POLE,
-		BUILD,
-		MAP_MODEL_SIZE,
-	};
+	void AddModelParametor(LPCTSTR _filename, int scene, Vector3 position);
 
 	std::vector<MODEL> model;
 	std::vector<std::vector<Vector3>> model_position;
-
-	inline void CreateMapPrefarence();
+	std::vector<int>                  model_scene;
 
 	MEDIA bg;
 	MUSIC bgm;
 
-	int ground_model_scene[MAP_MODEL_SIZE];
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;

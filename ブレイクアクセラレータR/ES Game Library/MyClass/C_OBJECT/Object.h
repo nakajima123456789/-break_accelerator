@@ -3,6 +3,7 @@
 #include "../../ESGLib.h"
 #include <algorithm>
 #include "../ResouceManager/ResouceManager.h"
+#include "../C_INPUT/Input.h"
 
 class Transform;
 class Object;

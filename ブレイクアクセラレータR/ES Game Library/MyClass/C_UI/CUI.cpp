@@ -1,7 +1,6 @@
 #include "CUI.h"
 #include"../INFORMATION/INFORMATION.h"
 
-#include "../C_INPUT/C_INPUT.h"
 
 CUI::CUI()
 {
@@ -37,19 +36,18 @@ void CUI::Update()
 void CUI::OnCollisionDamage()
 {
 	_ui_data->SetGageParams("ui", +2);
-	this->count--;
+	_ui_data->SetSpeedMeterParams("ui", -1);
 }
 
 void CUI::OnCollisionClear()
 {
 	_ui_data->SetGageParams("ui", -5);
-	this->count++;
+	_ui_data->SetSpeedMeterParams("ui",  1);
 }
 
 void CUI::Draw2D()
 {
-	count = this->clamp(count, 1, 9);
-	sprite_mng.SetRectWH(speed_gage, 192 * count, 0, 192, 192);
+	sprite_mng.SetRectWH(speed_gage, 192 * _ui_data->GetSpeedMeterParams("ui"), 0, 192, 192);
 
 	sprite_mng.SetRectWH(gage, 0, 0, (540 * 0.01) * _ui_data->GetGageParams("ui"), 48);
 	sprite_mng.DrawSprite();

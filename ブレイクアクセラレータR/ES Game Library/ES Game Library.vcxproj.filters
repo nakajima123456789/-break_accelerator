@@ -436,9 +436,6 @@
     <ClCompile Include="MyClass\C_DIS\C_DIS.cpp">
       <Filter>MyClass\C_Dis</Filter>
     </ClCompile>
-    <ClCompile Include="MyClass\C_INPUT\C_INPUT.cpp">
-      <Filter>MyClass\C_Input</Filter>
-    </ClCompile>
     <ClCompile Include="MyClass\C_OBJECT\Object.cpp">
       <Filter>MyClass\C_Object</Filter>
     </ClCompile>
@@ -537,6 +534,9 @@
     </ClCompile>
     <ClCompile Include="CMapMove.cpp">
       <Filter>MyClass\MapMove\MapMove</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\C_INPUT\Input.cpp">
+      <Filter>MyClass\C_Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -724,9 +724,6 @@
     <ClInclude Include="MyClass\C_DIS\C_DIS.h">
       <Filter>MyClass\C_Dis</Filter>
     </ClInclude>
-    <ClInclude Include="MyClass\C_INPUT\C_INPUT.h">
-      <Filter>MyClass\C_Input</Filter>
-    </ClInclude>
     <ClInclude Include="MyClass\C_OBJECT\Object.h">
       <Filter>MyClass\C_Object</Filter>
     </ClInclude>
@@ -828,6 +825,9 @@
     </ClInclude>
     <ClInclude Include="CMapMove.h">
       <Filter>MyClass\MapMove\MapMove</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\C_INPUT\Input.h">
+      <Filter>MyClass\C_Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

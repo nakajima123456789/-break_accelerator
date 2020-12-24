@@ -8,6 +8,7 @@ class  UiData;
 
 struct UiParam {
 	int gage_size = 100;
+	int speed_meter = 1;
 };
 
 class IUiParametor
@@ -47,11 +48,26 @@ public:
 
 	}
 
+	void SetSpeedMeterParams(std::string name, int num) {
+		if (IUiParametor::Instance()._ui_params.count(name) == 0)
+			ASSERT("連想配列の存在しません。");
+
+		IUiParametor::Instance()._ui_params[name].speed_meter = clamp(IUiParametor::Instance()._ui_params[name].speed_meter + num, 1, 9);
+	}
+
 	int GetGageParams(std::string name)
 	{
 		if (IUiParametor::Instance()._ui_params.count(name) == 0)
 			ASSERT("連想配列の存在しません。");
 
 		return IUiParametor::Instance()._ui_params[name].gage_size;
+	}
+
+	int GetSpeedMeterParams(std::string name)
+	{
+		if (IUiParametor::Instance()._ui_params.count(name) == 0)
+			ASSERT("連想配列の存在しません。");
+
+		return IUiParametor::Instance()._ui_params[name].speed_meter;
 	}
 };

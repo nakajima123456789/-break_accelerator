@@ -2,7 +2,6 @@
 #include "ESGLib.h"
 #include "MyClass/C_OBJECT/Object.h"
 #include "MyClass/C_STATE/C_STATE.h"
-#include "AccelaretorBase.h"
 
 class VelocityStateProcessor;
 class Velocity;
@@ -17,7 +16,6 @@ class Velocity : public Object
 private:
 	VelocityStateProcessor _velocity_processor;
 
-	AccelaretorFront* accelaretors;
 public:
 
 	float _speed      = 0.0f;

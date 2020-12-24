@@ -13,6 +13,9 @@ public:
 
 	int EffekseerMng::PlayEffekseer(int _number);
 
+	void EffekseerMng::PlayEffekseerAngle(int _number);
+
+	virtual void Init()   override;
 	virtual void Update() override;
 
 	bool drection_flag = true;

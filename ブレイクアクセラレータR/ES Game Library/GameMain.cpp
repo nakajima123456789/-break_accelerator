@@ -1,6 +1,7 @@
 // #include "Extension\DirectX11\DXGraphics11.hpp"
 #include "StdAfx.h"
 #include "GameMain.h"
+#include "MyClass/C_INPUT/Input.h"
 
 /// <summary>
 /// Allows the game to perform any initialization it needs to before starting to run.
@@ -12,8 +13,9 @@ bool GameMain::Initialize()
 	// TODO: Add your initialization logic here
 	WindowTitle(_T("ES Game Library"));
 
-	SceneManager::ChangeScene(SceneManager::MAIN);
+	Input.Init();
 
+	SceneManager::ChangeScene(SceneManager::MAIN);
 
 	return true;
 }
@@ -38,6 +40,7 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	// TODO: Add your update logic here
+	Input.Update();
 
 	scene_manager->Update();
 

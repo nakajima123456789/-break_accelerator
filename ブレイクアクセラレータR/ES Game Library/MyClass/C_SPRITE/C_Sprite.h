@@ -33,6 +33,5 @@ private:
 	std::vector<RectWH>  _sprite_rectwh;
 	std::vector<float >  _sprite_alpha;
 
-
 	float _alpha = 0.0f;
 };

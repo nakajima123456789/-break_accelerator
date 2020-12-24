@@ -1,6 +1,6 @@
 #pragma once
 #include "../../../ESGLib.h"
-#include "../../C_INPUT/C_INPUT.h"
+#include "../../C_INPUT/Input.h"
 
 class BaseScene {
 public:

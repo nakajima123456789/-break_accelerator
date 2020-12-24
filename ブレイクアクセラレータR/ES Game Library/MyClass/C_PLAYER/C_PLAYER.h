@@ -3,7 +3,6 @@
 #include "../C_STATE/C_STATE.h"
 #include "../C_OBJECT/Object.h"
 #include "../c_Hitbox/HitBox.h"
-#include "../C_INPUT/C_INPUT.h"
 #include "../CSHAREDMETHOD/CSharedMethod.h"
 #include "../CCHARACTER/Character.h"
 #include "../CPLAYERDATA/CPlayerData.h"
@@ -12,6 +11,8 @@
 #include "../../EnumManager.h"
 #include "../C_EFFEKSEER/EffekseerMng.h"
 #include "../C_DIS/C_DIS.h"
+#include "../UIDATABASE/UiDataBase.h"
+#include "../../AccelaretorBase.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
@@ -39,7 +40,6 @@ public:
 	virtual void CPlayer::Draw2D()      override { return; };
 
 	void AttackHit(ObstacleBase* attack_parameters);
-
 private:
 
 	class NOMAL : public State
@@ -99,25 +99,31 @@ private:
 	//関数宣言
 
 	void ChangeMoveType (PLAYER::PLAYERMOVETYPE move_type);
-	void LordEffekseer   ();
-	void GameObjectIsMove();
+
+	void SetAccelaretorParameter();
+
+	int  GetGiaLevel();
+	void SetAccelaretor(int accelaretor_type);
 
     //変数宣言
 	MODEL         p_model;
 	RotationMove* p_rotation;
-	HitBox*       p_hitbox;
-	EffekseerMng* p_effekseerMng;
+	HitBox*       p_hitbox         = nullptr;
 	Velocity*     p_velocity;
 
-	OBSERVER      obsever;
+	AccelaretorFront* accelaretors = nullptr;
 
-	int state_type = -1;
+	Accelaretor_Parameter accelaretor_parameter[ACCELARETOR_TYPE::_END];
+
+	int  state_type = -1;
+	int  _accelaretor_type = 0;
 
 	EFFECT shader = nullptr;
-	int  alpha   = 1;
-	int  color_r = 0;
+	int  alpha    = 1;
+	int  color_r  = 0;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<IPlayerData>   _iplayer_data;
+	std::unique_ptr<UiData>        _ui_data;
 
 };
