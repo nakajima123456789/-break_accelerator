@@ -23,25 +23,21 @@ void CUI::Init()
 
 	black_out = sprite_mng.CreateSprite(Vector2(1280.0f, 720.0f), Color(0, 0, 0), Vector3(0.0f,0.0f, SpriteBatch_TopMost));
 
-	font      = GraphicsDevice.CreateSpriteFont(_T("Shrikhand Regular"), 90);
+	font      = GraphicsDevice.CreateSpriteFont(_T("Thirteen Pixel Fonts"), 90);
 
 	game_timer = MAX_TIMER;
 
 	IUiParametor::Instance().CreateParametor("ui");
-
 	_ui_data.reset(new UiData);
 }
  
 void CUI::Update()
 {	
-	if (black_out_flag) { sprite_mng.BlackOutTrigger(black_out); };
+	if (black_out_flag) { if (sprite_mng.BlackOutTrigger(black_out)) { game_over_flag = true; }; };
 
-	if (this->FrameTimeObsever(60)) 
-	{
-		gagefcomveter += (MAX_TIMER * 0.1f);
-		game_timer--;
-	};
-	_ui_data->SetGageParams("ui", gagefcomveter);
+	if (this->FrameTimeObsever(60)) {SetGateParameter(-1);};
+
+	if (game_timer <= 0) { OnCollision("GAMEOVER"); };
 }
 
 void CUI::Draw2D()
@@ -49,8 +45,7 @@ void CUI::Draw2D()
 	sprite_mng.SetRectWH(speed_gage, 192 * _ui_data->GetSpeedMeterParams("ui"), 0, 192, 192);
 
 	game_timer = this->clamp(game_timer, 0, MAX_TIMER);
-
-	SpriteBatch.DrawString(font, Vector2(595.0f, 0.0f), Color(255, 255, 255), _T("%d"), game_timer);
+	SpriteBatch.DrawString(font, Vector2(600.0f, 0.0f), Color(255, 255, 255), _T("%d"), game_timer);
 
 	sprite_mng.DrawSprite();
 }
@@ -69,13 +64,15 @@ void CUI::OnCollision(std::string collsion_tag)
 	if (collsion_tag == "ITEMBROCK") {
 		CollisionTypeItemBrock(); return;
 	};
+	if (collsion_tag == "GATEBREAK") {
+		CollisionTypeGateBreak(); return;
+	};
 	ASSERT(FALSE && "Õ“Ë”»’è‚Ìƒ^ƒO–¼‚ªˆá‚¢‚Ü‚·B");
 }
 
 void CUI::CollisionTypeDamage()
 {
-	game_timer -= 2;
-	gagefcomveter += (MAX_TIMER * 0.1f) * 2;
+	SetGateParameter(-3);
 
 	_ui_data->SetSpeedMeterParams("ui", -1);
 }
@@ -92,7 +89,18 @@ void CUI::CollisionTypeGameOver()
 
 void CUI::CollisionTypeItemBrock()
 {
-	game_timer += 2;
-	gagefcomveter -= (MAX_TIMER * 0.1f) * 2;
+	SetGateParameter( 2);
+}
+
+void CUI::CollisionTypeGateBreak()
+{
+	SetGateParameter(20);
+}
+
+void CUI::SetGateParameter(int gate_numbers = 1)
+{
+	this->gagefcomveter += (MAX_TIMER * 0.1f) * gate_numbers;
+	this->game_timer    +=                      gate_numbers;
+	_ui_data->SetGageParams("ui", gagefcomveter);
 }
 

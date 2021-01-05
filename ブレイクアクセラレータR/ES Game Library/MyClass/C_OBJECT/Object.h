@@ -79,7 +79,9 @@ public:
 	std::string tag = "Default";
 
 	//コンストラクタ
-	Object() {};
+	Object() {
+		m_gameObject = this;
+	};
 
 	//デストラクタ
 	virtual ~Object() { this->Remove(); };

@@ -7,7 +7,7 @@ struct UiParam;
 class  UiData;
 
 struct UiParam {
-	int gage_size   = 0;
+	int gage_size   = 100;
 	int speed_meter = 1;
 };
 

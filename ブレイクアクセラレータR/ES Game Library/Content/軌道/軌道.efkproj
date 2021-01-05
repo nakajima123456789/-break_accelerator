@@ -105,16 +105,18 @@
               <Start>
                 <R>
                   <Center>140</Center>
-                  <Min>25</Min>
+                  <Max>31</Max>
+                  <Min>17</Min>
                   <DrawnAs>0</DrawnAs>
                 </R>
                 <G>
                   <Center>0</Center>
-                  <Max>0</Max>
-                  <Min>0</Min>
+                  <Min>232</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
+                  <Max>0</Max>
+                  <Min>41</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -124,19 +126,20 @@
               <End>
                 <R>
                   <Center>0</Center>
-                  <Max>0</Max>
-                  <Min>0</Min>
+                  <Max>64</Max>
+                  <Min>66</Min>
                   <DrawnAs>0</DrawnAs>
                 </R>
                 <G>
                   <Center>0</Center>
-                  <Max>0</Max>
-                  <Min>0</Min>
+                  <Max>200</Max>
+                  <Min>221</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>29</Max>
+                  <Min>20</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -165,6 +168,7 @@
             </Position_Fixed_LR>
           </Sprite>
         </DrawingValues>
+        <IsRendered>False</IsRendered>
         <Name>Laser</Name>
         <Children />
       </Node>
@@ -270,15 +274,19 @@
               <Start>
                 <R>
                   <Center>140</Center>
-                  <Min>25</Min>
+                  <Max>90</Max>
+                  <Min>34</Min>
                   <DrawnAs>0</DrawnAs>
                 </R>
                 <G>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>235</Max>
+                  <Min>221</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
+                  <Max>23</Max>
+                  <Min>23</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -288,19 +296,20 @@
               <End>
                 <R>
                   <Center>0</Center>
-                  <Max>0</Max>
-                  <Min>0</Min>
+                  <Max>53</Max>
+                  <Min>35</Min>
                   <DrawnAs>0</DrawnAs>
                 </R>
                 <G>
                   <Center>0</Center>
-                  <Max>0</Max>
-                  <Min>0</Min>
+                  <Max>231</Max>
+                  <Min>232</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>29</Max>
+                  <Min>28</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -329,6 +338,7 @@
             </Position_Fixed_LR>
           </Sprite>
         </DrawingValues>
+        <IsRendered>False</IsRendered>
         <Name>Laser</Name>
         <Children />
       </Node>
@@ -443,15 +453,19 @@
               <Start>
                 <R>
                   <Center>253</Center>
-                  <Min>252</Min>
+                  <Max>41</Max>
+                  <Min>20</Min>
                   <DrawnAs>0</DrawnAs>
                 </R>
                 <G>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>231</Max>
+                  <Min>231</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
+                  <Max>20</Max>
+                  <Min>40</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -461,15 +475,19 @@
               <End>
                 <R>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>38</Max>
+                  <Min>68</Min>
                   <DrawnAs>0</DrawnAs>
                 </R>
                 <G>
+                  <Max>226</Max>
+                  <Min>229</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>18</Max>
+                  <Min>37</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -563,12 +581,13 @@
         <DrawingValues>
           <Sprite>
             <ColorAll_Fixed>
-              <R>153</R>
-              <G>10</G>
-              <B>198</B>
+              <R>23</R>
+              <G>198</G>
+              <B>9</B>
             </ColorAll_Fixed>
           </Sprite>
         </DrawingValues>
+        <IsRendered>False</IsRendered>
         <Name>LaserCore</Name>
         <Children />
       </Node>
@@ -636,15 +655,19 @@
               <Start>
                 <R>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>14</Max>
+                  <Min>20</Min>
                   <DrawnAs>0</DrawnAs>
                 </R>
                 <G>
+                  <Max>131</Max>
+                  <Min>108</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>222</Max>
+                  <Min>214</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -654,15 +677,19 @@
               <End>
                 <R>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>25</Max>
+                  <Min>19</Min>
                   <DrawnAs>0</DrawnAs>
                 </R>
                 <G>
+                  <Max>102</Max>
+                  <Min>117</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
                   <Center>127</Center>
-                  <Min>0</Min>
+                  <Max>222</Max>
+                  <Min>216</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -687,7 +714,7 @@
       <Y>15</Y>
     </TargetLocation>
   </Behavior>
-  <ToolVersion>1.43e</ToolVersion>
+  <ToolVersion>1.42f</ToolVersion>
   <Version>3</Version>
   <StartFrame>32</StartFrame>
   <EndFrame>50</EndFrame>

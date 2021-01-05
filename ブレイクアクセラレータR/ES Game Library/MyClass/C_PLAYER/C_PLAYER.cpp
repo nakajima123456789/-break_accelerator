@@ -180,6 +180,7 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 		p_obsever->IsCollision("GAMEOVER");
 		break;
 	case ATTACK_TYPE::ITEMBROCK:
+		p_effekseer->PlayEffekseer(PLAYER::ITEMBROCK);
 		p_obsever->IsCollision("ITEMBROCK");
 		break;
 	}
@@ -239,7 +240,7 @@ void CPlayer::DAMAGE::Update()
 CPlayer::RECOVERY::RECOVERY(CPlayerStateProcessor* owner) : _owner(owner)
 {
 	_owner->p_player->p_effekseer->PlayEffekseer(PLAYER::ITEM);
-	  _owner->p_player->p_obsever->IsCollision("RECOVERY");
+	_owner->p_player->p_obsever->IsCollision("RECOVERY");
 }
 
 void CPlayer::RECOVERY::Update()
