@@ -122,25 +122,16 @@ void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
 
 void CPlayer::SetAccelaretorParameter(bool flag)
 {
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._max_velocity   = 0.5f;
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._min_velocity   = 0.1f;
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._start_velocity = 0.5f;
+	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++)
+	{
+		accelaretor_parameter[i]._max_velocity   = 0.30f + i * 0.05f;
+		accelaretor_parameter[i]._min_velocity   = 0.25f + i * 0.05f;
+		accelaretor_parameter[i]._start_velocity = 0.2f + i * 0.1f;
+	}
 
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._max_velocity = 0.5f;
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._min_velocity = 0.1f;
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._start_velocity = 0.5f;
+	if (flag) return;
 
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._max_velocity = 0.5f;
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._min_velocity = 0.1f;
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._start_velocity = 0.5f;
-
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._max_velocity = 0.5f;
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._min_velocity = 0.1f;
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._start_velocity = 0.5f;
-
-		if (flag) return;
-
-		for (int i = 0; i < ACCELARETOR_TYPE::_END; i++) { accelaretor_parameter[i]._start_velocity = 0; };
+	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++) { accelaretor_parameter[i]._start_velocity = 0; };
 }
 
 int CPlayer::GetGiaLevel()
