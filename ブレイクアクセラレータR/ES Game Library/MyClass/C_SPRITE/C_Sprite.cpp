@@ -6,13 +6,11 @@
  * @author 中島颯一朗
  * @date   2020/10/1
  */
-
 SpriteManager::SpriteManager()
 {
 	_sprite.         resize(DRAW_TYPE::TYPE_MAX);
 	_sprite_position.resize(DRAW_TYPE::TYPE_MAX);
 }
-
 /**
   * @brief 画像を作成する()
   * @param[in] (size)　画像サイズ
@@ -25,12 +23,13 @@ int SpriteManager::CreateSprite(Vector2 size, Color color, Vector3 position)
 	SPRITE sprite = GraphicsDevice.CreateSprite((UINT)size.x, (UINT)size.y, PixelFormat_RGBX8888);
 	sprite->ColorFill(nullptr, color);
 
-	this->_sprite         [DRAW_TYPE::NOMAL].push_back(sprite);
-	this->_sprite_position[DRAW_TYPE::NOMAL].push_back(position);
+	this->_sprite         [DRAW_TYPE::ALPHA].push_back(sprite);
+	this->_sprite_position[DRAW_TYPE::ALPHA].push_back(position);
 
-	return (this->_sprite[DRAW_TYPE::NOMAL].size() - 1);
+	this->_sprite_alpha.push_back(0.0f);
+
+	return (this->_sprite [DRAW_TYPE::ALPHA].size() - 1);
 }
-
 /**
  * @brief 画像の読み込む()
  * @param[in] (file_name)　画像の名前
@@ -49,7 +48,6 @@ int SpriteManager::CreateSpriteFromFile(LPCTSTR file_name, Vector3 position)
 
 	return (this->_sprite [DRAW_TYPE::NOMAL].size() - 1);
 }
-
 
 int SpriteManager::CreateSpriteFromFileRect(LPCTSTR file_name, Vector3 position)
 {
@@ -90,8 +88,9 @@ bool SpriteManager::BlackOutTrigger(int slot)
 {
 	ASSERT(slot <= _sprite.size() && "スロット番号存在しません。");
 	this->_sprite_alpha[slot] += 0.05f;
-	if (this->_sprite_alpha[slot] >= 1.0){
-		this->_sprite_alpha[slot] = 0.f;
+
+	if (this->_sprite_alpha[slot] >= 1.0f){
+		this->_sprite_alpha[slot]  = 1.0f;
 		return true;
 	}
 	return false;

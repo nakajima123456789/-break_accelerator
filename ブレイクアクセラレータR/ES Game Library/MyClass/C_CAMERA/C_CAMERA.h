@@ -1,9 +1,9 @@
 #pragma once
 #include "../../ESGLib.h"
 #include "../C_OBJECT/Object.h"
-#include "../CPLAYERDATA/CPlayerData.h"
+#include "../CSHAREDMETHOD/CSharedMethod.h"
 
-class CCamera_ : public Object
+class CCamera_ : public Object, CSharedMethod
 {
 public:
 	CCamera_() {};
@@ -21,11 +21,13 @@ public:
 	CAMERA GetCamera() const { return camera; };
 	Light  GetLight()  const { return light; };
 
+	void   SetCameraAngle(float _cameraField) { cameraPov += _cameraField; };
+
 private:
 	CAMERA  camera;
 	Light   light;
 
-	//プレイヤーのデータベース
-	std::unique_ptr<IPlayerData>   _iplayer_data;
+	float cameraPov;
+
 };
 

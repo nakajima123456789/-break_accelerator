@@ -1,17 +1,11 @@
 #include "C_MAIN.h"
 #include "../SCENEMANAGER/SceneManager.h"
 
-#include "../../C_CAMERA/C_CAMERA.h"
-
 #include "../../ObjectPlacement/ObjectPlacement.h"
-
 #include "../../C_MAP/C_MAP.h"
 #include "../../C_UI/CUI.h"
-
 #include "../../C_SHADER/C_SHADER.h"
-
 #include "../../ObstacleManager/ObstacleManager.h"
-
 #include "../../../CMapMove.h"
 
 void C_MAIN::Initialize(){
@@ -20,11 +14,6 @@ void C_MAIN::Initialize(){
 	_objectroot.AddList((ChildObjRef)c_mapmove);
 
 	GraphicsDevice.SetRenderState(Lighting_Disable);
-
-	auto&& c_camera = (new CCamera_);
-	_objectroot.AddList((ChildObjRef)c_camera);
-
-	CShaderAnimation::CameraSetting(*c_camera);
 
 	auto&& c_objectplacement = (new PlacementManager);
 	_objectroot.AddList((ChildObjRef)c_objectplacement);

@@ -13,9 +13,9 @@ void CCamera_::Init()
 	light.Specular  = color;
 	light.Position  = Vector3(0, 10, 0);
 
-	camera->SetPerspectiveFieldOfView(50.0, 16.0f / 9.0f, 0.1f, 100.0f);
+	cameraPov = 60.0f;
 
-	_iplayer_data.reset(new IPlayerData);
+	camera->SetPerspectiveFieldOfView(cameraPov, 16.0f / 9.0f, 0.1f, 100.0f);
 
 	GraphicsDevice.SetLight(light);
 	GraphicsDevice.SetCamera(camera);
@@ -23,9 +23,12 @@ void CCamera_::Init()
 
 void CCamera_::Update()
 {
-	Vector3 player_pos = _iplayer_data->GetPlayerPosition("player");
+	cameraPov -= 0.2f;
+	cameraPov = this->clamp(cameraPov, 50.0f, 55.0f);
 
-	camera->SetLookAt(player_pos + Vector3(0.0f,0.5f, - 0.85f),player_pos + Vector3(0.0f, -0.56f, 4.0f), Vector3_Up);
+	camera->SetFieldOfViewY(cameraPov);
+
+	camera->SetLookAt(gameObject->transform.position + Vector3(0.0f,0.5f, - 0.90f),gameObject->transform.position + Vector3(0.0f, -0.56f, 4.5f), Vector3_Up);
 
 	Effekseer.Update();
 

@@ -54,7 +54,6 @@ std::vector<float> C_Distance::IsOtherTagDistance(std::vector<C_Distance*> tag_c
 	for (auto&& other : tag_c_dis) 
 	{
 		float other_distance = Vector3_Distance(other->gameObject->transform.position, this->gameObject->transform.position);
-
 		at_distance.push_back(other_distance);
 	}
 	return at_distance;
@@ -70,7 +69,6 @@ float C_Distance::GetTagDistance(std::string _tag)
 		std::vector<float> at_distance = IsOtherTagDistance(c_dis);
 
 		auto&& tag_min_distance = *std::min_element(at_distance.begin(), at_distance.end(), [](float a, float b) {return a < b; });
-
 		return tag_min_distance;
 	}
 	return FLT_MAX;

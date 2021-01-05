@@ -13,6 +13,9 @@
 #include "../C_DIS/C_DIS.h"
 #include "../UIDATABASE/UiDataBase.h"
 #include "../../AccelaretorBase.h"
+#include "../HitStop/HitStop.h"
+#include "../OBSEVER/OBSEVER.h"
+#include "../C_CAMERA/C_CAMERA.h"
 
 class CPlayerStateProcessor;
 class CPlayer;
@@ -26,6 +29,32 @@ public:
 
 class CPlayer : public Object, CSharedMethod, OBSERVERLISTENER
 {
+private:
+	//変数宣言
+	MODEL            p_model     = nullptr;
+	RotationMove*    p_rotation  = nullptr;
+	HitBox*          p_hitbox    = nullptr;
+	Velocity*        p_velocity  = nullptr;
+	EffekseerMng*    p_effekseer = nullptr;
+	HitStop*         p_hitstop   = nullptr;
+	OBSERVER*        p_obsever   = nullptr;
+	CCamera_*        p_camera    = nullptr;
+
+	AccelaretorFront*     accelaretors = nullptr;
+
+	Accelaretor_Parameter accelaretor_parameter[ACCELARETOR_TYPE::_END];
+
+	int   state_type = -1;
+	int  _accelaretor_type = 0;
+
+	EFFECT shader  = nullptr;
+	int    alpha   = 1; 
+	int    color_r = 0;
+
+	//プレイヤーのデータベース
+	std::unique_ptr<IPlayerData>   _iplayer_data;
+	std::unique_ptr<UiData>        _ui_data;
+
 public:
 	CPlayerStateProcessor p_state_processor;
 
@@ -40,6 +69,7 @@ public:
 	virtual void CPlayer::Draw2D()      override { return; };
 
 	void AttackHit(ObstacleBase* attack_parameters);
+	void MyCameraSetFieldOfViewY(float pov) { p_camera->SetCameraAngle(pov); };
 private:
 
 	class NOMAL : public State
@@ -49,10 +79,6 @@ private:
 	public:
 		NOMAL(CPlayerStateProcessor* owner) : _owner(owner) { };
 		virtual ~NOMAL() {};
-
-		virtual int    CancelLv() { return INT_MAX; };
-		virtual int    ExitTime() { return INT_MAX; };
-
 		virtual void Update() override;
 	};
 
@@ -63,10 +89,6 @@ private:
 	public:
 		ROTATION(CPlayerStateProcessor* owner) : _owner(owner) {}
 		virtual ~ROTATION() {}
-
-		virtual int    CancelLv() { return INT_MAX; };
-		virtual int    ExitTime() { return INT_MAX; };
-
 		virtual void Update() override;
 	};
 
@@ -91,39 +113,22 @@ private:
 	public:
 		IDOL(CPlayerStateProcessor* owner);
 		virtual ~IDOL() {};
-
 		virtual void Update() override;
 	};
 
-private:
-	//関数宣言
+	class RECOVERY : public State
+	{
+	private:
+		CPlayerStateProcessor* _owner;
+	public:
+		RECOVERY(CPlayerStateProcessor* owner);
+		virtual ~RECOVERY() {};
+		virtual void Update() override;
+	};
 
-	void ChangeMoveType (PLAYER::PLAYERMOVETYPE move_type);
-
-	void SetAccelaretorParameter();
-
-	int  GetGiaLevel();
+	void ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type);
+	void SetAccelaretorParameter(float startSpeed);
 	void SetAccelaretor(int accelaretor_type);
 
-    //変数宣言
-	MODEL         p_model;
-	RotationMove* p_rotation;
-	HitBox*       p_hitbox         = nullptr;
-	Velocity*     p_velocity;
-
-	AccelaretorFront* accelaretors = nullptr;
-
-	Accelaretor_Parameter accelaretor_parameter[ACCELARETOR_TYPE::_END];
-
-	int  state_type = -1;
-	int  _accelaretor_type = 0;
-
-	EFFECT shader = nullptr;
-	int  alpha    = 1;
-	int  color_r  = 0;
-
-	//プレイヤーのデータベース
-	std::unique_ptr<IPlayerData>   _iplayer_data;
-	std::unique_ptr<UiData>        _ui_data;
-
+	int  GetGiaLevel();
 };

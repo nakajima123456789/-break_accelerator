@@ -265,6 +265,9 @@
     <Filter Include="MyClass\MapMove\MapMove">
       <UniqueIdentifier>{93757cdc-a606-4ae2-84e0-a24e56e0657d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\HitStop">
+      <UniqueIdentifier>{7fe1c2d4-36c1-4866-a456-d548b87feef3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -537,6 +540,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\C_INPUT\Input.cpp">
       <Filter>MyClass\C_Input</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\HitStop\HitStop.cpp">
+      <Filter>MyClass\HitStop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -828,6 +834,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\C_INPUT\Input.h">
       <Filter>MyClass\C_Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\HitStop\HitStop.h">
+      <Filter>MyClass\HitStop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

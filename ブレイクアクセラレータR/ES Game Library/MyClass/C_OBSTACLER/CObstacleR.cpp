@@ -10,14 +10,28 @@ void CObstacleR::Init()
 
 	this->ChildObj_AddList((ChildObjRef)p_hitbox);
 
-	brock_parameters.map_tags = 'R';
-	brock_parameters.pos_correction = Vector3(0.0f, 0.5f, 0.0f);
-
-	brock_parameters.move_flag = true;
-	brock_parameters.move_position = Vector3(0.1f, 0.0f, 0.0f);
+	model_parameters.tags = 'R';
+	model_parameters.p_hitbox_position_revision.y = 0.5f;
+	model_parameters.p_model_position_revision.y  = 0.08f;
+	
+	this->attack_parameters._Type = ATTACK_TYPE::DAMEGE;
 }
 
 void CObstacleR::Update()
 {
 
+}
+
+void CObstacleR::IsCollsion()
+{
+
+}
+
+bool CObstacleR::PModelParameter(std::vector<Vector3>::iterator& itr)
+{
+	this->OnCollsion();
+
+	if (this->p_distance <= 4.0f) { this->transform.position = *itr += Vector3(0.1f, 0.0f, 0.0f); };
+
+	return false;
 }

@@ -201,6 +201,7 @@
     <ClCompile Include="MyClass\C_SHADER\C_SHADER.cpp" />
     <ClCompile Include="MyClass\C_SPRITE\C_Sprite.cpp" />
     <ClCompile Include="MyClass\C_UI\CUI.cpp" />
+    <ClCompile Include="MyClass\HitStop\HitStop.cpp" />
     <ClCompile Include="MyClass\MapPlacementData\MapPlacementData.cpp" />
     <ClCompile Include="MyClass\ObjectPlacement\ObjectPlacement.cpp" />
     <ClCompile Include="MyClass\OBSEVER\OBSEVER.cpp" />
@@ -299,6 +300,7 @@
     <ClInclude Include="MyClass\C_SPRITE\C_Sprite.h" />
     <ClInclude Include="MyClass\C_STATE\C_STATE.h" />
     <ClInclude Include="MyClass\C_UI\CUI.h" />
+    <ClInclude Include="MyClass\HitStop\HitStop.h" />
     <ClInclude Include="MyClass\MapPlacementData\MapPlacementData.h" />
     <ClInclude Include="MyClass\ObjectPlacement\ObjectPlacement.h" />
     <ClInclude Include="MyClass\OBSEVER\OBSEVER.h" />

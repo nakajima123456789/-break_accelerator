@@ -7,7 +7,7 @@ struct UiParam;
 class  UiData;
 
 struct UiParam {
-	int gage_size = 100;
+	int gage_size   = 0;
 	int speed_meter = 1;
 };
 
@@ -44,7 +44,7 @@ public:
 		if (IUiParametor::Instance()._ui_params.count(name) == 0)
 			ASSERT("連想配列の存在しません。");
 
-		IUiParametor::Instance()._ui_params[name].gage_size = clamp(IUiParametor::Instance()._ui_params[name].gage_size + num, 0, 100);
+		IUiParametor::Instance()._ui_params[name].gage_size = clamp(num, 0, 100);
 
 	}
 

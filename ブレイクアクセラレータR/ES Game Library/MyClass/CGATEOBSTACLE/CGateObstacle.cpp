@@ -11,11 +11,27 @@ void CGateObstacle::Init()
 	p_hitbox->Settags("gate_L");
 	p_hitbox->SetScale(Vector3(3.f, 0.5f, 0.5f));
 
-	brock_parameters.map_tags = 'Z';
-	brock_parameters.pos_correction = Vector3(-1.5f, 0.5f, 0.0f);
+	model_parameters.tags = 'Z';
+	model_parameters.p_hitbox_position_revision = Vector3(-1.5f, 0.5f, 0.0f);
+
+	this->attack_parameters._Type = ATTACK_TYPE::GAMEOVER;
 }
 
 void CGateObstacle::Update()
 {
-	brock_parameters.move_gate_position = (1.5f * 0.01f) * _iui_data->GetGageParams("ui");
+	gate_position.x = (1.5f * 0.01f) * _iui_data->GetGageParams("ui");
+}
+
+void CGateObstacle::IsCollsion()
+{
+	
+}
+
+bool CGateObstacle::PModelParameter(std::vector<Vector3>::iterator& itr)
+{
+
+	this->transform.position.x += gate_position.x;
+	this->OnCollsion();
+
+	return false;
 }

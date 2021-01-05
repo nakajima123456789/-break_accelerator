@@ -12,12 +12,26 @@ void R_GATEOBSTATCLE::Init()
 	p_hitbox->Settags("gate_R");
 	p_hitbox->SetScale(Vector3(3.f, 0.5f, 0.5f));
 
-	brock_parameters.map_tags = 'G';
-	brock_parameters.pos_correction = Vector3(-1.5f, 0.5f, 0.0f);
+	model_parameters.tags = 'G';
+	model_parameters.p_hitbox_position_revision = Vector3(1.5, 0.5f, 0.0f);
+
+	this->attack_parameters._Type = ATTACK_TYPE::GAMEOVER;
 }
 
 void R_GATEOBSTATCLE::Update()
 {
-	brock_parameters.move_gate_position = -(1.5f * 0.01f) * _iui_data->GetGageParams("ui");
+	gate_position.x = -(1.5f * 0.01f) * _iui_data->GetGageParams("ui");
 }
 
+void R_GATEOBSTATCLE::IsCollsion()
+{
+	
+}
+
+bool R_GATEOBSTATCLE::PModelParameter(std::vector<Vector3>::iterator& itr)
+{
+	this->transform.position.x += gate_position.x;
+	this->OnCollsion();
+
+	return false;
+}

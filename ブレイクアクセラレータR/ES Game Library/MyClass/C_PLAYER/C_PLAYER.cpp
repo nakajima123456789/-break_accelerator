@@ -16,16 +16,16 @@ void CPlayer::Init()
 	p_state_processor.p_player = this;
 	p_state_processor.ChangeState(new CPlayer::NOMAL(&p_state_processor));
 
-	p_model = GraphicsDevice.CreateModelFromFile(_T("jiki_car//jiki_car3_a.X"));
-	shader = GraphicsDevice.CreateEffectFromFile(_T("FX//ShaderPlayer.hlsl"));
+	p_model = GraphicsDevice.CreateModelFromFile (_T("jiki_car//jiki_car3_a.X"));
+	shader  = GraphicsDevice.CreateEffectFromFile(_T("FX//ShaderPlayer.hlsl"));
 
 	SPRITE texture = GraphicsDevice.CreateSpriteFromFile(_T("jiki_car//jiki_car3.png"));
 	shader->SetTexture("modelTex1", *texture);
 
-	SetAccelaretorParameter();
+	this->SetAccelaretorParameter(0.5f);
 
 	p_hitbox = new HitBox();
-	this->ChildObj_AddList((ChildObjRef)p_hitbox);
+	this->ChildObj_AddList((ChildObjRef)p_hitbox);	
 	p_hitbox->Settags("player");
 	p_hitbox->transform.localposition.y += 0.1f;
 
@@ -37,6 +37,15 @@ void CPlayer::Init()
 	accelaretors->SetAccelaretorParameter(accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]);
 	this->ChildObj_AddList((ChildObjRef)accelaretors);
 
+	p_hitstop = new HitStop();
+	this->ChildObj_AddList((ChildObjRef)p_hitstop);
+	p_hitstop->SetTaget(this);
+
+	p_camera = (new CCamera_);
+	this->ChildObj_AddList((ChildObjRef)p_camera);
+	p_camera->gameObject = this;
+
+	CShaderAnimation::CameraSetting(*p_camera);
 	IPlayerParametor::Instance().CreateParametor("player");
 
 	_iplayer_data.reset(new IPlayerData);
@@ -74,8 +83,7 @@ void CPlayer::DrawAlpha3D()
 	Matrix viewproj = CShaderAnimation::camera->GetCamera().GetViewProjectionMatrix();
 	shader->SetParameter("wvp", world * viewproj);
 
-	shader->SetParameter("alpha",alpha);
-	shader->SetParameter("r_color", color_r);
+	shader->SetParameter("alpha",alpha); shader->SetParameter("r_color", color_r);
 
 	p_model->Draw(shader);
 }
@@ -95,29 +103,30 @@ void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
 		}
 		obstacle_itr++;
 	}
-
 	switch (move_type)
 	{
 	case PLAYER::PLAYERMOVETYPE::NOMAL:
-		p_velocity = new Velocity();	this->ChildObj_AddList((ChildObjRef)p_velocity);
-		p_velocity->gameObject = this;
+		p_velocity = new Velocity();	
+		this->ChildObj_AddList((ChildObjRef)p_velocity);
+	                                                	p_velocity->gameObject = this;
 		break;
 	case PLAYER::PLAYERMOVETYPE::ROTATION:
-		p_rotation = new RotationMove();this->ChildObj_AddList((ChildObjRef)p_rotation);
-        p_rotation->gameObject = this;
+		p_rotation = new RotationMove();
+		this->ChildObj_AddList((ChildObjRef)p_rotation);
+                                                        p_rotation->gameObject = this;
 		break;
 	default:
 		break;
 	}
 }
 
-void CPlayer::SetAccelaretorParameter()
+void CPlayer::SetAccelaretorParameter(float startSpeed)
 {
 	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++)
 	{
-		accelaretor_parameter[i]._max_velocity = 0.3f   + (i * 0.1f);
-		accelaretor_parameter[i]._min_velocity = 0.1f   + (i * 0.1f);
-		accelaretor_parameter[i]._start_velocity = 0.5f + (i * 0.1f);
+		accelaretor_parameter[i]._max_velocity   = 0.3f   + (i * 0.02f);
+		accelaretor_parameter[i]._min_velocity   = 0.1f   + (i * 0.05f);
+		accelaretor_parameter[i]._start_velocity = startSpeed;
 	}
 }
 
@@ -125,10 +134,12 @@ int CPlayer::GetGiaLevel()
 {
 	auto&& speed_meter = _ui_data->GetSpeedMeterParams("ui");
 
-	if (speed_meter <= 3)                      return ACCELARETOR_TYPE::NOMAL;
-	if (speed_meter >= 4 && speed_meter <= 6)  return ACCELARETOR_TYPE::ROW;
-	if (speed_meter >= 7 && speed_meter <= 8)  return ACCELARETOR_TYPE::MEDIUM;
-	if (speed_meter >= 9)                      return ACCELARETOR_TYPE::HARD;
+	int NomaL = 3, Row = 6, Medium = 8;
+
+	if (speed_meter <= NomaL)                                return ACCELARETOR_TYPE::NOMAL;
+	if (speed_meter >= NomaL  + 1 && speed_meter <= Row)     return ACCELARETOR_TYPE::ROW;
+	if (speed_meter >= Row    + 1 && speed_meter <= Medium)  return ACCELARETOR_TYPE::MEDIUM;
+	if (speed_meter >= Medium + 1)                           return ACCELARETOR_TYPE::HARD;
 }
 
 void CPlayer::SetAccelaretor(int accelaretor_type)
@@ -139,31 +150,41 @@ void CPlayer::SetAccelaretor(int accelaretor_type)
 
 	accelaretors = new AccelaretorFront();
 	accelaretors->SetAccelaretorParameter(accelaretor_parameter[accelaretor_type]);
-	this->ChildObj_AddList((ChildObjRef)accelaretors);
+	                                                                       this->ChildObj_AddList((ChildObjRef)accelaretors);
 }
 
 void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 {
-	auto&& p_effekseerMng = new EffekseerMng();
-	this->ChildObj_AddList((ChildObjRef)p_effekseerMng);
-	p_effekseerMng->transform.localscale = 0.1f;
+	if (p_effekseer != nullptr) { p_effekseer->Remove(); };
+
+	p_effekseer = new EffekseerMng();
+	this->ChildObj_AddList((ChildObjRef)p_effekseer);
+	p_effekseer->transform.localscale = 0.1f;
 
 	switch (attack_parameters->GetAttackParameters()._Type) 
 	{
 	case ATTACK_TYPE::DAMEGE:
+		SetAccelaretorParameter(0.0f);
 		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
-		p_effekseerMng->PlayEffekseer(PLAYER::ITEM);
 		break;
 	case ATTACK_TYPE::ITEM:
-		this->SetAccelaretor(this->GetGiaLevel());
-		p_effekseerMng->PlayEffekseer(PLAYER::ITEM);
+		SetAccelaretorParameter(0.4f);
+		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
+		break;
+	case ATTACK_TYPE::GAMEOVER:
+		p_hitstop->SetStopCount(100);
+		p_obsever->IsCollision("GAMEOVER");
+		break;
+	case ATTACK_TYPE::ITEMBROCK:
+		p_obsever->IsCollision("ITEMBROCK");
 		break;
 	}
+	this->SetAccelaretor(this->GetGiaLevel());
 }
 
 void CPlayer::NOMAL::Update()
 {
-	if (GetTime() == 1){
+	if (GetTime() == 3){
 		_owner->p_player->ChangeMoveType(PLAYER::PLAYERMOVETYPE::NOMAL);
 		return;
 	}
@@ -171,7 +192,7 @@ void CPlayer::NOMAL::Update()
 
 void CPlayer::ROTATION::Update()
 {
-	if (GetTime() == 1){
+	if (GetTime() == 3){
 		_owner->p_player->ChangeMoveType(PLAYER::PLAYERMOVETYPE::ROTATION);
 		return;
 	}
@@ -181,30 +202,44 @@ CPlayer::IDOL::IDOL(CPlayerStateProcessor* owner) : _owner(owner)
 {
 	_owner->p_player->p_hitbox = new HitBox();
 	_owner->p_player->ChildObj_AddListBegin((ChildObjRef)_owner->p_player->p_hitbox);
+
 	_owner->p_player->p_hitbox->Settags("player");
 	_owner->p_player->p_hitbox->transform.localposition.y += 0.1f;
 }
 
 void CPlayer::IDOL::Update()
 {
-	
 
 }
 
 CPlayer::DAMAGE::DAMAGE(CPlayerStateProcessor* owner) : _owner(owner)
 {
 	if (_owner->p_player->p_hitbox != nullptr) { _owner->p_player->p_hitbox->Remove(); };
+
+	_owner->p_player->p_effekseer->PlayEffekseer(PLAYER::ITEM);
+	_owner->p_player->p_obsever->IsCollision("DAMAGE");
 }
 
 void CPlayer::DAMAGE::Update()
 {
 	_owner->p_player->alpha   ^= 1;_owner->p_player->color_r  = 1;
 
-	if (this->GetTime() >= 40){
-
+	if (this->GetTime() >= 30){
 		_owner->p_player->alpha   = 1;_owner->p_player->color_r = 0;
 		_owner->p_player->p_state_processor.ChangeState(new CPlayer::IDOL(&_owner->p_player->p_state_processor));
 		return;
 	}
+	return;
+}
+
+CPlayer::RECOVERY::RECOVERY(CPlayerStateProcessor* owner) : _owner(owner)
+{
+	_owner->p_player->p_effekseer->PlayEffekseer(PLAYER::ITEM);
+	  _owner->p_player->p_obsever->IsCollision("RECOVERY");
+}
+
+void CPlayer::RECOVERY::Update()
+{
+
 	return;
 }

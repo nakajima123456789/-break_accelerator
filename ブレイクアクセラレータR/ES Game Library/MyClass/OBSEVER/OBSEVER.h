@@ -9,8 +9,7 @@ public:
 	// 仮想 デストラクタ
 	virtual ~OBSERVERLISTENER() {}
 	// 衝突判定した
-	virtual void OnCollisionDamage()    {};
-	virtual void OnCollisionClear()     {};
+	virtual void OnCollision(std::string collsion_tag) {};
 };
 
 // 衝突判定 クラス（ 観測 者 に 通知 する 役）
@@ -22,8 +21,8 @@ public:
 	void removeListener(OBSERVERLISTENER* listener);
 
 	// 衝突判定した
-	void IsCollisionDamage();
-	void IsCollisionClear();
+	void IsCollision(std::string collsion_tag);
+
 private:
 	// 観測者に通知 
 

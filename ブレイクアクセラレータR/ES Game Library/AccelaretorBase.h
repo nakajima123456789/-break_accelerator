@@ -24,7 +24,6 @@ private:
 	void AccelaretorFront::AccelaretorSpeed();
 	void AccelaretorFront::DragSpeed();
 
-
 	Accelaretor_Parameter _accelaretor_parameter;
 
 public:

@@ -12,11 +12,10 @@ void CItemObstacle::Init()
 	p_hitbox->Settags("item");
 	p_hitbox->transform.localposition.y += 0.5f;
 
-	brock_parameters.map_tags = 'I';
-	brock_parameters.pos_correction       = Vector3(0.0f, 0.5f, 0.0f);
-	brock_parameters.model_pos_correction = Vector3(0.0f, 0.25f, 0.0f);
+	model_parameters.tags = 'I';
+	model_parameters.p_hitbox_position_revision.y = 0.5f;
+	model_parameters.p_model_position_revision.y  = 0.25f;
 
-	brock_parameters.remove_flag = true;
 	this->attack_parameters._Type = ATTACK_TYPE::ITEM;
 }
 
@@ -27,6 +26,13 @@ void CItemObstacle::Update()
 
 void CItemObstacle::IsCollsion()
 {
-	observer.IsCollisionClear();
+
 }
+
+bool CItemObstacle::PModelParameter(std::vector<Vector3>::iterator& itr)
+{
+	if (this->OnCollsion()) { return true; }
+	return false;
+}
+
 

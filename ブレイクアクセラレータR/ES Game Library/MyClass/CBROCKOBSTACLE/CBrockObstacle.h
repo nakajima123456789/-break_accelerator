@@ -12,6 +12,8 @@ public:
 
 	virtual void IsCollsion()  override;
 
+	virtual bool PModelParameter(std::vector<Vector3>::iterator& itr) override;
+
 private:
 
 };

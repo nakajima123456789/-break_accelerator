@@ -25,15 +25,26 @@ public:
 	virtual void Draw2D()      override;
 	
 	//オブザーバー関数
-	virtual void CUI::OnCollisionDamage()     override;
-	virtual void CUI::OnCollisionClear()      override;
+	virtual void CUI::OnCollision(std::string collsion_tag)     override;
 
+	virtual void CUI::CollisionTypeDamage();
+	virtual void CUI::CollisionTypeRecovery();
+	virtual void CUI::CollisionTypeGameOver();
+	virtual void CUI::CollisionTypeItemBrock();
 private:
 	OBSERVER      observer;
 	SpriteManager sprite_mng;
 
 	int gage;
 	int speed_gage;
+	int black_out;
+
+	FONT  font;
+	int game_timer;
+	int MAX_TIMER = 30;
+	int gagefcomveter = 0;
+
+	bool black_out_flag = false;
 
 	//プレイヤーのデータベース
 	std::unique_ptr<UiData>        _ui_data;

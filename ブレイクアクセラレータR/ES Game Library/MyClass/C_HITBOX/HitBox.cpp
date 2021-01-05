@@ -1,6 +1,5 @@
 #include "HitBox.h"
 
-//static
 std::list<HitBox*> HitBox::_HitBox_list;
 
 //デストラクタ

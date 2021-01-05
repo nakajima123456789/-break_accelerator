@@ -9,11 +9,26 @@ void CObstacle::Init()
 	p_hitbox->Settags("hako_B");
 	this->ChildObj_AddList((ChildObjRef)p_hitbox);
 
-	brock_parameters.map_tags = 'O';
-	brock_parameters.pos_correction = Vector3(0.0f, 0.5f, 0.0f);
+	model_parameters.tags = 'P';
+	model_parameters.p_hitbox_position_revision.y = 0.5f;
+	model_parameters.p_model_position_revision.y = 0.05f;
+
+	this->attack_parameters._Type = ATTACK_TYPE::ITEMBROCK;
 }
 
 void CObstacle::Update()
 {
 
+}
+
+void CObstacle::IsCollsion()
+{
+
+	return;
+}
+
+bool CObstacle::PModelParameter(std::vector<Vector3>::iterator& itr)
+{
+	this->OnCollsion();
+	return false;
 }

@@ -11,9 +11,7 @@ public:
 	virtual HitBox::~HitBox();
 
 	virtual void HitBox::Init()   override;
-
 	virtual void HitBox::Update() override { return; };
-
 	virtual void HitBox::Draw3D() override;
 
 	void HitBox::OnReMove();

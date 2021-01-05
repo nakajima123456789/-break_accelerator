@@ -22,7 +22,12 @@ public:
 	float _drag_speed = 0.0f;
 
 	const float _MAX_SPEED       = 0.075f;
+	const float _MAX_ROTATION    = 22.5000f;
+
 	const float _MOVEMENT_SCENE  = 1.3f;
+
+	const float _ADD_SPEEDS = 0.003f;
+	     const float _ADD_ANGLES = 0.5f;
 
 	Velocity() {};
 	virtual ~Velocity() {};

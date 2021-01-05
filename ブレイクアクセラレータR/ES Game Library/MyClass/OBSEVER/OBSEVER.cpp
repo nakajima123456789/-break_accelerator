@@ -12,15 +12,10 @@ void OBSERVER::removeListener(OBSERVERLISTENER* listener)
 };
 
 // Õ“Ë”»’è‚µ‚½
-void OBSERVER::IsCollisionDamage()
+void OBSERVER::IsCollision(std::string collsion_tag)
 {
 	// Õ“Ë”»’è‚µ‚½‚±‚Æ‚ðŠÏ‘ªŽÒ‚É’Ê’m 
-	for (auto listener : listeners_){listener->OnCollisionDamage();}
+	for (auto listener : listeners_){listener->OnCollision(collsion_tag);}
 }
 
-void OBSERVER::IsCollisionClear()
-{
-	// Õ“Ë”»’è‚µ‚½‚±‚Æ‚ðŠÏ‘ªŽÒ‚É’Ê’m 
-	for (auto listener : listeners_){listener->OnCollisionClear();}
-}
 
