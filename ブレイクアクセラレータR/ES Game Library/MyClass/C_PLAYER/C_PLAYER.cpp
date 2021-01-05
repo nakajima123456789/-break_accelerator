@@ -124,7 +124,7 @@ void CPlayer::SetAccelaretorParameter(float startSpeed)
 {
 	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++)
 	{
-		accelaretor_parameter[i]._max_velocity   = 0.3f   + (i * 0.02f);
+		accelaretor_parameter[i]._max_velocity   = 0.5f   + (i * 0.02f);
 		accelaretor_parameter[i]._min_velocity   = 0.1f   + (i * 0.05f);
 		accelaretor_parameter[i]._start_velocity = startSpeed;
 	}
@@ -224,18 +224,18 @@ void CPlayer::DAMAGE::Update()
 {
 	_owner->p_player->alpha   ^= 1;_owner->p_player->color_r  = 1;
 
-	if (this->GetTime() >= 30){
+	if (this->GetTime() >= 30)
+	{
 		_owner->p_player->alpha   = 1;_owner->p_player->color_r = 0;
 		_owner->p_player->p_state_processor.ChangeState(new CPlayer::IDOL(&_owner->p_player->p_state_processor));
 		return;
 	}
-	return;
 }
 
 CPlayer::RECOVERY::RECOVERY(CPlayerStateProcessor* owner) : _owner(owner)
 {
 	_owner->p_player->p_effekseer->PlayEffekseer(PLAYER::ITEM);
-	  _owner->p_player->p_obsever->IsCollision("RECOVERY");
+    _owner->p_player->p_obsever->IsCollision("RECOVERY");
 }
 
 void CPlayer::RECOVERY::Update()

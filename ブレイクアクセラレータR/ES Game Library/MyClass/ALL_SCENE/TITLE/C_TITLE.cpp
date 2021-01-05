@@ -6,8 +6,8 @@
 void C_TITLE::Initialize()
 {
 	Add_Sprite(_T("SPRITE/title.png"));
-	moji = GraphicsDevice.CreateSpriteFromFile(_T("SPRITE/taitoru_sita.png"));
-	moji2 = GraphicsDevice.CreateSpriteFromFile(_T("SPRITE/taitoru_ue.png"));
+	moji  = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/taitoru_sita2.png"));
+	moji2 = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/taitoru_ue2.png"));
 	moji3 = GraphicsDevice.CreateSpriteFromFile(_T("SPRITE/start.png"));
 	iro = 0; moji_x = 0;
 
@@ -17,6 +17,12 @@ void C_TITLE::Update()
 {
 	moji_x += 20;
 	if (moji_x >= 1280) { moji_x = 1280;   iro += 0.01; }
+
+	if (Input.GetKeybordInputDown(Keys_Enter))
+	{
+		SceneManager::ChangeScene(SceneManager::MAIN);
+	}
+
 	return;
 }
 

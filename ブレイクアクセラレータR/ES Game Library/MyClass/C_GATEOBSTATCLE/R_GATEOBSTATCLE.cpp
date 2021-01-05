@@ -20,7 +20,7 @@ void R_GATEOBSTATCLE::Init()
 
 void R_GATEOBSTATCLE::Update()
 {
-	gate_position.x = -(1.5f * 0.01f) * _iui_data->GetGageParams("ui");
+	gate_position.x = (1.5f * 0.01f) * _iui_data->GetGageParams("ui");
 }
 
 void R_GATEOBSTATCLE::IsCollsion()

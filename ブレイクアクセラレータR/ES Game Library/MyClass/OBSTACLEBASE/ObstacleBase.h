@@ -8,6 +8,7 @@
 #include "../UIDATABASE/UiDataBase.h"
 #include "../CCHARACTER/Character.h"
 
+
 struct MODEL_PARAMETERS
 {
 public:
@@ -59,8 +60,9 @@ protected:
 	MODEL_PARAMETERS   model_parameters;
 
 	//ïœêîêÈåæ
-	HitBox*  p_hitbox;
-	Model    p_model;
+	HitBox*   p_hitbox;
+	Model     p_model;
+	OBSERVER* p_obsever;
 
 	float p_distance;
 

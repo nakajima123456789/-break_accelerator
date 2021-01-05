@@ -27,7 +27,7 @@ public:
 	CPlayer* p_player;
 };
 
-class CPlayer : public Object, CSharedMethod, OBSERVERLISTENER
+class CPlayer : public Object, CSharedMethod
 {
 private:
 	//•Ï”éŒ¾
@@ -123,6 +123,9 @@ private:
 	public:
 		RECOVERY(CPlayerStateProcessor* owner);
 		virtual ~RECOVERY() {};
+
+		virtual int  ExitTime() { return 20; };
+
 		virtual void Update() override;
 	};
 

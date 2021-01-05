@@ -36,7 +36,7 @@ C_MAIN::~C_MAIN()
 void C_MAIN::Update() {
 	_objectroot.Update();
 
-	if (Input.GetKeybordInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::GAME_CLEAR); }
+	//if (Input.GetKeybordInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::GAME_CLEAR); }
 }
 
 void C_MAIN::Draw3D()

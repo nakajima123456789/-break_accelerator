@@ -31,6 +31,10 @@ public:
 	virtual void CUI::CollisionTypeRecovery();
 	virtual void CUI::CollisionTypeGameOver();
 	virtual void CUI::CollisionTypeItemBrock();
+	virtual void CUI::CollisionTypeGateBreak();
+
+	void CUI::SetGateParameter(int gate_numbers);
+
 private:
 	OBSERVER      observer;
 	SpriteManager sprite_mng;
@@ -42,7 +46,7 @@ private:
 	FONT  font;
 	int game_timer;
 	int MAX_TIMER = 30;
-	int gagefcomveter = 0;
+	int gagefcomveter = 100;
 
 	bool black_out_flag = false;
 

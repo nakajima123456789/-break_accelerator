@@ -75,10 +75,10 @@ void PlacementManager::MapdataTagsPos()
 				switch (map_tag)
 				{
 				case 'G':
-					_imap_data->SetPlayerPosition(map_tag,Vector3( 1.5f,-0.3f,position.z + lear_pos.z));
+					_imap_data->SetPlayerPosition(map_tag,Vector3(0.0f,-0.3f,position.z + lear_pos.z));
 					break;
 				case 'Z':
-					_imap_data->SetPlayerPosition(map_tag,Vector3(-1.5f,-0.3f,position.z + lear_pos.z));
+					_imap_data->SetPlayerPosition(map_tag,Vector3(0.0f,-0.3f,position.z + lear_pos.z));
 					break;
 				default:
 					_imap_data->SetPlayerPosition(map_tag, position + lear_pos);

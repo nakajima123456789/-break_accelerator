@@ -1,5 +1,6 @@
 #include "ObstacleBase.h"
 #include "../C_PLAYER/C_PLAYER.h"
+#include "../C_GATEOBSTATCLE/R_GATEOBSTATCLE.h"
 
 bool ObstacleBase::OnCollsion()
 {
@@ -44,7 +45,11 @@ void ObstacleBase::Draw3D()
 			this->p_model.SetPosition(this->transform.position + model_parameters.p_model_position_revision);
 			this->p_model.Draw();
 		}
-		if (this->p_distance <= -1.0f){ obstacle_itr = itr.erase(obstacle_itr); continue; };
+		if (this->p_distance <= -1.0f){
+			obstacle_itr = itr.erase(obstacle_itr);
+			if (typeid(*m_gameObject) == typeid(R_GATEOBSTATCLE))	{p_obsever->IsCollision("GATEBREAK");}
+		    continue;	
+		};
 		obstacle_itr++;
 	}
 };

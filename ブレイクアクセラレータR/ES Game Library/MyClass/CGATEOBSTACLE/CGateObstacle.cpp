@@ -19,7 +19,7 @@ void CGateObstacle::Init()
 
 void CGateObstacle::Update()
 {
-	gate_position.x = (1.5f * 0.01f) * _iui_data->GetGageParams("ui");
+	gate_position.x = -(1.5f * 0.01f) * _iui_data->GetGageParams("ui");
 }
 
 void CGateObstacle::IsCollsion()
@@ -29,7 +29,6 @@ void CGateObstacle::IsCollsion()
 
 bool CGateObstacle::PModelParameter(std::vector<Vector3>::iterator& itr)
 {
-
 	this->transform.position.x += gate_position.x;
 	this->OnCollsion();
 
