@@ -23,7 +23,7 @@ void CUI::Init()
 
 	black_out = sprite_mng.CreateSprite(Vector2(1280.0f, 720.0f), Color(0, 0, 0), Vector3(0.0f,0.0f, SpriteBatch_TopMost));
 
-	font      = GraphicsDevice.CreateSpriteFont(_T("Comic Sans MS"), 90);
+	font      = GraphicsDevice.CreateSpriteFont(_T("Shrikhand Regular"), 90);
 
 	game_timer = MAX_TIMER;
 

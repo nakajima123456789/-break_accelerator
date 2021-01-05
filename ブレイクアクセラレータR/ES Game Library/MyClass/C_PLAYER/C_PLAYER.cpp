@@ -120,14 +120,27 @@ void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
 	}
 }
 
-void CPlayer::SetAccelaretorParameter(float startSpeed)
+void CPlayer::SetAccelaretorParameter(bool flag)
 {
-	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++)
-	{
-		accelaretor_parameter[i]._max_velocity   = 0.3f   + (i * 0.02f);
-		accelaretor_parameter[i]._min_velocity   = 0.1f   + (i * 0.05f);
-		accelaretor_parameter[i]._start_velocity = startSpeed;
-	}
+		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._max_velocity   = 0.5f;
+		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._min_velocity   = 0.1f;
+		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._start_velocity = 0.5f;
+
+		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._max_velocity = 0.5f;
+		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._min_velocity = 0.1f;
+		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._start_velocity = 0.5f;
+
+		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._max_velocity = 0.5f;
+		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._min_velocity = 0.1f;
+		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._start_velocity = 0.5f;
+
+		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._max_velocity = 0.5f;
+		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._min_velocity = 0.1f;
+		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._start_velocity = 0.5f;
+
+		if (flag) return;
+
+		for (int i = 0; i < ACCELARETOR_TYPE::_END; i++) { accelaretor_parameter[i]._start_velocity = 0; };
 }
 
 int CPlayer::GetGiaLevel()
@@ -164,11 +177,11 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 	switch (attack_parameters->GetAttackParameters()._Type) 
 	{
 	case ATTACK_TYPE::DAMEGE:
-		SetAccelaretorParameter(0.0f);
+		SetAccelaretorParameter(false);
 		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
 		break;
 	case ATTACK_TYPE::ITEM:
-		SetAccelaretorParameter(0.4f);
+		SetAccelaretorParameter(true);
 		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
 		break;
 	case ATTACK_TYPE::GAMEOVER:
