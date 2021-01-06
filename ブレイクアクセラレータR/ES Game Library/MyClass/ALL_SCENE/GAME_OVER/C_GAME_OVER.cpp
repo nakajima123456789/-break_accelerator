@@ -4,7 +4,7 @@
 
 void C_GAME_OVER::Initialize()
 {
-	Add_Sprite(_T("‰æ‘œ"));
+	Add_Sprite(_T("SPRITE//gameover.png"));
 }
 
 void C_GAME_OVER::Update()
