@@ -41,6 +41,7 @@ void EffekseerMng::PlayEffekseerAngle(int _number)
 void EffekseerMng::Init()
 {
 	this->LoadEffekseer(_T("NitoriBox//qqqqqqq.efk"));
+	this->LoadEffekseer(_T("Hit_Effkt/Recovery.efk"));
 }
 
 void EffekseerMng::Update()
