@@ -120,7 +120,7 @@ void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
 	}
 }
 
-void CPlayer::SetAccelaretorParameter(bool startSpeed)
+void CPlayer::SetAccelaretorParameter(bool flag)
 {
 	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++)
 	{

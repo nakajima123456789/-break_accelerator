@@ -130,7 +130,7 @@ private:
 	};
 
 	void ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type);
-	void SetAccelaretorParameter(bool startSpeed);
+	void SetAccelaretorParameter(bool flag);
 	void SetAccelaretor(int accelaretor_type);
 
 	int  GetGiaLevel();
