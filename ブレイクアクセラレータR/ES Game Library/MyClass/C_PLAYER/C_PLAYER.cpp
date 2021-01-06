@@ -120,26 +120,18 @@ void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
 	}
 }
 
-void CPlayer::SetAccelaretorParameter(bool startSpeed)
+void CPlayer::SetAccelaretorParameter(bool flag)
 {
 	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++)
 	{
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._max_velocity   = 0.2f + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._min_velocity   = 0.1f + (i * 0.05f);
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._start_velocity = 0.1f;
-
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._max_velocity = 0.2f + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._min_velocity = 0.1f + (i * 0.05f);
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._start_velocity = 0.2f;
-
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._max_velocity = 0.4f + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._min_velocity = 0.1f + (i * 0.05f);
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._start_velocity = 0.4f;
-
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._max_velocity = 0.6f + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._min_velocity = 0.1f + (i * 0.05f);
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._start_velocity = 0.5f;
+		accelaretor_parameter[i]._max_velocity   = 0.30f + i * 0.05f;
+		accelaretor_parameter[i]._min_velocity   = 0.25f + i * 0.05f;
+		accelaretor_parameter[i]._start_velocity = 0.2f + i * 0.1f;
 	}
+
+	if (flag) return;
+
+	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++) { accelaretor_parameter[i]._start_velocity = 0; };
 }
 
 int CPlayer::GetGiaLevel()
@@ -176,11 +168,11 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 	switch (attack_parameters->GetAttackParameters()._Type) 
 	{
 	case ATTACK_TYPE::DAMEGE:
-		SetAccelaretorParameter(0.0f);
+		SetAccelaretorParameter(false);
 		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
 		break;
 	case ATTACK_TYPE::ITEM:
-		SetAccelaretorParameter(0.4f);
+		SetAccelaretorParameter(true);
 		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
 		break;
 	case ATTACK_TYPE::GAMEOVER:
@@ -188,8 +180,7 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 		p_obsever->IsCollision("GAMEOVER");
 		break;
 	case ATTACK_TYPE::ITEMBROCK:
-		SetAccelaretorParameter(0.0f);
-		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
+		p_effekseer->PlayEffekseer(PLAYER::ITEMBROCK);
 		p_obsever->IsCollision("ITEMBROCK");
 		break;
 	}
@@ -236,27 +227,24 @@ CPlayer::DAMAGE::DAMAGE(CPlayerStateProcessor* owner) : _owner(owner)
 
 void CPlayer::DAMAGE::Update()
 {
-	_owner->p_player->alpha   ^= 1;
-	_owner->p_player->color_r  = 1;
+	_owner->p_player->alpha   ^= 1;_owner->p_player->color_r  = 1;
 
-	if (this->GetTime() >= 30)
-	{
-		_owner->p_player->alpha   = 1;
-		_owner->p_player->color_r = 0;
+	if (this->GetTime() >= 30){
+		_owner->p_player->alpha   = 1;_owner->p_player->color_r = 0;
 		_owner->p_player->p_state_processor.ChangeState(new CPlayer::IDOL(&_owner->p_player->p_state_processor));
 		return;
 	}
+	return;
 }
 
 CPlayer::RECOVERY::RECOVERY(CPlayerStateProcessor* owner) : _owner(owner)
 {
-	
 	_owner->p_player->p_effekseer->PlayEffekseer(PLAYER::ITEM);
-    _owner->p_player->p_obsever->IsCollision("RECOVERY");
+	_owner->p_player->p_obsever->IsCollision("RECOVERY");
 }
 
 void CPlayer::RECOVERY::Update()
 {
-	
+
 	return;
 }

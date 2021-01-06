@@ -35,6 +35,8 @@ public:
 
 	void CUI::SetGateParameter(int gate_numbers);
 
+	bool game_over_flag = false;
+
 private:
 	OBSERVER      observer;
 	SpriteManager sprite_mng;

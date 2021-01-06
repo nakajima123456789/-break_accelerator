@@ -33,7 +33,7 @@ void CUI::Init()
  
 void CUI::Update()
 {	
-	if (black_out_flag) { sprite_mng.BlackOutTrigger(black_out); };
+	if (black_out_flag) { if (sprite_mng.BlackOutTrigger(black_out)) { game_over_flag = true; }; };
 
 	if (this->FrameTimeObsever(60)) {SetGateParameter(-1);};
 

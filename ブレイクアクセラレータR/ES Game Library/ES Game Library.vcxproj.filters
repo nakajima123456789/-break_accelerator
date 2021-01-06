@@ -433,6 +433,9 @@
     <ClCompile Include="MyClass\ALL_SCENE\Result\Result.cpp">
       <Filter>MyClass\All_Scene\C_Result</Filter>
     </ClCompile>
+    <ClCompile Include="MyClass\C_CAMERA\C_CAMERA.cpp">
+      <Filter>MyClass\C_Camera</Filter>
+    </ClCompile>
     <ClCompile Include="MyClass\C_DIS\C_DIS.cpp">
       <Filter>MyClass\C_Dis</Filter>
     </ClCompile>
@@ -537,9 +540,6 @@
     </ClCompile>
     <ClCompile Include="MyClass\HitStop\HitStop.cpp">
       <Filter>MyClass\HitStop</Filter>
-    </ClCompile>
-    <ClCompile Include="MyClass\C_CAMERA\C_CAMERA.cpp">
-      <Filter>MyClass\C_Camera</Filter>
     </ClCompile>
     <ClCompile Include="MyClass\CCHARACTER\Character.cpp">
       <Filter>MyClass\Character</Filter>

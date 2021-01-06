@@ -124,14 +124,13 @@ private:
 		RECOVERY(CPlayerStateProcessor* owner);
 		virtual ~RECOVERY() {};
 
-		virtual int    CancelLv() { return INT_MAX; };
 		virtual int  ExitTime() { return 20; };
 
 		virtual void Update() override;
 	};
 
 	void ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type);
-	void SetAccelaretorParameter(bool startSpeed);
+	void SetAccelaretorParameter(bool flag);
 	void SetAccelaretor(int accelaretor_type);
 
 	int  GetGiaLevel();
