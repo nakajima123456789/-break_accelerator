@@ -124,11 +124,11 @@ void CPlayer::SetAccelaretorParameter(bool startSpeed)
 {
 	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++)
 	{
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._max_velocity   = 0.2f   + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._min_velocity   = 0.1f   + (i * 0.05f);
+		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._max_velocity   = 0.2f + (i * 0.02f);
+		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._min_velocity   = 0.1f + (i * 0.05f);
 		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._start_velocity = 0.1f;
 
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._max_velocity = 0.3f + (i * 0.02f);
+		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._max_velocity = 0.2f + (i * 0.02f);
 		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._min_velocity = 0.1f + (i * 0.05f);
 		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._start_velocity = 0.2f;
 
@@ -189,6 +189,7 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 		break;
 	case ATTACK_TYPE::ITEMBROCK:
 		SetAccelaretorParameter(0.0f);
+		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
 		p_obsever->IsCollision("ITEMBROCK");
 		break;
 	}
@@ -235,11 +236,13 @@ CPlayer::DAMAGE::DAMAGE(CPlayerStateProcessor* owner) : _owner(owner)
 
 void CPlayer::DAMAGE::Update()
 {
-	_owner->p_player->alpha   ^= 1;_owner->p_player->color_r  = 1;
+	_owner->p_player->alpha   ^= 1;
+	_owner->p_player->color_r  = 1;
 
 	if (this->GetTime() >= 30)
 	{
-		_owner->p_player->alpha   = 1;_owner->p_player->color_r = 0;
+		_owner->p_player->alpha   = 1;
+		_owner->p_player->color_r = 0;
 		_owner->p_player->p_state_processor.ChangeState(new CPlayer::IDOL(&_owner->p_player->p_state_processor));
 		return;
 	}
@@ -247,7 +250,7 @@ void CPlayer::DAMAGE::Update()
 
 CPlayer::RECOVERY::RECOVERY(CPlayerStateProcessor* owner) : _owner(owner)
 {
-
+	
 	_owner->p_player->p_effekseer->PlayEffekseer(PLAYER::ITEM);
     _owner->p_player->p_obsever->IsCollision("RECOVERY");
 }

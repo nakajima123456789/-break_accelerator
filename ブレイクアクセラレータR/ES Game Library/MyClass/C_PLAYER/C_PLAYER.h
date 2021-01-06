@@ -124,6 +124,7 @@ private:
 		RECOVERY(CPlayerStateProcessor* owner);
 		virtual ~RECOVERY() {};
 
+		virtual int    CancelLv() { return INT_MAX; };
 		virtual int  ExitTime() { return 20; };
 
 		virtual void Update() override;
