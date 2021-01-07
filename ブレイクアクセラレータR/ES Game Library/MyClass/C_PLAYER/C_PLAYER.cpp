@@ -188,7 +188,12 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 		p_obsever->IsCollision("GAMEOVER");
 		break;
 	case ATTACK_TYPE::ITEMBROCK:
+//<<<<<<< Updated upstream
 		SetAccelaretorParameter(0.0f);
+//=======
+		/*p_effekseer->PlayEffekseer(PLAYER::ITEMBROCK);*/
+		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
+//>>>>>>> Stashed changes
 		p_obsever->IsCollision("ITEMBROCK");
 		break;
 	}
