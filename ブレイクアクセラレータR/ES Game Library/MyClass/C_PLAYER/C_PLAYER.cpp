@@ -105,12 +105,12 @@ void CPlayer::ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type)
 	}
 	switch (move_type)
 	{
-	case PLAYER::PLAYERMOVETYPE::NOMAL:
+		case PLAYER::PLAYERMOVETYPE::NOMAL:
 		p_velocity = new Velocity();	
 		this->ChildObj_AddList((ChildObjRef)p_velocity);
 	                                                	p_velocity->gameObject = this;
 		break;
-	case PLAYER::PLAYERMOVETYPE::ROTATION:
+		case PLAYER::PLAYERMOVETYPE::ROTATION:
 		p_rotation = new RotationMove();
 		this->ChildObj_AddList((ChildObjRef)p_rotation);
                                                         p_rotation->gameObject = this;
@@ -124,22 +124,14 @@ void CPlayer::SetAccelaretorParameter(bool flag)
 {
 	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++)
 	{
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._max_velocity   = 0.2f   + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._min_velocity   = 0.1f   + (i * 0.05f);
-		accelaretor_parameter[ACCELARETOR_TYPE::NOMAL]._start_velocity = 0.1f;
-
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._max_velocity = 0.3f + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._min_velocity = 0.1f + (i * 0.05f);
-		accelaretor_parameter[ACCELARETOR_TYPE::ROW]._start_velocity = 0.2f;
-
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._max_velocity = 0.4f + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._min_velocity = 0.1f + (i * 0.05f);
-		accelaretor_parameter[ACCELARETOR_TYPE::MEDIUM]._start_velocity = 0.4f;
-
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._max_velocity = 0.6f + (i * 0.02f);
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._min_velocity = 0.1f + (i * 0.05f);
-		accelaretor_parameter[ACCELARETOR_TYPE::HARD]._start_velocity = 0.5f;
+		accelaretor_parameter[i]._max_velocity = 0.30f + i * 0.05f;
+		accelaretor_parameter[i]._min_velocity = 0.25f + i * 0.05f;
+		accelaretor_parameter[i]._start_velocity = 0.2f + i * 0.1f;
 	}
+
+	if (flag) return;
+
+	for (int i = 0; i < ACCELARETOR_TYPE::_END; i++) { accelaretor_parameter[i]._start_velocity = 0; };
 }
 
 int CPlayer::GetGiaLevel()
