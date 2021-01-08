@@ -50,6 +50,7 @@ void CPlayer::Init()
 
 	_iplayer_data.reset(new IPlayerData);
 	_ui_data.reset(new UiData);
+	
 }
 
 CPlayer::~CPlayer()
@@ -127,7 +128,11 @@ void CPlayer::SetAccelaretorParameter(bool flag)
 		accelaretor_parameter[i]._max_velocity = 0.30f + i * 0.05f;
 		accelaretor_parameter[i]._min_velocity = 0.25f + i * 0.05f;
 		accelaretor_parameter[i]._start_velocity = 0.2f + i * 0.1f;
+		
 	}
+
+
+
 
 	if (flag) return;
 
@@ -141,7 +146,7 @@ int CPlayer::GetGiaLevel()
 	int NomaL = 3, Row = 6, Medium = 8;
 
 	if (speed_meter <= NomaL)                                return ACCELARETOR_TYPE::NOMAL;
-	if (speed_meter >= NomaL  + 1 && speed_meter <= Row)     return ACCELARETOR_TYPE::ROW;
+	if (speed_meter >= NomaL  + 1 && speed_meter <= Row)     return ACCELARETOR_TYPE::ROW; 
 	if (speed_meter >= Row    + 1 && speed_meter <= Medium)  return ACCELARETOR_TYPE::MEDIUM;
 	if (speed_meter >= Medium + 1)                           return ACCELARETOR_TYPE::HARD;
 }
@@ -167,6 +172,7 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 
 	switch (attack_parameters->GetAttackParameters()._Type) 
 	{
+		
 	case ATTACK_TYPE::DAMEGE:
 		SetAccelaretorParameter(0.0f);
 		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
@@ -185,7 +191,10 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
 		p_obsever->IsCollision("ITEMBROCK");
 		break;
-	}
+		}
+		
+	
+	
 	this->SetAccelaretor(this->GetGiaLevel());
 }
 
