@@ -3,7 +3,7 @@
 
 void CObstacle::Init()
 {
-	this->p_model.SetModel(_T("model3D//‰ü’ù”Å_//hako_B.X"));
+	this->p_model.SetModel(_T("model3D//‰ü’ù”Å_//timer.X"));
 
 	p_hitbox = new HitBox();
 	p_hitbox->Settags("hako_B");

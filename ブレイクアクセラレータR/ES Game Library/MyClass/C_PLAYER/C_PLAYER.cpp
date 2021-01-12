@@ -170,11 +170,12 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 	this->ChildObj_AddList((ChildObjRef)p_effekseer);
 	p_effekseer->transform.localscale = 0.1f;
 
-	switch (attack_parameters->GetAttackParameters()._Type) 
+	switch (attack_parameters->GetAttackParameters()._Type)
 	{
-		
+
 	case ATTACK_TYPE::DAMEGE:
 		SetAccelaretorParameter(0.0f);
+		/*p_obsever->IsCollision("GAMEOVER");*/
 		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
 		break;
 	case ATTACK_TYPE::ITEM:
@@ -191,8 +192,7 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
 		p_obsever->IsCollision("ITEMBROCK");
 		break;
-		}
-		
+	}
 	
 	
 	this->SetAccelaretor(this->GetGiaLevel());

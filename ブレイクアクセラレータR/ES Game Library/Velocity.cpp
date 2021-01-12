@@ -42,7 +42,7 @@ void Velocity::RUN::Update()
 		_owner->_velocity->gameObject->transform.rotation.z 
 			                     = _owner->_velocity->gameObject->transform.rotation.z + _owner->_velocity->_ADD_ANGLES;
 
-		_owner->_velocity->_speed = 0.04f;/*Math_Min(_owner->_velocity->_speed,  _owner->_velocity->_MAX_SPEED);*/
+		_owner->_velocity->_speed = 0.045f;/*Math_Min(_owner->_velocity->_speed,  _owner->_velocity->_MAX_SPEED);*/
 	}
 	else
 	if (Input.GetArrowkeyVector().x < 0) { 
@@ -50,7 +50,7 @@ void Velocity::RUN::Update()
 		_owner->_velocity->gameObject->transform.rotation.z 
 			                     = _owner->_velocity->gameObject->transform.rotation.z - _owner->_velocity->_ADD_ANGLES;
 
-		_owner->_velocity->_speed = -0.04f; /*Math_Max(_owner->_velocity->_speed , -_owner->_velocity->_MAX_SPEED);*/
+		_owner->_velocity->_speed = -0.045f; /*Math_Max(_owner->_velocity->_speed , -_owner->_velocity->_MAX_SPEED);*/
 	}
 
 	_owner->_velocity->_drag_speed = _owner->_velocity->_speed;
