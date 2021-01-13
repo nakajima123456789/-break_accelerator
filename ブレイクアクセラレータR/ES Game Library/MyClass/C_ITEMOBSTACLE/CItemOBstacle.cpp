@@ -3,7 +3,7 @@
 
 void CItemObstacle::Init()
 {
-	this->p_model.SetModel(_T("‰ü’ù//program.X"));
+	this->p_model.SetModel(_T("‰ü’ù//obj_e.X"));
 	this->p_model.SetScale(0.5f);
 
 	p_hitbox = new HitBox();

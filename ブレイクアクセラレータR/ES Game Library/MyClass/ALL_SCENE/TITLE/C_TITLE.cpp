@@ -6,7 +6,7 @@
 void C_TITLE::Initialize()
 {
 	Add_Sprite(_T("SPRITE/title.png"));
-	moji  = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/taitoru_sita2.png"));
+	moji  = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/taitoru_sita3.png"));
 	moji2 = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/taitoru_ue2.png"));
 	moji3 = GraphicsDevice.CreateSpriteFromFile(_T("SPRITE/start.png"));
 	iro = 0; moji_x = 0;
