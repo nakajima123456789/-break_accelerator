@@ -16,7 +16,11 @@ public:
 
 private:
 	SPRITE sprite;
+	SPRITE result;
+	SPRITE _1st, _2nd, _3rd;
 
 	void Add_Sprite(LPCTSTR _sprite_name);
 	std::vector<SPRITE> sprite_list_name;
+
+
 };
