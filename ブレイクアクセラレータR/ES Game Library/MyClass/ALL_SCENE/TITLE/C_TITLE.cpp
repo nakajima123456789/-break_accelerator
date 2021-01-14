@@ -5,9 +5,9 @@
 
 void C_TITLE::Initialize()
 {
-	Add_Sprite(_T("SPRITE/title.png"));
-	moji  = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/taitoru_sita3.png"));
-	moji2 = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/taitoru_ue2.png"));
+	Add_Sprite(_T("新タイトル　素材/background.png"));
+	moji  = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/accelerator.png"));
+	moji2 = GraphicsDevice.CreateSpriteFromFile(_T("新タイトル　素材/quantum.png"));
 	moji3 = GraphicsDevice.CreateSpriteFromFile(_T("SPRITE/start.png"));
 	iro = 0; moji_x = 0;
 
@@ -33,7 +33,7 @@ void C_TITLE::Draw2D()
 
 	SpriteBatch.Draw(*moji, Vector3(1280 - moji_x, 0, 0));
 	SpriteBatch.Draw(*moji2, Vector3(-1280 + moji_x, 0, 0));
-	SpriteBatch.Draw(*moji3, Vector3(0, 0, 0), iro);
+	SpriteBatch.Draw(*moji3, Vector3(0, 100, 0), iro);
 
 }
 
