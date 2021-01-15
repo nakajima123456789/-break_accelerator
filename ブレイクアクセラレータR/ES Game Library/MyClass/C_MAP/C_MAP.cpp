@@ -5,7 +5,7 @@ void C_MAP::Init()
 	AddModelParametor(_T("model3D//‰ü’ù”Å//road_8.X"),     17, Vector3(0.0f, -0.25f, 0.0f));
 	AddModelParametor(_T("model3D//’Œ//kari.X"),           23, Vector3(0.0f,  0.0f,  0.0f));
 	AddModelParametor(_T("model3D//bill_side//pro_set.X"), 60, Vector3(0.0f, -8.0f, 0.0f));
-	AddModelParametor(_T("model3D//Œõ//obstacle.X"), 17, Vector3(0.0f, -5.0f, 0.0f));
+	AddModelParametor(_T("model3D//Œõ//obstacle.X"), 17, Vector3(0.0f, -5.5f, 0.0f));
 
 	_iplayer_data.reset(new IPlayerData);
 };
@@ -61,10 +61,9 @@ void C_MAP::AddModelParametor(LPCTSTR _filename, int scene, Vector3 position)
 	model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);
-
 	model_scene.push_back(scene);
 	model_position.resize(model.size());
-
+	
 	int model_size = 8;
 
 	for (int i = 0; i < model_size; i++)

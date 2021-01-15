@@ -31,4 +31,5 @@ void AccelaretorFront::Init()
 void AccelaretorFront::Update()
 {
 	Input.GetKeybordInput(Keys_Up) && _speed <= this->_max_speed ? AccelaretorSpeed() : DragSpeed();
+
 }

@@ -71,7 +71,7 @@ public:
 	void AttackHit(ObstacleBase* attack_parameters);
 	void MyCameraSetFieldOfViewY(float pov) { p_camera->SetCameraAngle(pov); };
 private:
-
+	int test_flg;
 	class NOMAL : public State
 	{
 	private:
