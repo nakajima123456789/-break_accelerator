@@ -16,10 +16,11 @@ CUI::~CUI()
 
 void CUI::Init()
 {
-	//sprite_mng.CreateSpriteFromFile(_T("UI/FWÉQÅ[ÉW/FW_base.png"),  Vector3(365.0f, 0.0f, 0.0f));
-	//sprite_mng.CreateSpriteFromFile(_T("UI/FWÉQÅ[ÉW/FW_base2.png"), Vector3(365.0f, 0.0f, 0.0f));	
-	//gage       = sprite_mng.CreateSpriteFromFileRect(_T("UI/FWÉQÅ[ÉW/FW_S.png"), Vector3(365.0f, 0.0f, 0.0f));
 	speed_gage = sprite_mng.CreateSpriteFromFileRect(_T("UI/speedgage/sp.png"),  Vector3(0.0f, 0.0f, 0.0f));
+
+	//sprite_mng.CreateSpriteFromFile(_T("SPRITE/spu.png"), Vector3(600.0f, 300.0f, 0.0f));
+
+	sprite_mng.CreateSpriteFromFile(_T("SPRITE/aka.png"), Vector3(0.0f, 0.0f, SpriteBatch_BottomMost));
 
 	black_out = sprite_mng.CreateSprite(Vector2(1280.0f, 720.0f), Color(0, 0, 0), Vector3(0.0f,0.0f, SpriteBatch_TopMost));
 
