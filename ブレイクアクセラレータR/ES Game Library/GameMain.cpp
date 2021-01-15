@@ -15,7 +15,7 @@ bool GameMain::Initialize()
 
 	Input.Init();
 
-	SceneManager::ChangeScene(SceneManager::RESULT);
+	SceneManager::ChangeScene(SceneManager::TITLE);
 
 	return true;
 }
