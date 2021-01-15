@@ -102,6 +102,7 @@ void CUI::SetGateParameter(int gate_numbers = 1)
 {
 	this->gagefcomveter += (MAX_TIMER * 0.1f) * gate_numbers;
 	this->game_timer    +=                      gate_numbers;
+	this->
 	_ui_data->SetGageParams("ui", gagefcomveter);
 }
 

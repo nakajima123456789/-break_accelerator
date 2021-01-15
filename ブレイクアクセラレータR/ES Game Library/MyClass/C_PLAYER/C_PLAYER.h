@@ -71,7 +71,7 @@ public:
 	void AttackHit(ObstacleBase* attack_parameters);
 	void MyCameraSetFieldOfViewY(float pov) { p_camera->SetCameraAngle(pov); };
 private:
-
+	int test_flg;
 	class NOMAL : public State
 	{
 	private:
@@ -130,7 +130,7 @@ private:
 	};
 
 	void ChangeMoveType(PLAYER::PLAYERMOVETYPE move_type);
-	void SetAccelaretorParameter(float startSpeed);
+	void SetAccelaretorParameter(bool flag);
 	void SetAccelaretor(int accelaretor_type);
 
 	int  GetGiaLevel();
