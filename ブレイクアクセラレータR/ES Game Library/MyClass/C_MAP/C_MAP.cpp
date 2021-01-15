@@ -59,10 +59,9 @@ void C_MAP::AddModelParametor(LPCTSTR _filename, int scene, Vector3 position)
 	model.push_back(GraphicsDevice.CreateModelFromFile(_filename));
 	model[model.size() - 1]->SetScale(transform.scale);
 	model[model.size() - 1]->SetMaterial(mtrl);
-
 	model_scene.push_back(scene);
 	model_position.resize(model.size());
-
+	
 	int model_size = 8;
 
 	for (int i = 0; i < model_size; i++)
