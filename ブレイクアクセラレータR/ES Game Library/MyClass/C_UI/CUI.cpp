@@ -1,6 +1,9 @@
 #include "CUI.h"
 #include"../INFORMATION/INFORMATION.h"
+#include "../ALL_SCENE/SCENEMANAGER/SceneManager.h"
+#include <algorithm>
 
+int CUI::total;
 
 CUI::CUI()
 {
@@ -16,16 +19,20 @@ CUI::~CUI()
 
 void CUI::Init()
 {
-	//sprite_mng.CreateSpriteFromFile(_T("UI/FWÉQÅ[ÉW/FW_base.png"),  Vector3(365.0f, 0.0f, 0.0f));
-	//sprite_mng.CreateSpriteFromFile(_T("UI/FWÉQÅ[ÉW/FW_base2.png"), Vector3(365.0f, 0.0f, 0.0f));	
-	//gage       = sprite_mng.CreateSpriteFromFileRect(_T("UI/FWÉQÅ[ÉW/FW_S.png"), Vector3(365.0f, 0.0f, 0.0f));
 	speed_gage = sprite_mng.CreateSpriteFromFileRect(_T("UI/speedgage/sp.png"),  Vector3(0.0f, 0.0f, 0.0f));
+
+	//sprite_mng.CreateSpriteFromFile(_T("SPRITE/spu.png"), Vector3(600.0f, 300.0f, 0.0f));
+
+	sprite_mng.CreateSpriteFromFile(_T("SPRITE/aka.png"), Vector3(0.0f, 0.0f, SpriteBatch_BottomMost));
 
 	black_out = sprite_mng.CreateSprite(Vector2(1280.0f, 720.0f), Color(0, 0, 0), Vector3(0.0f,0.0f, SpriteBatch_TopMost));
 
 	font      = GraphicsDevice.CreateSpriteFont(_T("Thirteen Pixel Fonts"), 90);
 
 	game_timer = MAX_TIMER;
+	gate_count = FIRST_GATE;
+
+	for (int i = FIRST_GATE; i <= SECOND_GATE; i++) { gate_score[i]; }
 
 	IUiParametor::Instance().CreateParametor("ui");
 	_ui_data.reset(new UiData);
@@ -33,11 +40,12 @@ void CUI::Init()
  
 void CUI::Update()
 {	
-	if (black_out_flag) { sprite_mng.BlackOutTrigger(black_out); };
+	if (black_out_flag) { if (sprite_mng.BlackOutTrigger(black_out)) { game_over_flag = true; }; };
 
 	if (this->FrameTimeObsever(60)) {SetGateParameter(-1);};
 
 	if (game_timer <= 0) { OnCollision("GAMEOVER"); };
+
 }
 
 void CUI::Draw2D()
@@ -46,6 +54,7 @@ void CUI::Draw2D()
 
 	game_timer = this->clamp(game_timer, 0, MAX_TIMER);
 	SpriteBatch.DrawString(font, Vector2(600.0f, 0.0f), Color(255, 255, 255), _T("%d"), game_timer);
+	SpriteBatch.DrawString(font, Vector2(200.0f, 0.0f), Color(255, 255, 255), _T("%d"), total);
 
 	sprite_mng.DrawSprite();
 }
@@ -94,6 +103,22 @@ void CUI::CollisionTypeItemBrock()
 
 void CUI::CollisionTypeGateBreak()
 {
+
+	switch (gate_count) {
+	case FIRST_GATE:
+		gate_score[FIRST_GATE] = game_timer * 100;
+		break;
+	case SECOND_GATE:
+		gate_score[SECOND_GATE] = game_timer * 100;
+		break;
+	case THIRD_GATE:
+		gate_score[THIRD_GATE] =  game_timer * 100;
+		total = gate_score[FIRST_GATE] + gate_score[SECOND_GATE] + gate_score[THIRD_GATE];
+		clear_flag = true;
+		break;
+	}
+	
+	gate_count++;
 	SetGateParameter(20);
 }
 
@@ -101,6 +126,7 @@ void CUI::SetGateParameter(int gate_numbers = 1)
 {
 	this->gagefcomveter += (MAX_TIMER * 0.1f) * gate_numbers;
 	this->game_timer    +=                      gate_numbers;
+	this->
 	_ui_data->SetGageParams("ui", gagefcomveter);
 }
 

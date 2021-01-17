@@ -35,6 +35,10 @@ public:
 
 	void CUI::SetGateParameter(int gate_numbers);
 
+	bool game_over_flag = false;
+	bool clear_flag     = false;
+	static int total;
+
 private:
 	OBSERVER      observer;
 	SpriteManager sprite_mng;
@@ -52,4 +56,11 @@ private:
 
 	//プレイヤーのデータベース
 	std::unique_ptr<UiData>        _ui_data;
+
+
+	enum {FIRST_GATE,SECOND_GATE,THIRD_GATE};
+	int gate_count;
+	int gate_score[3];
+
+
 };

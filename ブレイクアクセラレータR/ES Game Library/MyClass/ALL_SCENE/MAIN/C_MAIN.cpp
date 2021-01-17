@@ -3,7 +3,6 @@
 
 #include "../../ObjectPlacement/ObjectPlacement.h"
 #include "../../C_MAP/C_MAP.h"
-#include "../../C_UI/CUI.h"
 #include "../../C_SHADER/C_SHADER.h"
 #include "../../ObstacleManager/ObstacleManager.h"
 #include "../../../CMapMove.h"
@@ -24,8 +23,8 @@ void C_MAIN::Initialize(){
 	auto&& c_map = new C_MAP;
 	_objectroot.AddList((ChildObjRef)c_map);
 
-	auto&& c_se = new CUI();
-	_objectroot.AddList((ChildObjRef)c_se);
+	p_ugui = new CUI();
+	_objectroot.AddList((ChildObjRef)p_ugui);
 }
 
 C_MAIN::~C_MAIN()
@@ -36,7 +35,10 @@ C_MAIN::~C_MAIN()
 void C_MAIN::Update() {
 	_objectroot.Update();
 
-	//if (Input.GetKeybordInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::GAME_CLEAR); }
+	if (p_ugui->game_over_flag) { SceneManager::ChangeScene(SceneManager::GAME_OVER); }
+	if (p_ugui->clear_flag) { clear_frame++; }
+	if (clear_frame >= 120) { SceneManager::ChangeScene(SceneManager::RESULT); }
+
 }
 
 void C_MAIN::Draw3D()
