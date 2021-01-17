@@ -36,7 +36,7 @@ void C_MAIN::Update() {
 	_objectroot.Update();
 
 	if (p_ugui->game_over_flag) { SceneManager::ChangeScene(SceneManager::GAME_OVER); }
-	if (p_ugui->clear_flag) { clear_frame++; }
+	else if (p_ugui->clear_flag && p_ugui->game_over_flag == false) { clear_frame++; }
 	if (clear_frame >= 120) { SceneManager::ChangeScene(SceneManager::RESULT); }
 
 }

@@ -34,7 +34,7 @@ void C_RESULT::Initialize()
 		ranking_score[1] = work;
 	}
 	std::ofstream outfile("score.dat");
-	outfile << ranking_score[0] <<' '<< ranking_score[1] << ' ' << ranking_score[2];
+	outfile << ranking_score[0] <<" "<< ranking_score[1] << " " << ranking_score[2];
 
 }
 
