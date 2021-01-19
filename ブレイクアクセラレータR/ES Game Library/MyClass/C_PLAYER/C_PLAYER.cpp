@@ -188,8 +188,9 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 		break;
 	case ATTACK_TYPE::ITEMBROCK:
 		SetAccelaretorParameter(0.0f);
-		/*p_effekseer->PlayEffekseer(PLAYER::ITEMBROCK);*/
 		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
+		/*p_effekseer->PlayEffekseer(PLAYER::ITEMBROCK);*/
+
 		p_obsever->IsCollision("ITEMBROCK");
 		break;
 	}
