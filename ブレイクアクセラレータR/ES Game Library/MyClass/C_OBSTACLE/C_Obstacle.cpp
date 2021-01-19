@@ -29,6 +29,6 @@ void CObstacle::IsCollsion()
 
 bool CObstacle::PModelParameter(std::vector<Vector3>::iterator& itr)
 {
-	if (this->OnCollsion()) { return true; };
+	this->OnCollsion();
 	return false;
 }

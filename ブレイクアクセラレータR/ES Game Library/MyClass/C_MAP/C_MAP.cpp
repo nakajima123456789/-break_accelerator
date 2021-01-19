@@ -5,6 +5,8 @@ void C_MAP::Init()
 	AddModelParametor(_T("model3D//‰ü’ù”Å//road_8.X"),     17, Vector3(0.0f, -0.25f, 0.0f));
 	AddModelParametor(_T("model3D//’Œ//kari.X"),           23, Vector3(0.0f,  0.0f,  0.0f));
 	AddModelParametor(_T("model3D//bill_side//pro_set.X"), 60, Vector3(0.0f, -8.0f, 0.0f));
+	//AddModelParametor(_T("model3D//Œõ//bg_Vr2_set.X"), 55, Vector3(10.0f,-4.0f, 0.0f));
+	//AddModelParametor(_T("model3D//Œõ//obstacle.X"), 17, Vector3(0.0f, -5.5f, 0.0f));
 
 	_iplayer_data.reset(new IPlayerData);
 };
@@ -43,6 +45,7 @@ void C_MAP::Draw3D()
 
 void C_MAP::DrawAlpha3D()
 {
+
 	return;
 };
 

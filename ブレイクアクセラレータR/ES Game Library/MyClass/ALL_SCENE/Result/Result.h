@@ -1,5 +1,6 @@
 #pragma once
 #include "../SCENEMANAGER/BaseScreen.h"
+#include "../../C_UI/CUI.h"
 
 class C_RESULT : public BaseScene
 {
@@ -16,7 +17,13 @@ public:
 
 private:
 	SPRITE sprite;
+	SPRITE result;
+	SPRITE _1st, _2nd, _3rd;
+	FONT font;
 
 	void Add_Sprite(LPCTSTR _sprite_name);
 	std::vector<SPRITE> sprite_list_name;
+
+	int ranking_score[3];
+	CUI cui;
 };

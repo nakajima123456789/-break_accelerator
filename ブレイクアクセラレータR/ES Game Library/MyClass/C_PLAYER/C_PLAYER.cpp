@@ -179,7 +179,7 @@ void CPlayer::AttackHit(ObstacleBase* attack_parameters)
 		p_state_processor.ChangeState(new CPlayer::DAMAGE(&p_state_processor));
 		break;
 	case ATTACK_TYPE::ITEM:
-		SetAccelaretorParameter(0.4f);
+		SetAccelaretorParameter(0.0f);
 		p_state_processor.ChangeState(new CPlayer::RECOVERY(&p_state_processor));
 		break;
 	case ATTACK_TYPE::GAMEOVER:

@@ -1,6 +1,7 @@
 #pragma once
 #include "../SCENEMANAGER/BaseScreen.h"
 #include "../../C_OBJECT/Object.h"
+#include "../../C_UI/CUI.h"
 
 class C_MAIN : public BaseScene
 {
@@ -18,5 +19,7 @@ public:
 private:
 	ObjectManager _objectroot;
 
+	CUI* p_ugui = nullptr;
 
+	float clear_frame = 0;
 };

@@ -47,8 +47,8 @@
                 </R>
                 <G>
                   <Center>190</Center>
-                  <Max>155</Max>
-                  <Min>142</Min>
+                  <Max>169</Max>
+                  <Min>150</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
@@ -67,13 +67,13 @@
                 </R>
                 <G>
                   <Center>128</Center>
-                  <Max>0</Max>
+                  <Max>65</Max>
                   <Min>0</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
-                  <Max>87</Max>
-                  <Min>49</Min>
+                  <Max>0</Max>
+                  <Min>152</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -271,13 +271,13 @@
                 </R>
                 <G>
                   <Center>128</Center>
-                  <Max>38</Max>
-                  <Min>0</Min>
+                  <Max>33</Max>
+                  <Min>49</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
                   <Max>0</Max>
-                  <Min>87</Min>
+                  <Min>0</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>
                 <A>
@@ -292,13 +292,13 @@
                 </R>
                 <G>
                   <Center>128</Center>
-                  <Max>64</Max>
-                  <Min>33</Min>
+                  <Max>88</Max>
+                  <Min>14</Min>
                   <DrawnAs>0</DrawnAs>
                 </G>
                 <B>
                   <Center>239</Center>
-                  <Max>117</Max>
+                  <Max>64</Max>
                   <Min>0</Min>
                   <DrawnAs>0</DrawnAs>
                 </B>

@@ -9,7 +9,7 @@ void C_GAME_OVER::Initialize()
 
 void C_GAME_OVER::Update()
 {
-	if (Input.GetKeybordInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::RESULT); }
+	if (Input.GetKeybordInputDown(Keys_Enter)) { SceneManager::ChangeScene(SceneManager::TITLE); }
 }
 
 void C_GAME_OVER::Draw2D()
