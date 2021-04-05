@@ -54,7 +54,7 @@ void CUI::Draw2D()
 
 	game_timer = this->clamp(game_timer, 0, MAX_TIMER);
 	SpriteBatch.DrawString(font, Vector2(600.0f, 0.0f), Color(255, 255, 255), _T("%d"), game_timer);
-	SpriteBatch.DrawString(font, Vector2(200.0f, 0.0f), Color(255, 255, 255), _T("%d"), total);
+//	SpriteBatch.DrawString(font, Vector2(200.0f, 0.0f), Color(255, 255, 255), _T("%d"), total);
 
 	sprite_mng.DrawSprite();
 }
